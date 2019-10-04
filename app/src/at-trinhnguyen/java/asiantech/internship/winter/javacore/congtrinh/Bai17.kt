@@ -1,6 +1,5 @@
 package com.congtrinh
 
-import com.congtrinh.a.nhap
 import java.util.*
 
 
