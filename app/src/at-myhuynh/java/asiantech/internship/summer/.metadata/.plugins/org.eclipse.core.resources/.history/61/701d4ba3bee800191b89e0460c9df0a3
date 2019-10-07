@@ -10,7 +10,6 @@ public class UocSo {
 	public static void main(String[] args) {
 		int n = 30;
 		List<Integer> listDiv = getListDiv(n);
-		
 		System.out.println("Danh sach uoc so: " + listDiv.toString());
 		System.out.println("So luong uoc so: " + listDiv.size());
 		System.out.println("Danh sach uoc so la so nguyen to: " + getListDivPrime(listDiv).toString());
