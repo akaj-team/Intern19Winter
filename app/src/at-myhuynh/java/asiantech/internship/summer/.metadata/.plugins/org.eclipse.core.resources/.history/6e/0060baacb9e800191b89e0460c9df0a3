@@ -15,7 +15,6 @@ public class Fibonaci {
 			f2 = fn;
 			count++;
 		} while (count < n);
-		
 		System.out.println("Số fibonaci thứ " + n + ": " + fn);
 	}
 
