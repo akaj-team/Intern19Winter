@@ -1,5 +1,7 @@
 package ex02;
-
+/**
+ * Convert cơ số 10 sang cơ số 2
+ */
 public class Convert {
 
 	public static void main(String[] args) {
