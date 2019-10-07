@@ -9,7 +9,6 @@ public class PrimeAndFibonaciNumber {
 
 	public static void main(String[] args) {
 		int n = 10;
-
 		System.out.println(n + " số nguyên tố đầu tiên: " + getListPrime(n));
 		System.out.println(n + " số Fibo đầu tiên: " + Common.getListFibonaci(n));
 	}
