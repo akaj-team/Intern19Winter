@@ -6,16 +6,14 @@ public class StringStandar {
 		String str = "    nguYen  vAn a  ";
 		System.out.println(str);
 		str = str.trim().toLowerCase();
-		String[] arrstr = str.split("[ ]+");
+		String[] arrStr = str.split("[ ]+");
 
-		String result = "";
-		for (String strItem : arrstr) {
-			String temp = String.valueOf(strItem.charAt(0));
-			strItem = strItem.replaceFirst(temp, temp.toUpperCase());
-			result += strItem + " ";
+		for (int i = 0; i < arrStr.length; i++) {
+			String temp = String.valueOf(arrStr[i].charAt(0));
+			arrStr[i] = arrStr[i].replaceFirst(temp, temp.toUpperCase());
 		}
 
-		System.out.println(result);
+		System.out.println(String.join(" ", arrStr));
 
 	}
 
