@@ -23,7 +23,7 @@ public class SoThuanNghich {
 			System.out.println(str + ": Khong Thuan nghich");
 		}
 		
-		//Or Use StringBuffer
+		// Use StringBuffer
 		System.out.println(str.equals(new StringBuffer(str).reverse().toString()));
 		
 	}
