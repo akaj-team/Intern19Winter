@@ -3,7 +3,7 @@ package ex29;
 public class FindWord {
 
 	public static void main(String[] args) {
-		String str = "Viết chươnggg trình chươnggg thực hiện nhập một xâu ký tự và tìm từ dài nhất trong xâu đó";
+		String str = "Viết chương trình chương thực hiệnnnnn nhập một xâu ký tự và tìm từ dài nhất trong xâu đó";
 		String[] arrWords = str.split(" ");
 
 		int[] maxLengthWord = getMaxLengthWord(arrWords);
