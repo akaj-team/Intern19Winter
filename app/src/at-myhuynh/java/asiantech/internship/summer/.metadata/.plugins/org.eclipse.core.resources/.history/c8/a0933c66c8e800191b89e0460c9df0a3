@@ -18,5 +18,7 @@ public class Main {
 		for (Hinh hinh : hinhs) {
 			System.out.println(hinh.print() + ": " + hinh.cv() + " - " + hinh.dt());
 		}
+
 	}
+
 }

@@ -8,4 +8,5 @@ public abstract class Hinh {
 	public String print() {
 		return "Default";
 	}
+
 }

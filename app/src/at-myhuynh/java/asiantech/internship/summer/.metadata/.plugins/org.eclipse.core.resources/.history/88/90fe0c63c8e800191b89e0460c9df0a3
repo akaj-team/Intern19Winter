@@ -22,4 +22,5 @@ public class HinhVuong extends Hinh {
 	public String print() {
 		return "HV";
 	}
+
 }

@@ -17,4 +17,5 @@ public class HinhTron extends Hinh {
 	public double dt() {
 		return r * r * Math.PI;
 	}
+
 }
