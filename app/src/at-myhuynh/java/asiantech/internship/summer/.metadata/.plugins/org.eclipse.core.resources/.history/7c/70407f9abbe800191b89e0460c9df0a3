@@ -9,7 +9,7 @@ public class Permutation {
 		int[] arrInt = new int[n];
 
 		initArr(arrInt, n);
-		listPermutation(arrInt);
+		listPer(arrInt);
 
 	}
 
@@ -19,7 +19,7 @@ public class Permutation {
 		}
 	}
 
-	public static void listPermutation(int[] arrInt) {
+	public static void listPer(int[] arrInt) {
 		int n = arrInt.length;
 		
 		for (int i = 0; i < n; i++) {
