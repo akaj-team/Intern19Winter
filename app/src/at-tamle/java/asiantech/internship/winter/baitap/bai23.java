@@ -9,7 +9,7 @@ public class bai23 {
 	    n= input.nextInt(); check= true;
 	 
 	   }catch(Exception e){
-	    System.out.println("Ban phai nhap so! hay nhap lai..."); input.nextLine();
+	   System.out.println("Ban phai nhap so! hay nhap lai..."); input.nextLine();
 	 
 	   }
 	 

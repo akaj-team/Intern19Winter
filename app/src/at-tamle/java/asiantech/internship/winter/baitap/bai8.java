@@ -12,7 +12,7 @@ public class bai8 {
 		   return false;
 		 }
 
-		 public static void main(String[] args) {
+	 public static void main(String[] args) {
 		  int n, count = 0;
 		  for (n = 100000; n <= 999999; n++) {
 		   if (testSoThuanNghich(n)) {

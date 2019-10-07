@@ -16,9 +16,9 @@ public class bai1 {
 		    input.nextLine();
 		   }
 		  }
+
 		  return (n);
 		 }
-
 		 public static int UCLN(int a, int b) {
 		  while (a != b) {
 		   if (a > b)

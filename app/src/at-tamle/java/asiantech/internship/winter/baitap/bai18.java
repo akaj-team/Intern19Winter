@@ -8,5 +8,5 @@ public class bai18 {
 	             String str= input.nextLine();
 	 StringTokenizer strToken= new 
 	             StringTokenizer(str, " "); System.out.println("So cac tu trong xau la: "+strToken.countTokens());
-	  } 
+	} 
 }

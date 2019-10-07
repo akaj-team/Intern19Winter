@@ -15,7 +15,7 @@ public class bai10 {
 		                              input.nextLine();
 		                       }
 		                }
-		                return (n);
+		              return (n);
 		      }
 		  public static void result(int a[],int k){
 		 int i; 

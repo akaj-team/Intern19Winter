@@ -6,7 +6,7 @@ public class bai11 {
 		                boolean check= false;
 		 int n=0; 
 		                while(!check){
-		 System.out.print(" "); 
+		System.out.print(" "); 
 		                       try{
 		 n= input.nextInt(); 
 		                             check= true;

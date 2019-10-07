@@ -16,6 +16,7 @@ public class bai2 {
 		  int n = 0;
 		  while (!check) {
 		   System.out.print(" ");
+
 		   try {
 		    n = input.nextInt();
 		    check = true;

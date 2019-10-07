@@ -4,7 +4,7 @@ public class bai15 {
 	
 	  public static int nhap(){
 	 Scanner input= new Scanner(System.in); 
-	                boolean check= false;
+	               boolean check= false;
 	 int n=0; 
 	                while(!check){
 	 System.out.print(" "); 

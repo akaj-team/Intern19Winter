@@ -18,7 +18,7 @@ public class bai9 {
 		  return (n);
 		 }
 
-		 public static void main(String[] args) {
+	 public static void main(String[] args) {
 		  int n = nhap();
 		  int[] array = new int[n];
 		  int tich;

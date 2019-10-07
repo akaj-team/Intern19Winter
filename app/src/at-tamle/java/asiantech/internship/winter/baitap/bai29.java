@@ -11,7 +11,7 @@ public class bai29 {
 	       while(strToken.hasMoreTokens()){
 	 lengthStr= strToken.nextToken().length(); 
 	          i++;
-	        if(Max < lengthStr){
+	       if(Max < lengthStr){
 	 Max= lengthStr; 
 	                       viTriMax= i;
 	                  }

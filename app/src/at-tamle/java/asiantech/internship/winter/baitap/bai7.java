@@ -17,7 +17,7 @@ public class bai7 {
 	                            input.nextLine();
 	                     }
 	              }
-	              return (n);
+	             return (n);
 	      }
 	 public static void main(String[] args) { 
 	    System.out.print("Nhap n");

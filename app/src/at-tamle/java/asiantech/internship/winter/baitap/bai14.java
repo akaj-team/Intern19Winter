@@ -3,7 +3,7 @@ import java.util.*;
 public class bai14 {
 	
 	 
-	  public static int nhap(){
+	 public static int nhap(){
 	 Scanner input= new Scanner(System.in); 
 	                boolean check= false;
 	 int n=0; 

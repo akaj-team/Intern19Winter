@@ -15,7 +15,7 @@ public class bai28 {
 	                b+=""+chuyenInHoa(strToken.nextToken()); while(strToken.hasMoreTokens()){
 	                   b+=" "+chuyenInHoa(strToken.nextToken());
 	                }
-	                return(b);
+	               return(b);
 	       }
 	       public static void main(String[] args) {
 	 

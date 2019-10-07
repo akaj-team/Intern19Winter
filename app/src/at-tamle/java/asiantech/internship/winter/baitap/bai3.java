@@ -18,7 +18,7 @@ public class bai3 {
 		  return (n);
 		 }
 
-		 public static int tinhTong(long i) {
+	 public static int tinhTong(long i) {
 		  int sum = 0;
 		  long n;
 		  while (i != 0) {

@@ -6,7 +6,7 @@ public class bai27 {
 	 Scanner input= new Scanner(System.in); 
 	          boolean check= false;
 	 int n=0; 
-	          while(!check){
+	         while(!check){
 	 System.out.print(" "); 
 	               try{
 	 n= input.nextInt(); 
