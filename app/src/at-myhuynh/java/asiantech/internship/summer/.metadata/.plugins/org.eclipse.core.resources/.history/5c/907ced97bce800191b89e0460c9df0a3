@@ -17,7 +17,6 @@ public class ShowNumberExist {
 		listNumber.add(4);
 		listNumber.add(5);
 		listNumber.add(7);
-		
 		showNumberExist(listNumber);
 	}
 
