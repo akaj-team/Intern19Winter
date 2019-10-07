@@ -14,7 +14,6 @@ public class ListNumberExistOnly {
 		listNumber.add(4);
 		listNumber.add(5);
 		listNumber.add(7);
-		listNumber.add(3);
 
 		System.out.println(getNumbers(listNumber).toString());
 
