@@ -8,7 +8,7 @@ import common.Common;
 public class SumAndPrime {
 
 	public static void main(String[] args) {
-		int n = 1234;
+		int n = 1123;
 		System.out.println("Total: " + Common.totalOfNumber(n));
 
 		List<String> strPrime = new ArrayList<>();
