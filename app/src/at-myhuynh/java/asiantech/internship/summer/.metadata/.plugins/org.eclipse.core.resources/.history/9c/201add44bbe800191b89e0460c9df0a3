@@ -24,7 +24,7 @@ public class Subset {
 			}
 
 			else {
-				quayLui(n, k, arr, i + 1, j + 1);
+				quayLui(n, k, x, i + 1, j + 1);
 			}
 		}
 	}
