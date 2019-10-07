@@ -42,12 +42,12 @@ public class Common {
 		return true;
 	}
 
-	public static List<String> primeFactor(int number) {
-		List<String> listPrime = new ArrayList<>();
+	public static List<Integer> primeFactor(int number) {
+		List<Integer> listPrime = new ArrayList<>();
 		int index = 2;
 		while (number >= index) {
 			if (number % index == 0) {
-				listPrime.add(String.valueOf(index));
+				listPrime.add(index);
 				number /= index;
 			} else {
 				index++;

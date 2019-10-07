@@ -42,18 +42,19 @@ public class Common {
 		return true;
 	}
 
-	public static List<String> primeFactor(int number) {
-		List<String> listPrime = new ArrayList<>();
+	public static String primeFactor(int number) {
+		String strPrime = "";
 		int index = 2;
 		while (number >= index) {
 			if (number % index == 0) {
-				listPrime.add(String.valueOf(index));
+				strPrime += index;
 				number /= index;
 			} else {
 				index++;
 			}
+			System.out.println(number);
 		}
-		return listPrime;
+		return strPrime;
 	}
 
 	public static int totalOfNumber(int number) {
