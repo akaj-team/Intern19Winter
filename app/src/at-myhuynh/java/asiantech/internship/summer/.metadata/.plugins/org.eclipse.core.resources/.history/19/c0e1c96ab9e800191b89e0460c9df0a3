@@ -8,18 +8,18 @@ public class ListPrimeFirst {
 		int n = 10;
 		print(n);
 	}
-
-	public static void print(int n) {
+	
+	public static void print(int n){
 		int count = 0;
 		int number = 1;
-
+		
 		do {
-			if (Common.isPrime(number)) {
+			if(Common.isPrime(number)){
 				count++;
 				System.out.println(number);
 			}
 			number++;
 		} while (count < n);
 	}
-
+	
 }
