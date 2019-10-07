@@ -1,14 +1,17 @@
 package ex01;
 
-import common.Common;
+import java.util.Scanner;
 
 public class UCLN {
 
 	public static void main(String[] args) {
-		int a = Common.input("Nhập số a: ");
-		int b = Common.input("Nhập số b: ");
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		System.out.println();
+		int a = Integer.parseInt(sc.nextLine());
+		int b = Integer.parseInt(sc.nextLine());
 		System.out.println("UCLN: " + ucln(a, b));
-		System.out.println("BCNN: " + bcnn(a, b));
+		System.out.println("BCNN" + bcnn(a, b));
 	}
 
 	public static int ucln(int a, int b) {
