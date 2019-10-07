@@ -26,7 +26,7 @@ public class Ex26 {
 		Collections.sort(listNumber, (Integer o1, Integer o2) -> o2 - o1);
 		System.out.println(listNumber.toString());
 
-		insertEle(listNumber, 3);
+		insertEle(listNumber, 1);
 		System.out.println(listNumber.toString());
 
 	}
