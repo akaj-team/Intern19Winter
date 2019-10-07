@@ -11,7 +11,6 @@ public class Common {
 		Scanner sc = new Scanner(System.in);
 		int n = 0;
 		boolean check = true;
-		
 		do {
 			try {
 				System.out.print(text);
@@ -23,7 +22,6 @@ public class Common {
 				System.err.println("Nhập lại!!");
 			}
 		} while (check);
-		
 		return n;
 	}
 
