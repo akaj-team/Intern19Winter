@@ -3,9 +3,9 @@ package ex18;
 public class CountWord {
 
 	public static void main(String[] args) {
-		String strWord = "Truong hoc cua em";
+		String strWord = "Truong hoc";
 		int count = strWord.split(" ").length;
-		System.out.println("'" + strWord + "' có " + count + " từ.");
+		System.out.println(strWord + " có " + count + " từ.");
 	}
 
 }
