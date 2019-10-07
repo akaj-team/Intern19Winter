@@ -14,7 +14,6 @@ public class ListNumberExistSecond {
 		listNumber.add(2);
 		listNumber.add(4);
 		listNumber.add(5);
-		listNumber.add(5);
 		listNumber.add(7);
 		listNumber.add(7);
 
