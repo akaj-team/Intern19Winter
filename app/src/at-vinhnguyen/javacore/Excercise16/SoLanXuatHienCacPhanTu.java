@@ -26,6 +26,7 @@ public class SoLanXuatHienCacPhanTu {
             System.out.printf("%d xuất hiện %d lần.\n", key, map.get(key));
         }
     }
+
     public static void addElement(Map<Integer, Integer> map, int element) {
         if (map.containsKey(element)) {
             int count = map.get(element) + 1;

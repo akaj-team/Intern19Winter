@@ -1,6 +1,5 @@
 package Exercise9;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LietKeXauNhiPhan {

@@ -10,7 +10,7 @@ public class LietKeCacSoNguyenTo {
         System.out.println("Liệt kê tất cả số nguyên tố có 5 chữ số có tổng các chữ số bằng: " + n);
         for (int i = 10001; i < 99999; i += 2) {
             if (isPrimeNumber(i)) {
-                if(isSumEqual(n,i)){
+                if (isSumEqual(n, i)) {
                     System.out.println(i);
                 }
             }
@@ -29,14 +29,15 @@ public class LietKeCacSoNguyenTo {
         }
         return true;
     }
-    public static boolean isSumEqual(int n, int number){
+
+    public static boolean isSumEqual(int n, int number) {
         int sum = 0;
-        
-        while(number>0){
-            sum += n%10;
-            number/=10;
+
+        while (number > 0) {
+            sum += n % 10;
+            number /= 10;
         }
-        if(sum==n){
+        if (sum == n) {
             return true;
         }
         return false;

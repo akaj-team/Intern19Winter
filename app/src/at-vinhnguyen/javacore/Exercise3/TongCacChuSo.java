@@ -8,7 +8,7 @@ public class TongCacChuSo {
         System.out.print("Nhap so: ");
         Scanner sn = new Scanner(System.in);
         int a = sn.nextInt();
-        System.out.println("Tong cac chu so: "+totalAllNumbers(a));
+        System.out.println("Tong cac chu so: " + totalAllNumbers(a));
     }
 
     private static int totalAllNumbers(int a) {

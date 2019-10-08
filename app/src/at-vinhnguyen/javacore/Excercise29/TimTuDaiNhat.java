@@ -24,6 +24,6 @@ public class TimTuDaiNhat {
             }
             position += lengthTemp + 1;
         }
-        System.out.println("Ky tu co do dai lon nhat la: " + str.substring(positionTemp, positionTemp+length));
+        System.out.println("Ky tu co do dai lon nhat la: " + str.substring(positionTemp, positionTemp + length));
     }
 }

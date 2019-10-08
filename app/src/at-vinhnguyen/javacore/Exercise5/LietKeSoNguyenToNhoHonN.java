@@ -13,15 +13,15 @@ public class LietKeSoNguyenToNhoHonN {
     private static String soNguyenToNhoHon(int n) {
         StringBuilder builder = new StringBuilder();
         for (int i = 2; i < n; i++) {
-            if(kiemTraSoNguyenTo(i)){
-                builder.append(i+" ");
+            if (kiemTraSoNguyenTo(i)) {
+                builder.append(i + " ");
             }
         }
         return builder.toString();
     }
 
     private static boolean kiemTraSoNguyenTo(int i) {
-        for (int j = 2; j < i/2; j++) {
+        for (int j = 2; j < i / 2; j++) {
             if (i % j == 0) {
                 return false;
             }

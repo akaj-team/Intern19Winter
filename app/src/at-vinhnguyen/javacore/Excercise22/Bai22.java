@@ -61,6 +61,7 @@ public class Bai22 {
         System.out.println("\nCo " + count + " uoc la so nguyen to");
 
     }
+
     public static void main(String[] args) {
         System.out.print("Nhap n");
         int n = nhap();

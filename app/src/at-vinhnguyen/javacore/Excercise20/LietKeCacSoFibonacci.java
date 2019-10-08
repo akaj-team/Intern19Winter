@@ -9,7 +9,7 @@ public class LietKeCacSoFibonacci {
     public static void main(String[] args) {
         System.out.print("Nhập số tự nhiên n = ");
         int n = sn.nextInt();
-        System.out.print("Các số fibonacci nhỏ hơn "+ n+ " và "
+        System.out.print("Các số fibonacci nhỏ hơn " + n + " và "
                 + "là số nguyên tố: ");
         int i = 0;
         while (fibonacci(i) < n) {
