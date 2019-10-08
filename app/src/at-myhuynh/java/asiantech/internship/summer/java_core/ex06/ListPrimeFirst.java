@@ -1,5 +1,6 @@
 package asiantech.internship.summer.java_core.ex06;
 
+
 import asiantech.internship.summer.java_core.common.Common;
 
 public class ListPrimeFirst {
