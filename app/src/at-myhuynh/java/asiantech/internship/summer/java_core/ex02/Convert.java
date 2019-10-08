@@ -1,4 +1,4 @@
-package asiantech.internship.summer.ex02;
+package asiantech.internship.summer.java_core.ex02;
 
 public class Convert {
 
