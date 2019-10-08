@@ -1,4 +1,4 @@
-package baitap;
+package asiantech.internship.winter.baitap;
 import java.util.Scanner;
 public class bai8 {
 	public static boolean testSoThuanNghich(int n) {

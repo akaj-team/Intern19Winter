@@ -1,4 +1,4 @@
-package baitap;
+package asiantech.internship.winter.baitap;
 import java.util.*;
 public class bai21 {
 	 public static int nhap(){

@@ -1,4 +1,4 @@
-package baitap;
+package asiantech.internship.winter.baitap;
 import java.util.Scanner;
 public class bai6 {
 	 public static void lietKe(int n) {

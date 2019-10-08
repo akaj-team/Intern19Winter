@@ -1,4 +1,4 @@
-package baitap;
+package asiantech.internship.winter.baitap;
 import java.util.Scanner;
 public class bai4 {
 	public static void phanTich(int n) {
