@@ -1,5 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
+//liet ke phan tu xuat hien trong day 1 lan
 public class bai14 {
 	
 	 

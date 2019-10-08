@@ -1,5 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.Scanner;
+// liet ke all so thuan nghich 6 chu so
 public class bai8 {
 	public static boolean testSoThuanNghich(int n) {
 		  StringBuilder xau = new StringBuilder();

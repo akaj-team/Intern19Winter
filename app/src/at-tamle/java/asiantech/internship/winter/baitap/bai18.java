@@ -1,5 +1,6 @@
 package asiantech.internship.winter.baitap;
-import java.util.*; 
+import java.util.*;
+// dem so ky tu cua chuoi
 public class bai18 {
 	public static void main(String[] args) 
 	 { Scanner input= new 

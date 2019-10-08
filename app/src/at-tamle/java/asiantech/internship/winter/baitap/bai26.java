@@ -1,5 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
+//Tìm phần tử lớn nhất và lớn thứ 2 trong mảng cùng chỉ số của các số đó.
 public class bai26 {
 	
 	  public static int nhap(){

@@ -1,5 +1,8 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
+//Là số nguyên tố.
+//Là số thuận nghịch.
+//Tổng các chữ số của số đó là một số thuận nghịch
 public class bai25 {
 
 	

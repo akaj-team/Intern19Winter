@@ -1,5 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
+//liet ke all so nguyen to co 5 chu so sao cho tong cua cac chu so trong moi so nguyen to deu = S cho truoc
 public class bai19 {
 	  public static int nhap(){
 		 Scanner input= new Scanner(System.in); 

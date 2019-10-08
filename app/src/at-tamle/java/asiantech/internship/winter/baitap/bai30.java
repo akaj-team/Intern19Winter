@@ -1,5 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
+//họ...đệm...tên; chuyển xâu đó sang biểu diễn theo cấu trúc tên…họ…đệm.  
 public class bai30 {
 	 public static void chuyendoi(String s){
 	        StringTokenizer tg= new StringTokenizer(s);

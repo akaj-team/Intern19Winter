@@ -1,5 +1,8 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
+//Là số nguyên tố.
+//Là số thuận nghịch.
+//Mỗi chữ số đều là số nguyên tố
 public class bai24 {
 	 public static boolean checkSNT(int n){
          if(n>1){
