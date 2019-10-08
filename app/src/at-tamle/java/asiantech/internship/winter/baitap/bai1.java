@@ -1,5 +1,5 @@
 package asiantech.internship.winter.baitap;
-//  tim UCLN BCNN
+//   tim UCLN BCNN
 import java.util.Scanner;
 public class bai1 {
 	 public static int nhap() {

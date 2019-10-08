@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.Scanner;
-//liet ke xau nhi phan do dai n
+// liet ke xau nhi phan do dai n
 public class bai9 {
 	 public static int nhap() {
 		  Scanner input = new Scanner(System.in);

@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.Scanner;
-// n so nguyen to dau tien
+//  n so nguyen to dau tien
 public class bai6 {
 	 public static void lietKe(int n) {
 		  int i = 2, count = 0;

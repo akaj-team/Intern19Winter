@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
-//Viết chương trình thực hiện nhập một xâu ký tự và tìm từ dài nhất trong xâu đó. Từ đó xuất hiện ở vị trí nào?
+// Viết chương trình thực hiện nhập một xâu ký tự và tìm từ dài nhất trong xâu đó. Từ đó xuất hiện ở vị trí nào?
 public class bai29 {
  
 
