@@ -1,6 +1,6 @@
-package asiantech.internship.summer.ex03;
+package asiantech.internship.summer.java_core.ex03;
 
-import asiantech.internship.summer.common.Common;
+import asiantech.internship.summer.java_core.common.Common;
 
 public class TotalOfNumber {
 
