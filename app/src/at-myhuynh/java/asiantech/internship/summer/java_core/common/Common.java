@@ -1,4 +1,4 @@
-package asiantech.internship.summer.common;
+package asiantech.internship.summer.java_core.common;
 
 import java.util.ArrayList;
 import java.util.List;
