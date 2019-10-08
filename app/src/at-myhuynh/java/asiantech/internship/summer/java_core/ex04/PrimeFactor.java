@@ -1,8 +1,8 @@
-package asiantech.internship.summer.ex04;
+package asiantech.internship.summer.java_core.ex04;
 
 import java.util.List;
 
-import asiantech.internship.summer.common.Common;
+import asiantech.internship.summer.java_core.common.Common;
 
 public class PrimeFactor {
 
