@@ -1,6 +1,6 @@
-package asiantech.internship.summer.ex01;
+package asiantech.internship.summer.java_core.ex01;
 
-import asiantech.internship.summer.common.Common;
+import asiantech.internship.summer.java_core.common.Common;
 
 public class UCLN {
 
