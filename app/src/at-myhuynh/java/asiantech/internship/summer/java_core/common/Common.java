@@ -6,9 +6,9 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class Common {
-    private static Logger log = Logger.getLogger(Common.class.getName());
 
     public static int input(String text) {
+        Logger log = Logger.getLogger(Common.class.getName());
         Scanner sc = new Scanner(System.in, "UTF-8");
         int n = 0;
         boolean check;
