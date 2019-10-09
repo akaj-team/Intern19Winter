@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
-//  day tang dan
+// day tang dan
 public class bai17 {
 	
 	 public static int nhap(){
