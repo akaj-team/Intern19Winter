@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
-//  in ra xuat hien so lan cua phan tu
+//   in ra xuat hien so lan cua phan tu
 public class bai16 {
 	
 
