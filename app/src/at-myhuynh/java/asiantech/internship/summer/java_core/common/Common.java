@@ -88,4 +88,16 @@ public class Common {
 
 		return listFibo;
 	}
+
+	public static String joinString(String delimiter, Object[] arrStr) {
+		String result = "";
+		for (int i = 0; i < arrStr.length; i++) {
+			if (i == arrStr.length - 1) {
+				result += arrStr[i];
+			} else {
+				result += arrStr[i] + delimiter;
+			}
+		}
+		return result;
+	}
 }
