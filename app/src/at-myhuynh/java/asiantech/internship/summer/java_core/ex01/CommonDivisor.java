@@ -1,17 +1,20 @@
 package asiantech.internship.summer.java_core.ex01;
 
+import java.util.logging.Logger;
+
 import asiantech.internship.summer.java_core.common.Common;
 
-public class UCLN {
+public class CommonDivisor {
 
     public static void main(String[] args) {
+        Logger log = Logger.getLogger(Common.class.getName());
         int a = Common.input("Nhập số a: ");
         int b = Common.input("Nhập số b: ");
-        System.out.println("UCLN: " + ucln(a, b));
-        System.out.println("BCNN: " + bcnn(a, b));
+        log.info("Common Divisor: " + greatestCommonDivisor(a, b));
+        log.info("Least Common Multiple: " + leastCommonMultiple(a, b));
     }
 
-    public static int ucln(int a, int b) {
+    public static int greatestCommonDivisor(int a, int b) {
         while (a != b) {
             if (a > b) {
                 a -= b;
@@ -22,7 +25,7 @@ public class UCLN {
         return a;
     }
 
-    public static int bcnn(int a, int b) {
+    public static int leastCommonMultiple(int a, int b) {
         int index = a > b ? a : b;
         while (true) {
             if (index % a == 0 && index % b == 0) {
