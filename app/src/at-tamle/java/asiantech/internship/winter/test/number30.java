@@ -1,10 +1,10 @@
-package asiantech.internship.winter.baitap;
+package asiantech.internship.winter.test;
 
-import java.util.*;
-
+import java.util.Scanner;
+import java.util.StringTokenizer;
 // ho dem ten > ten ho dem
-public class bai30 {
-    public static void chuyendoi(String s) {
+public class number30 {
+    public static void total(String s) {
         StringTokenizer tg = new StringTokenizer(s);
         StringBuffer kq = new StringBuffer();
         String s1[] = new String[10];
@@ -24,6 +24,6 @@ public class bai30 {
         Scanner in = new Scanner(System.in);
         System.out.println("nhap xau ho ten: ");
         s0 = in.nextLine();
-        chuyendoi(s0);
+        total(s0);
     }
 }
