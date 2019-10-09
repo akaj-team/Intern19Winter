@@ -14,16 +14,15 @@ public class ListPrimeFirst {
 
     public static void print(int n) {
         Logger log = Logger.getLogger(ListPrimeFirst.class.getName());
-        int count = 0;
         int number = 1;
 
         do {
             if (Common.isPrime(number)) {
-                count++;
+                n--;
                 log.info(String.valueOf(number));
             }
             number++;
-        } while (count < n);
+        } while (n > 0);
     }
 
 }
