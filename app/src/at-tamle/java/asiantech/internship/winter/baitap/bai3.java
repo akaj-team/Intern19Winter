@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.Scanner;
-// tinh tong so bat ki vd 123= 1+2+3
+//tinh tong so bat ki vd 123= 1+2+3
 public class bai3 {
 	 public static int nhap() {
 		  Scanner input = new Scanner(System.in);
