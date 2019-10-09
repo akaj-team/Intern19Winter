@@ -2,7 +2,7 @@ package asiantech.internship.winter.test;
 
 import java.util.Scanner;
 //ucln bcnn
-public class UCLNBCNN {
+public class one {
     public static int number() {
         Scanner input = new Scanner(System.in);
         boolean check = false;
