@@ -1,5 +1,5 @@
 package asiantech.internship.winter.baitap;
-import java.util.*;
+import  java.util.*;
 // liet ke tap con k
 public class bai10 {
 	public static int nhap(){
