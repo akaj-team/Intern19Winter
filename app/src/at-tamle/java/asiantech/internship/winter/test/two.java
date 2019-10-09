@@ -1,7 +1,7 @@
 package asiantech.internship.winter.test;
 
 import java.util.Scanner;
-//  doi co so 10 thanh co so bat ki
+
 public class two {
     public static void change(int n, int base) {
         if (n >= base)
@@ -11,7 +11,6 @@ public class two {
         else
             System.out.print((n % base));
     }
-
     public static int  number() {
         Scanner input = new Scanner(System.in);
         boolean check = false;
