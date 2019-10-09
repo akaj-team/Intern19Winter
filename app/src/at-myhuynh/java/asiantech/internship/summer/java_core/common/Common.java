@@ -28,6 +28,13 @@ public class Common {
         return n;
     }
 
+    public static String inputString(String text) {
+        Logger log = Logger.getLogger(Common.class.getName());
+        Scanner sc = new Scanner(System.in, "UTF-8");
+        log.info(text);
+        return sc.nextLine();
+    }
+
     public static boolean isChainOfSymmetry(String text) {
         return text.equals(new StringBuffer(text).reverse().toString());
     }
