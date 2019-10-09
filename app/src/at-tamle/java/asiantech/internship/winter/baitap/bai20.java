@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
-// liet ke fibonacci < n so nguyen to
+//  liet ke fibonacci < n so nguyen to
 public class bai20 {
 	
 	 public static int nhap(){
