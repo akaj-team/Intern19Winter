@@ -1,5 +1,7 @@
 package asiantech.internship.summer.java_core.ex28;
 
+import asiantech.internship.summer.java_core.common.Common;
+
 public class StringStandar {
 
 	public static void main(String[] args) {
@@ -13,8 +15,7 @@ public class StringStandar {
 			arrStr[i] = arrStr[i].replaceFirst(temp, temp.toUpperCase());
 		}
 
-		System.out.println(String.join(" ", arrStr));
+		System.out.println(Common.joinString(" ", arrStr));
 
 	}
-
 }
