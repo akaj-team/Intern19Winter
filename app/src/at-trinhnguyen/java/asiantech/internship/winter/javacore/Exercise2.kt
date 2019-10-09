@@ -7,6 +7,8 @@ Bài 2. Viết chương trình chuyển đổi một số tự nhiên ở
 hệ cơ số 10 thành số ở hệ cơ số b bất kì (1< b≤ 36).
 */
 object Exercise2 {
+    private const val CHAR_A = 65
+    private const val TEN = 10
     @JvmStatic
     fun main(args: Array<String>) {
         val scanner = Scanner(System.`in`)
@@ -20,8 +22,7 @@ object Exercise2 {
 
     private fun baseConvert(n: Int, base: Int) {
         if (n > base) baseConvert(n / base, base)
-        if (n % base > 9) print(String.format("%c", n % base + 65 - 10))
+        if (n % base > 9) print(String.format("%c", n % base + CHAR_A - TEN))
         else print(n % base)
     }
 }
-

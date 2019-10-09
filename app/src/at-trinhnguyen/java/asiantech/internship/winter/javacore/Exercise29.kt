@@ -12,10 +12,10 @@ object Exercise29 {
         val scanner = Scanner(System.`in`)
         print("Enter string: ")
         val str = scanner.nextLine()
-        println(findSubstringMaxLength(str))
+        println(findLongestSubstring(str))
     }
 
-    private fun findSubstringMaxLength(strInput: String): String {
+    private fun findLongestSubstring(strInput: String): String {
         var strOutput = ""
         var index = 0
         val strToken = StringTokenizer(strInput, " ,\t,\r")
@@ -28,8 +28,7 @@ object Exercise29 {
         while (strToken.hasMoreTokens()) {
             if (strOutput.length < strToken.nextToken().length)
                 strOutput = strToken.toString()
-
         }
-        return "Substring max length: $strOutput , index: $index"
+        return "Longest substring: $strOutput\nIndex: $index"
     }
 }

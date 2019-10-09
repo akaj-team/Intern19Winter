@@ -26,4 +26,3 @@ object Exercise5 {
         return true
     }
 }
-

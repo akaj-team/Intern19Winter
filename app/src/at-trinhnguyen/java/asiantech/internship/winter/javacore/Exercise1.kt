@@ -15,16 +15,16 @@ object Exercise1 {
         val a = scanner.nextInt()
         val b = scanner.nextInt()
 
-        println(greatestCommonDivisor(a, b))
-        println(leastCommonMultiple(a, b))
+        println(findGreatestCommonDivisor(a, b))
+        println(findLeastCommonMultiple(a, b))
     }
 
-    private fun greatestCommonDivisor(a: Int, b: Int): Int {
+    private fun findGreatestCommonDivisor(a: Int, b: Int): Int {
         if (b == 0) return a
-        else return greatestCommonDivisor(b, a % b)
+        else return findGreatestCommonDivisor(b, a % b)
     }
 
-    private fun leastCommonMultiple(a: Int, b: Int): Int {
-        return a * b / greatestCommonDivisor(a, b)
+    private fun findLeastCommonMultiple(a: Int, b: Int): Int {
+        return a * b / findGreatestCommonDivisor(a, b)
     }
 }

@@ -16,20 +16,20 @@ object Exercise30 {
     }
 
     private fun firstCharToUpperCase(str: String): String {
-        val s: String = str.substring(0, 1)
-        val strOutput: String
-        strOutput = str.replaceFirst(s.toRegex(), s.toUpperCase())
-        return strOutput
+        val strOutput = StringBuilder()
+        strOutput.append(str.substring(0, 1).toUpperCase(Locale.ENGLISH))
+        strOutput.append(str.substring(1).toLowerCase(Locale.ENGLISH))
+        return strOutput.toString()
     }
 
     private fun standardized(strInput: String): String {
-        var strOutput = ""
+        val strOutput = StringBuilder()
         val strToken = StringTokenizer(strInput, " ,\t,\r")
-        strOutput += "" + firstCharToUpperCase(strToken.nextToken())
+        strOutput.append(firstCharToUpperCase(strToken.nextToken().toString()))
         while (strToken.hasMoreTokens()) {
-            strOutput += " " + firstCharToUpperCase(strToken.nextToken())
+            strOutput.append(" ").append(firstCharToUpperCase(strToken.nextToken().toString()))
         }
-        return strOutput
+        return strOutput.toString()
     }
 
     private fun flipLastAndFirstName(strInput: String): String {
