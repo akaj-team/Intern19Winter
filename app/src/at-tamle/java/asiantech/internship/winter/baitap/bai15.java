@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
-// liet ke cac ptu trong day xuat hien 2 lan
+//  liet ke cac ptu trong day xuat hien 2 lan
 public class bai15 {
 	
 	  public static int nhap(){
