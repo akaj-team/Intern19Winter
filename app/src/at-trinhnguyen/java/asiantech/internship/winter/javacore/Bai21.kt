@@ -1,4 +1,4 @@
-package com.congtrinh
+package asiantech.internship.winter.javacore
 
 import java.util.*
 import kotlin.math.sqrt
@@ -35,6 +35,7 @@ object Bai21 {
         }
         return true
     }
+
     private fun sumElement(n: Int): Int {
         var sum = 0
         var m = n

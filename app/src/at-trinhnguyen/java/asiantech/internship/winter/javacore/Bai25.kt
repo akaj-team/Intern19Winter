@@ -1,4 +1,4 @@
-package com.congtrinh
+package asiantech.internship.winter.javacore
 
 import kotlin.math.sqrt
 

@@ -1,4 +1,4 @@
-package com.congtrinh.Bai32;
+package asiantech.internship.winter.javacore.oop;
 
 public abstract class Shape {
     abstract double area();

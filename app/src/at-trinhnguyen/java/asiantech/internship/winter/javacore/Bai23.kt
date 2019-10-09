@@ -1,4 +1,4 @@
-package com.congtrinh
+package asiantech.internship.winter.javacore
 
 import java.util.*
 import kotlin.math.sqrt
@@ -14,18 +14,18 @@ object Bai23 {
         val scanner = Scanner(System.`in`)
         print("Enter n: ")
         val n = scanner.nextInt()
-        var i=0
-        var j=2
-        while (i<n){
-            if(isPrimeNumber(j)){
+        var i = 0
+        var j = 2
+        while (i < n) {
+            if (isPrimeNumber(j)) {
                 print("$j ")
                 i++
             }
             j++
         }
-        i=0
+        i = 0
         println()
-        while (i<n){
+        while (i < n) {
             print("${fibonacci(i)} ")
             i++
         }

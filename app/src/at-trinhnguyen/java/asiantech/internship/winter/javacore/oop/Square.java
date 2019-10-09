@@ -1,4 +1,4 @@
-package com.congtrinh.Bai32;
+package asiantech.internship.winter.javacore.oop;
 
 public class Square extends Shape {
     private double edge;
@@ -10,13 +10,14 @@ public class Square extends Shape {
 
     @Override
     public double area() {
-        return edge*edge;
+        return edge * edge;
     }
 
     @Override
     public double circumference() {
-        return edge*4;
+        return edge * 4;
     }
+
     @Override
     public void print() {
         System.out.print("Square ");

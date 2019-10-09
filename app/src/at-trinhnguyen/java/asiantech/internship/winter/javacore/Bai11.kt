@@ -1,4 +1,4 @@
-package com.congtrinh
+package asiantech.internship.winter.javacore
 
 /*
 Bài 11. Viết chương trình liệt kê tất cả các hoán vị của 1, 2, .., n.

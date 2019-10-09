@@ -1,4 +1,4 @@
-package com.congtrinh;
+package asiantech.internship.winter.javacore;
 
 import java.util.HashSet;
 import java.util.Scanner;
@@ -24,8 +24,8 @@ public class Bai31 {
             System.out.print("Nhap phan tu thu " + (i + 1) + ": ");
             setB.add(scanner.nextLine());
         }
-        System.out.println("A= "+setA);
-        System.out.println("B= "+setB);
+        System.out.println("A= " + setA);
+        System.out.println("B= " + setB);
 
         HashSet<String> unionSet = (HashSet<String>) setB.clone();
         unionSet.addAll(setA);

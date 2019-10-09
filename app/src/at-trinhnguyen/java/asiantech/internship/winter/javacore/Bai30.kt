@@ -1,4 +1,4 @@
-package com.congtrinh
+package asiantech.internship.winter.javacore
 
 import java.util.*
 
@@ -32,15 +32,15 @@ object Bai30 {
         return strOutput
     }
 
-    private fun flipLastAndFirstName(strInput:String):String{
-        val str= standardized(strInput)
-        val strToken=StringTokenizer(str," ")
-        var lastName=""
+    private fun flipLastAndFirstName(strInput: String): String {
+        val str = standardized(strInput)
+        val strToken = StringTokenizer(str, " ")
+        var lastName = ""
         val firstName: String
-        for(i in 0 until (strToken.countTokens()-1)){
-            lastName+=" "+strToken.nextToken()
+        for (i in 0 until (strToken.countTokens() - 1)) {
+            lastName += " " + strToken.nextToken()
         }
-        firstName=strToken.nextToken()
-        return firstName+lastName
+        firstName = strToken.nextToken()
+        return firstName + lastName
     }
 }
