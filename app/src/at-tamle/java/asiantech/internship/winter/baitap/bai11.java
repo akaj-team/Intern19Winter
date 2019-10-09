@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
-//   liet ke cac hoan vi
+// liet ke cac hoan vi
 public class bai11 {
 	 public static int nhap(){
 		 Scanner input= new Scanner(System.in); 
