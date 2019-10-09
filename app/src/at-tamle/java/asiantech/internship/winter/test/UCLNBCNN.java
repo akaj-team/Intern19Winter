@@ -2,8 +2,8 @@ package asiantech.internship.winter.test;
 
 import java.util.Scanner;
 //ucln bcnn
-public class numberone {
-    public static int New() {
+public class UCLNBCNN {
+    public static int number() {
         Scanner input = new Scanner(System.in);
         boolean check = false;
         int n = 0;
@@ -29,12 +29,11 @@ public class numberone {
         }
         return (a);
     }
-
     public static void main(String[] args) {
         System.out.println("Nhap a");
-        int a = New();
+        int a = number();
         System.out.println("Nhap b");
-        int b = New();
+        int b = number();
         System.out.println("Uoc chung lon nhat cua " + a + " va " + b + " la: " + UCLN(a, b));
         System.out.println("Boi chung nho nhat cua " + a + " va " + b + " la: " + ((a * b) / UCLN(a, b)));
     }
