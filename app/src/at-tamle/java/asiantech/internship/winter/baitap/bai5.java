@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.Scanner;
-// liet ke all so nguyen to <n
+//liet ke all so nguyen to <n
 public class bai5 {
 	public static void lietKe(int n) {
 		  if (n > 2)
