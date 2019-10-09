@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.Scanner;
-//  doi co so 10 thanh co so bat ki
+//   doi co so 10 thanh co so bat ki
 public class bai2 {
 	public static void doiCoSo(int n, int base) {
 		  if (n >= base)
