@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.Scanner;
-// phan tich thanh thua so nguyen to
+//phan tich thanh thua so nguyen to
 public class bai4 {
 	public static void phanTich(int n) {
 		  int i = 2;
