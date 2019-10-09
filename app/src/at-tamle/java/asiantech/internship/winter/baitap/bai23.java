@@ -1,7 +1,7 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
 //Liệt kê n số nguyên tố đầu tiên.
-//Liệt kê n số Fibonaci đầu tiên.
+// Liệt kê n số Fibonaci đầu tiên.
 public class bai23 {
 	
 	 public static int nhap(){
