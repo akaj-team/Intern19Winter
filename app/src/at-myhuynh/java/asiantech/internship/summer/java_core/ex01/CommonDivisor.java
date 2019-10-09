@@ -7,7 +7,7 @@ import asiantech.internship.summer.java_core.common.Common;
 public class CommonDivisor {
 
     public static void main(String[] args) {
-        Logger log = Logger.getLogger(Common.class.getName());
+        Logger log = Logger.getLogger(CommonDivisor.class.getName());
         int a = Common.input("Nhập số a: ");
         int b = Common.input("Nhập số b: ");
         log.info("Common Divisor: " + greatestCommonDivisor(a, b));
