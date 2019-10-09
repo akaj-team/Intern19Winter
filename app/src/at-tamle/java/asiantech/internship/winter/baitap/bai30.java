@@ -1,6 +1,7 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
-// họ...đệm...tên; chuyển xâu đó sang biểu diễn theo cấu trúc tên…họ…đệm.
+
+// ho dem ten > ten dem ho
 public class bai30 {
 	 public static void chuyendoi(String s){
 	        StringTokenizer tg= new StringTokenizer(s);
@@ -10,8 +11,8 @@ public class bai30 {
 	        while(tg.hasMoreTokens()){
 	            s1[i]= tg.nextToken();
 	            i++;
-	            
-	            
+
+
 	        }
 	        kq.append(s1[3]).append("  "); kq.append(s1[1]).append("  "); kq.append(s1[2]).append("  ");
 	       System.out.println(kq);
@@ -22,7 +23,7 @@ public class bai30 {
 	        System.out.println("nhap xau ho ten: ");
 	        s0= in.nextLine();
 	        chuyendoi(s0);
-	        
+
 	  }
-	    
+
 }
