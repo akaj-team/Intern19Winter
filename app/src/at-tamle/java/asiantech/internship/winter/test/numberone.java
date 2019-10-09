@@ -1,24 +1,14 @@
 package asiantech.internship.winter.test;
 
 import java.util.Scanner;
-//  doi co so 10 thanh co so bat ki
-public class number2 {
-    public static void change(int n, int base) {
-        if (n >= base)
-            change(n / base, base);
-        if (n % base > 9)
-            System.out.printf("%c", n % base + 55);
-        else
-            System.out.print((n % base));
-    }
-
+//ucln bcnn
+public class numberone {
     public static int New() {
         Scanner input = new Scanner(System.in);
         boolean check = false;
         int n = 0;
         while (!check) {
             System.out.print(" ");
-
             try {
                 n = input.nextInt();
                 check = true;
@@ -27,15 +17,25 @@ public class number2 {
                 input.nextLine();
             }
         }
+
         return (n);
+    }
+    public static int UCLN(int a, int b) {
+        while (a != b) {
+            if (a > b)
+                a = a - b;
+            else
+                b = b - a;
+        }
+        return (a);
     }
 
     public static void main(String[] args) {
-        System.out.println("Nhap n");
-        int n = New();
-        System.out.println("Nhap vao co so can chuyen sang b");
+        System.out.println("Nhap a");
+        int a = New();
+        System.out.println("Nhap b");
         int b = New();
-        System.out.println("So " + n + " chuyen sang co so " + b + " thanh: ");
-        change(n, b);
+        System.out.println("Uoc chung lon nhat cua " + a + " va " + b + " la: " + UCLN(a, b));
+        System.out.println("Boi chung nho nhat cua " + a + " va " + b + " la: " + ((a * b) / UCLN(a, b)));
     }
 }
