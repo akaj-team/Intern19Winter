@@ -1,6 +1,6 @@
 package asiantech.internship.winter.baitap;
 import java.util.*;
-// tinh tong + phan tich thua so ngto
+//  tinh tong + phan tich thua so ngto
 public class bai21 {
 	 public static int nhap(){
 		 Scanner input= new Scanner(System.in); boolean check= false;
