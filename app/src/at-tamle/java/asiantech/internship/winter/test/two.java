@@ -2,7 +2,7 @@ package asiantech.internship.winter.test;
 
 import java.util.Scanner;
 //  doi co so 10 thanh co so bat ki
-public class numbertwo {
+public class two {
     public static void change(int n, int base) {
         if (n >= base)
             change(n / base, base);
@@ -12,7 +12,7 @@ public class numbertwo {
             System.out.print((n % base));
     }
 
-    public static int New() {
+    public static int  number() {
         Scanner input = new Scanner(System.in);
         boolean check = false;
         int n = 0;
@@ -32,9 +32,9 @@ public class numbertwo {
 
     public static void main(String[] args) {
         System.out.println("Nhap n");
-        int n = New();
+        int n = number();
         System.out.println("Nhap vao co so can chuyen sang b");
-        int b = New();
+        int b = number();
         System.out.println("So " + n + " chuyen sang co so " + b + " thanh: ");
         change(n, b);
     }
