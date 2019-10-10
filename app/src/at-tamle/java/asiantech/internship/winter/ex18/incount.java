@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex18;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;
-//  dem so ky tu cua chuoi
+//dem so ky tu cua chuoi
 public class incount {
     public static void main(String[] args)
     { Scanner input= new
