@@ -1,7 +1,7 @@
 package asiantech.internship.winter.ex7;
 
 import java.util.Scanner;
-//tim fibonacci thu n
+ //tim fibonacci thu n
 public class fibonacci {
 
     private static int process(){
