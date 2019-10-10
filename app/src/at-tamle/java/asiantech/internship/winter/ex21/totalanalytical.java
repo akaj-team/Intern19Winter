@@ -1,7 +1,7 @@
 package asiantech.internship.winter.ex21;
 
 import java.util.Scanner;
-//  tinh tong + phan tich thua so ngto
+//tinh tong + phan tich thua so ngto
 public class totalanalytical {
     public static int process(){
         Scanner input= new Scanner(System.in); boolean check= false;
