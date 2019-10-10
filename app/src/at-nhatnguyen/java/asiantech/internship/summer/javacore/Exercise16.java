@@ -1,6 +1,6 @@
 package asiantech.internship.summer.javacore;
 import java.util.Scanner;
-public class Bai16 {
+public class Exercise16 {
 
     private static int input(){
         Scanner scan= new Scanner(System.in);
