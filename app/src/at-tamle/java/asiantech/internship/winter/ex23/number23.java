@@ -3,6 +3,7 @@ package asiantech.internship.winter.ex23;
 import java.util.Scanner;
 //Liệt kê n số nguyên tố đầu tiên.
 //Liệt kê n số Fibonaci đầu tiên.
+
 public class number23 {
     public static int process(){
         Scanner input= new Scanner(System.in); boolean check= false;
