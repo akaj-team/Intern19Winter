@@ -1,16 +1,15 @@
 package asiantech.internship.summer.javacore;
 import java.util.Scanner;
-public class Bai9 {
-
+public class Exercise9 {
     private static int input(){
         Scanner scan= new Scanner(System.in);
         boolean check= false;
-        int n=0;
+        int n = 0;
         while(!check){
             System.out.print(" ");
             try{
-                n= scan.nextInt();
-                check= true;
+                n = scan.nextInt();
+                check = true;
             }catch(Exception e){
                 System.out.println("Ban phai nhap so :");
                 scan.nextLine();
