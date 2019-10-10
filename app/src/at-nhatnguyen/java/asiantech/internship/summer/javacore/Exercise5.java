@@ -1,8 +1,6 @@
 package asiantech.internship.summer.javacore;
-
 import java.util.Scanner;
-
-public class Bai5 {
+public class Exercise5 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.print("Nhập n = ");
@@ -12,12 +10,12 @@ public class Bai5 {
             System.out.print(2);
         }
         for (int i = 3; i < n; i+=2) {
-            if (PrimeNumber(i)) {
+            if (isPrimeNumber(i)) {
                 System.out.print(" " + i);
             }
         }
     }
-    private  static boolean PrimeNumber(int n) {
+    private  static boolean isPrimeNumber(int n) {
         if (n < 2) {
             return false;
         }
