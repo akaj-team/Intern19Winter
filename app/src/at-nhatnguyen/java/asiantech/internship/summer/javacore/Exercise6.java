@@ -1,8 +1,6 @@
 package asiantech.internship.summer.javacore;
-
 import java.util.Scanner;
-
-public class Bai6 {
+public class Exercise6 {
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
         System.out.print("Nhap n = ");
@@ -11,16 +9,15 @@ public class Bai6 {
         int i =2;
         System.out.printf("%d so nguyen to da tien la: \n", n);
         while (dem < n){
-            if (PrimeNumber(i)){
+            if (isPrimeNumber(i)){
                 System.out.print(i + " ");
                 dem++;
             }
             i++;
         }
     }
-
     //điều kiện là 1 số nguyên tố
-    private static boolean PrimeNumber(int n) {
+    private static boolean isPrimeNumber(int n) {
         if (n < 2) {
             return false;
         }
