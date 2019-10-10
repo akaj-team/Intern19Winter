@@ -1,7 +1,7 @@
 package asiantech.internship.winter.ex22;
 
 import java.util.Scanner;
-//  liet ke uoc n va liet ke uoc n la so nguyen to
+// liet ke uoc n va liet ke uoc n la so nguyen to
 public class listprime {
     public static int process(){
         Scanner input= new Scanner(System.in); boolean check= false;
