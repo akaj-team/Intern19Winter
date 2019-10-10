@@ -1,5 +1,4 @@
 package asiantech.internship.winter.ex28;
-
 import java.util.Scanner;
 import java.util.StringTokenizer;
 //Viết chương trình thực hiện chuẩn hoá một xâu ký tự nhập từ bàn phím
