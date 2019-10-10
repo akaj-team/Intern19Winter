@@ -1,7 +1,7 @@
 package asiantech.internship.winter.ex17;
 
 import java.util.Scanner;
-//  day tang dan
+//day tang dan
 public class ascending {
     public static int process(){
         Scanner input= new Scanner(System.in);
