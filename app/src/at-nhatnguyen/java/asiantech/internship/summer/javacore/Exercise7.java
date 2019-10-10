@@ -1,11 +1,10 @@
 package asiantech.internship.summer.javacore;
 import java.util.Scanner;
-public class Bai7 {
-
+public class Exercise7 {
     private static int input(){
         Scanner scan= new Scanner(System.in);
-        boolean check= false;
-        int n=0;
+        boolean check = false;
+        int n = 0;
         while(!check){
             System.out.print(" ");
             try{
