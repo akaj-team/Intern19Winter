@@ -1,5 +1,7 @@
 package asiantech.internship.summer.java_core.common;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +22,7 @@ public class Common {
                 check = false;
             } catch (Exception e) {
                 check = true;
-                e.printStackTrace();
+                log.info(e.getMessage());
                 log.info("Nhập lại!!");
             }
         } while (check);
