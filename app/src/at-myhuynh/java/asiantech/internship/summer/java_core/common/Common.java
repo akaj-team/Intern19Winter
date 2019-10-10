@@ -1,14 +1,12 @@
 package asiantech.internship.summer.java_core.common;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class Common {
-    static Logger log = Logger.getLogger(Common.class.getName());
+    private static Logger log = Logger.getLogger(Common.class.getName());
 
     public static int input(String text) {
         Scanner sc = new Scanner(System.in, "UTF-8");
