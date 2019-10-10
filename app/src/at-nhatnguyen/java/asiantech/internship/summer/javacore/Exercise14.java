@@ -1,6 +1,6 @@
 package asiantech.internship.summer.javacore;
 import java.util.Scanner;
-public class Bai14 {
+public class Exercise14 {
 
     private static int input(){
         Scanner scan= new Scanner(System.in);
@@ -29,7 +29,7 @@ public class Bai14 {
     public static void main(String[] args) {
         int n,i;
         System.out.println("Nhap n= ");
-        n= input();
+        n = input();
         int[] array= new int[n];
         for(i=0 ; i<n ; i++){
             System.out.println("Nhap phan tu thu " +(i+1)+" ");
