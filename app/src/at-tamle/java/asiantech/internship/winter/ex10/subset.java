@@ -1,7 +1,7 @@
 package asiantech.internship.winter.ex10;
 
 import java.util.Scanner;
-//liet ke tap con k
+// liet ke tap con k
 public class subset {
     public static int process(){
         Scanner input= new Scanner(System.in);
