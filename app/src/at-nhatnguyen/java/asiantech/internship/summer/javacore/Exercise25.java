@@ -1,6 +1,6 @@
 package asiantech.internship.summer.javacore;
-public class Bai25 {
-    private static boolean checkSNT(int n){
+public class Exercise25 {
+    private static boolean isPrimeNumber(int n){
         if(n>1){
             for(int i=2;i<=Math.sqrt(n);i++){
                 if(n%i==0) return false;
@@ -9,16 +9,16 @@ public class Bai25 {
         }
         else return false;
     }
-    private static boolean testSoThuanNghich(int n){
-        StringBuilder xau= new StringBuilder();
+    private static boolean isReversibleNumber(int n){
+        StringBuilder x= new StringBuilder();
         String str= ""+n;
-        xau.append(str);
-        String check= ""+xau.reverse();
+        x.append(str);
+        String check= "" + x.reverse();
         return str.equals(check);
     }
-    private static boolean nguyenTo(int n){
+    private static boolean primeNumber(int n){
         while(n!=0){
-            if(!checkSNT(n%10)) return false;
+            if(!isPrimeNumber(n%10)) return false;
             n/= 10;
         }
         return true;
@@ -27,7 +27,7 @@ public class Bai25 {
         int i,count= 0;
         System.out.println("cac so tu 5-7 chu so thoa man dieu kien la: ");
         for(i=22223 ; i<7777777 ; i+=2){
-            if(checkSNT(i) && nguyenTo(i) && testSoThuanNghich(i)){
+            if(isPrimeNumber(i) && primeNumber(i) && isReversibleNumber(i)){
                 System.out.println(" "+i); count++;
             }
         }
