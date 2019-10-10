@@ -1,12 +1,11 @@
 package asiantech.internship.summer.javacore;
 public class Exercise8 {
-        public static boolean isReversibleNumber(int n){
+        private static boolean isReversibleNumber(int n){
             StringBuilder x = new StringBuilder();
             String str= ""+n;
             x.append(str);
             String check= ""+x.reverse();
-            if(str.equals(check)) return true;
-            else return false;
+            return str.equals(check);
         }
         public static void main(String[] args) {
             int n,count=0;
