@@ -46,7 +46,7 @@ public class ascending {
         }
         return (key);
     }
-    public static float maxNumber(float a[], int n){
+    private static float maxNumber(float a[], int n){
         float max= a[0];
         for(int j=0 ; j<n ; j++){
             if(max<a[j]) max= a[j];
