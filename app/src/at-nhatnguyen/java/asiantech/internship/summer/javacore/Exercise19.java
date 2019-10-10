@@ -1,6 +1,6 @@
 package asiantech.internship.summer.javacore;
 import java.util.Scanner;
-public class Bai19 {
+public class Exercise19 {
 
     private static int input(){
         Scanner scan= new Scanner(System.in);
@@ -18,7 +18,7 @@ public class Bai19 {
         }
         return (n);
     }
-    private static boolean checkSNT(int n){
+    private static boolean isPrimeNumber(int n){
         if(n>1){
             for(int i=2;i<=Math.sqrt(n);i++){
                 if(n%i==0) return false;
@@ -27,7 +27,7 @@ public class Bai19 {
         }
         else return false;
     }
-    private static int tongChuSo(int n){
+    private static int totalDigits(int n){
         int T=0;
         while(n>0){
             T+= n%10;
@@ -40,8 +40,8 @@ public class Bai19 {
         int s= input(); int i,count=0;
         System.out.println("Cac so nguyen to co tong cac chu so co tong bang "+s+" la: ");
         for(i=10000 ; i<=99999 ; i++){
-            if(checkSNT(i)){
-                if(tongChuSo(i)== s) {
+            if(isPrimeNumber(i)){
+                if(totalDigits(i)== s) {
                     System.out.println(" "+i);
                     count++;
                 }
