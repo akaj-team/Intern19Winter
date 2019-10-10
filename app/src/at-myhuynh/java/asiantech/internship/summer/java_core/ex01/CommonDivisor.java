@@ -11,7 +11,7 @@ public class CommonDivisor {
         int a = Common.input("Nhập số a: ");
         int b = Common.input("Nhập số b: ");
         log.info("Common Divisor: " + greatestCommonDivisor(a, b));
-        log.info("Least Common Multiple: " + leastCommonMultiple(a, b));
+        log.info("Least Common Multiple: " + leastCommonMultiple(a, b, greatestCommonDivisor(a, b)));
     }
 
     public static int greatestCommonDivisor(int a, int b) {
@@ -25,14 +25,7 @@ public class CommonDivisor {
         return a;
     }
 
-    public static int leastCommonMultiple(int a, int b) {
-        int index = a > b ? a : b;
-        while (true) {
-            if (index % a == 0 && index % b == 0) {
-                break;
-            }
-            index++;
-        }
-        return index;
+    public static int leastCommonMultiple(int a, int b, int c) {
+        return a * b / c;
     }
 }
