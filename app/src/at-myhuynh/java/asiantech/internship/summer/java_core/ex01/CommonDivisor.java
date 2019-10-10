@@ -1,5 +1,6 @@
 package asiantech.internship.summer.java_core.ex01;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import asiantech.internship.summer.java_core.common.Common;
@@ -10,8 +11,10 @@ public class CommonDivisor {
         Logger log = Logger.getLogger(CommonDivisor.class.getName());
         int a = Common.input("Nhập số a: ");
         int b = Common.input("Nhập số b: ");
-        log.info("Common Divisor: " + greatestCommonDivisor(a, b));
-        log.info("Least Common Multiple: " + leastCommonMultiple(a, b, greatestCommonDivisor(a, b)));
+        if (log.isLoggable(Level.INFO)) {
+            log.info("Common Divisor: " + greatestCommonDivisor(a, b));
+            log.info("Least Common Multiple: " + leastCommonMultiple(a, b, greatestCommonDivisor(a, b)));
+        }
     }
 
     public static int greatestCommonDivisor(int a, int b) {
