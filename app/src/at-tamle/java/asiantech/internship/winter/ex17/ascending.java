@@ -19,7 +19,7 @@ public class ascending {
         }
         return (n);
     }
-    private static float inNumber(){
+    private static float number(){
         Scanner input= new Scanner(System.in);
         boolean check= false;
         float n=0;
@@ -60,7 +60,7 @@ public class ascending {
         float[] array= new float[n];
         for(i=0 ; i<n ; i++){
             System.out.println("Nhap phan tu thu " +(i+1)+" ");
-            array[i]= inNumber();
+            array[i]= number();
         }
         i =0;
         System.out.println("Sap xep theo thu tu tang dan");
