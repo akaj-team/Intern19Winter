@@ -1,12 +1,15 @@
 package asiantech.internship.summer.java_core.ex28;
 
+import java.util.logging.Logger;
+
 import asiantech.internship.summer.java_core.common.Common;
 
-public class StringStandar {
+public class StringStanDar {
 
     public static void main(String[] args) {
-        String str = "    nguYen  vAn a  ";
-        System.out.println(str);
+        Logger log = Logger.getLogger(StringStanDar.class.getName());
+        String str = Common.inputString("Nhập vào chuỗi: ");
+        log.info(str);
         str = str.trim().toLowerCase();
         String[] arrStr = str.split("[ ]+");
 
@@ -15,6 +18,6 @@ public class StringStandar {
             arrStr[i] = arrStr[i].replaceFirst(temp, temp.toUpperCase());
         }
 
-        System.out.println(Common.joinString(" ", arrStr));
+        log.info(Common.joinString(" ", arrStr));
     }
 }
