@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex16;
 
 import java.util.Scanner;
 
-//   in ra xuat hien so lan cua phan tu
+// in ra xuat hien so lan cua phan tu
 public class inelement {
     public static int process(){
         Scanner input= new Scanner(System.in);
