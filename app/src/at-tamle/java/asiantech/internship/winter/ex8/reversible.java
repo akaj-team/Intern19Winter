@@ -1,5 +1,5 @@
 package asiantech.internship.winter.ex8;
-//liet ke all so thuan nghich 6 chu so
+ //liet ke all so thuan nghich 6 chu so
 public class reversible {
     public static boolean process(int n) {
         StringBuilder k = new StringBuilder();
