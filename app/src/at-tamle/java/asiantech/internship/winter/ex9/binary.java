@@ -19,7 +19,6 @@ public class binary {
         }
         return (n);
     }
-
     public static void main(String[] args) {
         int n = process();
         int[] array = new int[n];
