@@ -1,5 +1,5 @@
 package asiantech.internship.winter.ex24;
-// Là số nguyên tố.
+//Là số nguyên tố.
 //Là số thuận nghịch.
 //Mỗi chữ số đều là số nguyên tố
 public class inPrime {
