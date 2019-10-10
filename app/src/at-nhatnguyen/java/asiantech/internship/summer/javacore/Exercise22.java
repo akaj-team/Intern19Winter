@@ -1,6 +1,6 @@
 package asiantech.internship.summer.javacore;
 import java.util.Scanner;
-public class Bai22 {
+public class Exercise22 {
     public static int input() {
         Scanner scan = new Scanner(System.in);
         boolean check = false;
@@ -21,7 +21,7 @@ public class Bai22 {
         return (n);
     }
 
-    private static boolean checkSNT(int n) {
+    private static boolean isPrimeNumber(int n) {
         if (n > 1) {
             for (int i = 2; i <= Math.sqrt(n); i++) {
                 if (n % i == 0) return false;
@@ -33,7 +33,7 @@ public class Bai22 {
 
     }
 
-    private static void lietKeUoc(int n) {
+    private static void divisor(int n) {
         int count = 0;
         System.out.print("\nCac uoc cua " + n + " la:");
         for (int i = 1; i <= n; i++) {
@@ -47,11 +47,11 @@ public class Bai22 {
         System.out.println("\nCo " + count + " uoc");
     }
 
-    private static void lietKeUocSNT(int n) {
+    private static void primeDivisor(int n) {
         int count = 0;
         System.out.print("\nCac uoc cua " + n + " la:");
         for (int i = 1; i <= n; i++) {
-            if (n % i == 0 && (checkSNT(i))) {
+            if (n % i == 0 && (isPrimeNumber(i))) {
                 System.out.print(" " + i);
                 count++;
 
@@ -65,8 +65,8 @@ public class Bai22 {
     public static void main(String[] args) {
         System.out.print("Nhap n");
         int n = input();
-        lietKeUoc(n);
-        lietKeUocSNT(n);
+        divisor(n);
+        primeDivisor(n);
 
     }
 
