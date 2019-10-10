@@ -1,7 +1,7 @@
 package asiantech.internship.winter.ex4;
 
 import java.util.Scanner;
-//phan tich thanh thua so nguyen to
+// phan tich thanh thua so nguyen to
 public class factor {
     public static void process(int n) {
         int i = 2;
