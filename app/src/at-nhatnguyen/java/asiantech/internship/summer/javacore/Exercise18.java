@@ -2,7 +2,7 @@ package asiantech.internship.summer.javacore;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;
-public class Bai18 {
+public class Exercise18 {
     public static void main(String[] args)
     {
         Scanner scan = new Scanner(System.in);
