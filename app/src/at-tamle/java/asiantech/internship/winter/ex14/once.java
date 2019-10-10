@@ -1,7 +1,6 @@
 package asiantech.internship.winter.ex14;
 
 import java.util.Scanner;
-
 public class once {
     public static int process(){
         Scanner input= new Scanner(System.in);
