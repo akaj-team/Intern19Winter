@@ -19,7 +19,7 @@ public class ascending {
         }
         return (n);
     }
-    private static float innumber(){
+    private static float inNumber(){
         Scanner input= new Scanner(System.in);
         boolean check= false;
         float n=0;
@@ -35,7 +35,7 @@ public class ascending {
         }
         return (n);
     }
-    private static int minnumber(float a[], int n){
+    private static int minNumber(float a[], int n){
         float min= a[0];
         int key= 0;
         for(int j=0 ; j<n ; j++){
@@ -46,7 +46,7 @@ public class ascending {
         }
         return (key);
     }
-    public static float maxnumber(float a[], int n){
+    public static float maxNumber(float a[], int n){
         float max= a[0];
         for(int j=0 ; j<n ; j++){
             if(max<a[j]) max= a[j];
@@ -60,13 +60,13 @@ public class ascending {
         float[] array= new float[n];
         for(i=0 ; i<n ; i++){
             System.out.println("Nhap phan tu thu " +(i+1)+" ");
-            array[i]= innumber();
+            array[i]= inNumber();
         }
         i =0;
         System.out.println("Sap xep theo thu tu tang dan");
         while(i<n){
-            System.out.println(" "+array[minnumber(array, n)]);
-            array[minnumber(array, n)]= maxnumber(array, n);
+            System.out.println(" "+array[minNumber(array, n)]);
+            array[minNumber(array, n)]= maxNumber(array, n);
             i++;
         }
     }
