@@ -1,7 +1,7 @@
 package asiantech.internship.summer.javacore;
 import java.util.Arrays;
 import java.util.Scanner;
-public class Bai27 {
+public class Exercise27 {
     private static int input(){
         Scanner scan= new Scanner(System.in);
         boolean check= false;
@@ -18,7 +18,7 @@ public class Bai27 {
         }
         return (n);
     }
-    private static int viTriMaxInt(int[] a, int n){ int max= a[0];
+    private static int max1(int[] a, int n){ int max= a[0];
         int key= 0;
         for(int j=0 ; j<n ; j++){
             if(max<a[j]){
@@ -36,10 +36,10 @@ public class Bai27 {
         }
         System.out.println();
     }
-    private static int viTriMax2(int[] a,int n){
+    private static int max2(int[] a, int n){
         int i,key=0,Max2=0;
         for(i=0 ; i<n ; i++){
-            if(a[i]>Max2 && a[i]!= a[viTriMaxInt(a, n)]){
+            if(a[i]>Max2 && a[i]!= a[max1(a, n)]){
                 Max2= a[i];key= i;
             }
         }return (key);
@@ -58,7 +58,7 @@ public class Bai27 {
             a[i]= input();
         }
         for(i=0 ; i<n ; i++){
-            if(a[i]== a[viTriMax2(a, n)]) System.out.println(" Phan tu thu "+i+" lon thu 2 trong mang a["+i+"]= "+a[i]);
+            if(a[i]== a[max2(a, n)]) System.out.println(" Phan tu thu "+i+" lon thu 2 trong mang a["+i+"]= "+a[i]);
         }
         Arrays.sort(a); inArray(a,1,n+1);
         System.out.print("Nhap phan tu muon them pt= "); int pt= input();
