@@ -1,7 +1,7 @@
 package asiantech.internship.winter.ex5;
 
 import java.util.Scanner;
-//liet ke all so nguyen to <n
+ //liet ke all so nguyen to <n
 public class prime {
     public static void process(int n) {
         if (n > 2)
