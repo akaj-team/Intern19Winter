@@ -1,7 +1,7 @@
 package asiantech.internship.winter.ex3;
 
 import java.util.Scanner;
-// tinh tong so bat ki vd 123= 1+2+3
+//tinh tong so bat ki vd 123= 1+2+3
 public class newSum {
     public static int  process() {
         Scanner input = new Scanner(System.in);
