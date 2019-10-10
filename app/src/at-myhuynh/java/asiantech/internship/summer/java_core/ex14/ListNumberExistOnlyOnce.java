@@ -2,19 +2,21 @@ package asiantech.internship.summer.java_core.ex14;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import asiantech.internship.summer.java_core.common.Common;
 
 public class ListNumberExistOnlyOnce {
 
     public static void main(String[] args) {
+        Logger log = Logger.getLogger(ListNumberExistOnlyOnce.class.getName());
         List<Integer> listNumber = new ArrayList<>();
         int n = Common.input("Nhập vào độ dài mảng: ");
         for (int i = 0; i < n; i++) {
             listNumber.add(Common.input("Nhập phần tử thứ " + i + ": "));
         }
 
-        System.out.println(getNumbers(listNumber).toString());
+        log.info(getNumbers(listNumber).toString());
     }
 
     public static List<Integer> getNumbers(List<Integer> listNumber) {
