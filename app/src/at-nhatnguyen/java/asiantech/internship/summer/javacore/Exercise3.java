@@ -1,18 +1,16 @@
 package asiantech.internship.summer.javacore;
-
 import java.util.Scanner;
-
-public class Bai3 {
-    private static int soDu,tong;
+public class Exercise3 {
+    private static int surplus, sum;
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
         System.out.println("Nhap day so nguyen:");
         int a = scan.nextInt();
         while (a > 0) {
-            soDu = a % 10;
+            surplus = a % 10;
             a = a / 10;
-            tong += soDu;
+            sum += surplus;
         }
-        System.out.println("Tong cac so la:"+tong);
+        System.out.println("Tong cac so la:"+ sum);
     }
 }
