@@ -1,6 +1,6 @@
 package asiantech.internship.summer.javacore;
 import java.util.Scanner;
-public class Bai20 {
+public class Exercise20 {
 
     private static int input(){
         Scanner scan= new Scanner(System.in);
@@ -18,7 +18,7 @@ public class Bai20 {
         }
         return (n);
     }
-    private static boolean checkSNT(int n){
+    private static boolean isPrimeNumber(int n){
         if(n>1){
             for(int i=2;i<=Math.sqrt(n);i++){
                 if(n%i==0) return false;
@@ -35,7 +35,7 @@ public class Bai20 {
         int i=1,count=1;
         System.out.print("Cac so Fibonanci nho hon "+n+" la so nguyen to: \n 1");
         while(f[i]<n){
-            if(checkSNT(f[i])){
+            if(isPrimeNumber(f[i])){
                 System.out.print(" "+f[i]);
                 count++;
             } i++;
