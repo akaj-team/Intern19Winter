@@ -1,6 +1,6 @@
 package asiantech.internship.summer.javacore;
 import java.util.Scanner;
-public class Bai17 {
+public class Exercise17 {
     public static int input(){
         Scanner scan= new Scanner(System.in);
         boolean check= false;
@@ -17,7 +17,7 @@ public class Bai17 {
         }
         return (n);
     }
-    private static float nhapFloat(){
+    private static float inputFloat(){
         Scanner input= new Scanner(System.in);
         boolean check= false;
         float n=0;
@@ -33,7 +33,7 @@ public class Bai17 {
         }
         return (n);
     }
-    private static int viTriMinFloat(float[] a, int n){
+    private static int minFloat(float[] a, int n){
         float min= a[0];
         int key= 0;
         for(int j=0 ; j<n ; j++){
@@ -58,13 +58,13 @@ public class Bai17 {
         float[] array= new float[n];
         for(i=0 ; i<n ; i++){
             System.out.println("Nhap phan tu thu " +(i+1)+" ");
-            array[i]= nhapFloat();
+            array[i]= inputFloat();
         }
         i =0;
         System.out.println("Sap xep theo thu tu tang dan");
         while(i<n){
-            System.out.println(" "+array[viTriMinFloat(array, n)]);
-            array[viTriMinFloat(array, n)]= maxFloat(array, n);
+            System.out.println(" "+array[minFloat(array, n)]);
+            array[minFloat(array, n)]= maxFloat(array, n);
             i++;
         }
     }
