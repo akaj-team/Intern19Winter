@@ -1,7 +1,7 @@
 package asiantech.internship.winter.ex15;
 
 import java.util.Scanner;
-//   liet ke cac ptu trong day xuat hien 2 lan
+//liet ke cac ptu trong day xuat hien 2 lan
 public class twice {
     public static int process(){
         Scanner input= new Scanner(System.in);
