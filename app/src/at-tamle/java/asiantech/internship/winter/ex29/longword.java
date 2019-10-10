@@ -1,5 +1,4 @@
 package asiantech.internship.winter.ex29;
-
 import java.util.Scanner;
 import java.util.StringTokenizer;
 // Viết chương trình thực hiện nhập một xâu ký tự và tìm từ dài nhất trong xâu đó. Từ đó xuất hiện ở vị trí nào?
