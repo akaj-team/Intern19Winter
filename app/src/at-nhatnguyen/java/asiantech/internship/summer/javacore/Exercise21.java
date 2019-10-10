@@ -1,6 +1,6 @@
 package asiantech.internship.summer.javacore;
 import java.util.Scanner;
-public class Bai21 {
+public class Exercise21 {
     private static int input(){
         Scanner scan= new Scanner(System.in);
         boolean check= false;
@@ -14,7 +14,7 @@ public class Bai21 {
         }
         return (n);
     }
-    private static int tongChuSo(int n){ int T=0;
+    private static int totalDigits(int n){ int T=0;
         while(n>0){
             T+= n%10;
             n/= 10;
@@ -22,17 +22,20 @@ public class Bai21 {
         return (T);
     }
     //Ham kiem tra so nguyen to
-    private static boolean checkSNT(int n)
+    private static boolean isPrimeNumber(int n)
     {
-        if(n>1){for(int i=2;i<=Math.sqrt(n);i++){ if(n%i==0) return false;
+        if(n>1){
+            for(int i=2;i<=Math.sqrt(n);i++)
+            {
+                if(n%i==0) return false;
     }
         return true;
     }
     else return false;
     }
-    private static void phanTich(int n){
+    private static void analysis(int n){
         int i=2; while(n>1){
-            if(checkSNT(i)){
+            if(isPrimeNumber(i)){
                 if(n%i==0){
                     System.out.print(i+"."); n/=i;
                 }
@@ -45,7 +48,7 @@ public class Bai21 {
         System.out.print("Nhap n");
         int n= input();
         System.out.print("n= 1" );
-        phanTich(n);
-        System.out.println("Tong cac chu so cua "+n+" la: "+tongChuSo(n));
+        analysis(n);
+        System.out.println("Tong cac chu so cua "+n+" la: "+ totalDigits(n));
     }
 }
