@@ -1,6 +1,6 @@
 package asiantech.internship.summer.java_core.ex30;
 
-public class NameStandar {
+public class NameStanDar {
 
 	public static void main(String[] args) {
 		String name = "Nguyễn Văn A";

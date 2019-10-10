@@ -1,10 +1,13 @@
 package asiantech.internship.summer.java_core.ex29;
 
+import asiantech.internship.summer.java_core.common.Common;
+
 public class FindWord {
 
 	public static void main(String[] args) {
-		String str = "Viết chươnggg trình chươnggg thực hiện nhập một xâu ký tự và tìm từ dài nhất trong xâu đó";
-		String[] arrWords = str.split(" ");
+		String str = Common.inputString("Nhập vào chuỗi kí tự:");
+		str = str.replaceAll("\\s", " ");
+		String[] arrWords = str.split("[ ]+");
 
 		int[] maxLengthWord = getMaxLengthWord(arrWords);
 		System.out.println("Từ: " + arrWords[maxLengthWord[1]]
