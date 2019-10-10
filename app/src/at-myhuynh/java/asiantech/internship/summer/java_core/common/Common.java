@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class Common {
-    private static Logger log = Logger.getLogger(Common.class.getName());
+    static final Logger log = Logger.getLogger(Common.class.getName());
 
     public static int input(String text) {
         Scanner sc = new Scanner(System.in, "UTF-8");
