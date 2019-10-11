@@ -12,7 +12,7 @@ public class Bai31 {
     static ArrayList<String> A, B;
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        File f = new File("D:/Bai31.txt");
+        File f = new File("D:/Excercise31.txt");
         StringBuilder builder;
         try (BufferedReader bufferReader = new BufferedReader(new FileReader(f))) {
             builder = new StringBuilder();
