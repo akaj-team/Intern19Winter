@@ -2,6 +2,7 @@ package asiantech.internship.summer.java_core.ex16;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import asiantech.internship.summer.java_core.common.Common;
@@ -22,7 +23,9 @@ public class ShowNumberExist {
         Logger log = Logger.getLogger(ShowNumberExist.class.getName());
         for (int i = 0; i < listNumber.size(); i++) {
             if (isExist(listNumber.get(i), listNumber, i)) {
-                log.info(listNumber.get(i) + ": " + countNumberExist(listNumber.get(i), listNumber, i));
+                if (log.isLoggable(Level.INFO)) {
+                    log.info(listNumber.get(i) + ": " + countNumberExist(listNumber.get(i), listNumber, i));
+                }
             }
         }
     }
