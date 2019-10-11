@@ -2,6 +2,7 @@ package asiantech.internship.summer.java_core.ex21;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import asiantech.internship.summer.java_core.common.Common;
@@ -11,7 +12,9 @@ public class SumAndPrime {
     public static void main(String[] args) {
         Logger log = Logger.getLogger(SumAndPrime.class.getName());
         int n = Common.input("Nhập vào 1 số:");
-        log.info("Total: " + Common.totalOfNumber(n));
+        if (log.isLoggable(Level.INFO)) {
+            log.info("Total: " + Common.totalOfNumber(n));
+        }
 
         List<String> strPrime = new ArrayList<>();
         if (Common.isPrime(n)) {
@@ -19,7 +22,8 @@ public class SumAndPrime {
         } else {
             strPrime = Common.primeFactor(n);
         }
-
-        log.info(n + " => " + Common.joinString("x", strPrime.toArray()));
+        if (log.isLoggable(Level.INFO)) {
+            log.info(n + " => " + Common.joinString("x", strPrime.toArray()));
+        }
     }
 }
