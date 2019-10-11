@@ -1,5 +1,6 @@
 package asiantech.internship.summer.java_core.ex08;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import asiantech.internship.summer.java_core.common.Common;
@@ -23,13 +24,19 @@ public class ChainOfSymmetry {
         }
 
         if (check) {
-            log.info(str + ": Thuan nghich");
+            if (log.isLoggable(Level.INFO)) {
+                log.info(str + ": Thuan nghich");
+            }
         } else {
-            log.info(str + ": Khong Thuan nghich");
+            if (log.isLoggable(Level.INFO)) {
+                log.info(str + ": Khong Thuan nghich");
+            }
         }
 
         //Or Use StringBuffer
-        log.info(String.valueOf(str.equals(new StringBuffer(str).reverse().toString())));
+        if (log.isLoggable(Level.INFO)) {
+            log.info(String.valueOf(str.equals(new StringBuffer(str).reverse().toString())));
+        }
 
     }
 
