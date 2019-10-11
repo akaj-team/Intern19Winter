@@ -1,5 +1,6 @@
 package asiantech.internship.summer.java_core.ex03;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import asiantech.internship.summer.java_core.common.Common;
@@ -11,6 +12,8 @@ public class TotalOfNumber {
         int number = Common.input("Nhập vào số cần tính: ");
         int total = Common.totalOfNumber(number);
 
-        log.info(number + " => " + total);
+        if (log.isLoggable(Level.INFO)) {
+            log.info(number + " => " + total);
+        }
     }
 }
