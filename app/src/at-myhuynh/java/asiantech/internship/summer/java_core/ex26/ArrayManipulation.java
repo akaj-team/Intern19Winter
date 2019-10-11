@@ -3,6 +3,7 @@ package asiantech.internship.summer.java_core.ex26;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import asiantech.internship.summer.java_core.common.Common;
@@ -21,17 +22,22 @@ public class ArrayManipulation {
         log.info(listNumber.toString());
 
         int[] maxNumbers = findMaxNumber(listNumber);
-        log.info("Max number: " + maxNumbers[0] + " - " + maxNumbers[1]);
-
         int[] secondMaxNumber = findMaxNumberSecond(listNumber, maxNumbers[0]);
-        log.info("Second max number: " + secondMaxNumber[0] + " - " + secondMaxNumber[1]);
+
+        if (log.isLoggable(Level.INFO)) {
+            log.info("Max number: " + maxNumbers[0] + " - " + maxNumbers[1]);
+            log.info("Second max number: " + secondMaxNumber[0] + " - " + secondMaxNumber[1]);
+        }
 
         Collections.sort(listNumber, (Integer o1, Integer o2) -> o2 - o1);
-        log.info(listNumber.toString());
+        if (log.isLoggable(Level.INFO)) {
+            log.info(listNumber.toString());
+        }
 
         insertEle(listNumber, 3);
-        log.info(listNumber.toString());
-
+        if (log.isLoggable(Level.INFO)) {
+            log.info(listNumber.toString());
+        }
     }
 
     public static int[] findMaxNumber(List<Integer> listNumber) {
