@@ -1,0 +1,2 @@
+A = ["Thuy", "Lien", "Phuc", "Trong", "Truc", "Nghiep"]
+B = ["Lien", "Thien", "Truc", "Thy", "Lan"]
