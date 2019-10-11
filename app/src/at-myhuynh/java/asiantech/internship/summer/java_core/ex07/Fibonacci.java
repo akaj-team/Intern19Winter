@@ -1,5 +1,6 @@
 package asiantech.internship.summer.java_core.ex07;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import asiantech.internship.summer.java_core.common.Common;
@@ -21,7 +22,9 @@ public class Fibonacci {
             count++;
         } while (count < n);
 
-        log.info("Số fibonaci thứ " + n + ": " + fn);
+        if (log.isLoggable(Level.INFO)) {
+            log.info("Số fibonacci thứ " + n + ": " + fn);
+        }
     }
 
 }
