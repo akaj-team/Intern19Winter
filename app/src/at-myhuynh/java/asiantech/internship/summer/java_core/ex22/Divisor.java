@@ -2,6 +2,7 @@ package asiantech.internship.summer.java_core.ex22;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import asiantech.internship.summer.java_core.common.Common;
@@ -13,9 +14,11 @@ public class Divisor {
         int n = Common.input("Nhập vào số n:");
         List<Integer> listDiv = getListDiv(n);
 
-        log.info("Danh sach uoc so: " + listDiv.toString());
-        log.info("So luong uoc so: " + listDiv.size());
-        log.info("Danh sach uoc so la so nguyen to: " + getListDivPrime(listDiv).toString());
+        if (log.isLoggable(Level.INFO)) {
+            log.info("Danh sach uoc so: " + listDiv.toString());
+            log.info("So luong uoc so: " + listDiv.size());
+            log.info("Danh sach uoc so la so nguyen to: " + getListDivPrime(listDiv).toString());
+        }
     }
 
     public static List<Integer> getListDivPrime(List<Integer> listDiv) {
@@ -37,5 +40,4 @@ public class Divisor {
         }
         return listDiv;
     }
-
 }
