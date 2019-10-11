@@ -1,5 +1,6 @@
 package asiantech.internship.summer.java_core.ex02;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import asiantech.internship.summer.java_core.common.Common;
@@ -18,9 +19,13 @@ public class Convert {
             convertBase(n / base, base);
         }
         if (n % base > 9) {
-            log.info(String.valueOf(n % base + 55));
+            if (log.isLoggable(Level.INFO)) {
+                log.info(String.valueOf(n % base + 55));
+            }
         } else {
-            log.info(String.valueOf(n % base));
+            if (log.isLoggable(Level.INFO)) {
+                log.info(String.valueOf(n % base));
+            }
         }
     }
 
