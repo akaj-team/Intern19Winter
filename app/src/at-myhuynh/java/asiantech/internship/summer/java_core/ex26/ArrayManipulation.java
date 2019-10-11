@@ -19,7 +19,9 @@ public class ArrayManipulation {
             listNumber.add(Common.input("Nhập phần tử thứ " + i + ": "));
         }
 
-        log.info(listNumber.toString());
+        if(log.isLoggable(Level.INFO)){
+            log.info(listNumber.toString());
+        }
 
         int[] maxNumbers = findMaxNumber(listNumber);
         int[] secondMaxNumber = findMaxNumberSecond(listNumber, maxNumbers[0]);
