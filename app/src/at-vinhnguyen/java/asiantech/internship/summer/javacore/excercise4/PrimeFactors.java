@@ -1,6 +1,6 @@
 package asiantech.internship.summer.javacore.excercise4;
 
-import static asiantech.internship.summer.javacore.excercise21.Bait21.isPrime;
+import static asiantech.internship.summer.javacore.excercise21.Excercise21.isPrime;
 
 import java.util.Scanner;
 
