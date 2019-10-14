@@ -3,7 +3,7 @@ package asiantech.internship.winter.ex16;
 import java.util.Scanner;
 
 // in ra xuat hien so lan cua phan tu
-public class inelement {
+public class Inelement {
     public static int process(){
         Scanner input= new Scanner(System.in);
         boolean check= false;
