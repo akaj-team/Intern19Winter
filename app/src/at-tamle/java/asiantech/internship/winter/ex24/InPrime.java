@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex24;
 //Là số nguyên tố.
 //Là số thuận nghịch.
 //Mỗi chữ số đều là số nguyên tố
-public class inPrime {
+public class InPrime {
     public static boolean incheck(int n){
         if(n>1){
             for(int i=2;i<=Math.sqrt(n);i++){
