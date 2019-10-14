@@ -1,8 +1,8 @@
 package asiantech.internship.winter.ex7;
 
 import java.util.Scanner;
- //tim fibonacci thu n
-public class fibonacci {
+ // tim Findfibonacci thu n
+public class Findfibonacci {
 
     private static int process(){
         Scanner input= new Scanner(System.in);
