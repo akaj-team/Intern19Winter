@@ -5,10 +5,10 @@ import java.util.logging.Logger;
 
 import asiantech.internship.summer.java_core.common.Common;
 
-public class StringStanDar {
+public class StringStandardize {
 
     public static void main(String[] args) {
-        Logger log = Logger.getLogger(StringStanDar.class.getName());
+        Logger log = Logger.getLogger(StringStandardize.class.getName());
         String str = Common.inputString("Nhập vào chuỗi: ");
         log.info(str);
         str = str.trim().toLowerCase(Locale.getDefault());

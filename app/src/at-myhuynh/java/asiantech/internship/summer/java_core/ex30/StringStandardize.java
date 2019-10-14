@@ -5,10 +5,10 @@ import java.util.logging.Logger;
 
 import asiantech.internship.summer.java_core.common.Common;
 
-public class NameStanDar {
+public class StringStandardize {
 
     public static void main(String[] args) {
-        Logger log = Logger.getLogger(NameStanDar.class.getName());
+        Logger log = Logger.getLogger(StringStandardize.class.getName());
         String name = Common.inputString("Nhập vào họ tên:");
         name = name.replaceAll("\\s+", " ").trim();
 
