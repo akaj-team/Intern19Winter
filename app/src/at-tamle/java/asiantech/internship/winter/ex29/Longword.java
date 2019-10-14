@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex29;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 // Viết chương trình thực hiện nhập một xâu ký tự và tìm từ dài nhất trong xâu đó. Từ đó xuất hiện ở vị trí nào?
-public class longword {
+public class Longword {
     public static void searchMax(String strInput){
         StringTokenizer strToken= new StringTokenizer(strInput," ,\t,\r");
         int Max,i=1,lengthStr;
