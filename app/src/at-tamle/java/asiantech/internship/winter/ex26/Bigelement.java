@@ -3,7 +3,7 @@ package asiantech.internship.winter.ex26;
 import java.util.Arrays;
 import java.util.Scanner;
 //Tìm phần tử lớn nhất và lớn thứ 2 trong mảng cùng chỉ số của các số đó.
-public class bigelement {
+public class Bigelement {
     public static int process(){
         Scanner input= new Scanner(System.in);
         boolean check= false;
