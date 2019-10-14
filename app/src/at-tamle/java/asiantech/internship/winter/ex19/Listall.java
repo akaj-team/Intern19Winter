@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex19;
 
 import java.util.Scanner;
 //liet ke all so nguyen to co 5 chu so sao cho tong cua cac chu so trong moi so nguyen to deu = S cho truoc
-public class listall {
+public class Listall {
     public static int process(){
         Scanner input= new Scanner(System.in);
         boolean check= false;
