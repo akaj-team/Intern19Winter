@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex25;
  //Là số nguyên tố.
 //Là số thuận nghịch.
 //Tổng các chữ số của số đó là một số thuận nghịch
-public class general {
+public class General {
 
     public static boolean incheck(int n){
         if(n>1){
