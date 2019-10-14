@@ -53,7 +53,7 @@ public class ArrayManipulation {
         return numbers;
     }
 
-    public static int[] findMaxNumberSecond(List<Integer> listNumber, int maxNumber) {
+    private static int[] findMaxNumberSecond(List<Integer> listNumber, int maxNumber) {
         int[] numbers = new int[]{0, 0};
         for (int i = 0; i < listNumber.size(); i++) {
             int n = listNumber.get(i);
