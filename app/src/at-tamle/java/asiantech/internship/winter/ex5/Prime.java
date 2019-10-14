@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex5;
 
 import java.util.Scanner;
  //liet ke all so nguyen to <n
-public class prime {
+public class Prime {
     public static void process(int n) {
         if (n > 2)
             System.out.print("2");
