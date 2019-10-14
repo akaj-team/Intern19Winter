@@ -14,14 +14,13 @@ object Exercise9 {
         val n = scanner.nextInt()
 
         val array = IntArray(n)
-        var tich: Int
+        var multiple: Int
         do {
-            tich = 1
-
+            multiple = 1
             println("")
             for (j in 0 until n) {
                 print(" " + array[j])
-                tich *= array[j]
+                multiple *= array[j]
             }
             var i = n - 1
             do {
@@ -34,7 +33,6 @@ object Exercise9 {
                 } else
                     i--
             } while (i >= 0)
-        } while (tich != 1)
-
+        } while (multiple != 1)
     }
 }

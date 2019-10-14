@@ -1,7 +1,6 @@
 package asiantech.internship.winter.javacore
 
 import java.util.*
-import kotlin.math.sqrt
 
 /*
 Bài 22. Viết chương trình nhập một số nguyên dương n và thực hiện các chức năng sau:
@@ -25,18 +24,10 @@ object Exercise22 {
 
         for (i in 1..n) {
             if (n % i == 0) {
-                if (isPrimeNumber(i)) {
+                if (i.isPrimeNumber()) {
                     print("$i ")
                 }
             }
         }
-    }
-
-    private fun isPrimeNumber(n: Int): Boolean {
-        if (n < 2) return false
-        for (i in 2..sqrt(n.toDouble()).toInt()) {
-            if (n % i == 0) return false
-        }
-        return true
     }
 }

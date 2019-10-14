@@ -36,8 +36,9 @@ object Exercise15 {
     private fun countElement(a: IntArray, n: Int, i: Int): Int {
         var count = 0
         for (j in 0 until n) {
-            if (a[j] == i)
+            if (a[j] == i) {
                 count++
+            }
         }
         return count
     }

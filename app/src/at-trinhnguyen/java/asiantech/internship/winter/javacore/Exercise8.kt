@@ -14,13 +14,10 @@ object Exercise8 {
         val scanner = Scanner(System.`in`)
         print("Enter n: ")
         val n = scanner.nextInt()
-        if (isReversible(n.toString())) {
+        if (n.toString().isReversible()) {
             print("$n is reversible")
-        } else print("$n is not reversible")
-
-    }
-
-    private fun isReversible(n: String): Boolean {
-        return n.equals(StringBuffer(n).reverse().toString())
+        } else {
+            print("$n is not reversible")
+        }
     }
 }

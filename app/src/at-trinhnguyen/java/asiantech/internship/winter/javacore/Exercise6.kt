@@ -1,11 +1,11 @@
 package asiantech.internship.winter.javacore
 
 import java.util.*
-import kotlin.math.sqrt
 
 /*
 Bài 6. Viết chương trình liệt kê n số nguyên tố đầu tiên.
- */object Exercise6 {
+ */
+object Exercise6 {
     @JvmStatic
     fun main(args: Array<String>) {
         val scanner = Scanner(System.`in`)
@@ -14,19 +14,11 @@ Bài 6. Viết chương trình liệt kê n số nguyên tố đầu tiên.
         var i = 2
         var count = 0
         while (count < n) {
-            if (isPrimeNumber(i)) {
+            if (i.isPrimeNumber()) {
                 print("$i ")
                 count++
             }
             i++
         }
-    }
-
-    fun isPrimeNumber(n: Int): Boolean {
-        if (n < 2) return false
-        for (i in 2..sqrt(n.toDouble()).toInt()) {
-            if (n % i == 0) return false
-        }
-        return true
     }
 }

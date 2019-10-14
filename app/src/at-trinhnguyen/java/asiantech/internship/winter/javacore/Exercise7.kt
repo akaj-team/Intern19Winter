@@ -12,12 +12,6 @@ object Exercise7 {
         val scanner = Scanner(System.`in`)
         print("Enter n: ")
         val n = scanner.nextInt()
-        print("F($n) = ${fibonacci(n)}")
-    }
-
-    private fun fibonacci(n: Int): Int {
-        if (n == 0) return 1
-        else if (n == 1) return 1
-        else return fibonacci(n - 1) + fibonacci(n - 2)
+        print("F($n) = ${n.fibonacci()}")
     }
 }

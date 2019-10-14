@@ -18,12 +18,9 @@ object Main {
         shapes.add(Circle(3.0))
         shapes.add(Square(3.0))
 
-        for (i in shapes.indices) {
-
-            shapes[i].print()
-            println(" S= "
-                    + shapes[i].area() + " & P= " + shapes[i].circumference())
-
+        shapes.forEach {
+            it.print()
+            println(" S = ${it.area()} & P = ${it.circumference()}")
         }
     }
 }

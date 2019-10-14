@@ -20,8 +20,8 @@ object Exercise1 {
     }
 
     private fun findGreatestCommonDivisor(a: Int, b: Int): Int {
-        if (b == 0) return a
-        else return findGreatestCommonDivisor(b, a % b)
+        return if (b == 0) a
+        else findGreatestCommonDivisor(b, a % b)
     }
 
     private fun findLeastCommonMultiple(a: Int, b: Int): Int {

@@ -14,7 +14,6 @@ object Exercise10 {
         val n = scanner.nextInt()
 
         val array = IntArray(n + 1)
-
         var k = 1
         while (k <= n) {
             println("\n Subsets $k-element: ")
@@ -36,10 +35,11 @@ object Exercise10 {
         var j: Int = a[i - 1] + 1
         while (j <= n - k + i) {
             a[i] = j
-            if (i == k)
+            if (i == k) {
                 result(a, k)
-            else
+            } else {
                 tryBacktrack(a, n, k, i + 1)
+            }
             j++
         }
     }

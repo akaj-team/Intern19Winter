@@ -12,12 +12,6 @@ object Exercise3 {
         val scanner = Scanner(System.`in`)
         print("Enter n: ")
         val n = scanner.nextInt()
-        var sum = 0
-
-        for (i in n.toString().toCharArray()) {
-            sum += i.toInt() - 48
-        }
-        print("Sum: $sum")
-
+        print("Sum = ${n.sum()}")
     }
 }

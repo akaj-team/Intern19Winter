@@ -1,7 +1,6 @@
 package asiantech.internship.winter.javacore
 
 import java.util.*
-import kotlin.math.sqrt
 
 /*
 Bài 5. Viết chương trình liệt kê tất cả các số nguyên tố nhỏ hơn n cho trước.
@@ -13,16 +12,9 @@ object Exercise5 {
         print("Enter n: ")
         val n = scanner.nextInt()
         for (i in 2..n) {
-            if (isPrimeNumber(i))
+            if (i.isPrimeNumber()) {
                 print("$i ")
+            }
         }
-    }
-
-    fun isPrimeNumber(n: Int): Boolean {
-        if (n < 2) return false
-        for (i in 2..sqrt(n.toDouble()).toInt()) {
-            if (n % i == 0) return false
-        }
-        return true
     }
 }
