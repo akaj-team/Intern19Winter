@@ -1,7 +1,7 @@
 package asiantech.internship.winter.ex14;
 
 import java.util.Scanner;
-public class once {
+public class Once {
     public static int process(){
         Scanner input= new Scanner(System.in);
         boolean check= false;
