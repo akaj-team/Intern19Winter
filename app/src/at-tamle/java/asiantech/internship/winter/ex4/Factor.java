@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex4;
 
 import java.util.Scanner;
 // phan tich thanh thua so nguyen to
-public class factor {
+public class Factor {
     public static void process(int n) {
         int i = 2;
         while (n > 1) {
