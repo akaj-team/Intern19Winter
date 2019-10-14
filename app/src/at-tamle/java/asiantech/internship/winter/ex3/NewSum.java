@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex3;
 
 import java.util.Scanner;
 //tinh tong so bat ki vd 123= 1+2+3
-public class newSum {
+public class NewSum {
     public static int  process() {
         Scanner input = new Scanner(System.in);
         boolean check = false;
