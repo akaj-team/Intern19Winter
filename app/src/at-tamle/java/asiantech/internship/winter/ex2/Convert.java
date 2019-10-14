@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex2;
 
 import java.util.Scanner;
 //chuyen co so 10 thanh co so bat ky
-public class convert {
+public class Convert {
 
         public static void radix(int n,int k){
             if(n>=k) radix(n / k, k);

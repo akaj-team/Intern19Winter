@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex1;
 
 import java.util.Scanner;
 
-public class  common {
+public class  Common {
     public static int process() {
         Scanner input = new Scanner(System.in);
         boolean check = false;
