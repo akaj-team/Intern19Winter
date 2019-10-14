@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex6;
 
 import java.util.Scanner;
 // n so nguyen to dau tien
-public class primefirst {
+public class Primefirst {
     private static void process(int n) {
         int i = 2, count = 0;
         while (count < n) {
