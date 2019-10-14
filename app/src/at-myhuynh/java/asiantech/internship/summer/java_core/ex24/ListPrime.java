@@ -16,14 +16,13 @@ public class ListPrime {
 
     }
 
-    public static boolean checkItemIsPrime(int n) {
-        String[] arrNum = String.valueOf(n).split("");
-        for (int i = 0; i < arrNum.length; i++) {
-            if (!Common.isPrime(Integer.parseInt(arrNum[i]))) {
+    private static boolean checkItemIsPrime(int n) {
+        String[] arrNums = String.valueOf(n).split("");
+        for (String arrNum : arrNums) {
+            if (!Common.isPrime(Integer.parseInt(arrNum))) {
                 return false;
             }
         }
         return true;
     }
-
 }
