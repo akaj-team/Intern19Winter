@@ -21,7 +21,7 @@ public class FindWord {
         }
     }
 
-    public static int[] getMaxLengthWord(String[] arrWords) {
+    private static int[] getMaxLengthWord(String[] arrWords) {
         int[] arr = new int[]{0, 0};
         for (int i = 0; i < arrWords.length; i++) {
             if (arr[0] < arrWords[i].length()) {

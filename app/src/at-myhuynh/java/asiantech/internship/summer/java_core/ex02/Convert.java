@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import asiantech.internship.summer.java_core.common.Common;
 
 public class Convert {
-    static final Logger log = Logger.getLogger(Convert.class.getName());
+    private static final Logger log = Logger.getLogger(Convert.class.getName());
 
     public static void main(String[] args) {
         int a = Common.input("Nhập vào một số tự nhiên:");
@@ -14,7 +14,7 @@ public class Convert {
         convertBase(a, b);
     }
 
-    public static void convertBase(int n, int base) {
+    private static void convertBase(int n, int base) {
         if (n >= base) {
             convertBase(n / base, base);
         }

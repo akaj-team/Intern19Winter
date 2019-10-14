@@ -19,7 +19,7 @@ public class ListNumberExistOnlyOnce {
         log.info(getNumbers(listNumber).toString());
     }
 
-    public static List<Integer> getNumbers(List<Integer> listNumber) {
+    private static List<Integer> getNumbers(List<Integer> listNumber) {
         List<Integer> listNum = new ArrayList<>();
         for (int i = 0; i < listNumber.size(); i++) {
             if (isExist(listNumber.get(i), listNumber, i)) {
@@ -29,7 +29,7 @@ public class ListNumberExistOnlyOnce {
         return listNum;
     }
 
-    public static boolean isExist(int n, List<Integer> listNumber, int index) {
+    private static boolean isExist(int n, List<Integer> listNumber, int index) {
         for (int i = 0; i < listNumber.size(); i++) {
             if (i != index) {
                 if (n == listNumber.get(i)) {

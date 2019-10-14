@@ -12,7 +12,7 @@ public class ListPrimeFirst {
         print(n);
     }
 
-    public static void print(int n) {
+    private static void print(int n) {
         Logger log = Logger.getLogger(ListPrimeFirst.class.getName());
         int number = 1;
 

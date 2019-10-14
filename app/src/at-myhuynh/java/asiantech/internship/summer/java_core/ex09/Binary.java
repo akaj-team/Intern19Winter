@@ -28,7 +28,7 @@ public class Binary {
         }
     }
 
-    public static void print(int[] a) {
+    private static void print(int[] a) {
         Logger log = Logger.getLogger(Binary.class.getName());
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < a.length; i++) {

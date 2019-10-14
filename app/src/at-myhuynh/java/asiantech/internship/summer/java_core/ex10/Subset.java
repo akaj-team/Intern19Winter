@@ -14,7 +14,7 @@ public class Subset {
         backTracking(n, k, arr, 0, 0);
     }
 
-    public static void backTracking(int n, int k, int[] arr, int i, int j) {
+    private static void backTracking(int n, int k, int[] arr, int i, int j) {
         Logger log = Logger.getLogger(Subset.class.getName());
         for (j = 0; j < n - k + i + 1; j++) {
             arr[i] = j + 1;

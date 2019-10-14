@@ -19,7 +19,7 @@ public class ListNumberExistTwice {
         log.info(getNumbers(listNumber).toString());
     }
 
-    public static List<Integer> getNumbers(List<Integer> listNumber) {
+    private static List<Integer> getNumbers(List<Integer> listNumber) {
         List<Integer> listNum = new ArrayList<>();
         int count;
         for (int i = 0; i < listNumber.size(); i++) {
@@ -31,7 +31,7 @@ public class ListNumberExistTwice {
         return listNum;
     }
 
-    public static boolean isExist(int n, List<Integer> listNumber) {
+    private static boolean isExist(int n, List<Integer> listNumber) {
         for (int i = 0; i < listNumber.size(); i++) {
             if (n == listNumber.get(i)) {
                 return true;
@@ -40,7 +40,7 @@ public class ListNumberExistTwice {
         return false;
     }
 
-    public static int count(int n, List<Integer> listNumber, int index) {
+    private static int count(int n, List<Integer> listNumber, int index) {
         int count = 1;
         for (int i = 0; i < listNumber.size(); i++) {
             if (i != index) {
@@ -51,5 +51,4 @@ public class ListNumberExistTwice {
         }
         return count;
     }
-
 }

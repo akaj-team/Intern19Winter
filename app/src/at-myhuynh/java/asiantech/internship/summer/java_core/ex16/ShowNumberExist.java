@@ -19,7 +19,7 @@ public class ShowNumberExist {
         showNumberExist(listNumber);
     }
 
-    public static void showNumberExist(List<Integer> listNumber) {
+    private static void showNumberExist(List<Integer> listNumber) {
         Logger log = Logger.getLogger(ShowNumberExist.class.getName());
         for (int i = 0; i < listNumber.size(); i++) {
             if (isExist(listNumber.get(i), listNumber, i)) {
@@ -30,7 +30,7 @@ public class ShowNumberExist {
         }
     }
 
-    public static int countNumberExist(int n, List<Integer> listNumber, int index) {
+    private static int countNumberExist(int n, List<Integer> listNumber, int index) {
         int count = 1;
         for (int i = index + 1; i < listNumber.size(); i++) {
             if (n == listNumber.get(i) && isExist(n, listNumber, index)) {
@@ -40,7 +40,7 @@ public class ShowNumberExist {
         return count;
     }
 
-    public static boolean isExist(int n, List<Integer> listNumber, int index) {
+    private static boolean isExist(int n, List<Integer> listNumber, int index) {
         for (int i = 0; i < index; i++) {
             if (n == listNumber.get(i)) {
                 return false;

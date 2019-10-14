@@ -19,7 +19,7 @@ public class PrimeAndFibonacciNumber {
         }
     }
 
-    public static List<Integer> getListPrime(int n) {
+    private static List<Integer> getListPrime(int n) {
         List<Integer> listPrime = new ArrayList<>();
         int count = 1;
         int index = 1;

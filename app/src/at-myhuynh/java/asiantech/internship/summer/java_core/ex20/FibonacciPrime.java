@@ -10,7 +10,7 @@ public class FibonacciPrime {
         showFibonacciIsPrime(n);
     }
 
-    public static void showFibonacciIsPrime(int n) {
+    private static void showFibonacciIsPrime(int n) {
         Logger log = Logger.getLogger(FibonacciPrime.class.getName());
         int f1 = 1;
         int f2 = 1;

@@ -42,7 +42,7 @@ public class ArrayManipulation {
         }
     }
 
-    public static int[] findMaxNumber(List<Integer> listNumber) {
+    private static int[] findMaxNumber(List<Integer> listNumber) {
         int[] numbers = new int[]{0, 0};
         for (int i = 0; i < listNumber.size(); i++) {
             if (numbers[0] < listNumber.get(i)) {
@@ -65,7 +65,7 @@ public class ArrayManipulation {
         return numbers;
     }
 
-    public static void insertEle(List<Integer> listNumber, int n) {
+    private static void insertEle(List<Integer> listNumber, int n) {
         int max = listNumber.get(1);
         int min = listNumber.get(listNumber.size() - 1);
         if (n >= max) {

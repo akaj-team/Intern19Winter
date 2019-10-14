@@ -15,13 +15,13 @@ public class Permutation {
 
     }
 
-    public static void initArr(int[] arrInt, int n) {
+    private static void initArr(int[] arrInt, int n) {
         for (int i = 0; i < n; i++) {
             arrInt[i] = i + 1;
         }
     }
 
-    public static void listPermutation(int[] arrInt) {
+    private static void listPermutation(int[] arrInt) {
         Logger log = Logger.getLogger(Permutation.class.getName());
         int n = arrInt.length;
         StringBuilder str = new StringBuilder();

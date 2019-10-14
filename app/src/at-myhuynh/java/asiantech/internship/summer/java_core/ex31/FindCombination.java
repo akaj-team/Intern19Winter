@@ -39,7 +39,7 @@ public class FindCombination {
 
     }
 
-    public static List<String> difference(List<String> a, List<String> b) {
+    private static List<String> difference(List<String> a, List<String> b) {
         List<String> c = new ArrayList<>(a);
         for (String itemB : b) {
             if (a.contains(itemB)) {
@@ -50,7 +50,7 @@ public class FindCombination {
         return c;
     }
 
-    public static List<String> union(List<String> a, List<String> b) {
+    private static List<String> union(List<String> a, List<String> b) {
         List<String> c = new ArrayList<>(a);
         for (String itemB : b) {
             if (!a.contains(itemB)) {
@@ -61,7 +61,7 @@ public class FindCombination {
         return c;
     }
 
-    public static List<String> interSection(List<String> a, List<String> b) {
+    private static List<String> interSection(List<String> a, List<String> b) {
         List<String> c = new ArrayList<>();
         for (String itemB : b) {
             if (a.contains(itemB)) {

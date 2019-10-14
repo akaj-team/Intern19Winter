@@ -15,5 +15,4 @@ public class CountWord {
             log.info("'" + strWord + "' có " + count + " từ.");
         }
     }
-
 }

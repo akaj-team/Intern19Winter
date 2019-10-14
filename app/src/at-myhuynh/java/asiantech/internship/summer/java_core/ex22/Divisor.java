@@ -21,7 +21,7 @@ public class Divisor {
         }
     }
 
-    public static List<Integer> getListDivPrime(List<Integer> listDiv) {
+    private static List<Integer> getListDivPrime(List<Integer> listDiv) {
         List<Integer> lisDivPrime = new ArrayList<>();
         for (int i = 0; i < listDiv.size(); i++) {
             if (Common.isPrime(listDiv.get(i))) {
@@ -31,7 +31,7 @@ public class Divisor {
         return lisDivPrime;
     }
 
-    public static List<Integer> getListDiv(int n) {
+    private static List<Integer> getListDiv(int n) {
         List<Integer> listDiv = new ArrayList<>();
         for (int i = 1; i <= n; i++) {
             if (n % i == 0) {

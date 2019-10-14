@@ -17,7 +17,7 @@ public class CommonDivisor {
         }
     }
 
-    public static int greatestCommonDivisor(int a, int b) {
+    private static int greatestCommonDivisor(int a, int b) {
         while (a != b) {
             if (a > b) {
                 a -= b;
@@ -28,7 +28,7 @@ public class CommonDivisor {
         return a;
     }
 
-    public static int leastCommonMultiple(int a, int b, int c) {
+    private static int leastCommonMultiple(int a, int b, int c) {
         return a * b / c;
     }
 }

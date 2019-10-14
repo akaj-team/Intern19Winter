@@ -11,7 +11,7 @@ public class ListPrime {
         print(n);
     }
 
-    public static void print(int number) {
+    private static void print(int number) {
         Logger log = Logger.getLogger(ListPrime.class.getName());
         for (int i = 1; i <= number; i++) {
             if (Common.isPrime(i)) {
