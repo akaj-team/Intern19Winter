@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex17;
 
 import java.util.Scanner;
 //day tang dan
-public class ascending {
+public class Ascending {
     public static int process(){
         Scanner input= new Scanner(System.in);
         boolean check= false;
