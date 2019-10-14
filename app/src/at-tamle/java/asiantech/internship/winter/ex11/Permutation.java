@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex11;
 
 import java.util.Scanner;
 //liet ke cac hoan vi
-public class permutation {
+public class Permutation {
     public static int process(){
         Scanner input= new Scanner(System.in);
         boolean check= false;
