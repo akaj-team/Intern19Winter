@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex9;
 
 import java.util.Scanner;
 //liet ke xau nhi phan do dai n
-public class binary {
+public class Binary {
     public static int process() {
         Scanner input = new Scanner(System.in);
         boolean check = false;
