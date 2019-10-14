@@ -2,7 +2,7 @@ package asiantech.internship.winter.ex20;
 
 import java.util.Scanner;
 // liet ke fibonacci < n so nguyen to
-public class list {
+public class ListNum {
     public static int process(){
         Scanner input= new Scanner(System.in);
         boolean check= false;
