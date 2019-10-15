@@ -13,4 +13,4 @@ data class Student(
     var title: String,
     var degree_no: String,
     var document_id: String
-) {}
+)
