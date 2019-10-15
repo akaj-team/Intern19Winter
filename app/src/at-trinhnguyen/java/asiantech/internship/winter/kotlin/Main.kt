@@ -66,7 +66,7 @@ object Main {
                                     }
                         }
                         "2" -> {
-                            students.sortedBy { it.birthday }
+                            students.sortedBy { SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(it.birthday) }
                                     .forEachIndexed { index, student ->
                                         if (index < n) println(student)
                                     }
