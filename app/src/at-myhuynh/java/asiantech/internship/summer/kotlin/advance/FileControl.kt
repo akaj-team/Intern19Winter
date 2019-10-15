@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import java.io.File
 import java.io.FileNotFoundException
 import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.collections.ArrayList
 
 object FileControl {
@@ -149,7 +150,7 @@ object FileControl {
     }
 
     private fun sortStudentByBirthDay(students: List<Student>, n: Int) {
-        val sdf = SimpleDateFormat("dd/MM/yyyy")
+        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val studentsSorted = students.sortedBy { sdf.parse(it.birthday) }
 
         if (n < studentsSorted.size) {
