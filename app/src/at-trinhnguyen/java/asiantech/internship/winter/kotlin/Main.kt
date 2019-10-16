@@ -14,7 +14,6 @@ object Main {
         val gson = GsonBuilder().create()
         val file = "C:\\Users\\nguye\\AndroidStudioProjects\\Intern19Winter\\app\\src\\at-trinhnguyen\\java\\asiantech\\internship\\winter\\kotlin\\data.json"
         val students = gson.fromJson(FileReader(file), Array<Student>::class.java).toList()
-        val majors = students.groupBy { it.major }
         val scanner = Scanner(System.`in`)
         var menu: String
         var check = true
@@ -24,28 +23,23 @@ object Main {
             menu = scanner.nextLine()
             when (menu) {
                 "1" -> {
-                    println(" All the major: ${majors.keys}")
+                    println(" All the major: ${students.groupBy { it.major }.keys}")
                 }
                 "2" -> {
-                    majors.forEach { (key, value) ->
-                        println("$key have ${value.count()} students")
-                    }
+                    println("Enter major: ")
+                    val major = scanner.nextLine()
+                    println("$major have ${students.filter { it.major == major }.count()} students")
                 }
                 "3" -> {
-                    majors.forEach { (key, value) ->
-                        println("$key have ${value.groupBy { it.class_name }.count()} class")
-                    }
+                    println("Enter major: ")
+                    val major = scanner.nextLine()
+                    println("$major have ${students.filter { it.major == major }.groupBy { it.class_name }.count()} classes")
                 }
                 "4" -> {
                     println("Enter major: ")
                     val major = scanner.nextLine()
                     println("All the student in $major: ")
-                    majors.filter { it.key == major }
-                            .forEach { (_, value) ->
-                                print(value.forEach {
-                                    println(it.name)
-                                })
-                            }
+                    students.filter { it.major == major }.forEach { println(it) }
                 }
                 "5" -> {
                     println("The number of students for each degree rank: ")
@@ -94,29 +88,29 @@ object Main {
                 "7" -> {
                     println("Enter student's name to find: ")
                     val name = scanner.nextLine()
-                    println(students.filter { it.name == name })
+                    students.filter { it.name == name }.forEach { println(it) }
                 }
                 "8" -> {
                     println("Enter student's class to find: ")
                     val className = scanner.nextLine()
-                    println(students.filter { it.class_name == className })
+                    students.filter { it.class_name == className }.forEach { println(it) }
                 }
                 "9" -> {
                     println("Enter student's major to find: ")
                     val major = scanner.nextLine()
-                    println(students.filter { it.major == major })
+                    students.filter { it.major == major }.forEach { println(it) }
                 }
                 "10" -> {
                     print("Enter month: ")
                     val m = scanner.nextLine()
-                    println(students.filter {
+                    students.filter {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             LocalDate.parse(it.birthday, DateTimeFormatter.ofPattern("dd/MM/yyyy")).month.value == m.toInt()
                         } else {
                             val date = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(it.birthday)
                             date?.month?.plus(1) == m.toInt()
                         }
-                    })
+                    }.forEach { println(it) }
                 }
                 "Q", "q" -> {
                     check = false
