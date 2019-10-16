@@ -1,4 +1,4 @@
-package exercise8
+package asiantech.internship.summer.exercise8
 
 import java.util.*
 
@@ -10,9 +10,9 @@ object Reversible {
         val str = Scanner(System.`in`).nextLine()
         val strBuilder = StringBuilder(str)
         if (strBuilder.reverse().toString().equals(str)) {
-            println("Chuoi thuan nghich doc")
+            println("Chuoi thuan nghich")
         } else {
-            println("Khong phai chuoi thuan nghich doc")
+            println("Khong phai chuoi thuan nghich")
         }
     }
 }

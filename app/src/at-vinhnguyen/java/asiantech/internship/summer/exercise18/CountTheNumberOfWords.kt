@@ -1,4 +1,4 @@
-package exercise18
+package asiantech.internship.summer.exercise18
 
 import java.util.*
 

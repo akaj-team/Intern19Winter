@@ -1,4 +1,4 @@
-package exercise7
+package asiantech.internship.summer.exercise7
 
 import getFibonacciInPosition
 import inputIntNumber

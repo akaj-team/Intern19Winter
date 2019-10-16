@@ -1,4 +1,4 @@
-package exercise4
+package asiantech.internship.summer.exercise4
 
 import doFactorAnalysis
 import inputIntNumber

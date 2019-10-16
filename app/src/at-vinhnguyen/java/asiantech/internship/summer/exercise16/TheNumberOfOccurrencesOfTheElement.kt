@@ -1,4 +1,4 @@
-package exercise16
+package asiantech.internship.summer.exercise16
 
 import inputIntNumber
 import java.util.*

@@ -1,4 +1,4 @@
-package oop
+package asiantech.internship.summer.oop
 
 abstract class Shape {
 

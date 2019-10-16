@@ -1,4 +1,4 @@
-package oop
+package asiantech.internship.summer.oop
 
 class Rectangle(private val a: Float, private val b: Float) : Shape() {
 

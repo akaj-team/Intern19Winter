@@ -1,4 +1,4 @@
-package exercise3
+package asiantech.internship.summer.exercise3
 
 import inputIntNumber
 import sumOfNumber

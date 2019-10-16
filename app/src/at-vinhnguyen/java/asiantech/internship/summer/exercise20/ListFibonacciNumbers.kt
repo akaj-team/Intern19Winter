@@ -1,4 +1,4 @@
-package exercise20
+package asiantech.internship.summer.exercise20
 
 import getFibonacciInPosition
 import inputIntNumber

@@ -1,4 +1,4 @@
-package exercise24
+package asiantech.internship.summer.exercise24
 
 import isPrime
 import isReversible

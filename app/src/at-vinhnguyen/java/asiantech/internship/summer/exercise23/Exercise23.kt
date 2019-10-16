@@ -1,4 +1,4 @@
-package exercise23
+package asiantech.internship.summer.exercise23
 
 import inputIntNumber
 import isPrime

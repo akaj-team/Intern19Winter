@@ -1,4 +1,4 @@
-package exercise15
+package asiantech.internship.summer.exercise15
 
 import inputIntNumber
 
