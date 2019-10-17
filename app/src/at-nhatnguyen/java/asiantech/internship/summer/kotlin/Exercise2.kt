@@ -1,8 +1,5 @@
 package asiantech.internship.summer.kotlin
 
-import java.util.Scanner
-
-
 private fun base(n: Int, base: Int) {
     if (n >= base) base(n / base, base)
     if (n % base > 9)
@@ -11,11 +8,11 @@ private fun base(n: Int, base: Int) {
         print(n % base)
 }
 fun main() {
-    val input:Shared  =  Shared()
+    val shared  =  Shared()
     print("Nhap n :")
-    val n = input.input()
+    val n = shared.input()
     print("Nhap vao co so can chuyen sang b :")
-    val b = input.input()
+    val b = shared.input()
     print("So $n chuyen sang co so $b thanh: ")
     base(n, b)
 }
