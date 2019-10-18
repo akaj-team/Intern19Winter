@@ -1,9 +1,5 @@
 package asiantech.internship.winter.ex23;
-
 import java.util.Scanner;
-//Liệt kê n số nguyên tố đầu tiên.
-//Liệt kê n số Fibonaci đầu tiên.
-
 public class ListPrimeFisrt {
     public static int process(){
         Scanner input= new Scanner(System.in); boolean check= false;
@@ -17,7 +13,7 @@ public class ListPrimeFisrt {
             }
 
         }
-        return (n);
+        return n;
 
     }
     public static boolean incheck(int n){
@@ -30,14 +26,12 @@ public class ListPrimeFisrt {
         }
         else return false;
     }
-    public static void Element(int n){
+    private static void Element(int n){
         int i=1,count=0;
         System.out.println("Cac so nguyen to nho hon "+n+" la: "); while(i<n){
             if(incheck(i)){
                 System.out.print(" "+i); count++;
-
             } i++;
-
         }
         System.out.println("\n Co "+count+" so thoa man");
 
@@ -50,11 +44,7 @@ public class ListPrimeFisrt {
             System.out.print(" "+f[i]);
             i++;
             f[i]= f[i-1] + f[i-2];
-
         }
         System.out.println("\n Co "+i+" so thoa man");
-
     }
-
-
 }
