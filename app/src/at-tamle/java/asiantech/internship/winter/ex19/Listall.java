@@ -1,7 +1,5 @@
 package asiantech.internship.winter.ex19;
-
 import java.util.Scanner;
-//liet ke all so nguyen to co 5 chu so sao cho tong cua cac chu so trong moi so nguyen to deu = S cho truoc
 public class Listall {
     public static int process(){
         Scanner input= new Scanner(System.in);
@@ -17,9 +15,9 @@ public class Listall {
                 input.nextLine();
             }
         }
-        return (n);
+        return n;
     }
-    public static boolean Check(int n){
+    private static boolean Check(int n){
         if(n>1){
             for(int i=2;i<=Math.sqrt(n);i++){
                 if(n%i==0) return false;
@@ -28,7 +26,7 @@ public class Listall {
         }
         else return false;
     }
-    public static int total(int n){
+    private static int total(int n){
         int T=0;
         while(n>0){
             T+= n%10;
@@ -46,7 +44,7 @@ public class Listall {
                     System.out.println(" "+i);
                     count++;
                 }
-                else continue;
+
             }
         }
         System.out.println("Co "+count+" so thoa man");
