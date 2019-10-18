@@ -11,7 +11,6 @@ object InPrime {
         } else
             return false
     }
-
     fun testTotal(n: Int): Boolean {
         val New = StringBuilder()
         val str = "" + n
