@@ -13,7 +13,6 @@ object Factor {
                 i++
         }
     }
-
     fun Input(): Int {
         val input = Scanner(System.`in`)
         var n = 0
