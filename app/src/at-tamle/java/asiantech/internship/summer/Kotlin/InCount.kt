@@ -2,6 +2,7 @@ package asiantech.internship.summer.Kotlin
 import java.util.Scanner
 import java.util.StringTokenizer
 object InCount {
+
     @JvmStatic
     fun main(args: Array<String>) {
         val input = Scanner(System.`in`)
