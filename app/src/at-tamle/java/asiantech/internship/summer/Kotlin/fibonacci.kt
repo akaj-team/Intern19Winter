@@ -7,7 +7,6 @@ object fibonacci {
         n = input.nextInt()
         return n
     }
-
     @JvmStatic
     fun main(args: Array<String>) {
         println("Nhap n")
