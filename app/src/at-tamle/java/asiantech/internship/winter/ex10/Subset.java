@@ -1,12 +1,11 @@
 package asiantech.internship.winter.ex10;
 
 import java.util.Scanner;
-// liet ke tap con k
 public class Subset {
     public static int process(){
         Scanner input= new Scanner(System.in);
         boolean check= false;
-        int n=0;
+        int n=0 ;
         while(!check){
             System.out.print(" ");
             try{
@@ -17,7 +16,7 @@ public class Subset {
                 input.nextLine();
             }
         }
-        return (n);
+        return n;
     }
     private static void result(int a[],int k){
         int i;
