@@ -2,6 +2,7 @@ package asiantech.internship.summer.Kotlin
 import java.util.Scanner
 import java.util.StringTokenizer
 object LongWord {
+
     fun searchMax(strInput: String) {
         val strToken = StringTokenizer(strInput, " ,\t,\r")
         var Max: Int
