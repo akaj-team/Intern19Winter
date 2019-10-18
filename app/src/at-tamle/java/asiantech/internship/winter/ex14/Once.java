@@ -1,5 +1,4 @@
 package asiantech.internship.winter.ex14;
-
 import java.util.Scanner;
 public class Once {
     public static int process(){
@@ -16,7 +15,7 @@ public class Once {
                 input.nextLine();
             }
         }
-        return (n);
+        return n;
     }
     private static int countElement(int a[], int n, int i){
         int count= 0;
@@ -24,7 +23,7 @@ public class Once {
             if(a[j]== i)
                 count ++;
         }
-        return (count);
+        return count;
     }
     public static void main(String[] args) {
         int n,i;
