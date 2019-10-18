@@ -7,7 +7,6 @@ object Totalanalytical {
                 n = input.nextInt()
         return n
     }
-
     fun New(n: Int): Int {
         var n = n
         var T = 0
