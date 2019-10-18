@@ -18,6 +18,7 @@ object NewSum {
         }
         return sum
     }
+
     @JvmStatic
     fun main(args: Array<String>) {
         println("Nhap n")
