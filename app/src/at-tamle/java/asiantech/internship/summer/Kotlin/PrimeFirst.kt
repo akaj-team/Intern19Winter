@@ -12,7 +12,6 @@ object PrimeFirst {
             i++
         }
     }
-
     private fun element(n: Int): Boolean {
         if (n == 2 || n == 3)
             return true
