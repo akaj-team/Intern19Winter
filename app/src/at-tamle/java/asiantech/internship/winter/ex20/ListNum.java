@@ -1,7 +1,6 @@
 package asiantech.internship.winter.ex20;
 
 import java.util.Scanner;
-// liet ke Findfibonacci < n so nguyen to
 public class ListNum {
     public static int process(){
         Scanner input= new Scanner(System.in);
@@ -17,9 +16,8 @@ public class ListNum {
                 input.nextLine();
             }
         }
-        return (n);
+        return n;
     }
-    //Ham kiem tra so nguyen to
     private static boolean incheck(int n){
         if(n>1){
             for(int i=2;i<=Math.sqrt(n);i++){
