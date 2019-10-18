@@ -1,7 +1,5 @@
 package asiantech.internship.winter.ex21;
-
 import java.util.Scanner;
-//tinh tong + phan tich thua so ngto
 public class Totalanalytical {
     public static int process(){
         Scanner input= new Scanner(System.in); boolean check= false;
@@ -12,23 +10,22 @@ public class Totalanalytical {
                 System.out.println("phai nhap so, moi nhap lai"); input.nextLine();
             }
         }
-        return (n);
+        return n;
     }
     public static int New(int n){ int T=0;
         while(n>0){
             T+= n%10;
             n/= 10;
         }
-        return (T);
+        return T;
     }
-    //Ham kiem tra so nguyen to
     public static boolean incheck(int n){ if(n>1){for(int i=2;i<=Math.sqrt(n);i++){ if(n%i==0) return false;
     }
         return true;
     }
     else return false;
     }
-    public static void result(int n){
+    private static void result(int n){
         int i=2; while(n>1){
             if(incheck(i)){
                 if(n%i==0){
