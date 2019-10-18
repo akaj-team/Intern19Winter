@@ -4,7 +4,7 @@ object List {
     fun process(): Int {
         val input = Scanner(System.`in`)
         var n = 0
-                n = input.nextInt()
+        n = input.nextInt()
         return n
     }
 
