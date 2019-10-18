@@ -16,7 +16,6 @@ object Surname {
         k.append(s1[2]).append("  ")
         println(k)
     }
-
     @JvmStatic
     fun main(args: Array<String>) {
         var s0 = String()
