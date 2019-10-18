@@ -9,7 +9,6 @@ object Permutation {
 
         return n
     }
-
     @JvmStatic
     fun main(args: Array<String>) {
         println("Nhap n")
