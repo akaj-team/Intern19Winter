@@ -3,7 +3,6 @@ package asiantech.internship.summer.Kotlin
 import android.util.Log
 
 object General {
-
     fun incheck(n: Int): Boolean {
         if (n > 1) {
             var i = 2
