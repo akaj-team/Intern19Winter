@@ -10,7 +10,6 @@ object Binary {
 
         return n
     }
-
     @JvmStatic
     fun main(args: Array<String>) {
         val n = process()
