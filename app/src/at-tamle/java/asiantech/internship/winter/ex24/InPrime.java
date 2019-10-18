@@ -1,7 +1,4 @@
 package asiantech.internship.winter.ex24;
-//Là số nguyên tố.
-//Là số thuận nghịch.
-//Mỗi chữ số đều là số nguyên tố
 public class InPrime {
     public static boolean incheck(int n){
         if(n>1){
@@ -12,15 +9,15 @@ public class InPrime {
         }
         else return false;
     }
-    public static boolean testTotal(int n){
+    private static boolean testTotal(int n){
         StringBuilder New= new StringBuilder();
         String str= ""+n;
         New.append(str);
         String check= ""+New.reverse();
-        if(str.equals(check)) return true;
+        if( str.equals(check) ) return true;
         else return false;
     }
-    public static boolean element(int n){
+    private static boolean element(int n){
         while(n!=0){
             if(!incheck(n%10)) return false;
             n/= 10;
