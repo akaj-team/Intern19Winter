@@ -11,7 +11,6 @@ object Prime {
             i += 2
         }
     }
-
     fun element(n: Int): Boolean {
         if (n == 2 || n == 3)
             return true
