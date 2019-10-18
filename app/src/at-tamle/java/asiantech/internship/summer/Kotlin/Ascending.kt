@@ -9,7 +9,6 @@ object Ascending {
         n = input.nextInt()
         return n
     }
-
     private fun number(): Float {
         val input = Scanner(System.`in`)
         var check = false
