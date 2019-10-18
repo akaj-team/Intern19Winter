@@ -9,7 +9,6 @@ object Standardiz {
         b = str.replaceFirst(s.toRegex(), s.toUpperCase())
         return b
     }
-
     fun equal(strInput: String): String {
         var b = ""
         val strToken = StringTokenizer(strInput, " ,\t,\r")
