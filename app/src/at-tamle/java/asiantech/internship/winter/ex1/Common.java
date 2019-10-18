@@ -1,5 +1,4 @@
 package asiantech.internship.winter.ex1;
-
 import java.util.Scanner;
 
 public class  Common {
@@ -18,16 +17,16 @@ public class  Common {
             }
         }
 
-        return (n);
+        return n;
     }
-    public static int comConvention(int a, int b) {
+    private static int comConvention(int a, int b) {
         while (a != b) {
             if (a > b)
                 a = a - b;
             else
                 b = b - a;
         }
-        return (a);
+        return a;
     }
     public static void main(String[] args) {
         System.out.println("Nhap a");
