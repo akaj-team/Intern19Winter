@@ -1,7 +1,7 @@
 package asiantech.internship.winter.ex9;
 
 import java.util.Scanner;
-//liet ke xau nhi phan do dai n
+
 public class Binary {
     public static int process() {
         Scanner input = new Scanner(System.in);
@@ -25,8 +25,8 @@ public class Binary {
         int New;
         do {
             New = 1;
-            System.out.println("");
-            // In ra mang va tinh tich cac phan tu trong mang
+            System.out.println();
+
             for (int j = 0; j < n; j++) {
                 System.out.print(" " + array[j]);
                 New *= array[j];
