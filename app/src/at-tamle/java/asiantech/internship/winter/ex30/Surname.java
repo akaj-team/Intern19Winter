@@ -1,7 +1,6 @@
 package asiantech.internship.winter.ex30;
 import java.util.Scanner;
 import java.util.StringTokenizer;
-// ho dem ten > ten ho dem
 public class Surname {
     private static void total(String s) {
         StringTokenizer t = new StringTokenizer(s);
