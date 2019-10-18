@@ -1,7 +1,5 @@
 package asiantech.internship.winter.ex17;
-
 import java.util.Scanner;
-//day tang dan
 public class Ascending {
     public static int process(){
         Scanner input= new Scanner(System.in);
@@ -17,7 +15,7 @@ public class Ascending {
                 input.nextLine();
             }
         }
-        return (n);
+        return n;
     }
     private static float number(){
         Scanner input= new Scanner(System.in);
@@ -33,7 +31,7 @@ public class Ascending {
                 input.nextLine();
             }
         }
-        return (n);
+        return n;
     }
     private static int minNumber(float a[], int n){
         float min= a[0];
@@ -44,14 +42,14 @@ public class Ascending {
                 key= j;
             }
         }
-        return (key);
+        return key;
     }
     private static float maxNumber(float a[], int n){
         float max= a[0];
         for(int j=0 ; j<n ; j++){
-            if(max<a[j]) max= a[j];
+            if(max < a[j]) max= a[j];
         }
-        return (max);
+        return max;
     }
     public static void main(String[] args) {
         int n,i;
