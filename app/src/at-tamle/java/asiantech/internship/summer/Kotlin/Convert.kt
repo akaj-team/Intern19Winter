@@ -9,7 +9,6 @@ object Convert {
         else
             print(n % k)
     }
-
     fun process(): Int {
         val input = Scanner(System.`in`)
         var n = 0
