@@ -53,8 +53,5 @@ object InList {
 
         }
         println("\n Co $i so thoa man")
-
     }
-
-
 }
