@@ -11,7 +11,6 @@ object BigElement {
                 n = input.nextInt()
         return n
     }
-
     fun MaxInt(a: IntArray, n: Int): Int {
         var max = a[0]
         var key = 0
