@@ -10,7 +10,6 @@ object Subset {
 
         return n
     }
-
     private fun result(a: IntArray, k: Int) {
         var i: Int
         println()
