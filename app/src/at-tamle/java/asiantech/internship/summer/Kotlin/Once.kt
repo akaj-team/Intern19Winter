@@ -7,7 +7,6 @@ object Once {
                 n = input.nextInt()
         return n
     }
-
     private fun countElement(a: IntArray, n: Int, i: Int): Int {
         var count = 0
         for (j in 0 until n) {
