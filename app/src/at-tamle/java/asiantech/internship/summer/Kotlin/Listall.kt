@@ -7,7 +7,6 @@ object Listall {
                 n = input.nextInt()
         return n
     }
-
     fun Check(n: Int): Boolean {
         if (n > 1) {
             var i = 2
