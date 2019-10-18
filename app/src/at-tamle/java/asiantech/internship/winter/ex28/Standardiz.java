@@ -1,8 +1,6 @@
 package asiantech.internship.winter.ex28;
 import java.util.Scanner;
 import java.util.StringTokenizer;
-//Viết chương trình thực hiện chuẩn hoá một xâu ký tự nhập từ bàn phím
-//loại bỏ các dấu cách thừa, chuyển ký tự đầu mỗi từ thành chữ hoa, các ký tự khác thành chữ thường)
 public class Standardiz {
     public static String New(String str){
         String s,b;
@@ -10,13 +8,13 @@ public class Standardiz {
         b= str.replaceFirst(s,s.toUpperCase());
         return (b);
     }
-    public static String equal(String strInput){
+    private static String equal(String strInput){
         String b="";
         StringTokenizer strToken= new StringTokenizer(strInput," ,\t,\r");
         b+=""+New(strToken.nextToken()); while(strToken.hasMoreTokens()){
             b +=" "+New(strToken.nextToken());
         }
-        return(b);
+        return b;
     }
     public static void main(String[] args) {
 
