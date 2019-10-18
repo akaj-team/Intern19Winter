@@ -32,7 +32,6 @@ object InBigElement {
         }
         println()
     }
-
     fun Max2(a: IntArray, n: Int): Int {
         var i: Int
         var key = 0
