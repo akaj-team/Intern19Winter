@@ -16,7 +16,6 @@ public class  Common {
                 input.nextLine();
             }
         }
-
         return n;
     }
     private static int comConvention(int a, int b) {
