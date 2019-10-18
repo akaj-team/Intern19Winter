@@ -1,7 +1,6 @@
 package asiantech.internship.winter.ex22;
 
 import java.util.Scanner;
-// liet ke uoc n va liet ke uoc n la so nguyen to
 public class Listprime {
     public static int process(){
         Scanner input= new Scanner(System.in); boolean check= false;
@@ -16,7 +15,7 @@ public class Listprime {
             }
 
         }
-        return (n);
+        return n;
     }
     public static boolean incheck(int n){
         if(n>1){
@@ -28,7 +27,6 @@ public class Listprime {
         else return false;
 
     }
-    //liet ke uoc
     public static void New(int n){
         int count=0;
         System.out.print("\nCac uoc cua "+n+" la:"); for(int i=1 ; i<=n ; i++){
@@ -40,16 +38,13 @@ public class Listprime {
         }
         System.out.println("\nCo "+count+" uoc");
     }
-    public static void inNew(int n){
+    private static void inNew(int n){
         int count=0;
         System.out.print("\nCac uoc cua "+n+" la:"); for(int i=1 ; i<=n ; i++){
             if(n%i==0 && (incheck(i))) { System.out.print(" "+i); count++;
-
             }
-
         }
         System.out.println("\nCo "+count+" uoc la so nguyen to");
-
     }
     public static void main(String[] args) {
         System.out.println("Nhap n");
