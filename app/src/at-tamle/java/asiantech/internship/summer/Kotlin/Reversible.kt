@@ -10,7 +10,6 @@ object Reversible {
         else
             false
     }
-
     @JvmStatic
     fun main(args: Array<String>) {
         var n: Int
