@@ -1,8 +1,5 @@
 package asiantech.internship.winter.ex16;
-
 import java.util.Scanner;
-
-// in ra xuat hien so lan cua phan tu
 public class Inelement {
     public static int process(){
         Scanner input= new Scanner(System.in);
@@ -18,7 +15,7 @@ public class Inelement {
                 input.nextLine();
             }
         }
-        return (n);
+         return n;
     }
     private static int countElement(int a[], int n, int i){
         int count= 0;
@@ -26,7 +23,7 @@ public class Inelement {
             if(a[j]== i)
                 count ++;
         }
-        return (count);
+        return count;
     }
     public static void main(String[] args) {
         int n,i;
