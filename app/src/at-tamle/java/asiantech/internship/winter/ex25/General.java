@@ -1,7 +1,4 @@
 package asiantech.internship.winter.ex25;
- //Là số nguyên tố.
-//Là số thuận nghịch.
-//Tổng các chữ số của số đó là một số thuận nghịch
 public class General {
 
     public static boolean incheck(int n){
@@ -13,7 +10,7 @@ public class General {
         }
         else return false;
     }
-    public static boolean testTotal(int n){
+    private static boolean testTotal(int n){
         StringBuilder test= new StringBuilder();
         String str= ""+n;
         test.append(str);
@@ -21,7 +18,7 @@ public class General {
         if(str.equals(check)) return true;
         else return false;
     }
-    public static boolean equal(int n){
+    private static boolean equal(int n){
         int T= 0;
         while(n!=0){
             T+= n%10;
