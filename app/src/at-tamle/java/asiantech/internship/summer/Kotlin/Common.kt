@@ -7,7 +7,6 @@ object Common {
                 n = input.nextInt()
         return n
     }
-
     fun comConvention(a: Int, b: Int): Int {
         var a = a
         var b = b
