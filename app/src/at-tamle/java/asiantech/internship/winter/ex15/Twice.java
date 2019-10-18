@@ -1,7 +1,5 @@
 package asiantech.internship.winter.ex15;
-
 import java.util.Scanner;
-//liet ke cac ptu trong day xuat hien 2 lan
 public class Twice {
     public static int process(){
         Scanner input= new Scanner(System.in);
@@ -17,7 +15,7 @@ public class Twice {
                 input.nextLine();
             }
         }
-        return (n);
+        return n;
     }
     private static int countElement(int a[], int n, int i){
         int count= 0;
@@ -25,7 +23,7 @@ public class Twice {
             if(a[j]== i)
                 count ++;
         }
-        return (count);
+        return count;
     }
     public static void main(String[] args) {
         int n,i;
