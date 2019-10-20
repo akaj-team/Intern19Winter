@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Intern18Summer</string>
+    <string name="textview_text_start_from_scratch">Start \nfrom Scratch</string>
 </resources>

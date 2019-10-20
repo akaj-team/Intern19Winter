@@ -11,21 +11,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="26dp" />
+        app:layout_constraintGuide_begin="@dimen/guide_line_left" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="26dp" />
-
+        app:layout_constraintGuide_end="@dimen/guide_line_right" />
 
     <ImageView
-        android:id="@+id/imgThumbnail"
+        android:id="@+id/imgHeader"
         android:layout_width="wrap_content"
-        android:layout_height="280dp"
-        android:background="@drawable/img_thumbnail"
+        android:layout_height="@dimen/img_header_height"
+        android:background="@drawable/img_header"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -34,9 +33,9 @@
 
     <ImageView
         android:id="@+id/icLogo"
-        android:layout_width="20dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="54dp"
+        android:layout_width="@dimen/ic_logo_width"
+        android:layout_height="@dimen/ic_logo_height"
+        android:layout_marginTop="@dimen/margin_54dp"
         android:src="@drawable/ic_logo"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="0"
@@ -44,12 +43,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        style="@style/H4Left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="8dp"
+        android:gravity="center"
+        android:paddingLeft="@dimen/padding_8dp"
+        android:paddingBottom="@dimen/padding_4dp"
         android:text="@string/textview_text_scratch"
-        android:textColor="#363837"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/icLogo"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
@@ -60,8 +60,8 @@
         style="@style/H3BlackLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginLeft="@dimen/margin_4dp"
+        android:layout_marginTop="@dimen/margin_40dp"
         android:fontFamily="@font/nunito_bold"
         android:text="@string/textview_text_welcome_back"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
@@ -74,21 +74,21 @@
         style="@style/ParagraphLeftTextGray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginLeft="@dimen/margin_4dp"
+        android:layout_marginTop="@dimen/margin_16dp"
         android:text="@string/textview_text_please_login_to_continue"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/imgThumbnail" />
+        app:layout_constraintTop_toBottomOf="@+id/imgHeader" />
 
     <TextView
         android:id="@+id/tv2"
         style="@style/ParagraphLeftTextSubtle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginLeft="@dimen/margin_4dp"
+        android:layout_marginTop="@dimen/margin_40dp"
         android:fontFamily="@font/nunito_regular"
         android:text="@string/textview_text_email_address"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
@@ -101,7 +101,7 @@
         style="@style/Lead"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         android:fontFamily="@font/nunito_regular"
         android:hint="@string/edittext_hint_enter_email"
         android:importantForAutofill="no"
@@ -114,13 +114,12 @@
 
     <TextView
         android:id="@+id/tv3"
+        style="@style/ParagraphLeftTextSubtle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/margin_4dp"
+        android:layout_marginTop="@dimen/margin_20dp"
         android:text="@string/textview_text_password"
-        android:textColor="#a8a8a8"
-        android:textSize="14.5sp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -141,7 +140,7 @@
         android:id="@+id/edtPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         android:hint="@string/edittext_hint_password"
         android:importantForAutofill="no"
         android:inputType="textPassword"
@@ -153,14 +152,13 @@
 
     <Button
         android:id="@+id/btnLogin"
+        style="@style/TextButtonWhite"
         android:layout_width="0dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/btn_height_54dp"
+        android:layout_marginTop="@dimen/margin_20dp"
         android:background="@drawable/bg_btn_login"
         android:text="@string/button_text_login"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="16.5sp"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
@@ -171,21 +169,20 @@
         style="@style/ParagraphCenterTextSubtle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/margin_24dp"
         android:text="@string/textview_text_new_to_scratch"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
     <TextView
+        style="@style/TextButtonCenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/margin_4dp"
         android:gravity="center_horizontal"
         android:letterSpacing="0.02"
         android:text="@string/textview_text_create_account_here"
-        android:textColor="#30be76"
-        android:textSize="16.5sp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/tv4" />

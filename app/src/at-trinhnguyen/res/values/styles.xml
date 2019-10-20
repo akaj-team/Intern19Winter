@@ -1,4 +1,13 @@
 <resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
 
     <style name="H1Center">
         <item name="android:gravity">center_horizontal</item>
@@ -46,14 +55,14 @@
     </style>
 
     <style name="H4Left">
-        <item name="android:textSize">5sp</item>
-        <item name="android:textColor">@color/invalid_name</item>
+        <item name="android:textSize">20.8sp</item>
+        <item name="android:textColor">#363837</item>
     </style>
 
     <style name="H4Center">
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textSize">5sp</item>
-        <item name="android:textColor">@color/invalid_name</item>
+        <item name="android:textSize">20.8sp</item>
+        <item name="android:textColor">#363837</item>
     </style>
 
     <style name="CardTitle">
@@ -74,10 +83,10 @@
     </style>
 
     <style name="TextButtonWhite">
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:textSize">4sp</item>
-        <item name="android:lineSpacingExtra">1.3sp</item>
-        <item name="android:textColor">@color/invalid_name</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16.5sp</item>
+        <item name="android:lineSpacingExtra">5.5sp</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="TextButtonCenter">
@@ -89,7 +98,7 @@
 
     <style name="Lead">
         <item name="android:textSize">16.5sp</item>
-        <item name="android:lineSpacingExtra">1.5sp</item>
+        <item name="android:lineSpacingExtra">6.25sp</item>
         <item name="android:textColor">#030f09</item>
     </style>
 
@@ -125,19 +134,19 @@
     </style>
 
     <style name="CaptionBlack">
-        <item name="android:textSize">3sp</item>
-        <item name="android:textColor">@color/invalid_name</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:textColor">#030f09</item>
     </style>
 
     <style name="CaptionGray">
-        <item name="android:textSize">3sp</item>
+        <item name="android:textSize">12.5sp</item>
         <item name="android:letterSpacing">0.03</item>
-        <item name="android:textColor">@color/invalid_name</item>
+        <item name="android:textColor">#767676</item>
     </style>
 
     <style name="CaptionWhite">
-        <item name="android:textSize">3sp</item>
+        <item name="android:textSize">12.5sp</item>
         <item name="android:letterSpacing">0.03</item>
-        <item name="android:textColor">@color/invalid_name</item>
+        <item name="android:textColor">#ffffff</item>
     </style>
 </resources>
