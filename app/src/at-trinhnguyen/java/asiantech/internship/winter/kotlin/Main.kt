@@ -1,18 +1,16 @@
 package asiantech.internship.winter.kotlin
 
-import android.os.Build
+import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import java.io.FileReader
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 object Main {
     @JvmStatic
     fun main(args: Array<String>) {
-        val gson = GsonBuilder().create()
-        val file = "C:\\Users\\nguye\\AndroidStudioProjects\\Intern19Winter\\app\\src\\at-trinhnguyen\\java\\asiantech\\internship\\winter\\kotlin\\data.json"
+        val gson = GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
+        val file = requireNotNull(this::class.java.classLoader?.getResource("data.json")?.file) { "File is not found!" }
         val students = gson.fromJson(FileReader(file), Array<Student>::class.java).toList()
         val scanner = Scanner(System.`in`)
         var menu: String
@@ -33,7 +31,7 @@ object Main {
                 "3" -> {
                     println("Enter major: ")
                     val major = scanner.nextLine()
-                    println("$major have ${students.filter { it.major == major }.groupBy { it.class_name }.count()} classes")
+                    println("$major have ${students.filter { it.major == major }.groupBy { it.className }.count()} classes")
                 }
                 "4" -> {
                     println("Enter major: ")
@@ -43,7 +41,7 @@ object Main {
                 }
                 "5" -> {
                     println("The number of students for each degree rank: ")
-                    students.groupBy { it.graduate_rank }
+                    students.groupBy { it.graduateRank }
                             .forEach { (key, value) ->
                                 println("$key : ${value.count()}")
                             }
@@ -51,65 +49,70 @@ object Main {
                 "6" -> {
                     print("Enter n(first n students): ")
                     val n = Integer.parseInt(scanner.nextLine())
-                    println("Sort by: 1. name 2. birthday 3. student_id 4. degreeNo 5. id")
+                    println("Sort by: 1. name 2. birthday 3. studentId 4. degreeNo 5. id")
                     when (scanner.nextLine()) {
                         "1" -> {
                             students.sortedBy { it.name }
-                                    .forEachIndexed { index, student ->
-                                        if (index < n) println(student)
-                                    }
+                                    .subList(0, n)
+                                    .forEach { println(it) }
                         }
                         "2" -> {
                             students.sortedBy { SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(it.birthday) }
-                                    .forEachIndexed { index, student ->
-                                        if (index < n) println(student)
-                                    }
+                                    .subList(0, n)
+                                    .forEach { println(it) }
                         }
                         "3" -> {
-                            students.sortedBy { it.student_id }
-                                    .forEachIndexed { index, student ->
-                                        if (index < n) println(student)
-                                    }
+                            students.sortedBy { it.studentId }
+                                    .subList(0, n)
+                                    .forEach { println(it) }
                         }
                         "4" -> {
-                            students.sortedBy { it.degree_no }
-                                    .forEachIndexed { index, student ->
-                                        if (index < n) println(student)
-                                    }
+                            students.sortedBy { it.degreeNo }
+                                    .subList(0, n)
+                                    .forEach { println(it) }
                         }
                         "5" -> {
                             students.sortedBy { it.id }
-                                    .forEachIndexed { index, student ->
-                                        if (index < n) println(student)
-                                    }
+                                    .subList(0, n)
+                                    .forEach { println(it) }
                         }
                     }
                 }
                 "7" -> {
                     println("Enter student's name to find: ")
                     val name = scanner.nextLine()
-                    students.filter { it.name == name }.forEach { println(it) }
+                    if (students.any { it.name == name }) {
+                        students.filter { it.name == name }.forEach { println(it) }
+                    } else {
+                        println("No student have name: $name")
+                    }
                 }
                 "8" -> {
                     println("Enter student's class to find: ")
                     val className = scanner.nextLine()
-                    students.filter { it.class_name == className }.forEach { println(it) }
+                    if (students.any { it.className == className }) {
+                        students.filter { it.className == className }.forEach { println(it) }
+                    } else {
+                        println("No student have class name: $className")
+                    }
                 }
                 "9" -> {
                     println("Enter student's major to find: ")
                     val major = scanner.nextLine()
-                    students.filter { it.major == major }.forEach { println(it) }
+                    if (students.any { it.major == major }) {
+                        students.filter { it.major == major }.forEach { println(it) }
+                    } else {
+                        println("No student have major: $major")
+                    }
                 }
                 "10" -> {
                     print("Enter month: ")
                     val m = scanner.nextLine()
                     students.filter {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            LocalDate.parse(it.birthday, DateTimeFormatter.ofPattern("dd/MM/yyyy")).month.value == m.toInt()
-                        } else {
-                            val date = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(it.birthday)
-                            date?.month?.plus(1) == m.toInt()
-                        }
+                        val date = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(it.birthday)
+                        val calendar = Calendar.getInstance()
+                        calendar.time = requireNotNull(date)
+                        calendar.get(Calendar.MONTH).plus(1) == m.toInt()
                     }.forEach { println(it) }
                 }
                 "Q", "q" -> {
