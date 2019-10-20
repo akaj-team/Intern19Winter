@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">MyHuynh</string>
+    <string name="textview_text_title">Scratch</string>
+    <string name="textview_text_welcome">Welcome Back!</string>
+    <string name="textview_text_login">Please login to continue</string>
+    <string name="textview_text_emailAddress">Email address</string>
+    <string name="edittext_text_email_hint">user@gmail.com</string>
+    <string name="textview_text_password">Password</string>
+    <string name="textview_text_forgot">Forgot password?</string>
+    <string name="button_text_login">Login</string>
+    <string name="textview_text_new_scratch">New to Scratch?</string>
+    <string name="textview_text_create_account">Create Account Here</string>
+    <string name="textview_text_start_scratch">Start\nfrom Scratch</string>
+    <string name="textview_text_create_new_account">Create account to continue</string>
+    <string name="textview_text_full_name">Full Name</string>
+    <string name="edittext_text_full_name_hint">Nick Evans</string>
+    <string name="textview_text_have_account">Already have an account?</string>
+    <string name="textview_text_login_here">Login Here</string>
+    <string name="textview_text_back">Back to Profile</string>
+    <string name="textview_text_profile">Edit Profile</string>
+    <string name="textview_text_edit_profile">Edit Profile Picture</string>
+    <string name="textview_text_bio">Bio</string>
+    <string name="edittext_hint_bio">Potato Master</string>
+    <string name="textview_text_info">Private Information</string>
+    <string name="textview_text_phone">Phone</string>
+    <string name="edittext_hint_phone">+1 234 567 89</string>
+    <string name="button_text_save_info">Save Profile</string>
+    <string name="edittext_hint_password">1234</string>
 </resources>
