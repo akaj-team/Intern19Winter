@@ -5,10 +5,10 @@ import inputIntNumber
 
 object PrimeFactors {
 
-    @JvmStatic
-    fun main(args: Array<String>) {
-        print("Nhap n:")
-        val n = inputIntNumber()
-        n.doFactorAnalysis()
-    }
+  @JvmStatic
+  fun main(args: Array<String>) {
+    print("Nhap n:")
+    val n = inputIntNumber()
+    n.doFactorAnalysis()
+  }
 }
