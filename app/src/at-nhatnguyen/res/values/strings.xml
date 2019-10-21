@@ -25,7 +25,6 @@
     <string name="textview_text_edit_profile_picture">Edit Profile Picture</string>
     <string name="textview_hint_bio">Bio</string>
     <string name="textview_text_private_information">Private Information</string>
-    <string name="textview_hint_email">Email</string>
     <string name="textview_hint_phone">Phone</string>
     <string name="button_text_save_profile">Save Profile</string>
 
