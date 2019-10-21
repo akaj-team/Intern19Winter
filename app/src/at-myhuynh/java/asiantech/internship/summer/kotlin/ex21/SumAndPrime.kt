@@ -11,12 +11,12 @@ object SumAndPrime {
         val n = Common.input("Nhập vào 1 số:")
         println("Total: " + n.totalOfNumber())
 
-        var strPrime: MutableList<String> = mutableListOf()
+        var strPrime = mutableListOf<String>()
         if (n.isPrime()) {
             strPrime.add(n.toString())
         } else {
-            strPrime = Common.primeFactor(n)
+            strPrime = Common.primeFactor(n).toMutableList()
         }
-        println("$n => " + Common.joinString("x", strPrime.toTypedArray()))
+        println("$n => ${strPrime.joinToString("x")} ")
     }
 }

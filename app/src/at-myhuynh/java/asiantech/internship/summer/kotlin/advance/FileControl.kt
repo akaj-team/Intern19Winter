@@ -6,7 +6,6 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 object FileControl {
     @JvmStatic
@@ -20,7 +19,7 @@ object FileControl {
                 3 -> countClass(students)
                 4 -> filterStudentByMajor(students)
                 5 -> countStudentByRank(students)
-                6 -> sortStudent(students)
+                6 -> showSortMenu(students)
                 7 -> findStudentByName(students)
                 8 -> findStudentByClass(students)
                 9 -> findStudentByMajor(students)
@@ -64,36 +63,25 @@ object FileControl {
         } else {
             println("Month is validate!!!")
         }
+
     }
 
     private fun findStudentByMajor(students: List<Student>) {
         val major = Common.inputString("Nhập chuyên ngành: ")
-        for (student in students) {
-            if (student.major.contains(major)) {
-                println(student)
-            }
-        }
+        students.filter { it.major.contains(major) }.forEach(::println)
     }
 
     private fun findStudentByClass(students: List<Student>) {
         val className = Common.inputString("Nhập tên lớp: ")
-        for (student in students) {
-            if (student.class_name.contains(className)) {
-                println(student)
-            }
-        }
+        students.filter { it.class_name.contains(className) }.forEach(::println)
     }
 
     private fun findStudentByName(students: List<Student>) {
         val name = Common.inputString("Nhập tên cần tìm: ")
-        for (student in students) {
-            if (student.name.contains(name)) {
-                println(student)
-            }
-        }
+        students.filter { it.name.contains(name) }.forEach(::println)
     }
 
-    private fun sortStudent(students: List<Student>) {
+    private fun showSortMenu(students: List<Student>) {
         val sortBy = menu()
         val n = Common.input("Số lượng cần hiển thị: ")
         when (sortBy) {
@@ -117,67 +105,48 @@ object FileControl {
     }
 
     private fun sortStudentByID(students: List<Student>, n: Int) {
-        val studentsSorted = students.sortedBy { it.id }
-        if (n < studentsSorted.size) {
-            for (i in 0 until n) {
-                println(studentsSorted[i].id)
-            }
+        if (n < students.size) {
+            students.sortedBy { it.id }.subList(0, n).forEach(::println)
         } else {
-            studentsSorted.forEach(::println)
+            students.sortedBy { it.id }.forEach(::println)
         }
     }
 
     private fun sortStudentByDegreeNo(students: List<Student>, n: Int) {
-        val studentsSorted = students.sortedBy { it.degree_no }
-        if (n < studentsSorted.size) {
-            for (i in 0 until n) {
-                println(studentsSorted[i].degree_no)
-            }
+        if (n < students.size) {
+            students.sortedBy { it.degree_no }.subList(0, n).forEach(::println)
         } else {
-            studentsSorted.forEach { println(it.degree_no) }
+            students.sortedBy { it.degree_no }.forEach(::println)
         }
     }
 
     private fun sortStudentByStId(students: List<Student>, n: Int) {
-        val studentsSorted = students.sortedBy { it.student_id }
-        if (n < studentsSorted.size) {
-            for (i in 0 until n) {
-                println(studentsSorted[i].student_id)
-            }
+        if (n < students.size) {
+            students.sortedBy { it.student_id }.subList(0, n).forEach(::println)
         } else {
-            studentsSorted.forEach { println(it.student_id) }
+            students.sortedBy { it.student_id }.forEach(::println)
         }
     }
 
     private fun sortStudentByBirthDay(students: List<Student>, n: Int) {
         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val studentsSorted = students.sortedBy { sdf.parse(it.birthday) }
-
-        if (n < studentsSorted.size) {
-            for (i in 0 until n) {
-                println(studentsSorted[i].birthday)
-            }
+        if (n < students.size) {
+            students.sortedBy { sdf.parse(it.birthday) }.subList(0, n).forEach(::println)
         } else {
-            studentsSorted.forEach { println(it.birthday) }
+            students.sortedBy { sdf.parse(it.birthday) }.forEach(::println)
         }
     }
 
     private fun sortStudentByName(students: List<Student>, n: Int) {
-        val studentsSorted = students.sortedBy { it.name }.toList()
-        if (n < studentsSorted.size) {
-            for (i in 0 until n) {
-                println(studentsSorted[i])
-            }
+        if (n < students.size) {
+            students.sortedBy { it.name }.subList(0, n).forEach(::println)
         } else {
-            studentsSorted.forEach(::println)
+            students.sortedBy { it.name }.forEach(::println)
         }
     }
 
     private fun countStudentByRank(students: List<Student>) {
-        val ranks = students.map { it.graduate_rank }.distinct().toList()
-        for (rank in ranks) {
-            println(rank + ": " + students.filter { it.graduate_rank == rank }.count())
-        }
+        students.groupBy { it.graduate_rank }.forEach { println("${it.key} - ${it.value.size}") }
     }
 
     private fun filterStudentByMajor(students: List<Student>) {
@@ -186,17 +155,11 @@ object FileControl {
     }
 
     private fun countClass(students: List<Student>) {
-        val classNames = students.map { it.class_name }.distinct()
-        for (className in classNames) {
-            println(className + ": " + students.filter { it.class_name == className }.count())
-        }
+        students.groupBy { it.class_name }.forEach { println("${it.key} - ${it.value.size}") }
     }
 
     private fun countStudent(students: List<Student>) {
-        val majors = students.map { it.major }.distinct()
-        for (major in majors) {
-            println(major + ": " + students.filter { it.major == major }.count())
-        }
+        students.groupBy { it.major }.forEach { println("${it.key} - ${it.value.size}") }
     }
 
     private fun allMajor(students: List<Student>) {
@@ -204,13 +167,13 @@ object FileControl {
     }
 
     private fun String.readFile(): List<Student> {
-        var students: List<Student> = ArrayList()
+        val students = mutableListOf<Student>()
         try {
             val file = File(this)
             println(file.name)
             val bufferedReader = file.bufferedReader()
             val inputString = bufferedReader.use { it.readText() }
-            students = Gson().fromJson(inputString, Array<Student>::class.java).toList()
+            students.addAll(Gson().fromJson(inputString, Array<Student>::class.java))
         } catch (e: FileNotFoundException) {
             println(e.message)
         }

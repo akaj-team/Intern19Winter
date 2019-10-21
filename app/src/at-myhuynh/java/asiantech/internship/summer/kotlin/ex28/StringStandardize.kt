@@ -10,16 +10,13 @@ object StringStandardize {
         var str = Common.inputString("Nhập vào chuỗi: ")
         println(str)
         str = str.trim().toLowerCase(Locale.getDefault())
-        val arrStr =
-                str.split("\\s+".toRegex()).dropWhile(String::isEmpty).dropLastWhile(String::isEmpty)
-                        .toTypedArray()
+        val arrStr = str.split("\\s+".toRegex()).toMutableList()
 
         for (i in arrStr.indices) {
             val temp = arrStr[i][0].toString()
-            arrStr[i] =
-                    arrStr[i].replaceFirst(temp.toRegex(), temp.toUpperCase(Locale.getDefault()))
+            arrStr[i] = arrStr[i].replaceFirst(temp.toRegex(), temp.toUpperCase(Locale.getDefault()))
         }
 
-        println(arrStr.joinToString(" ", "", "", arrStr.size, ""))
+        println(arrStr.joinToString(" "))
     }
 }

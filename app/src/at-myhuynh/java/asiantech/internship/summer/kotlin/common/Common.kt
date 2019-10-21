@@ -3,8 +3,11 @@ package asiantech.internship.summer.kotlin.common
 import java.util.*
 
 object Common {
+
+    private const val charset = "UTF-8"
+
     fun input(text: String): Int {
-        val sc = Scanner(System.`in`, "UTF-8")
+        val sc = Scanner(System.`in`, charset)
         var n = 0
         var check: Boolean
 
@@ -24,14 +27,14 @@ object Common {
     }
 
     fun inputString(text: String): String {
-        val sc = Scanner(System.`in`, "UTF-8")
+        val sc = Scanner(System.`in`, charset)
         print(text)
         return sc.nextLine()
     }
 
-    fun primeFactor(number: Int): MutableList<String> {
+    fun primeFactor(number: Int): List<String> {
         var num = number
-        val listPrime = ArrayList<String>()
+        val listPrime = mutableListOf<String>()
         var index = 2
         while (num >= index) {
             if (num % index == 0) {
@@ -45,53 +48,30 @@ object Common {
     }
 
     fun getFibonacci(n: Int): List<Int> {
-        val listFibo = ArrayList<Int>()
-        var count = 2
-        var f1 = 1
-        var f2 = 1
+        val listFibo = mutableListOf<Int>()
+        var t1 = 0
+        var t2 = 1
 
-        listFibo.add(f1)
-        listFibo.add(f2)
-
-        do {
-            val fn = f1 + f2
-            f1 = f2
-            f2 = fn
-            listFibo.add(fn)
-            count++
-        } while (count < n)
+        for (i in 1..n) {
+            listFibo.add(t1)
+            val sum = t1 + t2
+            t1 = t2
+            t2 = sum
+        }
 
         return listFibo
     }
-
-    fun joinString(delimiter: String, arrStr: Array<Any>): String {
-        val result = StringBuilder()
-        for (i in arrStr.indices) {
-            if (i == arrStr.size - 1) {
-                result.append(arrStr[i])
-            } else {
-                result.append(arrStr[i]).append(delimiter)
-            }
-        }
-        return result.toString()
-    }
 }
 
-fun Int.totalOfNumber(): Int {
-    var num = this
-    var total = 0
+fun Int.totalOfNumber() = toString().sumBy { it.toString().toInt() }
 
-    while (num > 0) {
-        total += num % 10
-        num /= 10
-    }
-    return total
-}
-
-fun String.isChainOfSymmetry(): Boolean =
-    this == StringBuffer(this).reverse().toString()
+fun String.isChainOfSymmetry() = this == this.reversed()
 
 fun Int.isPrime(): Boolean {
+    if (this < 1) {
+        return false
+    }
+
     if (this == 1 || this == 2) {
         return true
     } else {
@@ -102,4 +82,14 @@ fun Int.isPrime(): Boolean {
         }
     }
     return true
+}
+
+fun Int.getListDiv(): List<Int> {
+    val listDiv = ArrayList<Int>()
+    for (i in 1..this) {
+        if (this % i == 0) {
+            listDiv.add(i)
+        }
+    }
+    return listDiv
 }

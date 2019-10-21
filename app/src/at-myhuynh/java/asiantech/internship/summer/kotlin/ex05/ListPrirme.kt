@@ -8,14 +8,6 @@ object ListPrime {
     @JvmStatic
     fun main(args: Array<String>) {
         val n = Common.input("Nhập vào số n: ")
-        print(n)
-    }
-
-    private fun print(number: Int) {
-        for (i in 1..number) {
-            if (i.isPrime()) {
-                println(i)
-            }
-        }
+        (1..n).filter(Int::isPrime).forEach(::println)
     }
 }

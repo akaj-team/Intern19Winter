@@ -7,21 +7,20 @@ object FibonacciPrime {
     @JvmStatic
     fun main(args: Array<String>) {
         val n = Common.input("Nhập vào số n:")
-        showFibonacciIsPrime(n)
+        getListFibonacciLessThenN(n).filter(Int::isPrime).forEach(::println)
     }
 
-    private fun showFibonacciIsPrime(n: Int) {
-        var f1 = 1
-        var f2 = 1
-        var fn = 1
+    private fun getListFibonacciLessThenN(n: Int): MutableList<Int> {
+        val listFibonacci = mutableListOf<Int>()
+        var t1 = 0
+        var t2 = 1
+        while (t1 <= n) {
+            listFibonacci.add(t1)
+            val sum = t1 + t2
+            t1 = t2
+            t2 = sum
+        }
 
-        do {
-            if (fn < n && fn.isPrime()) {
-                println(fn)
-            }
-            fn = f1 + f2
-            f1 = f2
-            f2 = fn
-        } while (fn < n)
+        return listFibonacci
     }
 }

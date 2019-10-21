@@ -1,7 +1,6 @@
 package asiantech.internship.summer.kotlin.ex17
 
 import asiantech.internship.summer.kotlin.common.Common
-import java.util.*
 
 object ArrayUp {
 
@@ -13,10 +12,7 @@ object ArrayUp {
             arrInt[i] = Common.input("Nhập phần tử thứ $i: ")
         }
 
-        Arrays.sort(arrInt)
-        for (i in arrInt) {
-            println(i)
-        }
-
+        arrInt.sort()
+        arrInt.forEach(::println)
     }
 }

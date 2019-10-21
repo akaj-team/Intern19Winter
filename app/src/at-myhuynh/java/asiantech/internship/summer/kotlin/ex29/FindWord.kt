@@ -7,8 +7,10 @@ object FindWord {
     @JvmStatic
     fun main(args: Array<String>) {
         var str = Common.inputString("Nhập vào chuỗi kí tự:")
-        str = str.replace("\\s".toRegex(), " ")
-        val arrWords = str.split("[ ]+".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        str = str.replace("\\s+".toRegex(), " ")
+        val arrWords = str.split("[ ]+".toRegex()).dropWhile { it.isEmpty() }
+
+        arrWords.forEach(::println)
 
         val maxLengthWord = getMaxLengthWord(arrWords)
         println(
@@ -19,15 +21,6 @@ object FindWord {
     }
 
 
-    private fun getMaxLengthWord(arrWords: Array<String>): IntArray {
-        val arr = intArrayOf(0, 0)
-        for (i in arrWords.indices) {
-            if (arr[0] < arrWords[i].length) {
-                arr[0] = arrWords[i].length
-                arr[1] = i
-            }
-        }
-        return arr
-    }
-
+    private fun getMaxLengthWord(arrWords: List<String>) =
+            intArrayOf(arrWords.max()?.length!!, arrWords.indexOf(arrWords.max()!!))
 }

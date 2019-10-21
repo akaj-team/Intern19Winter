@@ -8,12 +8,12 @@ object ListPrime2 {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        for (i in 1000000..9999999) {
-            val total = i.totalOfNumber()
-            if (i.isPrime() && i.toString().isChainOfSymmetry() && total.toString().isChainOfSymmetry()) {
-                println(i)
-            }
-        }
+        (1000000..9999999)
+                .filter {
+                    it.isPrime()
+                            && it.toString().isChainOfSymmetry()
+                            && it.totalOfNumber().toString().isChainOfSymmetry()
+                }
+                .forEach(::println)
     }
-
 }

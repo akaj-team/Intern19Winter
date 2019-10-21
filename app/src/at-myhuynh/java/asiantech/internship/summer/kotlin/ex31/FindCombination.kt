@@ -22,43 +22,42 @@ object FindCombination {
         println("A: $a")
         println("B: $b")
 
-        val c = interSection(a, b)
-        val d = union(a, b)
-        val e = difference(a, b)
+        val c = a.interSection(b)
+        val d = a.union(b)
+        val e = a.difference(b)
 
         println("Giao: $c")
         println("Hợp: $d")
         println("Hiệu: $e")
-
     }
+}
 
-    private fun difference(a: List<String>, b: List<String>): List<String> {
-        val c = ArrayList(a)
-        for (itemB in b) {
-            if (a.contains(itemB)) {
-                c.remove(itemB)
-            }
+fun List<String>.interSection(b: List<String>): List<String> {
+    val c = ArrayList<String>()
+    for (itemB in b) {
+        if (this.contains(itemB)) {
+            c.add(itemB)
         }
-        return c
     }
+    return c
+}
 
-    private fun union(a: List<String>, b: List<String>): List<String> {
-        val c = ArrayList(a)
-        for (itemB in b) {
-            if (!a.contains(itemB)) {
-                c.add(itemB)
-            }
+fun List<String>.union(b: List<String>): List<String> {
+    val c = ArrayList(this)
+    for (itemB in b) {
+        if (!this.contains(itemB)) {
+            c.add(itemB)
         }
-        return c
     }
+    return c
+}
 
-    private fun interSection(a: List<String>, b: List<String>): List<String> {
-        val c = ArrayList<String>()
-        for (itemB in b) {
-            if (a.contains(itemB)) {
-                c.add(itemB)
-            }
+fun List<String>.difference(b: List<String>): List<String> {
+    val c = ArrayList(this)
+    for (itemB in b) {
+        if (this.contains(itemB)) {
+            c.remove(itemB)
         }
-        return c
     }
+    return c
 }

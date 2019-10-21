@@ -23,5 +23,4 @@ object ListPrimeFirst {
             number++
         } while (i > 0)
     }
-
 }

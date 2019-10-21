@@ -10,8 +10,8 @@ object PrimeAndFibonacciNumber {
     fun main(args: Array<String>) {
         val n = Common.input("Nhập vào n: ")
 
-        println("$n số nguyên tố đầu tiên: " + getListPrime(n))
-        println("$n số Fibo đầu tiên: " + Common.getFibonacci(n))
+        println("$n số nguyên tố đầu tiên: ${getListPrime(n)}")
+        println("$n số Fibo đầu tiên: ${Common.getFibonacci(n)}")
     }
 
     private fun getListPrime(n: Int): List<Int> {
