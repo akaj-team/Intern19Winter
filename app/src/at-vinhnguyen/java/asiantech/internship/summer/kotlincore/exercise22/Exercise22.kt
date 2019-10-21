@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise22
+package asiantech.internship.summer.kotlincore.exercise22
 
 import inputIntNumber
 import isPrime
@@ -33,8 +33,8 @@ object Exercise22 {
     fun main(args: Array<String>) {
         print("Nhap n")
         val n = inputIntNumber()
-        doListDivisor(n)
-        doListDivisorOfPrimeNumber(n)
+      doListDivisor(n)
+      doListDivisorOfPrimeNumber(n)
     }
 
 }

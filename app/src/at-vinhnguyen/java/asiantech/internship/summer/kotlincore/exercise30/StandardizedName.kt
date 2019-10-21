@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise30
+package asiantech.internship.summer.kotlincore.exercise30
 
 import java.util.*
 

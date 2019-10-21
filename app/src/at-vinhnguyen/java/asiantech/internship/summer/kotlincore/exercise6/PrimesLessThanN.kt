@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise6
+package asiantech.internship.summer.kotlincore.exercise6
 
 import inputIntNumber
 import isPrime

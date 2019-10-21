@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise18
+package asiantech.internship.summer.kotlincore.exercise18
 
 import java.util.*
 
@@ -14,7 +14,8 @@ object CountTheNumberOfWords {
         val str = Scanner(System.`in`).nextLine()
         print(
             "Số từ của chuỗi đã cho là: "
-                    + countWords(str) + "\n"
+                    + countWords(
+                str) + "\n"
         )
     }
 

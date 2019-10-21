@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise24
+package asiantech.internship.summer.kotlincore.exercise24
 
 import isPrime
 import isReversible
@@ -21,7 +21,8 @@ object Exercise24 {
         println("cac so tu 5-7 chu so thoa man dieu kien la: ")
         var i = 10001
         while (i < 10000000) {
-            if (i.isPrime() && isEachDigitIsAPrimeNumber(i) && i.isReversible()) {
+            if (i.isPrime() && isEachDigitIsAPrimeNumber(
+                    i) && i.isReversible()) {
                 println(" $i")
                 count++
             }

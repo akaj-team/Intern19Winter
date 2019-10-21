@@ -1,4 +1,4 @@
-package asiantech.internship.summer.oop
+package asiantech.internship.summer.kotlincore.oop
 
 abstract class Shape {
 

@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise17
+package asiantech.internship.summer.kotlincore.exercise17
 
 import inputIntNumber
 import java.util.*
@@ -45,8 +45,11 @@ object Excersice17 {
         i = 0
         println("Sap xep theo thu tu tang dan")
         while (i < n) {
-            println(" " + array[minFloatPosition(array, n)])
-            array[minFloatPosition(array, n)] = maxFloat(array, n)
+            println(" " + array[minFloatPosition(
+                array, n)])
+            array[minFloatPosition(
+                array, n)] = maxFloat(
+                array, n)
             i++
         }
     }

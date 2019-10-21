@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise5
+package asiantech.internship.summer.kotlincore.exercise5
 
 import inputIntNumber
 import isPrime
@@ -9,7 +9,8 @@ object PrimeNumbersAreSmallerThanN {
     fun main(args: Array<String>) {
         println("Nhap n:")
         val n = inputIntNumber()
-        println("Cac so nguyen to nho hon n bao gom: " + findPrimeNumbersAreSmallerThanN(n))
+        println("Cac so nguyen to nho hon n bao gom: " + findPrimeNumbersAreSmallerThanN(
+            n))
     }
 
     private fun findPrimeNumbersAreSmallerThanN(n: Int): String {

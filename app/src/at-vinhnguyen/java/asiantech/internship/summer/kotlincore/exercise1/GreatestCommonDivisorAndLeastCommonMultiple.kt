@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise1
+package asiantech.internship.summer.kotlincore.exercise1
 
 import inputIntNumber
 
@@ -9,8 +9,10 @@ object GreatestCommonDivisorAndLeastCommonMultiple {
         val a = inputIntNumber()
         println("Nhap vao b: ")
         val b = inputIntNumber()
-        println("Uoc chung lon nhat: \n" + findGreatestCommonDivisor(a, b))
-        println("Boi chung nho nhat: \n" + findLeastCommonMultiple(a, b))
+        println("Uoc chung lon nhat: \n" + findGreatestCommonDivisor(
+            a, b))
+        println("Boi chung nho nhat: \n" + findLeastCommonMultiple(
+            a, b))
     }
 
     private fun findGreatestCommonDivisor(a: Int, b: Int): Int {

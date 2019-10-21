@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise11
+package asiantech.internship.summer.kotlincore.exercise11
 
 import inputIntNumber
 
@@ -8,7 +8,7 @@ object ListPermutations {
     fun main(args: Array<String>) {
         print("Nhap n: ")
         val n = inputIntNumber()
-        doListPermutations(n)
+      doListPermutations(n)
     }
 
     private fun doListPermutations(n: Int) {

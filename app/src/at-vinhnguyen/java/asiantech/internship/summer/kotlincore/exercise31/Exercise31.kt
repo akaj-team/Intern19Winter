@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise31
+package asiantech.internship.summer.kotlincore.exercise31
 
 import java.io.*
 import java.util.*
@@ -22,7 +22,7 @@ object Exercise31 {
                 line = bufferReader.readLine()
             }
         }
-        initArray(builder)
+      initArray(builder)
     }
 
     private fun initArray(str: StringBuilder) {
@@ -30,11 +30,19 @@ object Exercise31 {
         B = ArrayList()
         val a = str.substring(str.indexOf("[") + 1, str.indexOf("]", str.indexOf("[")))
         val b = str.substring(str.indexOf("[", str.indexOf(a) + a.length + 1) + 1, str.lastIndexOf("]"))
-        A = standardized(a)
-        B = standardized(b)
-        intersection(A, B)
-        synthesis(A, B)
-        difference(A, B)
+        A = standardized(
+            a)
+        B = standardized(
+            b)
+      intersection(
+          A,
+          B)
+      synthesis(
+          A,
+          B)
+      difference(
+          A,
+          B)
     }
 
     private fun standardized(str: String): ArrayList<String> {

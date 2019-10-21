@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise15
+package asiantech.internship.summer.kotlincore.exercise15
 
 import inputIntNumber
 
@@ -30,7 +30,8 @@ object ListElementsThatAppearExactlyTwice {
         print("Cac phan tu trong day xuat hien 1 lan: ")
         i = 0
         while (i < n) {
-            if (countElement(array, n, array[i]) == 2) {
+            if (countElement(
+                    array, n, array[i]) == 2) {
                 print("  " + array[i])
             }
             i++

@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise26
+package asiantech.internship.summer.kotlincore.exercise26
 
 import addElement
 import inputIntNumber

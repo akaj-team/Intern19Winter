@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise23
+package asiantech.internship.summer.kotlincore.exercise23
 
 import inputIntNumber
 import isPrime
@@ -23,7 +23,7 @@ object Exercise23 {
     fun main(args: Array<String>) {
         print("Nhap n")
         val n = inputIntNumber()
-        listPrimeNumbers(n)
+      listPrimeNumbers(n)
         val f = IntArray(n)
         f[0] = 1
         f[1] = 1

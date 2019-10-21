@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise14
+package asiantech.internship.summer.kotlincore.exercise14
 
 import inputIntNumber
 
@@ -29,7 +29,8 @@ object ListElementsThatAppearOnly {
         print("Cac phan tu trong day xuat hien 1 lan: ")
         i = 0
         while (i < n) {
-            if (countElement(array, n, array[i]) == 1) {
+            if (countElement(
+                    array, n, array[i]) == 1) {
                 print("  " + array[i])
             }
             i++

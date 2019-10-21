@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise2
+package asiantech.internship.summer.kotlincore.exercise2
 
 import inputIntNumber
 
@@ -10,7 +10,8 @@ object BaseNumber {
         val coSo = inputIntNumber()
         println("Nhap so o he thap phan ban can chuyen: ")
         val so = inputIntNumber()
-        println("So sau khi chuyen: " + convertBaseNumber(coSo, so))
+        println("So sau khi chuyen: " + convertBaseNumber(
+            coSo, so))
     }
 
     private fun convertBaseNumber(baseNumber: Int, number: Int): Int {

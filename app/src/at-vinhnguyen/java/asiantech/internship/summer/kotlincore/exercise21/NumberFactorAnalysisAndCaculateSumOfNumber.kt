@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise21
+package asiantech.internship.summer.kotlincore.exercise21
 
 import doFactorAnalysis
 import inputIntNumber

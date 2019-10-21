@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise28
+package asiantech.internship.summer.kotlincore.exercise28
 
 import java.util.*
 
@@ -29,7 +29,8 @@ object Exercise28 {
     fun main(sgr: Array<String>) {
         print("Nhap xau ban can chuan hoa: ")
         var str = Scanner(System.`in`).nextLine()
-        str = standardizedProperNoun(str)
+        str = standardizedProperNoun(
+            str)
         println(str)
     }
 }

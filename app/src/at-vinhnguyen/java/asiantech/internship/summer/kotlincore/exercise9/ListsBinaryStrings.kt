@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise9
+package asiantech.internship.summer.kotlincore.exercise9
 
 import inputIntNumber
 
@@ -8,7 +8,7 @@ object ListsBinaryStrings {
     fun main(args: Array<String>) {
         print("Nhap n: ")
         val n = inputIntNumber()
-        doListsBinaryStrings(n)
+      doListsBinaryStrings(n)
     }
 
     private fun doListsBinaryStrings(n: Int) {

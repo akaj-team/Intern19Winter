@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise25
+package asiantech.internship.summer.kotlincore.exercise25
 
 import isPrime
 import isReversible

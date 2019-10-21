@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise10
+package asiantech.internship.summer.kotlincore.exercise10
 
 import inputIntNumber
 
@@ -10,7 +10,7 @@ object ListTheSubsets {
         val n = inputIntNumber()
         print("Nhap k: ")
         val k = inputIntNumber()
-        doListTheSubsets(n, k)
+      doListTheSubsets(n, k)
     }
 
     private fun doListTheSubsets(n: Int, k: Int) {

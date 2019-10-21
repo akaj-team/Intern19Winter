@@ -1,4 +1,4 @@
-package asiantech.internship.summer.exercise3
+package asiantech.internship.summer.kotlincore.exercise3
 
 import inputIntNumber
 import sumOfNumber
