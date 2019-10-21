@@ -64,7 +64,7 @@
             android:layout_marginStart="12dp"
             android:fontFamily="@font/nunito_bold"
             android:text="@string/textview_text_title"
-            android:textSize="17sp"
+            android:textSize="@dimen/text_size_17"
             app:layout_constraintStart_toEndOf="@+id/imgIcon"
             app:layout_constraintTop_toTopOf="@+id/imgIcon" />
 
