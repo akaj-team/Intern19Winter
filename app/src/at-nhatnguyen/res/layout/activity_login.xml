@@ -21,7 +21,7 @@
     <ImageView
         android:id="@+id/img_baner"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="@dimen/img_header_height"
         android:scaleType="fitXY"
         android:src="@drawable/img_baner"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,9 +29,9 @@
 
     <ImageView
         android:id="@+id/img_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="@dimen/ic_logo_width"
+        android:layout_height="@dimen/ic_logo_height"
+        android:layout_marginTop="@dimen/ic_logo_margin_top"
         android:scaleType="fitStart"
         android:src="@drawable/ic_logo"
         app:layout_constraintStart_toEndOf="@+id/guideline"
@@ -40,7 +40,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="@dimen/margin_top_33dp"
         android:text="@string/textview_text_scratch"
         android:textColor="@color/colorBlack"
         app:layout_constraintStart_toEndOf="@+id/img_icon"
@@ -53,7 +53,7 @@
         android:layout_marginTop="60dp"
         android:text="@string/textview_text_welcome_back"
         android:textColor="@color/colorBlack"
-        android:textSize="30dp"
+        android:textSize="@dimen/text_size_30dp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@id/img_icon" />
@@ -62,7 +62,7 @@
         android:id="@+id/tv_ple"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/margin_top_20dp"
         android:text="@string/textview_text_please_login_to_continue"
         app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/img_baner" />
@@ -71,7 +71,7 @@
         android:id="@+id/tv_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/margin_top_30dp"
         android:text="@string/textview_text__address_email"
         app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tv_ple" />
@@ -91,7 +91,7 @@
         android:id="@+id/tv_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/margin_top_30dp"
         android:text="@string/textview_text_password"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/edt_email" />
@@ -126,7 +126,7 @@
         android:text="@string/button_text_login"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
-        android:textSize="20dp"
+        android:textSize="@dimen/text_size_20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -136,7 +136,7 @@
         android:id="@+id/tv_scratch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/margin_top_20dp"
         android:gravity="center"
         android:text="@string/textview_text_new_to_scratch"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
@@ -148,7 +148,7 @@
         android:layout_height="wrap_content"
         android:text="@string/textview_text_create_Account"
         android:textColor="@color/color_text"
-        android:textSize="18dp"
+        android:textSize="@dimen/text_size_20dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tv_scratch" />
