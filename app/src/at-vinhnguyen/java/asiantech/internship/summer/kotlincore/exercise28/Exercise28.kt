@@ -17,7 +17,7 @@ object Exercise28 {
         val temp = str.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         str = ""
         for (i in temp.indices) {
-            str += temp[i][0].toString().toUpperCase() + temp[i].substring(1)
+            str += temp[i][0].toString().toUpperCase(Locale.getDefault()) + temp[i].substring(1)
             if (i < temp.size - 1) {
                 str += " "
             }
