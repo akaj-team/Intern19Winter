@@ -1,13 +1,16 @@
 package asiantech.internship.summer.javacore.oop;
 
-public abstract class Shape {
+import android.util.Log;
+
+abstract class Shape {
+
+    private static final String TAG = Shape.class.getSimpleName();
 
     void printNameOfTheShape() {
-        System.out.println("Square:");
+        Log.d(TAG, "Square:");
     }
 
     abstract float Acreage();
 
     abstract float Perimeter();
-
 }

@@ -1,8 +1,11 @@
 package asiantech.internship.summer.javacore.oop;
 
+import android.util.Log;
 import java.util.ArrayList;
 
 public class JavaCore {
+
+    private static final String TAG = JavaCore.class.getSimpleName();
 
     public static void main(String[] args) {
         ArrayList<Shape> shapes = new ArrayList<>();
@@ -11,8 +14,8 @@ public class JavaCore {
         shapes.add(new Circle(3.67f));
         for (Shape shape : shapes) {
             shape.printNameOfTheShape();
-            System.out.println("Arceage: " + shape.Acreage());
-            System.out.println("Perimeter: " + shape.Perimeter());
+            Log.d(TAG, "Arceage: " + shape.Acreage());
+            Log.d(TAG, "Perimeter: " + shape.Perimeter());
         }
     }
 }

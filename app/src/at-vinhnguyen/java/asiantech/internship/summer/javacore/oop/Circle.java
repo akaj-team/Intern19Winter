@@ -1,11 +1,14 @@
 package asiantech.internship.summer.javacore.oop;
 
-public class Circle extends Shape {
+import android.util.Log;
 
+class Circle extends Shape {
+
+    private static final String TAG = Circle.class.getSimpleName();
     private float r;
     private final float PI = 3.14f;
 
-    public Circle(float r) {
+    Circle(float r) {
         this.r = r;
     }
 
@@ -21,6 +24,6 @@ public class Circle extends Shape {
 
     @Override
     void printNameOfTheShape() {
-        System.out.println("Circle:");
+        Log.d(TAG, "Circle:");
     }
 }
