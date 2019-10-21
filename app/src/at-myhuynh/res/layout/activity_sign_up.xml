@@ -108,14 +108,13 @@
             android:layout_height="wrap_content"
             style="@style/EditTextStyleNunito"
             android:hint="@string/edittext_text_full_name_hint"
-            android:importantForAutofill="no"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@+id/tvFullName"
             app:layout_constraintVertical_bias="0.0"
-            tools:ignore="TextFields" />
+            tools:ignore="Autofill,TextFields" />
 
         <TextView
             android:id="@+id/tvEmail"
@@ -131,7 +130,6 @@
             android:id="@+id/edtEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:importantForAutofill="no"
             android:inputType="textEmailAddress"
             style="@style/EditTextStyleNunito"
             android:hint="@string/edittext_text_email_hint"
@@ -140,7 +138,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvEmail"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            tools:ignore="LabelFor,TextFields" />
+            tools:ignore="Autofill,LabelFor,TextFields" />
 
         <TextView
             android:id="@+id/tvPassword"
@@ -161,9 +159,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
             app:layout_constraintVertical_bias="0.0"
-            android:importantForAutofill="no"
             android:inputType="textPassword"
-            tools:ignore="LabelFor" />
+            tools:ignore="Autofill,LabelFor" />
 
         <Button
             android:id="@+id/btnLogin"
