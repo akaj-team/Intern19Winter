@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".kotlin.LoginActivity"></activity>
+        <activity android:name=".kotlin.SignUpActivity"></activity>
         <activity android:name=".kotlin.EditProfileActivity" />
-        <activity android:name=".kotlin.SignUpActivity">
+        <activity android:name=".kotlin.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

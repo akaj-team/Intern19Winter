@@ -103,14 +103,13 @@
         android:layout_height="wrap_content"
         style="@style/EditTextStyle"
         android:hint="@string/edittext_text_email_hint"
-        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail"
         app:layout_constraintVertical_bias="0.0"
-        tools:ignore="TextFields" />
+        tools:ignore="Autofill,TextFields" />
 
     <TextView
         android:id="@+id/tvPassword"
@@ -140,8 +139,7 @@
         app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/tvPassword"
-        tools:ignore="LabelFor"
-        android:importantForAutofill="no" />
+        tools:ignore="Autofill,LabelFor" />
 
     <Button
         android:id="@+id/btnLogin"
