@@ -1,162 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="asiantech.internship.summer.layouteditor.EditProfileActivity">
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
     <androidx.constraintlayout.widget.Guideline
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95"
-        android:id="@+id/guideline_end"
+        android:id="@+id/guidelineEnd"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
     <ImageView
-        android:id="@+id/img_icon_back"
-        android:src="@drawable/ic_back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        android:id="@+id/imgIconBack"
         android:layout_width="@dimen/ic_back_width_20dp"
-        android:layout_height="@dimen/ic_back_height_20dp"/>
+        android:layout_height="@dimen/ic_back_height_20dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/tv_back_profile"
+        android:id="@+id/tvBackProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:text="@string/textview_text_back_to_profile"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/img_icon_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintStart_toEndOf="@id/imgIconBack"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/tv_edit_profile"
-        android:layout_marginTop="5dp"
-        android:textStyle="bold"
-        android:textSize="@dimen/text_size_30dp"
-        android:textColor="@color/colorBlack"
-        android:text="@string/textview_text_edit_profile"
-        app:layout_constraintTop_toBottomOf="@+id/img_icon_back"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        android:id="@+id/tvEditProfile"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_marginTop="@dimen/margin_top_10dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintTop_toBottomOf="@+id/tv_edit_profile"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/textview_text_edit_profile"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/text_size_30dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        android:id="@+id/circle_image_view"
+        app:layout_constraintTop_toBottomOf="@+id/imgIconBack" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
         android:layout_width="110dp"
         android:layout_height="110dp"
+        android:layout_marginTop="@dimen/margin_10dp"
         android:src="@drawable/img_man"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvEditProfile"
         tools:ignore="MissingConstraints" />
+
     <TextView
-        android:id="@+id/tv_edit_picture"
-        android:layout_marginTop="@dimen/margin_top_10dp"
-        android:textStyle="bold"
-        android:textColor="@color/color_text"
-        android:text="@string/textview_text_edit_profile_picture"
-        android:textSize="@dimen/text_size_20dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintTop_toBottomOf="@+id/circle_image_view"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        android:id="@+id/tvEditPicture"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/tv_full_name"
-        android:layout_marginTop="@dimen/margin_top_10dp"
-        android:text="@string/textview_text_full_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_edit_picture"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/edt_full_name"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintTop_toBottomOf="@+id/tv_full_name"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        tools:ignore="LabelFor"
-        android:importantForAutofill="no" />
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:text="@string/textview_text_edit_profile_picture"
+        android:textColor="@color/color_text"
+        android:textSize="@dimen/text_size_20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+
     <TextView
-        android:id="@+id/tv_bio"
-        android:layout_marginTop="@dimen/margin_top_15dp"
-        android:text="@string/textview_hint_bio"
-        app:layout_constraintTop_toBottomOf="@+id/edt_full_name"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        android:id="@+id/tvFullName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/edt_bio"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintTop_toBottomOf="@+id/tv_bio"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:text="@string/textview_text_full_name"
         app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvEditPicture" />
+
+    <EditText
+        android:id="@+id/edtFullName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:importantForAutofill="no"
-        tools:ignore="LabelFor"
-        android:inputType="text" />
+        android:inputType="text"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvFullName"
+        tools:ignore="LabelFor" />
+
     <TextView
-        android:id="@+id/tv_private"
-        android:layout_marginTop="@dimen/margin_top_15dp"
+        android:id="@+id/tvBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_15dp"
+        android:text="@string/textview_hint_bio"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/edtFullName" />
+
+    <EditText
+        android:id="@+id/edtBio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvBio"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/tvPrivateInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_15dp"
+        android:text="@string/textview_text_private_information"
         android:textColor="@color/colorBlack"
         android:textStyle="bold"
-        android:text="@string/textview_text_private_information"
-        app:layout_constraintTop_toBottomOf="@+id/edt_bio"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintTop_toBottomOf="@+id/edtBio" />
+
     <TextView
-        android:id="@+id/tv_email"
-        android:layout_marginTop="@dimen/margin_top_15dp"
-        android:text="@string/textview_text_email"
-        app:layout_constraintTop_toBottomOf="@+id/tv_private"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/edt_email"
-        android:inputType="textEmailAddress"
-        android:layout_marginTop="18dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintTop_toTopOf="@+id/tv_email"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_15dp"
+        android:text="@string/textview_text_email"
         app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvPrivateInformation" />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/tvEmail"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_15dp"
+        android:text="@string/textview_text_phone"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+
+    <EditText
+        android:id="@+id/edtPhone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:importantForAutofill="no"
-        tools:ignore="LabelFor" />
-    <TextView
-        android:id="@+id/tv_phone"
-        android:layout_marginTop="@dimen/margin_top_15dp"
-        android:text="@string/textview_text_phone"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/edt_phone"
         android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        app:layout_constraintTop_toBottomOf="@+id/tv_phone"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvPhone"
+        tools:ignore="LabelFor,TextFields" />
+
+    <Button
+        android:id="@+id/btnSaveProfile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:ignore="LabelFor,TextFields"
-        android:importantForAutofill="no" />
-    <Button
-        android:id="@+id/btn_save_profile"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-        android:text="@string/button_text_save_profile"
+        android:layout_marginTop="8dp"
         android:background="@drawable/bg_btn_login"
-        app:layout_constraintTop_toBottomOf="@+id/edt_phone"
+        android:padding="17dp"
+        android:text="@string/button_text_save_profile"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_size_20dp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintTop_toBottomOf="@+id/edtPhone" />
 </androidx.constraintlayout.widget.ConstraintLayout>
