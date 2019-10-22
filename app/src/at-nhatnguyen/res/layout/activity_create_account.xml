@@ -41,17 +41,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_33dp"
+        android:layout_marginTop="@dimen/margin_4dp"
         android:text="@string/textview_text_scratch"
         android:textColor="@color/colorBlack"
         app:layout_constraintStart_toEndOf="@+id/imgIcon"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imgIcon" />
 
     <TextView
         android:id="@+id/tvTextStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_marginTop="@dimen/margin_12dp"
         android:text="@string/textview_text_start"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/text_size_30dp"
@@ -62,7 +62,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/margin_4dp"
         android:text="@string/textview_text_from_scratch"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/text_size_30dp"
@@ -83,9 +83,9 @@
         android:id="@+id/tvFullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/margin_16dp"
         android:text="@string/textview_text_full_name"
-        android:textSize="@dimen/text_size_15dp"
+        android:textSize="@dimen/text_size_16dp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvLabel" />
 
@@ -105,9 +105,9 @@
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/margin_16dp"
         android:text="@string/textview_text_email"
-        android:textSize="@dimen/text_size_15dp"
+        android:textSize="@dimen/text_size_16dp"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/edtFullName" />
 
@@ -126,9 +126,9 @@
         android:id="@+id/tvPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/margin_16dp"
         android:text="@string/textview_text_password"
-        android:textSize="@dimen/text_size_15dp"
+        android:textSize="@dimen/text_size_16dp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
@@ -147,9 +147,9 @@
         android:id="@+id/btnCreateAccount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_marginTop="@dimen/margin_12dp"
         android:background="@drawable/bg_btn_login"
-        android:padding="17dp"
+        android:padding="@dimen/padding_16dp"
         android:text="@string/button_text_create_account"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
@@ -164,7 +164,7 @@
         android:id="@+id/tvQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_marginTop="@dimen/margin_12dp"
         android:hint="@string/textview_hint_already_have_an_account"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -176,7 +176,7 @@
         android:layout_height="wrap_content"
         android:text="@string/textview_text_login_here"
         android:textColor="@color/color_text"
-        android:textSize="@dimen/text_size_15dp"
+        android:textSize="@dimen/text_size_16dp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvQuestion" />
