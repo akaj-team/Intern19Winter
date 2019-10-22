@@ -22,6 +22,7 @@
 
     <ImageView
         android:id="@+id/imgIconBack"
+        android:layout_marginTop="@dimen/margin_4dp"
         android:layout_width="@dimen/ic_back_width_20dp"
         android:layout_height="@dimen/ic_back_height_20dp"
         android:src="@drawable/ic_back"
@@ -32,16 +33,16 @@
         android:id="@+id/tvBackProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="@dimen/margin_12dp"
         android:text="@string/textview_text_back_to_profile"
         app:layout_constraintStart_toEndOf="@id/imgIconBack"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/imgIconBack" />
 
     <TextView
         android:id="@+id/tvEditProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/margin_4dp"
         android:text="@string/textview_text_edit_profile"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/text_size_30dp"
@@ -51,9 +52,9 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_width="@dimen/img_profile_picture_width_120dp"
+        android:layout_height="@dimen/img_profile_picture_height_120dp"
+        android:layout_marginTop="@dimen/margin_12dp"
         android:src="@drawable/img_man"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -64,7 +65,7 @@
         android:id="@+id/tvEditPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_marginTop="@dimen/margin_12dp"
         android:text="@string/textview_text_edit_profile_picture"
         android:textColor="@color/color_text"
         android:textSize="@dimen/text_size_20dp"
@@ -77,7 +78,7 @@
         android:id="@+id/tvFullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_marginTop="@dimen/margin_12dp"
         android:text="@string/textview_text_full_name"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvEditPicture" />
@@ -97,7 +98,7 @@
         android:id="@+id/tvBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_15dp"
+        android:layout_marginTop="@dimen/margin_16dp"
         android:text="@string/textview_hint_bio"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/edtFullName" />
@@ -117,7 +118,7 @@
         android:id="@+id/tvPrivateInformation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_15dp"
+        android:layout_marginTop="@dimen/margin_16dp"
         android:text="@string/textview_text_private_information"
         android:textColor="@color/colorBlack"
         android:textStyle="bold"
@@ -128,7 +129,7 @@
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_15dp"
+        android:layout_marginTop="@dimen/margin_16dp"
         android:text="@string/textview_text_email"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvPrivateInformation" />
@@ -137,7 +138,7 @@
         android:id="@+id/edtEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="@dimen/margin_16dp"
         android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
@@ -149,7 +150,7 @@
         android:id="@+id/tvPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_15dp"
+        android:layout_marginTop="@dimen/margin_16dp"
         android:text="@string/textview_text_phone"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
@@ -169,9 +170,9 @@
         android:id="@+id/btnSaveProfile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         android:background="@drawable/bg_btn_login"
-        android:padding="17dp"
+        android:padding="@dimen/padding_16dp"
         android:text="@string/button_text_save_profile"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_size_20dp"
