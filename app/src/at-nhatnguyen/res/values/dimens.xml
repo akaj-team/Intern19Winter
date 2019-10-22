@@ -4,16 +4,16 @@
     <dimen name="ic_logo_width">30dp</dimen>
     <dimen name="ic_logo_height">30dp</dimen>
     <dimen name="ic_logo_margin_top">30dp</dimen>
-    <dimen name="margin_top_33dp">33dp</dimen>
-    <dimen name="margin_top_40dp">40dp</dimen>
+    <dimen name="margin_33dp">33dp</dimen>
+    <dimen name="margin_40dp">40dp</dimen>
     <dimen name="text_size_30dp">30dp</dimen>
-    <dimen name="margin_top_20dp">20dp</dimen>
+    <dimen name="margin_20dp">20dp</dimen>
     <dimen name="text_size_15dp">15dp</dimen>
     <dimen name="text_size_20dp">20dp</dimen>
-    <dimen name="margin_top_12dp">12dp</dimen>
-    <dimen name="margin_top_10dp">10dp</dimen>
+    <dimen name="margin_12dp">12dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
     <dimen name="ic_back_width_20dp">20dp</dimen>
     <dimen name="ic_back_height_20dp">20dp</dimen>
-    <dimen name="margin_top_15dp">15dp</dimen>
-    <dimen name="margin_top_30dp">30dp</dimen>
+    <dimen name="margin_15dp">15dp</dimen>
+    <dimen name="margin_30dp">30dp</dimen>
 </resources>
