@@ -8,6 +8,7 @@
     <string name="textview_text_password">Password</string>
     <string name="textview_text_forgot">Forgot password?</string>
     <string name="button_text_login">Login</string>
+    <string name="button_text_signup">Create Account</string>
     <string name="textview_text_new_scratch">New to Scratch?</string>
     <string name="textview_text_create_account">Create Account Here</string>
     <string name="textview_text_start_scratch">Start\nfrom Scratch</string>
