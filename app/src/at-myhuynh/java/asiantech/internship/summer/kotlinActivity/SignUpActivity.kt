@@ -1,4 +1,4 @@
-package asiantech.internship.summer.kotlin
+package asiantech.internship.summer.kotlinActivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

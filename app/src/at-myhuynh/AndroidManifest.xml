@@ -12,9 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".kotlin.SignUpActivity"></activity>
-        <activity android:name=".kotlin.EditProfileActivity" />
-        <activity android:name=".kotlin.LoginActivity">
+        <activity android:name=".kotlinActivity.SignUpActivity"></activity>
+        <activity android:name=".kotlinActivity.EditProfileActivity" />
+        <activity android:name=".kotlinActivity.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
