@@ -1,11 +1,26 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="H3BlackLeft"></style>
+
+    <style name="ParagraphLeftTextGray"></style>
+
+    <style name="ParagraphLeftTextSubtle"></style>
+
+    <style name="Lead"></style>
+
+    <style name="ParagraphCenterTextSubtle"></style>
+
+    <style name="TextStyle"></style>
+
+    <style name="TextButtonCenter"></style>
+
+    <style name="H5"></style>
 
 </resources>
