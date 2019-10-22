@@ -14,7 +14,7 @@
     <string name="textview_text_full_name">Full Name</string>
     <string name="textview_text_email">Email</string>
     <string name="textview_text_password">Password</string>
-    <string name="button_text_create_acount">Create Acount</string>
+    <string name="button_text_create_account">Create Acount</string>
     <string name="textview_hint_already_have_an_account">Already have an account?</string>
     <string name="textview_text_login_here">Login Here</string>
     <string name="textview_text_start">Start</string>
