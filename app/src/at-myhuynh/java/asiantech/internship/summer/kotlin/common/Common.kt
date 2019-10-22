@@ -19,7 +19,7 @@ object Common {
             } catch (e: Exception) {
                 check = true
                 println(e.message)
-                println("Nhập lại!!")
+                println("Nhập lại!!!")
             }
         } while (check)
 
