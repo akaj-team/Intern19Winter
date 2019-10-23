@@ -14,7 +14,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".New.LoginActivity"/>
         <activity android:name=".New.SignActivity"/>
-        <activity android:name=".New.ProfileActivity">
+            <activity android:name=".New.ProfileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
