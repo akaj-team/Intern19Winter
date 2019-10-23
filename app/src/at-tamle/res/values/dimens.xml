@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="guide_line_begin">16dp</dimen>
+    <dimen name="guide_line_end">16dp</dimen>
+    <dimen name="height_photo">280dp</dimen>
+    <dimen name="height_logo">30dp</dimen>
+    <dimen name="width_logo">20dp</dimen>
+    <dimen name="padding_left">8dp</dimen>
+    <dimen name="text_size_scratch">20sp</dimen>
+    <dimen name="margin_left_welcome">4dp</dimen>
+    <dimen name="margin_top_welcome">38dp</dimen>
+    <dimen name="margin_left_continute">4dp</dimen>
+    <dimen name="margin_top_continute">16dp</dimen>
+    <dimen name="margin_left_email">4dp</dimen>
+    <dimen name="margin_top_email">40dp</dimen>
+    <dimen name="width_edtemail">0dp</dimen>
+    <dimen name="margin_top_edt_email">8dp</dimen>
+    <dimen name="margin_left_tv_password">4dp</dimen>
+    <dimen name="margin_top_tv_password">20dp</dimen>
+    <dimen name="size_tv_password">14sp</dimen>
+    <dimen name="width_edt_password">0dp</dimen>
+    <dimen name="margin_top__edt_password">8dp</dimen>
+    <dimen name="spacing_extra_edt_password">1.5sp</dimen>
+    <dimen name="width_btn_login">0dp</dimen>
+    <dimen name="height_btn_login">54dp</dimen>
+    <dimen name="margin_top_btn_login">20dp</dimen>
+    <dimen name="size_btn_login">17sp</dimen>
+    <dimen name="size_account">16dp</dimen>
+</resources>
+
