@@ -90,6 +90,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvLabel" />
 
     <EditText
+
         android:id="@+id/edtFullName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -120,7 +121,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail"
-        tools:ignore="LabelFor" />
+        tools:ignore="LabelFor"
+        android:maxLength="30"/>
 
     <TextView
         android:id="@+id/tvPassword"
@@ -176,7 +178,7 @@
         android:layout_height="wrap_content"
         android:text="@string/textview_text_login_here"
         android:textColor="@color/color_text"
-        android:textSize="@dimen/text_size_16dp"
+        android:textSize="@dimen/text_size_20dp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvQuestion" />
