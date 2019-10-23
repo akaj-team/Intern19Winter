@@ -31,7 +31,7 @@
         app:srcCompat="@drawable/ic_draw" />
 
     <TextView
-        android:id="@+id/title1"
+        android:id="@+id/tvBack"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/textview_text_back_to_profile"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="@id/icLogo" />
 
     <TextView
-        android:id="@+id/tv"
+        android:id="@+id/tvProfile"
         style="@style/H3BlackLeft"
         android:fontFamily="@font/nunito_bold"
         android:layout_width="wrap_content"
@@ -64,10 +64,10 @@
         android:src="@drawable/ic_man"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/tv" />
+        app:layout_constraintTop_toBottomOf="@+id/tvProfile" />
 
     <TextView
-        android:id="@+id/tv1"
+        android:id="@+id/tvPicture"
         style="@style/TextButtonCenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/tv1" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPicture" />
 
     <EditText
         android:id="@+id/edtFullName"
@@ -109,7 +109,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv2" />
 
     <TextView
-        android:id="@+id/tv3"
+        android:id="@+id/tvBio"
         style="@style/ParagraphLeftTextSubtle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -136,10 +136,10 @@
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/tv3" />
+        app:layout_constraintTop_toBottomOf="@+id/tvBio" />
 
     <TextView
-        android:id="@+id/tv4"
+        android:id="@+id/tvPrivate"
         style="@style/H5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/tv4" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPrivate" />
 
     <EditText
         android:id="@+id/edtEmail"
@@ -183,7 +183,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv5" />
 
     <TextView
-        android:id="@+id/tv6"
+        android:id="@+id/tvPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
@@ -210,14 +210,14 @@
         app:layout_constraintHorizontal_bias="0.0"
         android:fontFamily="@font/helvetica"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/tv6" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
 
     <Button
         android:id="@+id/btnSaveProfile"
         android:layout_width="0dp"
         android:layout_height="54dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/duongvien_bottom"
+        android:background="@drawable/btn_line"
         android:text="@string/button_text_save_profile"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
