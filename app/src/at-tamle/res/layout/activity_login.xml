@@ -106,13 +106,16 @@
         android:layout_width="@dimen/width_edtemail"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_top_edt_email"
+        android:hint="@string/edittext_hint_enter_email"
         android:inputType="textEmailAddress"
+        android:importantForAutofill="no"
         android:fontFamily="@font/nunito_regular"
         android:text="@string/edittext_text_user_email_com"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail"
+         />
     <TextView
         android:id="@+id/tvPassword"
         android:layout_width="wrap_content"
@@ -138,6 +141,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft" />
+
     <EditText
         android:id="@+id/edtPassword"
         android:layout_width="@dimen/width_edt_password"
@@ -145,13 +149,15 @@
         android:layout_marginTop="@dimen/margin_top__edt_password"
         android:importantForAutofill="no"
         android:text="@string/edittext_hint_password"
+        android:hint="@string/edittext_hint_password"
         android:fontFamily="@font/helvetica"
         android:inputType="textPassword"
         android:lineSpacingExtra="@dimen/spacing_extra_edt_password"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPassword"
+         />
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="@dimen/width_btn_login"
