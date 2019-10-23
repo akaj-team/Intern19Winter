@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="asiantech.internship.winter.layouteditor.EditProfileActivity"></activity>
+        <activity android:name="asiantech.internship.winter.layouteditor.EditProfileActivity" />
         <activity android:name="asiantech.internship.winter.layouteditor.SignUpActivity" />
         <activity android:name="asiantech.internship.winter.layouteditor.LoginActivity">
             <intent-filter>
