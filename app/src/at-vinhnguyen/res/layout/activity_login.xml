@@ -6,35 +6,35 @@
     style="@style/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
+
     <ImageView
         android:id="@+id/imgPanel"
         style="@style/ImagePanel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvScratch"
         style="@style/TextViewScratch"
         app:layout_constraintStart_toStartOf="@id/imgPanel"
-        app:layout_constraintTop_toTopOf="@id/imgPanel"
-        />
+        app:layout_constraintTop_toTopOf="@id/imgPanel" />
+
     <TextView
         android:id="@+id/tvStart"
         style="@style/TextViewTitle"
         android:text="@string/start"
         app:layout_constraintStart_toStartOf="@id/tvScratch"
-        app:layout_constraintTop_toBottomOf="@id/tvScratch"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvScratch" />
+
     <TextView
         android:id="@+id/tvFromScratch"
         style="@style/TextViewTitle"
         android:text="@string/from_scratch"
         app:layout_constraintStart_toStartOf="@id/tvStart"
-        app:layout_constraintTop_toBottomOf="@id/tvStart"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvStart" />
+
     <TextView
         android:id="@+id/tvCreateAccount"
         android:layout_width="wrap_content"
@@ -42,31 +42,31 @@
         android:layout_marginTop="@dimen/dp_12"
         android:text="@string/pleas_login_to_continue"
         app:layout_constraintStart_toStartOf="@id/tvFromScratch"
-        app:layout_constraintTop_toBottomOf="@id/imgPanel"
-        />
+        app:layout_constraintTop_toBottomOf="@id/imgPanel" />
+
     <TextView
         android:id="@+id/tvEmailAddress"
         style="@style/TextViewLabel"
         android:text="@string/email_address"
         app:layout_constraintStart_toStartOf="@id/tvCreateAccount"
-        app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
+
     <EditText
         android:id="@+id/edtEmailAddress"
         style="@style/EditText"
-        android:hint="@string/email_address"
+        android:hint="@string/user_email_com"
+        android:inputType="textEmailAddress"
         app:layout_constraintStart_toStartOf="@id/tvEmailAddress"
         app:layout_constraintTop_toBottomOf="@+id/tvEmailAddress"
-        tools:ignore="Autofill"
-        android:inputType="textEmailAddress"
-        />
+        tools:ignore="Autofill" />
+
     <TextView
         android:id="@+id/tvPassword"
         style="@style/TextViewLabel"
         android:text="@string/password"
         app:layout_constraintStart_toStartOf="@id/edtEmailAddress"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmailAddress"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmailAddress" />
+
     <TextView
         android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
@@ -74,24 +74,25 @@
         android:layout_marginEnd="@dimen/dp_28"
         android:text="@string/forgot_password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvPassword"
-        />
+        app:layout_constraintTop_toTopOf="@id/tvPassword" />
+
     <EditText
+        android:hint="@string/password"
         android:id="@+id/edtPassword"
         style="@style/EditText"
+        android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@id/tvPassword"
         app:layout_constraintTop_toBottomOf="@+id/tvPassword"
-        tools:ignore="Autofill"
-        android:inputType="textPassword"
-        />
+        tools:ignore="Autofill" />
+
     <Button
         android:id="@+id/btnLogin"
         style="@style/ButtonSubmit"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="@id/edtPassword"
         app:layout_constraintStart_toStartOf="@id/edtPassword"
-        app:layout_constraintTop_toBottomOf="@id/edtPassword"
-        />
+        app:layout_constraintTop_toBottomOf="@id/edtPassword" />
+
     <TextView
         android:id="@+id/tvNewToScratch"
         android:layout_width="wrap_content"
@@ -100,13 +101,13 @@
         android:text="@string/new_to_scratch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin"
-        />
+        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+
     <TextView
         style="@style/TextViewEndOfPage"
         android:text="@string/create_account_here"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvNewToScratch"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvNewToScratch" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

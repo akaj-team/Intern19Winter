@@ -8,5 +8,4 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <dimen name="dp_60">60dp</dimen>
 </resources>

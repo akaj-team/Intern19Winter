@@ -22,4 +22,9 @@
     <string name="login_here">Login Here</string>
     <string name="save_profile">Save Profile</string>
     <string name="edit_text_full_name">Nick Evans</string>
+    <string name="user_email_com">user@email.com</string>
+    <string name="nguyen_dang_vinh">Nguyen Dang Vinh</string>
+    <string name="android_intern">Android Intern</string>
+    <string name="tranhgio_email">tranhgio15@gmail.com</string>
+    <string name="phone_number">0905705981</string>
 </resources>
