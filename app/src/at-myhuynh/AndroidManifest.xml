@@ -9,10 +9,15 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".kotlinActivity.LoginActivity" />
-        <activity android:name=".kotlinActivity.SignUpActivity" />
+        <activity
+            android:name=".kotlinActivity.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".kotlinActivity.SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".kotlinActivity.EditProfileActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -24,4 +29,6 @@
         </activity>
     </application>
 
+    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>
