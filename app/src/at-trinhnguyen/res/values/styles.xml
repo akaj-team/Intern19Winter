@@ -1,11 +1,135 @@
 <resources>
-
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
+    <style name="H1Center">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/text_size_40sp</item>
+        <item name="android:textColor">@color/invalid_name</item>
+    </style>
+
+    <style name="H1Left">
+        <item name="android:textSize">@dimen/text_size_40sp</item>
+        <item name="android:textColor">@color/invalid_name</item>
+    </style>
+
+    <style name="H2">
+        <item name="android:textSize">@dimen/text_size_32sp</item>
+        <item name="android:textColor">@color/invalid_name</item>
+    </style>
+
+    <style name="H3BlackCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/text_size_24sp</item>
+        <item name="android:textColor">@color/invalid_name</item>
+    </style>
+
+    <style name="H3BlackLeft">
+        <item name="android:textSize">@dimen/text_size_24sp</item>
+        <item name="android:textColor">#030f09</item>
+    </style>
+
+    <style name="H3WhiteCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/text_size_24sp</item>
+        <item name="android:textColor">@color/invalid_name</item>
+    </style>
+
+    <style name="H3WhiteLeft">
+        <item name="android:textSize">@dimen/text_size_24sp</item>
+        <item name="android:textColor">@color/invalid_name</item>
+    </style>
+
+    <style name="H4Left">
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+        <item name="android:textColor">#363837</item>
+    </style>
+
+    <style name="H4Center">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+        <item name="android:textColor">#363837</item>
+    </style>
+
+    <style name="CardTitle">
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+        <item name="android:textColor">@color/invalid_name</item>
+    </style>
+
+    <style name="H5">
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">#030f09</item>
+    </style>
+
+    <style name="TextButtonLeft">
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@color/invalid_name</item>
+    </style>
+
+    <style name="TextButtonWhite">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextButtonCenter">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">#30be76</item>
+    </style>
+
+    <style name="Lead">
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">#030f09</item>
+    </style>
+
+    <style name="ParagraphCenterTextSubtle">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">#a8a8a8</item>
+    </style>
+
+    <style name="ParagraphLeftBlack">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:textColor">@color/invalid_name</item>
+    </style>
+
+    <style name="ParagraphLeftTextGray">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:textColor">#606060</item>
+    </style>
+
+    <style name="ParagraphLeftTextSubtle">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:textColor">#a8a8a8</item>
+    </style>
+
+    <style name="ParagraphLeftWhite">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:textColor">@color/invalid_name</item>
+    </style>
+
+    <style name="CaptionBlack">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:textColor">#030f09</item>
+    </style>
+
+    <style name="CaptionGray">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textColor">#767676</item>
+    </style>
+
+    <style name="CaptionWhite">
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
 </resources>
