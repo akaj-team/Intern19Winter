@@ -8,4 +8,35 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="H3BlackLeft">
+        <item name="android:textSize">25dp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="TextButtonCenter">
+        <item name="android:textColor">@color/colorGreen</item>
+        <item name="android:fontFamily">@font/nunito_bold</item>
+    </style>
+
+    <style name="EditTextStyle">
+        <item name="android:fontFamily">@font/helvetica</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorBlack</item>
+    </style>
+
+    <style name="TextViewAttribute">
+        <item name="android:fontFamily">@font/helvetica</item>
+        <item name="android:textColor">@color/colorBack</item>
+    </style>
+    
+    <style name="EditTextStyleNunito">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorBlack</item>
+    </style>
+
 </resources>
