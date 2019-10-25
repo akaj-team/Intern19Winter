@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+
 
 android {
     compileSdkVersion 29
@@ -69,5 +70,10 @@ dependencies {
     apply from: "../ci-java.gradle"
     implementation "androidx.core:core-ktx:1.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+}
+repositories {
+    mavenCentral()
+    
 }
