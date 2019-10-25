@@ -5,12 +5,12 @@ data class Student(
     var name: String,
     var birthday: String,
     var hometown: String,
-    var student_id: String,
-    var class_name: String,
+    var studentId: String,
+    var className: String,
     var type: String,
     var major: String,
-    var graduate_rank: String,
+    var graduateRank: String,
     var title: String,
-    var degree_no: String,
-    var document_id: String
+    var degreeNo: String,
+    var documentId: String
 )

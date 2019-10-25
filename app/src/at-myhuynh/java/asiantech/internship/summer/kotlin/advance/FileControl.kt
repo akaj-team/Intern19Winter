@@ -1,7 +1,8 @@
 package asiantech.internship.summer.kotlin.advance
 
 import asiantech.internship.summer.kotlin.common.Common
-import com.google.gson.Gson
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.GsonBuilder
 import java.io.File
 import java.io.FileNotFoundException
 import java.text.SimpleDateFormat
@@ -73,7 +74,7 @@ object FileControl {
 
     private fun findStudentByClass(students: List<Student>) {
         val className = Common.inputString("Nhập tên lớp: ")
-        students.filter { it.class_name.contains(className) }.forEach(::println)
+        students.filter { it.className.contains(className) }.forEach(::println)
     }
 
     private fun findStudentByName(students: List<Student>) {
@@ -114,17 +115,17 @@ object FileControl {
 
     private fun sortStudentByDegreeNo(students: List<Student>, n: Int) {
         if (n < students.size) {
-            students.sortedBy { it.degree_no }.subList(0, n).forEach(::println)
+            students.sortedBy { it.degreeNo }.subList(0, n).forEach(::println)
         } else {
-            students.sortedBy { it.degree_no }.forEach(::println)
+            students.sortedBy { it.degreeNo }.forEach(::println)
         }
     }
 
     private fun sortStudentByStId(students: List<Student>, n: Int) {
         if (n < students.size) {
-            students.sortedBy { it.student_id }.subList(0, n).forEach(::println)
+            students.sortedBy { it.studentId }.subList(0, n).forEach(::println)
         } else {
-            students.sortedBy { it.student_id }.forEach(::println)
+            students.sortedBy { it.studentId }.forEach(::println)
         }
     }
 
@@ -146,7 +147,7 @@ object FileControl {
     }
 
     private fun countStudentByRank(students: List<Student>) {
-        students.groupBy { it.graduate_rank }.forEach { println("${it.key} - ${it.value.size}") }
+        students.groupBy { it.graduateRank }.forEach { println("${it.key} - ${it.value.size}") }
     }
 
     private fun filterStudentByMajor(students: List<Student>) {
@@ -155,7 +156,7 @@ object FileControl {
     }
 
     private fun countClass(students: List<Student>) {
-        students.groupBy { it.class_name }.forEach { println("${it.key} - ${it.value.size}") }
+        students.groupBy { it.className }.forEach { println("${it.key} - ${it.value.size}") }
     }
 
     private fun countStudent(students: List<Student>) {
@@ -173,7 +174,10 @@ object FileControl {
             println(file.name)
             val bufferedReader = file.bufferedReader()
             val inputString = bufferedReader.use { it.readText() }
-            students.addAll(Gson().fromJson(inputString, Array<Student>::class.java))
+            students.addAll(GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                    .create()
+                    .fromJson(inputString, Array<Student>::class.java))
         } catch (e: FileNotFoundException) {
             println(e.message)
         }
