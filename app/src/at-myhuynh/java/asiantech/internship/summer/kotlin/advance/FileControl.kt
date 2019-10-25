@@ -10,7 +10,7 @@ import java.util.*
 
 object FileControl {
 
-    private val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    private val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
 
     @JvmStatic
     fun main(args: Array<String>) {
