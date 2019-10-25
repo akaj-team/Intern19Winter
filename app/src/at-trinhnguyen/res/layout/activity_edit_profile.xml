@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="asiantech.internship.winter.layouteditor.EditProfileActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/guide_line_left" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/guide_line_right" />
+
+        <ImageView
+            android:id="@+id/icLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_40dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineLeft"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:id="@+id/title1"
+            style="@style/CaptionGray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textview_text_back_to_profile"
+            app:layout_constraintBottom_toBottomOf="@id/icLogo"
+            app:layout_constraintLeft_toRightOf="@id/icLogo"
+            app:layout_constraintTop_toTopOf="@id/icLogo" />
+
+        <TextView
+            android:id="@+id/tvEditProfile"
+            style="@style/H3BlackLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_4dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/textview_text_edit_profile"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/icLogo" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="@dimen/img_profile_picture_width"
+            android:layout_height="@dimen/img_profile_picture_height"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:src="@drawable/img_profile"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/tvEditProfile" />
+
+        <TextView
+            android:id="@+id/tvEditProfilePicture"
+            style="@style/TextButtonCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/textview_text_edit_profile_picture"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/imgProfile" />
+
+
+        <TextView
+            android:id="@+id/tvNickName"
+            style="@style/ParagraphLeftTextSubtle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_4dp"
+            android:layout_marginTop="@dimen/margin_24dp"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/textview_text_full_name"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/tvEditProfilePicture" />
+
+        <EditText
+            android:id="@+id/edtFullName"
+            style="@style/Lead"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:fontFamily="@font/nunito_regular"
+            android:hint="@string/edittext_hint_enter_name"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:text="@string/edittext_text_nick_evans"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/tvNickName" />
+
+        <TextView
+            android:id="@+id/tvBio"
+            style="@style/ParagraphLeftTextSubtle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_4dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/textview_text_bio"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/edtFullName" />
+
+        <EditText
+            android:id="@+id/edtBio"
+            style="@style/Lead"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:fontFamily="@font/nunito_regular"
+            android:hint="@string/edittext_hint_enter_bio"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:text="@string/edittext_text_potato_master"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/tvBio" />
+
+        <TextView
+            android:id="@+id/tvPrivateInformation"
+            style="@style/H5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_4dp"
+            android:layout_marginTop="@dimen/margin_24dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/textview_text_private_information"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/edtBio" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            style="@style/ParagraphLeftTextSubtle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_4dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/textview_text_email"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrivateInformation" />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            style="@style/Lead"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:fontFamily="@font/nunito_regular"
+            android:hint="@string/edittext_hint_enter_email"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:text="@string/edittext_text_user_email_com"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+        <TextView
+            android:id="@+id/tvPhone"
+            style="@style/ParagraphLeftTextSubtle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_4dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:text="@string/textview_text_phone"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+
+        <EditText
+            android:id="@+id/edtPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:hint="@string/edittext_hint_enter_phone"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:text="@string/edittext_text_1_234_567_89"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+
+        <Button
+            android:id="@+id/btnSaveProfile"
+            style="@style/TextButtonWhite"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btn_height_54dp"
+            android:layout_marginTop="@dimen/margin_24dp"
+            android:background="@drawable/bg_btn_login"
+            android:text="@string/button_text_save_profile"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/edtPhone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
