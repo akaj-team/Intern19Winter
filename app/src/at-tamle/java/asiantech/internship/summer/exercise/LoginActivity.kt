@@ -1,13 +1,13 @@
-package asiantech.internship.summer.New
+package asiantech.internship.summer.exercise
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import asiantech.internship.summer.R
 
-class SignActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign)
+        setContentView(R.layout.activity_login)
     }
 }

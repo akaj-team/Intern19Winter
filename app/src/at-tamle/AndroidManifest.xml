@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"/>
-        <activity android:name=".New.LoginActivity"/>
-        <activity android:name=".New.SignActivity"/>
-            <activity android:name=".New.ProfileActivity">
+        <activity android:name=".exercise.LoginActivity"/>
+        <activity android:name=".exercise.SignActivity"/>
+            <activity android:name=".exercise.ProfileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
