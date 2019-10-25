@@ -13,27 +13,6 @@ object ListNumberExistOnlyOnce {
             listNumber.add(Common.input("Nhập phần tử thứ $i: "))
         }
 
-        println(getNumbers(listNumber))
-    }
-
-    private fun getNumbers(listNumber: List<Int>): List<Int> {
-        val listNum = ArrayList<Int>()
-        for (i in listNumber.indices) {
-            if (isExist(listNumber[i], listNumber, i)) {
-                listNum.add(listNumber[i])
-            }
-        }
-        return listNum
-    }
-
-    private fun isExist(n: Int, listNumber: List<Int>, index: Int): Boolean {
-        for (i in listNumber.indices) {
-            if (i != index) {
-                if (n == listNumber[i]) {
-                    return false
-                }
-            }
-        }
-        return true
+        listNumber.groupBy { it }.filter { it.value.size == 1 }.forEach(::println)
     }
 }

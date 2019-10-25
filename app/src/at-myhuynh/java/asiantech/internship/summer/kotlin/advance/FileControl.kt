@@ -9,6 +9,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object FileControl {
+
+    private val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
     @JvmStatic
     fun main(args: Array<String>) {
         val students = "./app/src/at-myhuynh/assets/data.json".readFile()
@@ -48,23 +51,11 @@ object FileControl {
 
     private fun findStudentByMonthOfBirth(students: List<Student>) {
         val month = Common.input("Nhập vào tháng: ")
-        if (month in 1..12) {
-            for (student in students) {
-                val dayOfBirth = student.birthday
-                val monthOfBirth = Integer.parseInt(
-                        dayOfBirth.substring(
-                                dayOfBirth.indexOf("/") + 1,
-                                dayOfBirth.lastIndexOf("/")
-                        )
-                )
-                if (month == monthOfBirth) {
-                    println("${student.name} - ${student.birthday}")
-                }
-            }
-        } else {
-            println("Month is validate!!!")
-        }
-
+        students.filter {
+            val cal = Calendar.getInstance()
+            cal.time = sdf.parse(it.birthday)!!
+            cal.get(Calendar.MONTH) == month - 1
+        }.forEach(::println)
     }
 
     private fun findStudentByMajor(students: List<Student>) {
@@ -83,7 +74,7 @@ object FileControl {
     }
 
     private fun showSortMenu(students: List<Student>) {
-        val sortBy = menu()
+        val sortBy = showSortMenu()
         val n = Common.input("Số lượng cần hiển thị: ")
         when (sortBy) {
             1 -> sortStudentByName(students, n)
@@ -94,7 +85,7 @@ object FileControl {
         }
     }
 
-    private fun menu(): Int {
+    private fun showSortMenu(): Int {
         println(
                 "1. Sort by name" +
                         "\n2. Sort by birthday" +
@@ -130,7 +121,6 @@ object FileControl {
     }
 
     private fun sortStudentByBirthDay(students: List<Student>, n: Int) {
-        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         if (n < students.size) {
             students.sortedBy { sdf.parse(it.birthday) }.subList(0, n).forEach(::println)
         } else {

@@ -13,10 +13,6 @@ object Divisor {
 
         println("Danh sach uoc so: $listDiv")
         println("So luong uoc so: " + listDiv.size)
-        println("Danh sach uoc so la so nguyen to: " + getListDivPrime(listDiv).toString())
-    }
-
-    private fun getListDivPrime(listDiv: List<Int>): List<Int> {
-        return listDiv.filter(Int::isPrime)
+        println("Danh sach uoc so la so nguyen to: " + listDiv.filter(Int::isPrime).toString())
     }
 }

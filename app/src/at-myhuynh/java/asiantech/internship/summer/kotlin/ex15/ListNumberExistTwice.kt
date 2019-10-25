@@ -12,39 +12,7 @@ object ListNumberExistTwice {
         for (i in 0 until n) {
             listNumber.add(Common.input("Nhập phần tử thứ $i: "))
         }
-        println(getNumbers(listNumber))
-    }
 
-    private fun getNumbers(listNumber: List<Int>): List<Int> {
-        val listNum = ArrayList<Int>()
-        var count: Int
-        for (i in listNumber.indices) {
-            count = count(listNumber[i], listNumber, i)
-            if (count == 2 && !isExist(listNumber[i], listNum)) {
-                listNum.add(listNumber[i])
-            }
-        }
-        return listNum
-    }
-
-    private fun isExist(n: Int, listNumber: List<Int>): Boolean {
-        for (i in listNumber.indices) {
-            if (n == listNumber[i]) {
-                return true
-            }
-        }
-        return false
-    }
-
-    private fun count(n: Int, listNumber: List<Int>, index: Int): Int {
-        var count = 1
-        for (i in listNumber.indices) {
-            if (i != index) {
-                if (n == listNumber[i]) {
-                    count++
-                }
-            }
-        }
-        return count
+        listNumber.groupBy { it }.filter { it.value.size == 2 }.forEach(::println)
     }
 }

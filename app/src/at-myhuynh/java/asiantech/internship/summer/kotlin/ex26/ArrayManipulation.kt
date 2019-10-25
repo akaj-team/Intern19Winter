@@ -16,11 +16,11 @@ object ArrayManipulation {
 
         println(listNumber)
 
-        val maxNumbers = findMaxNumber(listNumber)
-        val secondMaxNumber = findMaxNumberSecond(listNumber, maxNumbers[0])
+        val maxNumber = listNumber.max()!!
+        println("Max number: " + maxNumber + " - " + listNumber.indexOf(maxNumber))
 
-        println("Max number: " + maxNumbers[0] + " - " + maxNumbers[1])
-        println("Second max number: " + secondMaxNumber[0] + " - " + secondMaxNumber[1])
+        val secondMaxNumber = findMaxNumberSecond(listNumber, maxNumber)
+        println("Second max number: " + secondMaxNumber + " - " + listNumber.indexOf(secondMaxNumber))
 
         listNumber.sortDescending()
         println(listNumber)
@@ -29,20 +29,14 @@ object ArrayManipulation {
         println(listNumber)
     }
 
-    private fun findMaxNumber(listNumber: List<Int>) =
-            intArrayOf(listNumber.max()!!, listNumber.indexOf(listNumber.max()!!))
-
-    private fun findMaxNumberSecond(listNumber: List<Int>, maxNumber: Int): IntArray {
-        val numbers = intArrayOf(0, 0)
-        for (i in listNumber.indices) {
-            val n = listNumber[i]
-            if (numbers[0] < n && n != maxNumber) {
-                numbers[0] = n
-                numbers[1] = i
+    private fun findMaxNumberSecond(listNumber: List<Int>, maxNumber: Int): Int? {
+        return listNumber.maxBy {
+            if (it == maxNumber) {
+                0
+            } else {
+                it
             }
         }
-
-        return numbers
     }
 
     private fun insertEle(listNumber: MutableList<Int>, n: Int) {
