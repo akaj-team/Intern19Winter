@@ -7,20 +7,38 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="H3BlackLeft"></style>
 
-    <style name="ParagraphLeftTextGray"></style>
+    <style name="H3BlackLeft">
+        <item name="android:textSize">25dp</item>
+    </style>
 
-    <style name="ParagraphLeftTextSubtle"></style>
+    <style name="ParagraphLeftTextGray">
+        <item name="android:textSize">13dp</item>
+    </style>
 
-    <style name="Lead"></style>
+    <style name="ParagraphLeftTextSubtle">
+        <item name="android:textSize">13dp</item>
+    </style>
 
-    <style name="ParagraphCenterTextSubtle"></style>
+    <style name="Lead">
+        <item name="android:textSize">15dp</item>
+    </style>
 
-    <style name="TextStyle"></style>
+    <style name="ParagraphCenterTextSubtle">
+        <item name="android:textSize">16dp</item>
+    </style>
 
-    <style name="TextButtonCenter"></style>
+    <style name="TextStyle">
+        <item name="android:textSize">30dp</item>
+    </style>
 
-    <style name="H5"></style>
+    <style name="TextButtonCenter">
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="H5">
+        <item name="android:textSize">20dp</item>
+    </style>
 
 </resources>
+
