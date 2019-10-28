@@ -29,9 +29,5 @@ class EditProfileActivity : AppCompatActivity() {
             val imgBitmap = data?.extras?.get("data") as Bitmap
             circleImageView.setImageBitmap(imgBitmap)
         }
-
-
     }
-
 }
-
