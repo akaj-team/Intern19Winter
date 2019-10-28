@@ -17,5 +17,4 @@ class Rectangle(private val a: Float, private val b: Float) : Shape() {
     }
     println("Rectangle:")
   }
-
 }

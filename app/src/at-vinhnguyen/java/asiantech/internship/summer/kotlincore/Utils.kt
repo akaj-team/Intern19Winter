@@ -56,7 +56,7 @@ fun IntArray.maxPosition(n: Int): Int {
 }
 
 fun IntArray.maxPositionAfter(n: Int): Int {
-  var i: Int = 0
+  var i = 0
   var key = 0
   var max = 0
   while (i < n) {
