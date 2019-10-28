@@ -10,7 +10,9 @@ import asiantech.internship.summer.R
 import kotlinx.android.synthetic.`at-nhatnguyen`.activity_edit_profile.*
 
 class EditProfileActivity : AppCompatActivity() {
-    val REQUEST_IMAGE_CAPTURE = 100
+    companion object{
+        const val REQUEST_IMAGE_CAPTURE = 100
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
