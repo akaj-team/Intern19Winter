@@ -53,7 +53,7 @@ object FileControl {
         val month = Common.input("Nhập vào tháng: ")
         students.filter {
             val cal = Calendar.getInstance()
-            cal.time = sdf.parse(it.birthday)!!
+            cal.time = requireNotNull(sdf.parse(it.birthday))
             cal.get(Calendar.MONTH) == month - 1
         }.forEach(::println)
     }
