@@ -1,6 +1,8 @@
 package asiantech.internship.summer.KotlinW2Json
+
 import java.util.*
-object Com{
+
+object Com {
     fun input(text: String): Int {
         val sc = Scanner(System.`in`, "UTF-8")
         var n = 0
@@ -17,15 +19,15 @@ object Com{
     }
 
 
-fun joinString(delimiter: String, arrStr: Array<Any>): String {
-    val result = StringBuilder()
-    for (i in arrStr.indices) {
-        if (i == arrStr.size - 1) {
-            result.append(arrStr[i])
-        } else {
-            result.append(arrStr[i]).append(delimiter)
+    private fun joinString(delimiter: String, arrStr: Array<Any>): String {
+        val result = StringBuilder()
+        for (i in arrStr.indices) {
+            if (i == arrStr.size - 1) {
+                result.append(arrStr[i])
+            } else {
+                result.append(arrStr[i]).append(delimiter)
+            }
         }
+        return result.toString()
     }
-    return result.toString()
-}
 }
