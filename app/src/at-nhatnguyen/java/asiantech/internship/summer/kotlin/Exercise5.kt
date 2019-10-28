@@ -3,7 +3,6 @@ package asiantech.internship.summer.kotlin
 import java.util.*
 
 fun main() {
-
     val scan = Scanner(System.`in`)
     print("Nhập n = ")
     val n = scan.nextInt()

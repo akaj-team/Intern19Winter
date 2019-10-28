@@ -23,7 +23,6 @@ private fun tryBackTrack(a: IntArray, n: Int, k: Int, i: Int) {
 }
 
 fun main() {
-
     print("Nhap n")
     val n = input()
     val array = IntArray(n + 1)

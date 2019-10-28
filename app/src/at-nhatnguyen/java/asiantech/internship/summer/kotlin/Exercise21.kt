@@ -28,9 +28,9 @@ private fun analysis(n: Int) {
 }
 
 fun main() {
-    print("Nhap n")
+    print("Nhap n : ")
     val n = input()
-    print("n= 1")
+    print("n = 1")
     analysis(n)
-    println("Tong cac chu so cua " + n + " la: " + totalDigits(n))
+    println("Tong cac chu so cua $n la: " + totalDigits(n))
 }

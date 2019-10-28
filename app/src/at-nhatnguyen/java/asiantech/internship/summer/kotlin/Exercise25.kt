@@ -2,9 +2,9 @@ package asiantech.internship.summer.kotlin
 
 private fun isReversibleNumber(n: Int): Boolean {
     val x = StringBuilder()
-    val str = "" + n
+    val str = n.toString()
     x.append(str)
-    val check = "" + x.reverse()
+    val check = x.reverse().toString()
     return str == check
 }
 

@@ -18,7 +18,7 @@ private fun analysis(n: Int) {
 
 fun main() {
     print("Nhap n :")
-    val n =input()
+    val n = input()
     print("$n = ")
     analysis(n)
 }

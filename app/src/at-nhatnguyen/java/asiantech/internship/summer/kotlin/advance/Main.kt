@@ -30,8 +30,9 @@ object Main {
                     println(it.key + " có " + it.value.count() + " sinh viên")
 
                 }
-                "3" -> majors.forEach {
+                "3" -> majors.forEach { it ->
                     println(it.key + " có " + it.value.groupBy { it.class_name }.count() + " lớp")
+                    // students.groupBy { it.class_name }.forEach { println("${it.key} - ${it.value.size}")
                 }
                 "4" -> {
                     println("Nhập tên chuyên ngành : ")
@@ -48,7 +49,7 @@ object Main {
                 "6" -> {
                     print("Nhập n học sinh đầu tiên : ")
                     val n = Integer.parseInt(scanner.nextLine())
-                    println("Sort by: 1. name 2. birthday 3. student_id 4. degreeNo 5. id")
+                    println("Sort by: 1. name 2. birthday 3. student_id 4. degree_no 5. id")
                     when (scanner.nextLine()) {
                         "1" -> {
                             students.sortedBy { it.name }

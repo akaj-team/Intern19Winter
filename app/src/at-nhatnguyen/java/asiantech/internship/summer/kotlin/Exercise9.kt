@@ -1,17 +1,16 @@
 package asiantech.internship.summer.kotlin
 
 fun main() {
-
     print("Nhap n")
     val n = input()
     val array = IntArray(n)
-    var tich: Int
+    var x: Int
     do {
-        tich = 1
+        x = 1
         print(" ")
         for (j in 0 until n) {
             print(" " + array[j])
-            tich *= array[j]
+            x *= array[j]
         }
         var i = n - 1
         do {
@@ -25,5 +24,5 @@ fun main() {
                 i--
             }
         } while (i >= 0)
-    } while (tich != 1)
+    } while (x != 1)
 }

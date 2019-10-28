@@ -15,31 +15,8 @@ private fun inputFloat(): Float {
             println("Ban phai nhap so! hay nhap lai...")
             input.nextLine()
         }
-
     }
     return n
-}
-
-private fun minFloat(a: FloatArray, n: Int): Int {
-    var min = a[0]
-    var key = 0
-    for (j in 0 until n) {
-        if (min > a[j]) {
-            min = a[j]
-            key = j
-        }
-    }
-    return key
-}
-
-private fun maxFloat(a: FloatArray, n: Int): Float {
-    var max = a[0]
-    for (j in 0 until n) {
-        if (max < a[j]) {
-            max = a[j]
-        }
-    }
-    return max
 }
 
 fun main() {
@@ -52,11 +29,7 @@ fun main() {
         array[i] = inputFloat()
         i++
     }
-    i = 0
     println("Sap xep theo thu tu tang dan :")
-    while (i < n) {
-        println(" " + array[minFloat(array, n)])
-        array[minFloat(array, n)] = maxFloat(array, n)
-        i++
-    }
+    array.sort()
+    array.forEach(::println)
 }

@@ -2,10 +2,11 @@ package asiantech.internship.summer.kotlin
 
 private fun base(n: Int, base: Int) {
     if (n >= base) base(n / base, base)
-    if (n % base > 9)
+    if (n % base > 9) {
         System.out.printf("%c", n % base + 55)
-    else
+    } else {
         print(n % base)
+    }
 }
 
 fun main() {
