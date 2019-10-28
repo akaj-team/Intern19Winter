@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="img_header_height">230dp</dimen>
-    <dimen name="ic_logo_width">30dp</dimen>
-    <dimen name="ic_logo_height">30dp</dimen>
-    <dimen name="ic_logo_margin_top">30dp</dimen>
+    <dimen name="img_header_height">232dp</dimen>
+    <dimen name="ic_logo_width">32dp</dimen>
+    <dimen name="ic_logo_height">32dp</dimen>
+    <dimen name="ic_logo_margin_top">32dp</dimen>
     <dimen name="margin_40dp">40dp</dimen>
-    <dimen name="text_size_30dp">30dp</dimen>
+    <dimen name="text_size_32dp">32dp</dimen>
     <dimen name="margin_20dp">20dp</dimen>
     <dimen name="text_size_16dp">16dp</dimen>
     <dimen name="text_size_20dp">20dp</dimen>
