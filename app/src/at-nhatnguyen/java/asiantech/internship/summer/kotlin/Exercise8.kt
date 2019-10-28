@@ -20,5 +20,3 @@ fun main() {
     }
     print("Co $count so thuan nghich co 6 chu so")
 }
-
-

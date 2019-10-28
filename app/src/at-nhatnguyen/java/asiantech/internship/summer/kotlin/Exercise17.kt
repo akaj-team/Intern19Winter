@@ -1,5 +1,7 @@
 package asiantech.internship.summer.kotlin
+
 import java.util.Scanner
+
 private fun inputFloat(): Float {
     val input = Scanner(System.`in`)
     var check = false
@@ -33,14 +35,16 @@ private fun minFloat(a: FloatArray, n: Int): Int {
 private fun maxFloat(a: FloatArray, n: Int): Float {
     var max = a[0]
     for (j in 0 until n) {
-        if (max < a[j]) max = a[j]
+        if (max < a[j]) {
+            max = a[j]
+        }
     }
     return max
 }
 
 fun main() {
-    val shareds = Shared()
-    val n: Int = shareds.input()
+    print("Nhap so luong phan tu :")
+    val n: Int = input()
     var i = 0
     val array = FloatArray(n)
     while (i < n) {
@@ -49,7 +53,7 @@ fun main() {
         i++
     }
     i = 0
-    println("Sap xep theo thu tu tang dan")
+    println("Sap xep theo thu tu tang dan :")
     while (i < n) {
         println(" " + array[minFloat(array, n)])
         array[minFloat(array, n)] = maxFloat(array, n)

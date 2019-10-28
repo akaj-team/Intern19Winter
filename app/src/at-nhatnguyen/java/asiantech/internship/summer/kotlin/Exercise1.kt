@@ -1,4 +1,5 @@
 package asiantech.internship.summer.kotlin
+
 import java.util.*
 
 fun main() {
@@ -10,14 +11,11 @@ fun main() {
     print("UCLN la :" + findGreatestCommonDivisor(a, b) + "\n")
     print("BCNN la :" + findLeastCommonMultiple(a, b))
 }
-private fun findGreatestCommonDivisor(a: Int, b: Int): Int {
-    return if (b == 0) {
-        a
-    } else {
-        findGreatestCommonDivisor(b, a % b)
 
-    }
+private fun findGreatestCommonDivisor(a: Int, b: Int): Int = if (b == 0) {
+    a
+} else {
+    findGreatestCommonDivisor(b, a % b)
 }
-private fun findLeastCommonMultiple(a: Int, b: Int): Int {
-    return a * b / findGreatestCommonDivisor(a, b)
-}
+
+private fun findLeastCommonMultiple(a: Int, b: Int) = a * b / findGreatestCommonDivisor(a, b)

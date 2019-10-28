@@ -7,13 +7,12 @@ private fun base(n: Int, base: Int) {
     else
         print(n % base)
 }
+
 fun main() {
-    val shared  =  Shared()
     print("Nhap n :")
-    val n = shared.input()
+    val n = input()
     print("Nhap vao co so can chuyen sang b :")
-    val b = shared.input()
+    val b = input()
     print("So $n chuyen sang co so $b thanh: ")
     base(n, b)
 }
-

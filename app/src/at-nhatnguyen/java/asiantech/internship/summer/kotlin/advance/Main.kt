@@ -43,7 +43,6 @@ object Main {
                     }
                 }
                 "5" -> ranks.forEach {
-
                     println("Học lực " + it.key + " có " + it.value.count() + " sinh viên")
                 }
                 "6" -> {

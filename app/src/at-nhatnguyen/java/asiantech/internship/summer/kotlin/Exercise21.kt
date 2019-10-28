@@ -11,25 +11,25 @@ private fun totalDigits(n: Int): Int {
 }
 
 private fun analysis(n: Int) {
-    val shareds = Shared()
     var a: Int = n
     var i = 2
     while (a > 1) {
-        if (shareds.isPrimeNumber(i)) {
+        if (isPrimeNumber(i)) {
             if (a % i == 0) {
                 print("$i.")
                 a /= i
-            } else
+            } else {
                 i++
-        } else
+            }
+        } else {
             i++
+        }
     }
 }
 
 fun main() {
-    val shareds = Shared()
     print("Nhap n")
-    val n = shareds.input()
+    val n = input()
     print("n= 1")
     analysis(n)
     println("Tong cac chu so cua " + n + " la: " + totalDigits(n))

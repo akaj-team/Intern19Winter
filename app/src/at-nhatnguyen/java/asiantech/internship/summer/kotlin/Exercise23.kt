@@ -1,27 +1,22 @@
 package asiantech.internship.summer.kotlin
 
 private fun primeNumber(n: Int) {
-    val shareds = Shared()
     var i = 1
     var count = 0
     println("Cac so nguyen to nho hon $n la: ")
     while (i < n) {
-        if (shareds.isPrimeNumber(i)) {
+        if (isPrimeNumber(i)) {
             print(" $i")
             count++
-
         }
         i++
-
     }
     println("\n Co $count so thoa man")
-
 }
 
 fun main() {
-    val shareds = Shared()
     print("Nhap n")
-    val n = shareds.input()
+    val n = input()
     primeNumber(n)
     val f = IntArray(n)
     f[0] = 1
@@ -32,11 +27,6 @@ fun main() {
         print(" " + f[i])
         i++
         f[i] = f[i - 1] + f[i - 2]
-
     }
     println("\n Co $i so thoa man")
-
 }
-
-
-

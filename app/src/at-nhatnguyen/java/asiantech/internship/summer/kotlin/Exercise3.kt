@@ -15,4 +15,3 @@ fun main() {
     }
     println("Tong cac so la:$sum")
 }
-

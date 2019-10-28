@@ -1,4 +1,5 @@
 package asiantech.internship.summer.kotlin
+
 import java.util.Arrays
 
 private fun max1(a: IntArray, n: Int): Int {
@@ -45,29 +46,30 @@ private fun add(a: IntArray, pt: Int) {
 }
 
 fun main() {
-    val shareds = Shared()
     print("Nhap n= ")
-    val n = shareds.input()
+    val n = input()
     val a = IntArray(n + 1)
     var i = 0
     while (i < n) {
         print("\n Nhap phan tu thu $i = ")
-        a[i] = shareds.input()
+        a[i] = input()
         i++
     }
     i = 0
     while (i < n) {
         if (a[i] == a[max2(
-                a,
-                n
-            )]
-        ) println(" Phan tu thu " + i + " lon thu 2 trong mang a[" + i + "]= " + a[i])
+                        a,
+                        n
+                )]
+        ) {
+            println(" Phan tu thu " + i + " lon thu 2 trong mang a[" + i + "]= " + a[i])
+        }
         i++
     }
     Arrays.sort(a)
     inArray(a, 1, n + 1)
     print("Nhap phan tu muon them pt= ")
-    val pt = shareds.input()
+    val pt = input()
     add(a, pt)
     inArray(a, 0, n)
 }

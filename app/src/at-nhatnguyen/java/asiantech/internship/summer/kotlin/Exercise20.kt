@@ -1,9 +1,8 @@
 package asiantech.internship.summer.kotlin
 
 fun main() {
-    val shareds = Shared()
     print("Nhap n= ")
-    val n = shareds.input()
+    val n = input()
     val f = IntArray(n)
     f[0] = 1
     f[1] = 1
@@ -11,7 +10,7 @@ fun main() {
     var count = 1
     print("Cac so Fibonanci nho hon $n la so nguyen to: \n 1")
     while (f[i] < n) {
-        if (shareds.isPrimeNumber(f[i])) {
+        if (isPrimeNumber(f[i])) {
             print(" " + f[i])
             count++
         }

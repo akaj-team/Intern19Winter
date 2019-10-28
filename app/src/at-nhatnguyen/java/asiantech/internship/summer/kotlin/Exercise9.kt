@@ -1,8 +1,9 @@
 package asiantech.internship.summer.kotlin
+
 fun main() {
-    val shareds = Shared()
+
     print("Nhap n")
-    val n = shareds.input()
+    val n = input()
     val array = IntArray(n)
     var tich: Int
     do {
@@ -20,8 +21,9 @@ fun main() {
                     array[j] = 0
                 }
                 break
-            } else
+            } else {
                 i--
+            }
         } while (i >= 0)
     } while (tich != 1)
 }

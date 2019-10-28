@@ -12,14 +12,13 @@ private fun totalDigits(n: Int): Int {
 
 
 fun main() {
-    val shareds = Shared()
     print("Nhap S= ")
-    val s = shareds.input()
+    val s = input()
     var i = 10000
     var count = 0
     println("Cac so nguyen to co tong cac chu so co tong bang $s la: ")
     while (i <= 99999) {
-        if (shareds.isPrimeNumber(i)) {
+        if (isPrimeNumber(i)) {
             if (totalDigits(i) == s) {
                 println(" $i")
                 count++

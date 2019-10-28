@@ -1,7 +1,9 @@
 package asiantech.internship.summer.kotlin
+
 import java.util.*
+
 fun main() {
-    val shareds = Shared()
+
     val scan = Scanner(System.`in`)
     print("Nhập n = ")
     val n = scan.nextInt()
@@ -15,12 +17,11 @@ fun main() {
         }
         var i = 3
         while (i < n) {
-            if (shareds.isPrimeNumber(i)) {
+            if (isPrimeNumber(i)) {
                 print(" $i")
             }
             i += 2
         }
     }
 }
-
 
