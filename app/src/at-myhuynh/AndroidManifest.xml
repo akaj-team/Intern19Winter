@@ -11,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".kotlinActivity.LoginActivity"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".kotlinActivity.EditProfileActivity" />
         <activity android:name=".kotlinActivity.SignUpActivity" />
         <activity
-            android:name=".kotlinActivity.LoginActivity"
+            android:name=".fragment.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
