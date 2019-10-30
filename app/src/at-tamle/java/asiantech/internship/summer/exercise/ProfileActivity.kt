@@ -25,20 +25,18 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-
-
-override fun onActivityResult(requestCode: Int, resultcode: Int, data: Intent?)
-{
-    super.onActivityResult(requestCode, resultcode, data)
-    when (requestCode){
-        CAMERA_REQUEST_CODE ->{
-            if (resultcode == Activity.RESULT_OK && data!=null){
-                imgProfile.setImageBitmap(data.extras?.get("data") as Bitmap)
-            }}
-        else -> {
-            Toast.makeText(this,"Unrecognized request code", Toast.LENGTH_SHORT).show()
+    override fun onActivityResult(requestCode: Int, resultcode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultcode, data)
+        when (requestCode) {
+            CAMERA_REQUEST_CODE -> {
+                if (resultcode == Activity.RESULT_OK && data != null) {
+                    imgProfile.setImageBitmap(data.extras?.get("data") as Bitmap)
+                }
+            }
+            else -> {
+                Toast.makeText(this, "Unrecognized request code", Toast.LENGTH_SHORT).show()
+            }
         }
     }
-}
 
 }
