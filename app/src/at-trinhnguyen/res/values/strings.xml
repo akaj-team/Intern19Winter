@@ -5,6 +5,7 @@
     <string name="textview_text_please_login_to_continue">Please login to continue.</string>
     <string name="textview_text_email_address">Email address</string>
     <string name="edittext_text_user_email_com">user@email.com</string>
+    <string name="edittext_text_cong_trinh_email_com">congtrinh@email.com</string>
     <string name="textview_text_password">Password</string>
     <string name="textview_text_forgot_password">Forgot password?</string>
     <string name="edittext_hint_password">●●●●●●●●</string>

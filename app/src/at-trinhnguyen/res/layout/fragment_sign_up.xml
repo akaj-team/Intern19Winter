@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="asiantech.internship.winter.layouteditor.EditProfileActivity">
+    tools:context="asiantech.internship.winter.layouteditor.SignUpFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,61 +25,63 @@
             app:layout_constraintGuide_end="@dimen/guide_line_right" />
 
         <ImageView
-            android:id="@+id/icLogo"
+            android:id="@+id/imgHeader"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_40dp"
+            android:layout_height="@dimen/img_header_height"
+            android:background="@drawable/img_header"
             android:scaleType="centerCrop"
-            app:layout_constraintLeft_toLeftOf="@id/guidelineLeft"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_arrow_left" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icLogo"
+            android:layout_width="@dimen/ic_logo_width"
+            android:layout_height="@dimen/ic_logo_height"
+            android:layout_marginTop="@dimen/margin_54dp"
+            android:src="@drawable/ic_logo"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/title1"
-            style="@style/CaptionGray"
+            style="@style/H4Left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/textview_text_back_to_profile"
-            app:layout_constraintBottom_toBottomOf="@id/icLogo"
-            app:layout_constraintLeft_toRightOf="@id/icLogo"
-            app:layout_constraintTop_toTopOf="@id/icLogo" />
+            android:paddingLeft="@dimen/padding_8dp"
+            android:paddingBottom="@dimen/padding_4dp"
+            android:text="@string/textview_text_scratch"
+            app:layout_constraintBottom_toBottomOf="@+id/icLogo"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/icLogo"
+            app:layout_constraintTop_toTopOf="@+id/icLogo" />
 
         <TextView
-            android:id="@+id/tvEditProfile"
             style="@style/H3BlackLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_4dp"
-            android:layout_marginTop="@dimen/margin_8dp"
+            android:layout_marginTop="@dimen/margin_36dp"
             android:fontFamily="@font/nunito_bold"
-            android:text="@string/textview_text_edit_profile"
+            android:text="@string/textview_text_start_from_scratch"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@id/icLogo" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgProfile"
-            android:layout_width="@dimen/img_profile_picture_width"
-            android:layout_height="@dimen/img_profile_picture_height"
-            android:layout_marginTop="@dimen/margin_16dp"
-            android:src="@drawable/img_profile"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/tvEditProfile" />
-
         <TextView
-            android:id="@+id/tvEditProfilePicture"
-            style="@style/TextButtonCenter"
+            android:id="@+id/tvPleaseLogin"
+            style="@style/ParagraphLeftTextGray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_4dp"
-            android:fontFamily="@font/nunito_bold"
-            android:text="@string/textview_text_edit_profile_picture"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:text="@string/textview_text_create_account_to_continue"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@id/imgProfile" />
-
+            app:layout_constraintTop_toBottomOf="@+id/imgHeader" />
 
         <TextView
             android:id="@+id/tvNickName"
@@ -93,18 +95,18 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/tvEditProfilePicture" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPleaseLogin" />
 
         <EditText
             android:id="@+id/edtFullName"
             style="@style/Lead"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_4dp"
+            android:layout_marginTop="@dimen/margin_8dp"
             android:fontFamily="@font/nunito_regular"
             android:hint="@string/edittext_hint_enter_name"
             android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:text="@string/edittext_text_nick_evans"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintHorizontal_bias="0.0"
@@ -112,119 +114,97 @@
             app:layout_constraintTop_toBottomOf="@+id/tvNickName" />
 
         <TextView
-            android:id="@+id/tvBio"
+            android:id="@+id/tvEmailAddress"
             style="@style/ParagraphLeftTextSubtle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_4dp"
-            android:layout_marginTop="@dimen/margin_8dp"
+            android:layout_marginTop="@dimen/margin_20dp"
             android:fontFamily="@font/nunito_regular"
-            android:text="@string/textview_text_bio"
+            android:text="@string/textview_text_email_address"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@+id/edtFullName" />
 
         <EditText
-            android:id="@+id/edtBio"
-            style="@style/Lead"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_4dp"
-            android:fontFamily="@font/nunito_regular"
-            android:hint="@string/edittext_hint_enter_bio"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:text="@string/edittext_text_potato_master"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/tvBio" />
-
-        <TextView
-            android:id="@+id/tvPrivateInformation"
-            style="@style/H5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_4dp"
-            android:layout_marginTop="@dimen/margin_24dp"
-            android:fontFamily="@font/nunito_bold"
-            android:text="@string/textview_text_private_information"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@id/edtBio" />
-
-        <TextView
-            android:id="@+id/tvEmail"
-            style="@style/ParagraphLeftTextSubtle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_4dp"
-            android:layout_marginTop="@dimen/margin_8dp"
-            android:fontFamily="@font/nunito_regular"
-            android:text="@string/textview_text_email"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/tvPrivateInformation" />
-
-        <EditText
             android:id="@+id/edtEmail"
             style="@style/Lead"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_4dp"
+            android:layout_marginTop="@dimen/margin_8dp"
             android:fontFamily="@font/nunito_regular"
             android:hint="@string/edittext_hint_enter_email"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
-            android:text="@string/edittext_text_user_email_com"
+            android:text="@string/edittext_text_cong_trinh_email_com"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEmailAddress" />
 
         <TextView
-            android:id="@+id/tvPhone"
+            android:id="@+id/tvPassword"
             style="@style/ParagraphLeftTextSubtle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_4dp"
-            android:layout_marginTop="@dimen/margin_8dp"
-            android:text="@string/textview_text_phone"
+            android:layout_marginTop="@dimen/margin_20dp"
+            android:text="@string/textview_text_password"
             app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
+
         <EditText
-            android:id="@+id/edtPhone"
+            android:id="@+id/edtPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_4dp"
-            android:hint="@string/edittext_hint_enter_phone"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:hint="@string/edittext_hint_password"
             android:importantForAutofill="no"
-            android:inputType="phone"
-            android:text="@string/edittext_text_1_234_567_89"
+            android:inputType="textPassword"
             app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
 
         <Button
-            android:id="@+id/btnSaveProfile"
+            android:id="@+id/btnSignUp"
             style="@style/TextButtonWhite"
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_height_54dp"
-            android:layout_marginTop="@dimen/margin_24dp"
+            android:layout_marginTop="@dimen/margin_20dp"
             android:background="@drawable/bg_btn_login"
-            android:text="@string/button_text_save_profile"
+            android:text="@string/button_text_create_account"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@id/edtPhone" />
+            app:layout_constraintTop_toBottomOf="@id/edtPassword" />
 
+        <TextView
+            android:id="@+id/tvAlreadyHaveAnAccount"
+            style="@style/ParagraphCenterTextSubtle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_24dp"
+            android:text="@string/textview_text_already_have_an_account"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
+
+        <TextView
+            android:id="@+id/tvLoginHere"
+            style="@style/TextButtonCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:gravity="center_horizontal"
+            android:text="@string/textview_text_login_here"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/tvAlreadyHaveAnAccount" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
