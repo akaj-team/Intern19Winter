@@ -72,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
         <TextView
-            android:id="@+id/tvEdit"
+            android:id="@+id/tvEditPicture"
             style="@style/TextButtonCenter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:text="@string/textview_text_full_name"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/tvEdit" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEditPicture" />
 
         <EditText
             android:id="@+id/edtFullName"

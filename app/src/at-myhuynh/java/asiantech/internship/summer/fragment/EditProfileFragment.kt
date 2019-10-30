@@ -1,13 +1,16 @@
 package asiantech.internship.summer.fragment
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import asiantech.internship.summer.R
-import kotlinx.android.synthetic.`at-myhuynh`.activity_edit_profile.edtEmail
-import kotlinx.android.synthetic.`at-myhuynh`.activity_edit_profile.edtFullName
+import kotlinx.android.synthetic.`at-myhuynh`.fragment_edit_profile.*
 
 class EditProfileFragment : Fragment() {
 
@@ -15,7 +18,8 @@ class EditProfileFragment : Fragment() {
     private var mEmail: String? = null
 
     companion object {
-        fun newInstance(fullName: String?, email: String) =
+        private const val REQUEST_IMAGE_CAPTURE = 1
+        fun newInstance(fullName: String? = "", email: String = "") =
                 EditProfileFragment().apply {
                     arguments = Bundle().apply {
                         putString(LoginFragment.ARG_USER_NAME, fullName)
@@ -38,9 +42,31 @@ class EditProfileFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         edtFullName.setText(mFullName)
         edtEmail.setText(mEmail)
+
+        tvEditPicture.setOnClickListener {
+            dispatchTakePictureIntent()
+        }
+    }
+
+    private fun dispatchTakePictureIntent() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            activity?.apply {
+                takePictureIntent.resolveActivity(packageManager)?.also {
+                    startActivityFromFragment(newInstance(),takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            imgAvatar.setImageBitmap(imageBitmap)
+        }
     }
 }
