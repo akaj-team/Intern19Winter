@@ -1,7 +1,11 @@
 package asiantech.internship.winter.layouteditor
 
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +19,7 @@ class EditProfileFragment : Fragment() {
         val instance = EditProfileFragment()
         const val ARG_EMAIL = "arg_email"
         const val ARG_PHONE = "arg_phone"
+        const val REQUEST_IMAGE_CAPTURE = 1
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +39,25 @@ class EditProfileFragment : Fragment() {
                     putString(ARG_PHONE, edtPhone.text.toString())
                 })
             }
+        }
+
+        //take photo from camera
+        tvEditProfilePicture.setOnClickListener {
+            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+                activity?.apply {
+                    takePictureIntent.resolveActivity(packageManager)?.also {
+                        startActivityFromFragment(instance, takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            imgProfile.setImageBitmap(imageBitmap)
         }
     }
 }
