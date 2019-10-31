@@ -11,7 +11,10 @@ import asiantech.internship.summer.R
 import kotlinx.android.synthetic.`at-tamle`.activity_profile.*
 
 class ProfileActivity : AppCompatActivity() {
-    val CAMERA_REQUEST_CODE = 0
+    companion object {
+        private val CAMERA_REQUEST_CODE = 0
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
