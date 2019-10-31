@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">VinhNguyen</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="back_to_profile">Back to profile</string>
+    <string name="edit_profile_picture">Edit Profile Picture</string>
+    <string name="bio">Bio</string>
+    <string name="private_information">Private Information</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="login">Login</string>
+    <string name="scratch">scratch</string>
+    <string name="start">Start</string>
+    <string name="from_scratch">from Scratch</string>
+    <string name="pleas_login_to_continue">Pleas login to continue.</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="new_to_scratch">New to Scratch</string>
+    <string name="create_account_here">Create Account Here</string>
+    <string name="login_here">Login Here</string>
+    <string name="save_profile">Save Profile</string>
+    <string name="edit_text_full_name">Nick Evans</string>
+    <string name="user_email_com">user@email.com</string>
+    <string name="nguyen_dang_vinh">Nguyen Dang Vinh</string>
+    <string name="android_intern">Android Intern</string>
+    <string name="tranhgio_email">tranhgio15@gmail.com</string>
+    <string name="phone_number">0905705981</string>
 </resources>
