@@ -18,8 +18,8 @@ class LoginFragment : Fragment() {
     var onClickListener: ((fragment: Fragment, isAddToBackTack: Boolean) -> Unit) = { _, _ -> }
 
     companion object {
-        const val ARG_USER_NAME = "user"
-        const val ARG_EMAIL = "email"
+        private const val ARG_USER_NAME = "user"
+        private const val ARG_EMAIL = "email"
 
         fun newInstance(fullName: String = "", email: String = "") =
                 LoginFragment().apply {

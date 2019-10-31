@@ -19,11 +19,13 @@ class EditProfileFragment : Fragment() {
 
     companion object {
         private const val REQUEST_IMAGE_CAPTURE = 1
+        private const val ARG_USER_NAME = "user"
+        private const val ARG_EMAIL = "email"
         fun newInstance(fullName: String? = "", email: String = "") =
                 EditProfileFragment().apply {
                     arguments = Bundle().apply {
-                        putString(LoginFragment.ARG_USER_NAME, fullName)
-                        putString(LoginFragment.ARG_EMAIL, email)
+                        putString(ARG_USER_NAME, fullName)
+                        putString(ARG_EMAIL, email)
                     }
 
                 }
@@ -32,8 +34,8 @@ class EditProfileFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            mFullName = it.getString(LoginFragment.ARG_USER_NAME)
-            mEmail = it.getString(LoginFragment.ARG_EMAIL)
+            mFullName = it.getString(ARG_USER_NAME)
+            mEmail = it.getString(ARG_EMAIL)
         }
     }
 
@@ -54,9 +56,9 @@ class EditProfileFragment : Fragment() {
 
     private fun dispatchTakePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            activity?.apply {
-                takePictureIntent.resolveActivity(packageManager)?.also {
-                    startActivityFromFragment(newInstance(),takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            activity?.packageManager?.let {
+                takePictureIntent.resolveActivity(it)?.also {
+                    activity?.startActivityFromFragment(this, takePictureIntent, REQUEST_IMAGE_CAPTURE)
                 }
             }
         }
