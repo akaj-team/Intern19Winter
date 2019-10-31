@@ -10,20 +10,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/guide_line_begin" />
+        app:layout_constraintGuide_begin="@dimen/guide_16dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/guide_line_end" />
+        app:layout_constraintGuide_end="@dimen/guide_16dp" />
 
 
     <ImageView
         android:id="@+id/imgPhoto"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/height_photo"
+        android:layout_height="@dimen/height_280dp"
         android:scaleType="centerCrop"
         android:fontFamily="@font/nunito_bold"
         android:src="@drawable/img_photo"
@@ -35,39 +35,39 @@
 
     <ImageView
         android:id="@+id/icLogo"
-        android:layout_width="@dimen/width_logo"
-        android:layout_height="@dimen/height_logo"
+        android:layout_width="@dimen/width_20dp"
+        android:layout_height="@dimen/height_30dp"
         android:src="@drawable/ic_logo"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="@dimen/margin_top_54dp"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toTopOf="parent"
 
-         />
+        />
 
     <TextView
         android:id="@+id/tvScratch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/padding_left"
+        android:paddingLeft="@dimen/padding_8dp"
         android:fontFamily="@font/nunito_bold"
         android:text="@string/textview_text_scratch"
         android:textColor="#464946"
-        android:textSize="@dimen/text_size_scratch"
+        android:textSize="@dimen/text_size_20sp"
         app:layout_constraintBottom_toBottomOf="@+id/icLogo"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/icLogo"
         app:layout_constraintTop_toTopOf="@+id/icLogo"
-/>
+        />
     <TextView
         android:id="@+id/tvWelcome"
         style="@style/H3BlackLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left_welcome"
-        android:layout_marginTop="@dimen/margin_top_welcome"
+        android:layout_marginLeft="@dimen/margin_left_4dp"
+        android:layout_marginTop="@dimen/margin_top_38dp"
         android:text="@string/textview_text_welcome_back"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
@@ -79,8 +79,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nunito_regular"
-        android:layout_marginLeft="@dimen/margin_left_continute"
-        android:layout_marginTop="@dimen/margin_top_continute"
+        android:layout_marginLeft="@dimen/margin_left_4dp"
+        android:layout_marginTop="@dimen/margin_top_16dp"
         android:text="@string/textview_text_please_login_to_continue"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
@@ -91,8 +91,8 @@
         style="@style/ParagraphLeftTextSubtle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left_email"
-        android:layout_marginTop="@dimen/margin_top_email"
+        android:layout_marginLeft="@dimen/margin_left_4dp"
+        android:layout_marginTop="@dimen/margin_top_40dp"
         android:fontFamily="@font/nunito_regular"
         android:text="@string/textview_text_email_address"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
@@ -103,9 +103,9 @@
     <EditText
         android:id="@+id/edtEmail"
         style="@style/Lead"
-        android:layout_width="@dimen/width_edtemail"
+        android:layout_width="@dimen/width_0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_top_edt_email"
+        android:layout_marginTop="@dimen/margin_top_8dp"
         android:hint="@string/edittext_hint_enter_email"
         android:inputType="textEmailAddress"
         android:importantForAutofill="no"
@@ -115,17 +115,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail"
-         />
+        />
     <TextView
         android:id="@+id/tvPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left_tv_password"
-        android:layout_marginTop="@dimen/margin_top_tv_password"
+        android:layout_marginLeft="@dimen/margin_left_4dp"
+        android:layout_marginTop="@dimen/margin_top_20dp"
         android:text="@string/textview_text_password"
         android:fontFamily="@font/helvetica"
         android:textColor="@color/primary_tv_password"
-        android:textSize="@dimen/size_tv_password"
+        android:textSize="@dimen/text_size_14sp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -144,31 +144,31 @@
 
     <EditText
         android:id="@+id/edtPassword"
-        android:layout_width="@dimen/width_edt_password"
+        android:layout_width="@dimen/width_0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_top__edt_password"
+        android:layout_marginTop="@dimen/margin_top_8dp"
         android:importantForAutofill="no"
         android:text="@string/edittext_hint_password"
         android:hint="@string/edittext_hint_password"
         android:fontFamily="@font/helvetica"
         android:inputType="textPassword"
-        android:lineSpacingExtra="@dimen/spacing_extra_edt_password"
+        android:lineSpacingExtra="1.5sp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/tvPassword"
-         />
+        />
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="@dimen/width_btn_login"
-        android:layout_height="@dimen/height_btn_login"
-        android:layout_marginTop="@dimen/margin_top_btn_login"
+        android:layout_width="@dimen/width_0dp"
+        android:layout_height="@dimen/height_54dp"
+        android:layout_marginTop="@dimen/margin_top_20dp"
         android:background="@drawable/btn_line"
         android:text="@string/button_text_login"
         android:textAllCaps="false"
         android:textColor="@color/pimary_btn"
         android:fontFamily="@font/helvetica"
-        android:textSize="@dimen/size_btn_login"
+        android:textSize="@dimen/text_size_16sp"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@id/edtPassword" />
@@ -177,7 +177,7 @@
         style="@style/ParagraphCenterTextSubtle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/margin_top_24dp"
         android:text="@string/textview_text_new_to_scratch"
         android:fontFamily="@font/nunito_regular"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
@@ -188,16 +188,15 @@
         android:id="@+id/tvAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/margin_top_4dp"
         android:gravity="center_horizontal"
         android:letterSpacing="0.02"
         android:text="@string/textview_text_create_account_here"
         android:textColor="@color/pimary_account"
-        android:textSize="@dimen/size_account"
+        android:textSize="@dimen/text_size_16sp"
         android:fontFamily="@font/helvetica"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/tvNew" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
