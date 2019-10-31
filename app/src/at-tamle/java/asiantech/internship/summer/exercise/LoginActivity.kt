@@ -1,12 +1,13 @@
-package asiantech.internship.summer.layouteditor
+package asiantech.internship.summer.exercise
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import asiantech.internship.summer.R
 
-class CreateAccountActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_account)
+        setContentView(R.layout.activity_login)
     }
 }
