@@ -71,3 +71,10 @@ dependencies {
     apply from: "../ci-java.gradle"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+repositories {
+    mavenCentral()
+}
+repositories {
+    mavenCentral()
+
+}

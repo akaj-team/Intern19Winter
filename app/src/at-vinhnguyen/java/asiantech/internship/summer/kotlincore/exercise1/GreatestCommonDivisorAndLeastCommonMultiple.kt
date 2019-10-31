@@ -1,55 +1,51 @@
 package asiantech.internship.summer.kotlincore.exercise1
 
-import inputIntNumber
+import asiantech.internship.summer.kotlincore.inputIntNumber
 
 object GreatestCommonDivisorAndLeastCommonMultiple {
-  @JvmStatic
-  fun main(args: Array<String>) {
-    println("Nhap vao a: ")
-    val a = inputIntNumber()
-    println("Nhap vao b: ")
-    val b = inputIntNumber()
-    println("Uoc chung lon nhat: \n" + findGreatestCommonDivisor(
-        a, b))
-    println("Boi chung nho nhat: \n" + findLeastCommonMultiple(
-        a, b))
-  }
 
-  private fun findGreatestCommonDivisor(a: Int, b: Int): Int {
-    var a = a
-    var b = b
-    if (a == 0 || b == 0) {
-      return a + b
+    @JvmStatic
+    fun main(args: Array<String>) {
+        println("Nhap vao so dau tien: ")
+        val number1 = inputIntNumber()
+        println("Nhap vao so thu hai: ")
+        val number2 = inputIntNumber()
+        println("Uoc chung lon nhat: \n" + findGreatestCommonDivisor(
+                number1, number2))
+        println("Boi chung nho nhat: \n" + findLeastCommonMultiple(
+                number1, number2))
     }
-    while (a != b) {
-      if (a > b) {
-        a -= b
-      } else {
-        b -= a
-      }
-    }
-    return a
-  }
 
-  private fun findLeastCommonMultiple(a: Int, b: Int): Int {
-    val max: Int
-    var bcnn = 1
-    if (a == 0 || b == 0) {
-      println("$a va $b khong co boi chung nho nhat")
+    private fun findGreatestCommonDivisor(a: Int, b: Int): Int {
+        var number1 = a
+        var number2 = b
+        if (number1 == 0 || number2 == 0) {
+            return number1 + number2
+        }
+        while (number1 != number2) {
+            if (number1 > number2) {
+                number1 -= number2
+            } else {
+                number2 -= number1
+            }
+        }
+        return number1
     }
-    if (a > b) {
-      max = a
-    } else {
-      max = b
+
+    private fun findLeastCommonMultiple(a: Int, b: Int): Int {
+        val max: Int = if (a > b) a else b
+        val bcnn: Int
+        if (a == 0 || b == 0) {
+            println("$a va $b khong co boi chung nho nhat")
+        }
+        var i = max
+        while (true) {
+            if (i % a == 0 && i % b == 0) {
+                bcnn = i
+                break
+            }
+            i += max
+        }
+        return bcnn
     }
-    var i = max
-    while (true) {
-      if (i % a == 0 && i % b == 0) {
-        bcnn = i
-        break
-      }
-      i += max
-    }
-    return bcnn
-  }
 }
