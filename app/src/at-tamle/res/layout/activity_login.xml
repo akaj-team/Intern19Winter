@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="asiantech.internship.summer.exercise.LoginActivity">
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"
         android:layout_width="wrap_content"
@@ -24,21 +25,20 @@
         android:id="@+id/imgPhoto"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/height_280dp"
-        android:scaleType="centerCrop"
         android:fontFamily="@font/nunito_bold"
+        android:scaleType="centerCrop"
         android:src="@drawable/img_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/icLogo"
         android:layout_width="@dimen/width_20dp"
         android:layout_height="@dimen/height_30dp"
-        android:src="@drawable/ic_logo"
         android:layout_marginTop="@dimen/margin_top_54dp"
+        android:src="@drawable/ic_logo"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
@@ -50,8 +50,8 @@
         android:id="@+id/tvScratch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/padding_8dp"
         android:fontFamily="@font/nunito_bold"
+        android:paddingLeft="@dimen/padding_8dp"
         android:text="@string/textview_text_scratch"
         android:textColor="#464946"
         android:textSize="@dimen/text_size_20sp"
@@ -59,8 +59,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/icLogo"
-        app:layout_constraintTop_toTopOf="@+id/icLogo"
-        />
+        app:layout_constraintTop_toTopOf="@+id/icLogo" />
+
     <TextView
         android:id="@+id/tvWelcome"
         style="@style/H3BlackLeft"
@@ -73,19 +73,21 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@id/icLogo" />
+
     <TextView
         android:id="@+id/tvContinute"
         style="@style/ParagraphLeftTextGray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_regular"
         android:layout_marginLeft="@dimen/margin_left_4dp"
         android:layout_marginTop="@dimen/margin_top_16dp"
+        android:fontFamily="@font/nunito_regular"
         android:text="@string/textview_text_please_login_to_continue"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/imgPhoto" />
+
     <TextView
         android:id="@+id/tvEmail"
         style="@style/ParagraphLeftTextSubtle"
@@ -106,36 +108,37 @@
         android:layout_width="@dimen/width_0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_top_8dp"
-        android:hint="@string/edittext_hint_enter_email"
-        android:inputType="textEmailAddress"
-        android:importantForAutofill="no"
         android:fontFamily="@font/nunito_regular"
+        android:hint="@string/edittext_hint_enter_email"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
         android:text="@string/edittext_text_user_email_com"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmail"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
     <TextView
         android:id="@+id/tvPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left_4dp"
         android:layout_marginTop="@dimen/margin_top_20dp"
-        android:text="@string/textview_text_password"
         android:fontFamily="@font/helvetica"
+        android:text="@string/textview_text_password"
         android:textColor="@color/primary_tv_password"
         android:textSize="@dimen/text_size_14sp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+
     <TextView
         android:id="@+id/tvForgot"
         style="@style/ParagraphLeftTextGray"
         android:layout_width="wrap_content"
-        android:fontFamily="@font/helvetica"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/helvetica"
         android:text="@string/textview_text_forgot_password"
         app:layout_constraintBottom_toBottomOf="@+id/tvPassword"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
@@ -147,39 +150,40 @@
         android:layout_width="@dimen/width_0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_top_8dp"
-        android:importantForAutofill="no"
-        android:text="@string/edittext_hint_password"
-        android:hint="@string/edittext_hint_password"
         android:fontFamily="@font/helvetica"
+        android:hint="@string/edittext_hint_password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         android:lineSpacingExtra="1.5sp"
+        android:text="@string/edittext_hint_password"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/tvPassword"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="@dimen/width_0dp"
         android:layout_height="@dimen/height_54dp"
         android:layout_marginTop="@dimen/margin_top_20dp"
         android:background="@drawable/btn_line"
+        android:fontFamily="@font/helvetica"
         android:text="@string/button_text_login"
         android:textAllCaps="false"
         android:textColor="@color/pimary_btn"
-        android:fontFamily="@font/helvetica"
         android:textSize="@dimen/text_size_16sp"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@id/edtPassword" />
+
     <TextView
         android:id="@+id/tvNew"
         style="@style/ParagraphCenterTextSubtle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_top_24dp"
-        android:text="@string/textview_text_new_to_scratch"
         android:fontFamily="@font/nunito_regular"
+        android:text="@string/textview_text_new_to_scratch"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
@@ -189,14 +193,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_top_4dp"
+        android:fontFamily="@font/helvetica"
         android:gravity="center_horizontal"
         android:letterSpacing="0.02"
         android:text="@string/textview_text_create_account_here"
         android:textColor="@color/pimary_account"
         android:textSize="@dimen/text_size_16sp"
-        android:fontFamily="@font/helvetica"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/tvNew" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
