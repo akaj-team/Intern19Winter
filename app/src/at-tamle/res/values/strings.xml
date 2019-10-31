@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">TamLe</string>
+    <string name="textview_text_scratch">scratch</string>
+    <string name="textview_text_start_scratch"> Start\nfrom Scratch</string>
+    <string name="textview_text_welcome_back">Welcome Back!</string>
+    <string name="textview_text_please_login_to_continue">Please login to continue.</string>
+    <string name="textview_text_email_address">Email address</string>
+    <string name="edittext_text_user_email_com">user@email.com</string>
+    <string name="textview_text_password">Password</string>
+    <string name="textview_text_forgot_password">Forgot password?</string>
+    <string name="edittext_hint_password">●●●●●●●●</string>
+    <string name="button_text_login">Login</string>
+    <string name="textview_text_new_to_scratch">New to Scratch?</string>
+    <string name="textview_text_create_account_here">Create Account Here</string>
+    <string name="textview_text_create_account_to_continue">Create account to continue.</string>
+    <string name="textview_text_full_name">Full Name</string>
+    <string name="edittext_text_nick_evans">Nick Evans</string>
+    <string name="textview_text_already_have_an_account">Already have an account?</string>
+    <string name="textview_text_login_here">Login Here</string>
+    <string name="textview_text_back_to_profile">Back to Profile</string>
+    <string name="textview_text_edit_profile">Edit Profile</string>
+    <string name="textview_text_edit_profile_picture">Edit Profile Picture</string>
+    <string name="textview_text_bio">Bio</string>
+    <string name="edittext_text_potato_master">Potato Master</string>
+    <string name="textview_text_private_information">Private Information</string>
+    <string name="textview_text_phone">Phone</string>
+    <string name="edittext_text_1_234_567_89">+1 234 567 89</string>
+    <string name="button_text_save_profile">Save Profile</string>
+    <string name="textview_text_email">Email</string>
+    <string name="edittext_hint_enter_name">Enter name</string>
+    <string name="edittext_hint_enter_bio">Enter Bio</string>
+    <string name="edittext_hint_enter_email">Enter email</string>
+    <string name="edittext_hint_enter_phone">Enter phone</string>
+    <string name="button_text_create_account">Create Account</string>
 </resources>
+
