@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:src="@drawable/img_profile"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvNickName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_12dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size_16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
+        app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@+id/imgAvatar"
+        tools:text="sayabaaaa" />
+
+    <ImageView
+        android:id="@+id/imgTimeLine"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:src="@drawable/img01"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgAvatar" />
+
+    <ImageView
+        android:id="@+id/imgLike"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="@dimen/padding_4dp"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/imgTimeLine"
+        app:srcCompat="@drawable/ic_favorite_border" />
+
+    <ImageView
+        android:id="@+id/imgChat"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="@dimen/margin_8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgLike"
+        app:layout_constraintStart_toEndOf="@+id/imgLike"
+        app:layout_constraintTop_toTopOf="@+id/imgLike"
+        app:srcCompat="@drawable/ic_chat" />
+
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="@dimen/margin_8dp"
+        app:layout_constraintBottom_toBottomOf="@id/imgLike"
+        app:layout_constraintStart_toEndOf="@id/imgChat"
+        app:layout_constraintTop_toTopOf="@id/imgLike"
+        app:srcCompat="@drawable/ic_send" />
+
+    <View
+        android:id="@+id/viewLine"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginRight="@dimen/margin_16dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/imgLike" />
+
+    <ImageView
+        android:id="@+id/imgFavoriteFilled"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginLeft="@dimen/margin_4dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/viewLine"
+        app:srcCompat="@drawable/ic_favorite_filled" />
+
+    <TextView
+        app:layout_constraintTop_toTopOf="@id/imgFavoriteFilled"
+        android:id="@+id/tvCountLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_4dp"
+        android:text="12"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size_16sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgFavoriteFilled"
+        app:layout_constraintStart_toEndOf="@id/imgFavoriteFilled" />
+
+    <TextView
+        app:layout_constraintTop_toTopOf="@id/imgFavoriteFilled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_4dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size_16sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgFavoriteFilled"
+        app:layout_constraintStart_toEndOf="@id/tvCountLike"
+        android:text="likes" />
+
+    <TextView
+        android:id="@+id/tvNickName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_4dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size_16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/imgFavoriteFilled"
+        tools:text="sayabaaaa" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size_16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNickName2"
+        app:layout_constraintStart_toEndOf="@id/tvNickName2"
+        android:text="ゴ一ヤ一チャンプ一" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_4dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size_16sp"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvNickName2"
+        android:text="マグロのお刺身\nマグ囗た 〈 さん貰えたから豪華におさ しみ一" />
+
+    <View
+        android:id="@+id/viewEndLine"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStatus" />
+</androidx.constraintlayout.widget.ConstraintLayout>

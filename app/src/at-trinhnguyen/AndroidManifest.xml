@@ -15,7 +15,8 @@
 
         <activity android:name="asiantech.internship.winter.layouteditor.EditProfileActivity" />
         <activity android:name="asiantech.internship.winter.layouteditor.SignUpActivity" />
-        <activity android:name="asiantech.internship.winter.layouteditor.LoginActivity">
+        <activity android:name="asiantech.internship.winter.layouteditor.LoginActivity" />
+        <activity android:name="asiantech.internship.winter.recyclerview.TimeLineActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
