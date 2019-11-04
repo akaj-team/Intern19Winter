@@ -27,15 +27,22 @@
 
         <TextView
             android:id="@+id/tvStart"
-            style="@style/TextViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_28"
             android:text="@string/start"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/sp_24"
             app:layout_constraintStart_toStartOf="@id/tvScratch"
             app:layout_constraintTop_toBottomOf="@id/tvScratch" />
 
         <TextView
             android:id="@+id/tvFromScratch"
-            style="@style/TextViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/from_scratch"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/dp_24"
             app:layout_constraintStart_toStartOf="@id/tvStart"
             app:layout_constraintTop_toBottomOf="@id/tvStart" />
 
@@ -49,39 +56,48 @@
             app:layout_constraintTop_toBottomOf="@id/imgPanel" />
 
         <TextView
-            android:id="@+id/tvEmailAddress"
+            android:id="@+id/tvFullName"
             style="@style/TextViewLabel"
-            android:text="@string/email_address"
+            android:labelFor="@id/edtFullName"
+            android:text="@string/full_name"
             app:layout_constraintStart_toStartOf="@id/tvCreateAccount"
             app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
+
+        <EditText
+            android:id="@+id/edtFullName"
+            android:hint="@string/full_name"
+            style="@style/EditText"
+            app:layout_constraintStart_toStartOf="@id/tvFullName"
+            app:layout_constraintTop_toBottomOf="@+id/tvFullName"
+            tools:ignore="Autofill,LabelFor"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tvEmailAddress"
+            style="@style/TextViewLabel"
+            android:labelFor="@id/edtEmailAddress"
+            android:text="@string/email_address"
+            app:layout_constraintStart_toStartOf="@id/edtFullName"
+            app:layout_constraintTop_toBottomOf="@+id/edtFullName" />
 
         <EditText
             android:id="@+id/edtEmailAddress"
             style="@style/EditText"
             android:hint="@string/user_email_com"
-            android:inputType="textEmailAddress"
             app:layout_constraintStart_toStartOf="@id/tvEmailAddress"
             app:layout_constraintTop_toBottomOf="@+id/tvEmailAddress"
-            tools:ignore="Autofill" />
+            tools:ignore="Autofill,LabelFor"
+            android:inputType="textEmailAddress" />
 
         <TextView
             android:id="@+id/tvPassword"
             style="@style/TextViewLabel"
+            android:labelFor="@id/edtPassword"
             android:text="@string/password"
             app:layout_constraintStart_toStartOf="@id/edtEmailAddress"
             app:layout_constraintTop_toBottomOf="@+id/edtEmailAddress" />
 
-        <TextView
-            android:id="@+id/tvForgotPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dp_28"
-            android:text="@string/forgot_password"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvPassword" />
-
         <EditText
-            android:hint="@string/password"
             android:id="@+id/edtPassword"
             style="@style/EditText"
             android:inputType="textPassword"
@@ -90,9 +106,9 @@
             tools:ignore="Autofill" />
 
         <Button
-            android:id="@+id/btnSaveProfile"
+            android:id="@+id/btnCreateAccount"
             style="@style/ButtonSubmit"
-            android:text="@string/login"
+            android:text="@string/create_account"
             app:layout_constraintEnd_toEndOf="@id/edtPassword"
             app:layout_constraintStart_toStartOf="@id/edtPassword"
             app:layout_constraintTop_toBottomOf="@id/edtPassword" />
@@ -105,11 +121,12 @@
             android:text="@string/new_to_scratch"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnSaveProfile" />
+            app:layout_constraintTop_toBottomOf="@id/btnCreateAccount" />
 
         <TextView
+            android:id="@+id/tv_loginHere"
             style="@style/TextViewEndOfPage"
-            android:text="@string/create_account_here"
+            android:text="@string/login_here"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNewToScratch" />
