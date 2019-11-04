@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="asiantech.internship.summer">
 
+    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -11,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".kotlinActivity.EditProfileActivity"/>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".kotlinActivity.LoginActivity"
@@ -19,8 +23,8 @@
             android:name=".kotlinActivity.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".kotlinActivity.EditProfileActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".recyclerview.TimelineActivity"
+            android:theme="@style/TimelineNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +33,4 @@
         </activity>
     </application>
 
-    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
-    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>
