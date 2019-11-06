@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +6,7 @@
     android:fillViewport="true"
     android:scrollbars="none"
     tools:context="asiantech.internship.summer.kotlinActivity.LoginActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -104,9 +104,9 @@
 
         <EditText
             android:id="@+id/edtFullName"
+            style="@style/EditTextStyleNunito"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyleNunito"
             android:hint="@string/edittext_text_full_name_hint"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -128,15 +128,15 @@
 
         <EditText
             android:id="@+id/edtEmail"
+            style="@style/EditTextStyleNunito"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            style="@style/EditTextStyleNunito"
             android:hint="@string/edittext_text_email_hint"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@+id/tvEmail"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="Autofill,LabelFor,TextFields" />
 
@@ -144,32 +144,32 @@
             android:id="@+id/tvPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/edtEmail"
-            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            android:text="@string/textview_text_password"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.07"
-            android:text="@string/textview_text_password"/>
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/edtEmail"
+            app:layout_constraintVertical_bias="0.07" />
 
         <EditText
             android:id="@+id/edtPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/tvPassword"
-            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@+id/tvPassword"
             app:layout_constraintVertical_bias="0.0"
-            android:inputType="textPassword"
             tools:ignore="Autofill,LabelFor" />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnSignUp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_around_button"
             android:text="@string/button_text_signup"
-            android:textColor="@color/colorWhite"
             android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -184,7 +184,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+            app:layout_constraintTop_toBottomOf="@+id/btnSignUp"
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
@@ -197,7 +197,7 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@+id/tvHaveAccount"
-            app:layout_constraintVertical_bias="1" />
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

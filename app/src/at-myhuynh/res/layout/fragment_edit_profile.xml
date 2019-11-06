@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -36,7 +35,7 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.05"/>
+            app:layout_constraintVertical_bias="0.04"/>
 
         <TextView
             android:id="@+id/tvBack"
@@ -65,8 +64,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgAvatar"
-            android:layout_width="@dimen/img_width_120"
-            android:layout_height="@dimen/img_height_120"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_man"
             app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
