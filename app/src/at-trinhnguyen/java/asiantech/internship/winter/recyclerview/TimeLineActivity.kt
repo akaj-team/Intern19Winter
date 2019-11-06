@@ -1,18 +1,81 @@
 package asiantech.internship.winter.recyclerview
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 import kotlinx.android.synthetic.`at-trinhnguyen`.activity_time_line.*
+import java.util.*
 
 class TimeLineActivity : AppCompatActivity() {
+    private lateinit var mTimeLineItems: MutableList<TimeLineItem?>
+    private lateinit var mTimeLineItemSrcs: MutableList<TimeLineItem?>
+    private lateinit var mTimeLineAdapter: TimeLineAdapter
+    private val mVisibleThreshold = 10
+    private var mIsLoading = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_time_line)
 
-        val timeLineItems = mutableListOf<TimeLineItem>()
-        timeLineItems.apply {
+        initData()
+        initAdapter()
+        initScrollListener()
+    }
+
+    private fun initAdapter() {
+        mTimeLineItemSrcs.shuffle()
+        mTimeLineItems = mTimeLineItemSrcs.subList(0, mVisibleThreshold)
+        mTimeLineAdapter = TimeLineAdapter(mTimeLineItems)
+        recyclerViewTimeLine.adapter = mTimeLineAdapter
+    }
+
+    private fun initScrollListener() {
+        recyclerViewTimeLine.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val lastVisibleItem = linearLayoutManager.findLastCompletelyVisibleItemPosition()
+
+                if (!mIsLoading) {
+                    if (lastVisibleItem == mTimeLineItems.size - 1) {
+                        //bottom of list!
+                        loadMore()
+                        mIsLoading = true
+                    }
+                }
+            }
+        })
+    }
+
+    private fun loadMore() {
+        mTimeLineItems.add(null)
+        mTimeLineAdapter.notifyItemInserted(mTimeLineItems.size - 1)
+
+        Handler().postDelayed({
+            mTimeLineItems.removeAt(mTimeLineItems.size - 1)
+            val scrollPosition = mTimeLineItems.size
+            mTimeLineAdapter.notifyItemRemoved(scrollPosition)
+
+            var currentSize = scrollPosition
+            val nextLimit = currentSize + mVisibleThreshold
+
+            while (currentSize < nextLimit) {
+                mTimeLineItems.add(mTimeLineItemSrcs[Random().nextInt(mTimeLineItemSrcs.size)])
+                currentSize++
+            }
+
+            mTimeLineAdapter.notifyDataSetChanged()
+            mIsLoading = false
+        }, 2000)
+    }
+
+    private fun initData() {
+        mTimeLineItemSrcs = mutableListOf()
+        mTimeLineItemSrcs.apply {
             add(TimeLineItem("7-Ingredient Chili", R.drawable.img01, R.drawable.img_profile, 17, false))
             add(TimeLineItem("All-American Sloppy Joes", R.drawable.img02, R.drawable.img_profile, 15, true))
             add(TimeLineItem("Balthazar Bloody Mary", R.drawable.img03, R.drawable.img_profile, 18, true))
@@ -38,8 +101,5 @@ class TimeLineActivity : AppCompatActivity() {
             add(TimeLineItem("Italian Pasta E Fagioli", R.drawable.img23, R.drawable.img_profile, 26, true))
             add(TimeLineItem("Italian-Style Rice ", R.drawable.img24, R.drawable.img_profile, 16, false))
         }
-
-        timeLineItems.shuffle()
-        recyclerViewTimeLine.adapter = TimeLineAdapter(timeLineItems.subList(0, 10))
     }
 }

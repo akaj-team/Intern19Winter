@@ -32,4 +32,7 @@
     <string name="edittext_hint_enter_phone">Enter phone</string>
     <string name="button_text_create_account">Create Account</string>
     <string name="textview_text_start_from_scratch">Start \nfrom Scratch</string>
+    <string name="textview_likes">likes</string>
+    <string name="textview_status">ゴ一ヤ一チャンプ一</string>
+    <string name="textview_status_2">マグロのお刺身 \nマグ囗た 〈 さん貰えたから豪華におさ しみ一</string>
 </resources>

@@ -9,19 +9,33 @@ import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 import com.bumptech.glide.Glide
 
-class TimeLineAdapter(private val timeLineItems: MutableList<TimeLineItem>) :
-        RecyclerView.Adapter<TimeLineAdapter.TimeLineViewHolder>() {
+class TimeLineAdapter(private val timeLineItems: MutableList<TimeLineItem?>) :
+        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    companion object {
+        private const val VIEW_TYPE_ITEM = 0
+        private const val VIEW_TYPE_LOADING = 1
+    }
 
     override fun getItemCount() = timeLineItems.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TimeLineViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list_time_line, parent, false)
-        return TimeLineViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == VIEW_TYPE_ITEM) {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list_time_line, parent, false)
+            TimeLineViewHolder(view)
+        } else {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_progress_loading, parent, false)
+            LoadingViewHolder(view)
+        }
     }
 
-    override fun onBindViewHolder(holder: TimeLineViewHolder, position: Int) {
-        holder.onBindData(position)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is TimeLineViewHolder) {
+            holder.onBindData(position)
+        }
     }
+
+    inner class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     inner class TimeLineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -35,7 +49,7 @@ class TimeLineAdapter(private val timeLineItems: MutableList<TimeLineItem>) :
             val imgLike = itemView.findViewById<ImageView>(R.id.imgLike)
             val tvCountLike = itemView.findViewById<TextView>(R.id.tvCountLike)
 
-            timeLineItem.let {
+            timeLineItem?.let {
                 Glide.with(itemView).load(it.imgAvatar).circleCrop().into(imgAvatar)
                 Glide.with(itemView).load(it.imgTimeLine).into(imgTimeLine)
                 tvNickName.text = it.nickname
@@ -61,5 +75,10 @@ class TimeLineAdapter(private val timeLineItems: MutableList<TimeLineItem>) :
                 }
             }
         }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (timeLineItems[position] == null) VIEW_TYPE_LOADING
+        else VIEW_TYPE_ITEM
     }
 }

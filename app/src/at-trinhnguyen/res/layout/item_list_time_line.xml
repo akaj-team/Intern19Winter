@@ -15,8 +15,8 @@
 
     <ImageView
         android:id="@+id/imgAvatar"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="@dimen/margin_8dp"
         android:src="@drawable/img_profile"
         app:layout_constraintStart_toStartOf="@id/guideline"
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/margin_8dp"
-        android:src="@drawable/img01"
+        tools:src="@drawable/img01"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -102,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_4dp"
-        android:text="12"
+        tools:text="12"
         android:textColor="@android:color/black"
         android:textSize="@dimen/text_size_16sp"
         app:layout_constraintBottom_toBottomOf="@id/imgFavoriteFilled"
@@ -117,7 +117,7 @@
         android:textSize="@dimen/text_size_16sp"
         app:layout_constraintBottom_toBottomOf="@id/imgFavoriteFilled"
         app:layout_constraintStart_toEndOf="@id/tvCountLike"
-        android:text="likes" />
+        android:text="@string/textview_likes" />
 
     <TextView
         android:id="@+id/tvNickName2"
@@ -140,7 +140,7 @@
         android:textSize="@dimen/text_size_16sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvNickName2"
         app:layout_constraintStart_toEndOf="@id/tvNickName2"
-        android:text="ゴ一ヤ一チャンプ一" />
+        android:text="@string/textview_status" />
 
     <TextView
         android:id="@+id/tvStatus"
@@ -151,7 +151,7 @@
         android:textSize="@dimen/text_size_16sp"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvNickName2"
-        android:text="マグロのお刺身\nマグ囗た 〈 さん貰えたから豪華におさ しみ一" />
+        android:text="@string/textview_status_2" />
 
     <View
         android:id="@+id/viewEndLine"
