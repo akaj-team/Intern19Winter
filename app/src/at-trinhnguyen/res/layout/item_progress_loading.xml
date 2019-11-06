@@ -13,5 +13,4 @@
         android:indeterminate="true"
         android:paddingLeft="@dimen/padding_8dp"
         android:paddingRight="@dimen/padding_8dp" />
-
 </LinearLayout>

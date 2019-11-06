@@ -11,19 +11,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        app:layout_constraintGuide_begin="@dimen/guide_line_16dp" />
 
     <ImageView
         android:id="@+id/imgAvatar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/img_avatar_width"
+        android:layout_height="@dimen/img_avatar_height"
         android:layout_marginTop="@dimen/margin_8dp"
         android:src="@drawable/img_profile"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvNickName"
+        android:id="@+id/tvNickNameTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_12dp"
@@ -40,26 +40,26 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/margin_8dp"
-        tools:src="@drawable/img01"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgAvatar" />
+        app:layout_constraintTop_toBottomOf="@+id/imgAvatar"
+        tools:src="@drawable/img01" />
 
     <ImageView
         android:id="@+id/imgLike"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="@dimen/padding_4dp"
+        android:layout_width="@dimen/ic_width_32dp"
+        android:layout_height="@dimen/ic_height_32dp"
+        android:layout_marginTop="@dimen/margin_4dp"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/imgTimeLine"
         app:srcCompat="@drawable/ic_favorite_border" />
 
     <ImageView
         android:id="@+id/imgChat"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/ic_width_32dp"
+        android:layout_height="@dimen/ic_height_32dp"
         android:layout_marginLeft="@dimen/margin_8dp"
         app:layout_constraintBottom_toBottomOf="@+id/imgLike"
         app:layout_constraintStart_toEndOf="@+id/imgLike"
@@ -67,8 +67,8 @@
         app:srcCompat="@drawable/ic_chat" />
 
     <ImageView
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/ic_width_32dp"
+        android:layout_height="@dimen/ic_height_32dp"
         android:layout_marginLeft="@dimen/margin_8dp"
         app:layout_constraintBottom_toBottomOf="@id/imgLike"
         app:layout_constraintStart_toEndOf="@id/imgChat"
@@ -78,7 +78,7 @@
     <View
         android:id="@+id/viewLine"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/view_height_1dp"
         android:layout_marginTop="@dimen/margin_8dp"
         android:layout_marginRight="@dimen/margin_16dp"
         android:background="@android:color/darker_gray"
@@ -88,8 +88,8 @@
 
     <ImageView
         android:id="@+id/imgFavoriteFilled"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="@dimen/ic_width_16dp"
+        android:layout_height="@dimen/ic_width_16dp"
         android:layout_marginLeft="@dimen/margin_4dp"
         android:layout_marginTop="@dimen/margin_16dp"
         app:layout_constraintStart_toStartOf="@id/guideline"
@@ -97,30 +97,30 @@
         app:srcCompat="@drawable/ic_favorite_filled" />
 
     <TextView
-        app:layout_constraintTop_toTopOf="@id/imgFavoriteFilled"
         android:id="@+id/tvCountLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_4dp"
-        tools:text="12"
         android:textColor="@android:color/black"
         android:textSize="@dimen/text_size_16sp"
         app:layout_constraintBottom_toBottomOf="@id/imgFavoriteFilled"
-        app:layout_constraintStart_toEndOf="@id/imgFavoriteFilled" />
+        app:layout_constraintStart_toEndOf="@id/imgFavoriteFilled"
+        app:layout_constraintTop_toTopOf="@id/imgFavoriteFilled"
+        tools:text="12" />
 
     <TextView
-        app:layout_constraintTop_toTopOf="@id/imgFavoriteFilled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_4dp"
+        android:text="@string/textview_likes"
         android:textColor="@android:color/black"
         android:textSize="@dimen/text_size_16sp"
         app:layout_constraintBottom_toBottomOf="@id/imgFavoriteFilled"
         app:layout_constraintStart_toEndOf="@id/tvCountLike"
-        android:text="@string/textview_likes" />
+        app:layout_constraintTop_toTopOf="@id/imgFavoriteFilled" />
 
     <TextView
-        android:id="@+id/tvNickName2"
+        android:id="@+id/tvNickName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_4dp"
@@ -135,28 +135,28 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="@dimen/margin_12dp"
+        android:text="@string/textview_status"
         android:textColor="@android:color/black"
         android:textSize="@dimen/text_size_16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvNickName2"
-        app:layout_constraintStart_toEndOf="@id/tvNickName2"
-        android:text="@string/textview_status" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvNickName"
+        app:layout_constraintStart_toEndOf="@id/tvNickName" />
 
     <TextView
         android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_4dp"
+        android:text="@string/textview_status_2"
         android:textColor="@android:color/black"
         android:textSize="@dimen/text_size_16sp"
         app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvNickName2"
-        android:text="@string/textview_status_2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNickName" />
 
     <View
         android:id="@+id/viewEndLine"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/view_height_4dp"
         android:layout_marginTop="@dimen/margin_16dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"

@@ -43,8 +43,8 @@ class TimeLineAdapter(private val timeLineItems: MutableList<TimeLineItem?>) :
             val timeLineItem = timeLineItems[position]
 
             val imgAvatar = itemView.findViewById<ImageView>(R.id.imgAvatar)
+            val tvNickNameTop = itemView.findViewById<TextView>(R.id.tvNickNameTop)
             val tvNickName = itemView.findViewById<TextView>(R.id.tvNickName)
-            val tvNickName2 = itemView.findViewById<TextView>(R.id.tvNickName2)
             val imgTimeLine = itemView.findViewById<ImageView>(R.id.imgTimeLine)
             val imgLike = itemView.findViewById<ImageView>(R.id.imgLike)
             val tvCountLike = itemView.findViewById<TextView>(R.id.tvCountLike)
@@ -52,8 +52,8 @@ class TimeLineAdapter(private val timeLineItems: MutableList<TimeLineItem?>) :
             timeLineItem?.let {
                 Glide.with(itemView).load(it.imgAvatar).circleCrop().into(imgAvatar)
                 Glide.with(itemView).load(it.imgTimeLine).into(imgTimeLine)
+                tvNickNameTop.text = it.nickname
                 tvNickName.text = it.nickname
-                tvNickName2.text = it.nickname
                 tvCountLike.text = it.countLike.toString()
                 if (it.isLiked) {
                     imgLike.setImageResource(R.drawable.ic_favorite_filled_red)
@@ -80,5 +80,15 @@ class TimeLineAdapter(private val timeLineItems: MutableList<TimeLineItem?>) :
     override fun getItemViewType(position: Int): Int {
         return if (timeLineItems[position] == null) VIEW_TYPE_LOADING
         else VIEW_TYPE_ITEM
+    }
+
+    fun clear() {
+        timeLineItems.clear()
+        notifyDataSetChanged()
+    }
+
+    fun addAll(list: List<TimeLineItem?>) {
+        timeLineItems.addAll(list)
+        notifyDataSetChanged()
     }
 }

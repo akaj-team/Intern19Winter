@@ -1,5 +1,6 @@
 package asiantech.internship.winter.recyclerview
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,25 @@ class TimeLineActivity : AppCompatActivity() {
         initData()
         initAdapter()
         initScrollListener()
+
+        swipeContainer.setOnRefreshListener {
+            Handler().postDelayed({
+                mTimeLineAdapter.clear()
+                mTimeLineAdapter.addAll(mTimeLineItemSrcs.apply {
+                    shuffle()
+                    subList(0, mVisibleThreshold)
+                })
+                swipeContainer.isRefreshing = false
+            }, 2000)
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            swipeContainer.setColorSchemeColors(
+                    resources.getColor(android.R.color.holo_red_dark, theme),
+                    resources.getColor(android.R.color.holo_green_dark, theme),
+                    resources.getColor(android.R.color.holo_blue_dark, theme)
+            )
+        }
     }
 
     private fun initAdapter() {
