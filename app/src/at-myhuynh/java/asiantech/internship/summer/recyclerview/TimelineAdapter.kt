@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 
-class TimelineAdapter(private val timeLines: MutableList<TimelineItem>) :
+class TimelineAdapter(private val mTimeLines: MutableList<TimelineItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var timelineOnClickListener: FavoriteOnClickListener? = null
@@ -21,7 +21,7 @@ class TimelineAdapter(private val timeLines: MutableList<TimelineItem>) :
     }
 
     init {
-        timeLineDisplay = timeLines.subList(0, mItemsDisplay)
+        timeLineDisplay = mTimeLines.subList(0, mItemsDisplay)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -46,7 +46,7 @@ class TimelineAdapter(private val timeLines: MutableList<TimelineItem>) :
         val item = timeLineDisplay[position]
         if (item.type == VIEW_TYPE_ITEM) {
             return VIEW_TYPE_ITEM
-        } else if (item.type == VIEW_TYPE_LOADING && mItemsDisplay != timeLines.size) {
+        } else if (item.type == VIEW_TYPE_LOADING && mItemsDisplay != mTimeLines.size) {
             return VIEW_TYPE_LOADING
         }
         throw Exception("Error, unknown view type")
@@ -68,13 +68,13 @@ class TimelineAdapter(private val timeLines: MutableList<TimelineItem>) :
     }
 
     fun loadMore(lastTimeLine: Int) {
-        mItemsDisplay = if (lastTimeLine + 10 < timeLines.size) {
+        mItemsDisplay = if (lastTimeLine + 10 < mTimeLines.size) {
             lastTimeLine + 10
         } else {
-            timeLines.size
+            mTimeLines.size
         }
 
-        timeLineDisplay = timeLines.subList(0, mItemsDisplay)
+        timeLineDisplay = mTimeLines.subList(0, mItemsDisplay)
         notifyDataSetChanged()
     }
 
@@ -105,7 +105,7 @@ class TimelineAdapter(private val timeLines: MutableList<TimelineItem>) :
     inner class TimelineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBindData(position: Int) {
             val imgAvatar: ImageView = itemView.findViewById(R.id.imgAvatar)
-            val tvName: TextView = itemView.findViewById(R.id.tvName)
+            val tvName = itemView.findViewById<TextView>(R.id.tvName)
             val imgPicture: ImageView = itemView.findViewById(R.id.imgPicture)
             val tvNumFavorite: TextView = itemView.findViewById(R.id.tvNumFavorite)
             val tvNickname: TextView = itemView.findViewById(R.id.tvNickName)

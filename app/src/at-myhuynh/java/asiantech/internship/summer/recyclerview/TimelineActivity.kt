@@ -12,8 +12,8 @@ import kotlin.random.Random
 
 class TimelineActivity : AppCompatActivity() {
 
-    private lateinit var timeLines: MutableList<TimelineItem>
-    private lateinit var timelineAdapter: TimelineAdapter
+    private lateinit var mTimeLines: MutableList<TimelineItem>
+    private lateinit var mTimelineAdapter: TimelineAdapter
     val linearLayoutManager = LinearLayoutManager(this)
 
     private val listImages = mutableListOf(R.drawable.img_food_1,
@@ -37,7 +37,7 @@ class TimelineActivity : AppCompatActivity() {
 
         swipeContainer.setOnRefreshListener {
             Handler().postDelayed({
-                timelineAdapter.reset()
+                mTimelineAdapter.reset()
                 setUpRV()
                 swipeContainer.isRefreshing = false
             }, 1000)
@@ -46,10 +46,10 @@ class TimelineActivity : AppCompatActivity() {
 
     private fun setUpRV() {
         initData()
-        timelineAdapter = TimelineAdapter(timeLines)
-        rvTimeline.adapter = timelineAdapter
-        setOnClickListener(timelineAdapter)
-        recyclerViewOnScroll(timelineAdapter)
+        mTimelineAdapter = TimelineAdapter(mTimeLines)
+        rvTimeline.adapter = mTimelineAdapter
+        setOnClickListener(mTimelineAdapter)
+        recyclerViewOnScroll(mTimelineAdapter)
     }
 
     private fun recyclerViewOnScroll(timelineAdapter: TimelineAdapter) {
@@ -61,7 +61,6 @@ class TimelineActivity : AppCompatActivity() {
                     Log.d("xxx", "last visible position: ${linearLayoutManager.findLastVisibleItemPosition()}, total count: ${linearLayoutManager.itemCount}")
                     if (linearLayoutManager.findLastVisibleItemPosition() >= linearLayoutManager.itemCount - 1) {
                         Log.d("xxx", "end")
-
                         recyclerView.post {
                             timelineAdapter.addFooter()
                         }
@@ -77,10 +76,10 @@ class TimelineActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        timeLines = mutableListOf()
+        mTimeLines = mutableListOf()
         for (i in 0..25) {
             val index = Random.nextInt(listImages.size)
-            timeLines.add(TimelineItem("Name ${i + 1}", listImages[index], "こんにちは世界 $i", i))
+            mTimeLines.add(TimelineItem("Name ${i + 1}", listImages[index], "こんにちは世界 $i", i))
         }
 //        timeLines.shuffle()
     }
