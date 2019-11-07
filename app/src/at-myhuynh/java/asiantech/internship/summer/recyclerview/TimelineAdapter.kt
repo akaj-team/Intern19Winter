@@ -11,6 +11,8 @@ import asiantech.internship.summer.R
 class TimelineAdapter(private val timeLines: MutableList<TimelineItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    var timelineOnClickListener: FavoriteOnClickListener? = null
+
     companion object {
         var mItemsDisplay = 10
         private const val VIEW_TYPE_ITEM = 0
@@ -21,8 +23,6 @@ class TimelineAdapter(private val timeLines: MutableList<TimelineItem>) :
     init {
         timeLineDisplay = timeLines.subList(0, mItemsDisplay)
     }
-
-    var timelineOnClickListener: FavoriteOnClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -103,25 +103,23 @@ class TimelineAdapter(private val timeLines: MutableList<TimelineItem>) :
     }
 
     inner class TimelineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var imgAvatar: ImageView = itemView.findViewById(R.id.imgAvatar)
-        private var tvName: TextView = itemView.findViewById(R.id.tvName)
-        private var imgPicture: ImageView = itemView.findViewById(R.id.imgPicture)
-        private var tvNumFavorite: TextView = itemView.findViewById(R.id.tvNumFavorite)
-        private var tvNickname: TextView = itemView.findViewById(R.id.tvNickName)
-        private var tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
-        private var imgFavorite: ImageView = itemView.findViewById(R.id.imgFavorite)
-
         fun onBindData(position: Int) {
+            val imgAvatar: ImageView = itemView.findViewById(R.id.imgAvatar)
+            val tvName: TextView = itemView.findViewById(R.id.tvName)
+            val imgPicture: ImageView = itemView.findViewById(R.id.imgPicture)
+            val tvNumFavorite: TextView = itemView.findViewById(R.id.tvNumFavorite)
+            val tvNickname: TextView = itemView.findViewById(R.id.tvNickName)
+            val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
+            val imgFavorite: ImageView = itemView.findViewById(R.id.imgFavorite)
             val timelineItem = timeLineDisplay[position]
 
             imgAvatar.setImageResource(R.drawable.ic_man)
             tvName.text = timelineItem.name
             imgPicture.setImageResource(timelineItem.image)
-            tvNumFavorite.text = "${timelineItem.like} likes"
+            tvNumFavorite.text = timelineItem.like.toString()
             tvNickname.text = timelineItem.name
             tvDescription.text = timelineItem.description
             imgFavorite.setOnClickListener {
-                timelineItem.isLike = !timelineItem.isLike
                 timelineOnClickListener?.onItemOnClick(timelineItem)
             }
 

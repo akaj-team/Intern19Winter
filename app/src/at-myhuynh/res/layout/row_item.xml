@@ -100,9 +100,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        tools:text="12 likes"
+        tools:text="12"
+        android:layout_marginStart="@dimen/layout_padding_5"
         app:layout_constraintTop_toTopOf="@+id/imgNumFavorite"
         app:layout_constraintStart_toEndOf="@id/imgNumFavorite"/>
+
+    <TextView
+        android:id="@+id/tvLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/textview_like"
+        android:layout_marginStart="@dimen/layout_padding_5"
+        app:layout_constraintTop_toTopOf="@+id/imgNumFavorite"
+        app:layout_constraintStart_toEndOf="@id/tvNumFavorite"/>
 
     <TextView
         android:id="@+id/tvNickName"

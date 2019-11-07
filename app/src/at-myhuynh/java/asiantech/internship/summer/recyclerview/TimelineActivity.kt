@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 import kotlinx.android.synthetic.`at-myhuynh`.activity_timeline.*
-import kotlinx.android.synthetic.`at-myhuynh`.row_item.*
 import kotlin.random.Random
 
 class TimelineActivity : AppCompatActivity() {
@@ -89,11 +88,10 @@ class TimelineActivity : AppCompatActivity() {
     private fun setOnClickListener(adapter: TimelineAdapter) {
         adapter.setOnClickListener(object : FavoriteOnClickListener {
             override fun onItemOnClick(timelineItem: TimelineItem) {
+                timelineItem.isLike = !timelineItem.isLike
                 if (timelineItem.isLike) {
-                    imgFavorite.setImageResource(R.drawable.ic_favorite_red_a700_24dp)
                     timelineItem.like = timelineItem.like + 1
                 } else {
-                    imgFavorite.setImageResource(R.drawable.ic_favorite_border_black_24dp)
                     timelineItem.like = timelineItem.like - 1
                 }
                 adapter.notifyDataSetChanged()
