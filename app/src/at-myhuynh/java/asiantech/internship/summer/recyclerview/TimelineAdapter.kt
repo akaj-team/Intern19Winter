@@ -56,8 +56,6 @@ class TimelineAdapter(private val timeLines: MutableList<TimelineItem>) :
         if (holder.itemViewType == VIEW_TYPE_ITEM) {
             holder as TimelineViewHolder
             holder.onBindData(position)
-        } else {
-            holder as LoadingViewHolder
         }
     }
 
@@ -82,7 +80,7 @@ class TimelineAdapter(private val timeLines: MutableList<TimelineItem>) :
 
     fun addFooter() {
         if (!isLoading()) {
-            timeLineDisplay.add(TimelineItem("Footer", R.drawable.img_food_1, "FT", 1, false, 1))
+            timeLineDisplay.add(TimelineItem("Footer", R.drawable.img_food_1, "", 0, false, 1))
             notifyItemInserted(timeLineDisplay.size)
         }
     }
