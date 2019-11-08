@@ -8,9 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 
@@ -86,7 +86,7 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem?>, private val m
                 tvNavItem.text = it.title
             }
 
-            itemView.findViewById<LinearLayout>(R.id.llNavItem).setOnClickListener {
+            itemView.findViewById<ConstraintLayout>(R.id.llNavItem).setOnClickListener {
                 Toast.makeText(mContext, "${navItem?.title} is clicked", Toast.LENGTH_LONG).show()
             }
         }
