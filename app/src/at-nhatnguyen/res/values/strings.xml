@@ -27,4 +27,7 @@
     <string name="textview_text_phone">Phone</string>
     <string name="button_text_save_profile">Save Profile</string>
     <string name="textView_text_sayabaa">sayabaa</string>
+    <string name="textview_text_comment">この料理はとても美味しいです。とても好きです! あなたはそれを処理する方法を知っていますか？</string>
+    <string name="textview_text_0">0</string>
+    <string name="textview_text_like">Like</string>
 </resources>
