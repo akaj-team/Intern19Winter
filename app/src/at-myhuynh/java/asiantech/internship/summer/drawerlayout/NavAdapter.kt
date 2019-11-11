@@ -17,12 +17,14 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem>, private val mH
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ViewType.TYPE_TWO.type -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.row_item_header, parent, false)
+            ViewType.TYPE_ONE.type -> {
+                val view = LayoutInflater.from(parent.context)
+                        .inflate(R.layout.row_item_header, parent, false)
                 HeaderHolder(view)
             }
             else -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.row_item_drawer, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                        .inflate(R.layout.row_item_drawer, parent, false)
                 NavItemHolder(view)
             }
         }
@@ -41,7 +43,7 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem>, private val mH
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
-            in 1..mNavItems.size -> ViewType.TYPE_ONE.type
+            0 -> ViewType.TYPE_ONE.type
             else -> ViewType.TYPE_TWO.type
         }
     }
@@ -50,7 +52,7 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem>, private val mH
         fun onBindData() {
             val imgAvatar = itemView.findViewById<ImageView>(R.id.imgAvatar)
             val spinnerEmail = itemView.findViewById<Spinner>(R.id.spinnerEmail)
-            val listItems = arrayOf(mHeader.mEmail)
+            val listItems = mutableListOf(mHeader.mEmail)
             val spinner = ArrayAdapter(mContext, R.layout.support_simple_spinner_dropdown_item, listItems)
             spinner.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
 
@@ -64,7 +66,7 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem>, private val mH
     }
 
     private fun dispatchTakePictureIntent(context: Context) {
-        val options = arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
+        val options = arrayOf("Take Photo", "Choose from Gallery", "Cancel")
 
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Choose your profile picture")
@@ -77,15 +79,14 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem>, private val mH
                             (mContext as Activity).startActivityForResult(takePictureIntent, 0)
                         }
                     }
-
                 }
+
                 options[item] == "Choose from Gallery" -> {
                     Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).also { takePictureIntent ->
                         takePictureIntent.resolveActivity(mContext.packageManager)?.also {
                             (mContext as Activity).startActivityForResult(takePictureIntent, 1)
                         }
                     }
-
                 }
                 options[item] == "Cancel" -> dialog.dismiss()
             }
