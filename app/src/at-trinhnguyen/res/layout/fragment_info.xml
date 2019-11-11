@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="asiantech.internship.winter.viewpagertablayout.ui.ThreeFragment">
+    tools:context="asiantech.internship.winter.viewpagertablayout.ui.IntoFragment">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/img03" />
+        android:src="@drawable/img02" />
 </FrameLayout>
