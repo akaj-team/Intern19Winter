@@ -91,7 +91,6 @@
         android:layout_marginTop="@dimen/dp_4"
         android:textColor="@color/colorBlack"
         app:layout_constraintStart_toStartOf="@id/tvNameBottom"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvNameBottom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
