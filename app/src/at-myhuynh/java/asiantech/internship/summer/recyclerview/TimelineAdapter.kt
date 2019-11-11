@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
+import java.util.*
 
 class TimelineAdapter(private val mTimeLines: MutableList<TimelineItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -105,7 +106,7 @@ class TimelineAdapter(private val mTimeLines: MutableList<TimelineItem>) :
     inner class TimelineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBindData(position: Int) {
             val imgAvatar: ImageView = itemView.findViewById(R.id.imgAvatar)
-            val tvName = itemView.findViewById<TextView>(R.id.tvName)
+            val tvName: TextView = itemView.findViewById(R.id.tvName)
             val imgPicture: ImageView = itemView.findViewById(R.id.imgPicture)
             val tvNumFavorite: TextView = itemView.findViewById(R.id.tvNumFavorite)
             val tvNickname: TextView = itemView.findViewById(R.id.tvNickName)
@@ -113,10 +114,10 @@ class TimelineAdapter(private val mTimeLines: MutableList<TimelineItem>) :
             val imgFavorite: ImageView = itemView.findViewById(R.id.imgFavorite)
             val timelineItem = timeLineDisplay[position]
 
-            imgAvatar.setImageResource(R.drawable.ic_man)
+            imgAvatar.setImageResource(timelineItem.image)
             tvName.text = timelineItem.name
             imgPicture.setImageResource(timelineItem.image)
-            tvNumFavorite.text = timelineItem.like.toString()
+            tvNumFavorite.text = String.format(Locale.ENGLISH, "%d", timelineItem.like)
             tvNickname.text = timelineItem.name
             tvDescription.text = timelineItem.description
             imgFavorite.setOnClickListener {
