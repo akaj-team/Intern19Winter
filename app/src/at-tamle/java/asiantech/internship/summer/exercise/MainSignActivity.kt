@@ -1,4 +1,5 @@
 package asiantech.internship.summer.exercise
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ class MainSignActivity : AppCompatActivity() {
                 .addToBackStack(null)
                 .commit()
     }
+
     fun replaceFragment(fragment: Fragment) {
         val beginTransaction = supportFragmentManager.beginTransaction()
         beginTransaction.replace(R.id.flFragment, fragment).addToBackStack(null).commit()

@@ -56,9 +56,5 @@ class LoginFragment : Fragment() {
             (activity as? MainSignActivity)
                     ?.replaceFragment(ProfileFragment.newInstance())
         }
-
-
     }
-
-
 }

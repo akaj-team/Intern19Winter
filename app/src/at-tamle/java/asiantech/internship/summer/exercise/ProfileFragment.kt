@@ -16,20 +16,22 @@ import kotlinx.android.synthetic.`at-tamle`.fragment_profile.edtEmail
 class ProfileFragment : Fragment() {
     private var mName: String? = null
     private var mEmail: String? = null
-companion object {
-    const val REQUEST_IMAGE_CAPTURE = 1
-    const val ARG_NAME = "name"
-    const val ARG_EMAIL = "email"
-    fun newInstance(user: String? = "", email: String = ""): ProfileFragment {
 
-        return ProfileFragment().apply {
-            arguments = Bundle().apply {
-                putString(ARG_NAME, user)
-                putString(ARG_EMAIL, email)
+    companion object {
+        const val REQUEST_IMAGE_CAPTURE = 1
+        const val ARG_NAME = "name"
+        const val ARG_EMAIL = "email"
+        fun newInstance(user: String? = "", email: String = ""): ProfileFragment {
+
+            return ProfileFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_NAME, user)
+                    putString(ARG_EMAIL, email)
+                }
             }
         }
     }
-}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
