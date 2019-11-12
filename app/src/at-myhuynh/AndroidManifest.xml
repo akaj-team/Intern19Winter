@@ -12,10 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".kotlinActivity.EditProfileActivity" />
-        <activity android:name=".kotlinActivity.SignUpActivity" />
         <activity
             android:name=".kotlinActivity.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".kotlinActivity.SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".kotlinActivity.EditProfileActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,4 +29,6 @@
         </activity>
     </application>
 
+    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>

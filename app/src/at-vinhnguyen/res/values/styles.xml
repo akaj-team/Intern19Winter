@@ -6,6 +6,69 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="ButtonSubmit">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/rounded_corner</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginTop">@dimen/dp_16</item>
+    </style>
+
+    <style name="ConstraintLayout">
+        <item name="android:background">@color/colorWhite</item>
+    </style>
+
+    <style name="TextViewLabel">
+        <item name="android:layout_marginTop">@dimen/dp_20</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/dp_28</item>
+        <item name="android:layout_marginEnd">@dimen/dp_28</item>
+    </style>
+
+    <style name="TextViewEndOfPage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorGreen400</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+    <style name="TextViewScratch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/dp_28</item>
+        <item name="android:layout_marginTop">@dimen/dp_60</item>
+        <item name="android:drawableLeft">@drawable/ic_scratch</item>
+        <item name="android:drawablePadding">@dimen/dp_4</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/scratch</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ImagePanel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:src">@drawable/img_panel</item>
+    </style>
+
+    <style name="TextViewTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/dp_28</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/sp_24</item>
+    </style>
 </resources>
