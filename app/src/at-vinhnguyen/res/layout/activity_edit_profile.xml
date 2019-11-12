@@ -1,143 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/ConstraintLayout"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_width="match_parent">
 
-    <TextView
-        android:id="@+id/tvBackToProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_28"
-        android:layout_marginTop="@dimen/dp_16"
-        android:drawableLeft="@drawable/ic_keyboard_arrow_left_black_28dp"
-        android:gravity="center"
-        android:text="@string/back_to_profile"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvEditProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/edit_profile"
-        android:textColor="#000000"
-        android:textSize="@dimen/dp_28"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/tvBackToProfile"
-        app:layout_constraintTop_toBottomOf="@id/tvBackToProfile" />
+        <TextView
+            android:id="@+id/tvBackToProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_28"
+            android:layout_marginTop="@dimen/dp_16"
+            android:drawableLeft="@drawable/ic_keyboard_arrow_left_black_28dp"
+            android:gravity="center"
+            android:text="@string/back_to_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_16"
-        android:src="@drawable/img_profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEditProfile" />
+        <TextView
+            android:id="@+id/tvEditProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/edit_profile"
+            android:textColor="#000000"
+            android:textSize="@dimen/dp_28"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tvBackToProfile"
+            app:layout_constraintTop_toBottomOf="@id/tvBackToProfile" />
 
-    <TextView
-        android:id="@+id/tvEditProfilePicture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_4"
-        android:text="@string/edit_profile_picture"
-        android:textColor="#00e676"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgProfile" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civProfile"
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:src="@drawable/profile_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEditProfile" />
 
-    <TextView
-        android:id="@+id/tvFullName"
-        style="@style/TextViewLabel"
-        android:text="@string/full_name"
-        app:layout_constraintStart_toStartOf="@id/tvEditProfile"
-        app:layout_constraintTop_toBottomOf="@+id/tvEditProfilePicture" />
+        <TextView
+            android:id="@+id/tvEditProfilePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            android:text="@string/edit_profile_picture"
+            android:textColor="#00e676"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/civProfile" />
 
-    <EditText
-        android:id="@+id/edtFullName"
-        style="@style/EditText"
-        android:hint="@string/nguyen_dang_vinh"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="@id/tvFullName"
-        app:layout_constraintTop_toBottomOf="@+id/tvFullName"
-        tools:ignore="Autofill,LabelFor" />
+        <TextView
+            android:id="@+id/tvFullName"
+            style="@style/TextViewLabel"
+            android:text="@string/full_name"
+            app:layout_constraintStart_toStartOf="@id/tvEditProfile"
+            app:layout_constraintTop_toBottomOf="@+id/tvEditProfilePicture" />
 
-    <TextView
-        android:id="@+id/tvBio"
-        style="@style/TextViewLabel"
-        android:labelFor="@id/edtBio"
-        android:text="@string/bio"
-        app:layout_constraintStart_toStartOf="@id/edtFullName"
-        app:layout_constraintTop_toBottomOf="@+id/edtFullName" />
+        <EditText
+            android:id="@+id/edtFullName"
+            style="@style/EditText"
+            android:hint="@string/full_name"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="@id/tvFullName"
+            app:layout_constraintTop_toBottomOf="@+id/tvFullName"
+            tools:ignore="Autofill,LabelFor" />
 
-    <EditText
-        android:id="@+id/edtBio"
-        style="@style/EditText"
-        android:hint="@string/android_intern"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="@id/tvBio"
-        app:layout_constraintTop_toBottomOf="@+id/tvBio"
-        tools:ignore="Autofill, LabelFor" />
+        <TextView
+            android:id="@+id/tvBio"
+            style="@style/TextViewLabel"
+            android:labelFor="@id/edtBio"
+            android:text="@string/bio"
+            app:layout_constraintStart_toStartOf="@id/edtFullName"
+            app:layout_constraintTop_toBottomOf="@+id/edtFullName" />
 
-    <TextView
-        android:id="@+id/tvPrivateInformation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_12"
-        android:text="@string/private_information"
-        android:textColor="@color/colorBlack"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/edtBio"
-        app:layout_constraintTop_toBottomOf="@id/edtBio" />
+        <EditText
+            android:id="@+id/edtBio"
+            style="@style/EditText"
+            android:hint="@string/bio"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="@id/tvBio"
+            app:layout_constraintTop_toBottomOf="@+id/tvBio"
+            tools:ignore="Autofill, LabelFor" />
 
-    <TextView
-        android:id="@+id/tvEmail"
-        style="@style/TextViewLabel"
-        android:labelFor="@id/edtEmail"
-        android:text="@string/email"
-        app:layout_constraintStart_toStartOf="@id/tvPrivateInformation"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrivateInformation" />
+        <TextView
+            android:id="@+id/tvPrivateInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="@string/private_information"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/edtBio"
+            app:layout_constraintTop_toBottomOf="@id/edtBio" />
 
-    <EditText
-        android:id="@+id/edtEmail"
-        style="@style/EditText"
-        android:hint="@string/tranhgio_email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintStart_toStartOf="@id/tvEmail"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmail"
-        tools:ignore="Autofill,LabelFor" />
+        <TextView
+            android:id="@+id/tvEmail"
+            style="@style/TextViewLabel"
+            android:labelFor="@id/edtEmail"
+            android:text="@string/email"
+            app:layout_constraintStart_toStartOf="@id/tvPrivateInformation"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrivateInformation" />
 
-    <TextView
-        android:id="@+id/tvPhone"
-        style="@style/TextViewLabel"
-        android:text="@string/phone"
-        app:layout_constraintStart_toStartOf="@id/edtEmail"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+        <EditText
+            android:id="@+id/edtEmail"
+            style="@style/EditText"
+            android:hint="@string/user_email_com"
+            android:inputType="textEmailAddress"
+            app:layout_constraintStart_toStartOf="@id/tvEmail"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmail"
+            tools:ignore="Autofill,LabelFor" />
 
-    <EditText
-        android:id="@+id/edtPhone"
-        style="@style/EditText"
-        android:hint="@string/phone_number"
-        android:inputType="phone"
-        app:layout_constraintStart_toStartOf="@id/tvPhone"
-        app:layout_constraintTop_toBottomOf="@+id/tvPhone"
-        tools:ignore="Autofill,LabelFor" />
+        <TextView
+            android:id="@+id/tvPhone"
+            style="@style/TextViewLabel"
+            android:text="@string/phone"
+            app:layout_constraintStart_toStartOf="@id/edtEmail"
+            app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
-    <Button
-        android:id="@+id/btnLogin"
-        style="@style/ButtonSubmit"
-        android:text="@string/save_profile"
-        app:layout_constraintEnd_toEndOf="@id/edtPhone"
-        app:layout_constraintStart_toStartOf="@id/edtPhone"
-        app:layout_constraintTop_toBottomOf="@id/edtPhone" />
+        <EditText
+            android:id="@+id/edtPhone"
+            style="@style/EditText"
+            android:inputType="phone"
+            app:layout_constraintStart_toStartOf="@id/tvPhone"
+            app:layout_constraintTop_toBottomOf="@+id/tvPhone"
+            tools:ignore="Autofill,LabelFor" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/ButtonSubmit"
+            android:text="@string/save_profile"
+            app:layout_constraintEnd_toEndOf="@id/edtPhone"
+            app:layout_constraintStart_toStartOf="@id/edtPhone"
+            app:layout_constraintTop_toBottomOf="@id/edtPhone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
