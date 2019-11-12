@@ -15,6 +15,12 @@ import asiantech.internship.summer.R
 class NavItemAdapter(private val mNavItems: MutableList<NavItem>, private val mHeader: Header, private val mContext: Context) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    companion object {
+        private const val OPTION_TAKE_PHOTO = "Take Photo"
+        private const val OPTION_CHOOSE_GALLERY = "Choose from Gallery"
+        private const val OPTION_CANCEL = "Cancel"
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             ViewType.TYPE_ONE.type -> {
@@ -66,14 +72,14 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem>, private val mH
     }
 
     private fun dispatchTakePictureIntent(context: Context) {
-        val options = arrayOf("Take Photo", "Choose from Gallery", "Cancel")
+        val options = arrayOf(OPTION_TAKE_PHOTO, OPTION_CHOOSE_GALLERY, OPTION_CANCEL)
 
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Choose your profile picture")
 
         builder.setItems(options) { dialog, item ->
-            when {
-                options[item] == "Take Photo" -> {
+            when (options[item]) {
+                OPTION_TAKE_PHOTO -> {
                     Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
                         takePictureIntent.resolveActivity(mContext.packageManager)?.also {
                             (mContext as Activity).startActivityForResult(takePictureIntent, 0)
@@ -81,14 +87,14 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem>, private val mH
                     }
                 }
 
-                options[item] == "Choose from Gallery" -> {
+                OPTION_CHOOSE_GALLERY -> {
                     Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).also { takePictureIntent ->
                         takePictureIntent.resolveActivity(mContext.packageManager)?.also {
                             (mContext as Activity).startActivityForResult(takePictureIntent, 1)
                         }
                     }
                 }
-                options[item] == "Cancel" -> dialog.dismiss()
+                OPTION_CANCEL -> dialog.dismiss()
             }
         }
         builder.show()
