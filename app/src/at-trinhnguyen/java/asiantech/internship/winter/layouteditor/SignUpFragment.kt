@@ -15,9 +15,8 @@ class SignUpFragment : Fragment() {
     private var mCallBack: OnFragmentInteractionListener? = null
 
     companion object {
-        val instance = SignUpFragment()
-        const val ARG_NAME = "arg_name"
-        const val ARG_EMAIL = "arg_email"
+        @JvmStatic
+        fun newInstance() = SignUpFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -31,18 +30,16 @@ class SignUpFragment : Fragment() {
         //fragment sign up to fragment login
         tvLoginHere.setOnClickListener {
             fragmentManager?.apply {
-                beginTransaction().replace(R.id.flContainer, LoginFragment.instance, null)
+                beginTransaction().replace(
+                        R.id.flContainer,
+                        LoginFragment.newInstance(edtFullName.text.toString(), edtEmail.text.toString()),
+                        null)
                         .addToBackStack(null)
                         .commit()
             }
         }
 
         btnSignUp.setOnClickListener {
-            //send data to fragment login using bundle
-            LoginFragment.instance.arguments = Bundle().apply {
-                putString(ARG_NAME, edtFullName.text.toString())
-                putString(ARG_EMAIL, edtEmail.text.toString())
-            }
             //send data to activity using interface
             mCallBack?.onFragmentInteraction("Fragment Sign Up to Activity", 111)
         }

@@ -15,7 +15,7 @@ class SignUpActivity : AppCompatActivity(), SignUpFragment.OnFragmentInteraction
         setContentView(R.layout.activity_sign_up)
 
         supportFragmentManager.beginTransaction()
-                .add(R.id.flContainer, SignUpFragment.instance, null)
+                .add(R.id.flContainer, SignUpFragment.newInstance(), null)
                 .addToBackStack(null)
                 .commit()
 
@@ -38,7 +38,7 @@ class SignUpActivity : AppCompatActivity(), SignUpFragment.OnFragmentInteraction
         super.onAttachFragment(fragment)
 
         if (fragment is LoginFragment) {
-            LoginFragment.instance.callBack = { str, int ->
+            LoginFragment.getInstance().callBack = { str, int ->
                 Log.d("xxx", "From Fragment Login | $str $int")
             }
         }

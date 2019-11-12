@@ -16,14 +16,15 @@ import kotlinx.android.synthetic.`at-trinhnguyen`.fragment_edit_profile.*
 class EditProfileFragment : Fragment() {
 
     companion object {
-        val instance = EditProfileFragment()
+        private val instance = EditProfileFragment()
+        @JvmStatic
+        fun newInstance() = instance
         const val ARG_EMAIL = "arg_email"
         const val ARG_PHONE = "arg_phone"
         const val REQUEST_IMAGE_CAPTURE = 1
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(asiantech.internship.summer.R.layout.fragment_edit_profile, container, false)
     }
 
