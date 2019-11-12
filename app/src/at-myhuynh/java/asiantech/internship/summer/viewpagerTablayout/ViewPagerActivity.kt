@@ -2,6 +2,7 @@ package asiantech.internship.summer.viewpagerTablayout
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import asiantech.internship.summer.R
 
 class ViewPagerActivity : AppCompatActivity() {
@@ -10,8 +11,15 @@ class ViewPagerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_pager)
 
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.flPagerFragment, ViewPagerFragment.newInstance())
-                .commit()
+        replaceFragment(ViewPagerFragment.newInstance(), false)
+    }
+
+    fun replaceFragment(fragment: Fragment, isAddToBackStack: Boolean) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        if (isAddToBackStack) {
+            fragmentTransaction.addToBackStack(javaClass.simpleName)
+        }
+        fragmentTransaction.replace(R.id.flPagerFragment, fragment)
+        fragmentTransaction.commit()
     }
 }

@@ -6,7 +6,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import asiantech.internship.summer.R
 
-class TabLayoutAdapter(fm: FragmentManager, private val mContext: Context) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class TabLayoutAdapter(fm: FragmentManager, private val mContext: Context) :
+        FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {

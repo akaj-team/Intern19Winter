@@ -12,8 +12,7 @@ import kotlinx.android.synthetic.`at-myhuynh`.fragment_view_pager.*
 class ViewPagerFragment : Fragment() {
 
     companion object {
-        private val instance = ViewPagerFragment()
-        fun newInstance() = instance
+        fun newInstance() = ViewPagerFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -39,10 +38,7 @@ class ViewPagerFragment : Fragment() {
         })
 
         tvSkip.setOnClickListener {
-            fragmentManager?.beginTransaction()
-                    ?.replace(R.id.flPagerFragment, TabLayoutFragment())
-                    ?.addToBackStack(TabLayoutFragment().javaClass.simpleName)
-                    ?.commit()
+            (activity as? ViewPagerActivity)?.replaceFragment(TabLayoutFragment.newInstance(), true)
         }
     }
 

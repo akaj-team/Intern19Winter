@@ -10,17 +10,17 @@ import kotlinx.android.synthetic.`at-myhuynh`.fragment_tab_layout.*
 
 class TabLayoutFragment : Fragment() {
 
+    companion object {
+        fun newInstance() = TabLayoutFragment()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_tab_layout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewpagerTab.adapter = fragmentManager?.let { it ->
-            context?.let { context ->
-                TabLayoutAdapter(it, context)
-            }
-        }
+        viewpagerTab.adapter = TabLayoutAdapter(childFragmentManager, requireContext())
         tabLayout.setupWithViewPager(viewpagerTab)
     }
 }
