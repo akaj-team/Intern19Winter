@@ -14,11 +14,7 @@ class NonSwipableViewPager(context: Context, attrs: AttributeSet?) : ViewPager(c
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(ev: MotionEvent?): Boolean {
-        return false
-    }
-
-    override fun performClick(): Boolean {
-        super.performClick()
+        super.onTouchEvent(ev)
         return false
     }
 }
