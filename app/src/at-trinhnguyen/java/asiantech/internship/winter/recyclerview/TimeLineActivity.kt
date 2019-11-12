@@ -49,6 +49,18 @@ class TimeLineActivity : AppCompatActivity() {
         mTimeLineItemSrcs.shuffle()
         mTimeLineItems = mTimeLineItemSrcs.subList(0, mVisibleThreshold)
         mTimeLineAdapter = TimeLineAdapter(mTimeLineItems)
+        mTimeLineAdapter.onItemClick = { position ->
+            mTimeLineItems[position]?.let {
+                if (it.isLiked) {
+                    it.isLiked = false
+                    it.countLike--
+                } else {
+                    it.isLiked = true
+                    it.countLike++
+                }
+                mTimeLineAdapter.notifyItemChanged(position)
+            }
+        }
         recyclerViewTimeLine.adapter = mTimeLineAdapter
     }
 

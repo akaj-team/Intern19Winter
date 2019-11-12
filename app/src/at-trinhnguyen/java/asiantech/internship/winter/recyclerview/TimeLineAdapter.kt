@@ -9,15 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 import com.bumptech.glide.Glide
 
-class TimeLineAdapter(private val timeLineItems: MutableList<TimeLineItem?>) :
+class TimeLineAdapter(private val mTimeLineItems: MutableList<TimeLineItem?>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    var onItemClick: ((Int) -> Unit)? = null
 
     companion object {
         private const val VIEW_TYPE_ITEM = 0
         private const val VIEW_TYPE_LOADING = 1
     }
 
-    override fun getItemCount() = timeLineItems.size
+    override fun getItemCount() = mTimeLineItems.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == VIEW_TYPE_ITEM) {
@@ -40,7 +42,7 @@ class TimeLineAdapter(private val timeLineItems: MutableList<TimeLineItem?>) :
     inner class TimeLineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun onBindData(position: Int) {
-            val timeLineItem = timeLineItems[position]
+            val timeLineItem = mTimeLineItems[position]
 
             val imgAvatar = itemView.findViewById<ImageView>(R.id.imgAvatar)
             val tvNickNameTop = itemView.findViewById<TextView>(R.id.tvNickNameTop)
@@ -56,39 +58,30 @@ class TimeLineAdapter(private val timeLineItems: MutableList<TimeLineItem?>) :
                 tvNickName.text = it.nickname
                 tvCountLike.text = it.countLike.toString()
                 if (it.isLiked) {
-                    imgLike.setImageResource(R.drawable.ic_favorite_filled_red)
+                    imgLike.setImageResource(R.drawable.ic_heart_bold_active)
                 } else {
-                    imgLike.setImageResource(R.drawable.ic_favorite_border)
+                    imgLike.setImageResource(R.drawable.ic_heart_bold)
                 }
 
-                imgLike.setOnClickListener { _ ->
-                    if (it.isLiked) {
-                        it.isLiked = false
-                        it.countLike--
-                        imgLike.setImageResource(R.drawable.ic_favorite_filled_red)
-                    } else {
-                        it.isLiked = true
-                        it.countLike++
-                        imgLike.setImageResource(R.drawable.ic_favorite_border)
-                    }
-                    notifyItemChanged(position)
+                imgLike.setOnClickListener {
+                    onItemClick?.invoke(position)
                 }
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (timeLineItems[position] == null) VIEW_TYPE_LOADING
+        return if (mTimeLineItems[position] == null) VIEW_TYPE_LOADING
         else VIEW_TYPE_ITEM
     }
 
     fun clear() {
-        timeLineItems.clear()
+        mTimeLineItems.clear()
         notifyDataSetChanged()
     }
 
     fun addAll(list: List<TimeLineItem?>) {
-        timeLineItems.addAll(list)
+        mTimeLineItems.addAll(list)
         notifyDataSetChanged()
     }
 }

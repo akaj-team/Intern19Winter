@@ -49,31 +49,31 @@
 
     <ImageView
         android:id="@+id/imgLike"
-        android:layout_width="@dimen/ic_width_32dp"
-        android:layout_height="@dimen/ic_height_32dp"
-        android:layout_marginTop="@dimen/margin_4dp"
+        android:layout_width="@dimen/ic_width_24dp"
+        android:layout_height="@dimen/ic_height_24dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/imgTimeLine"
-        app:srcCompat="@drawable/ic_favorite_border" />
+        android:src="@drawable/ic_heart_bold" />
 
     <ImageView
         android:id="@+id/imgChat"
-        android:layout_width="@dimen/ic_width_32dp"
-        android:layout_height="@dimen/ic_height_32dp"
-        android:layout_marginLeft="@dimen/margin_8dp"
+        android:layout_width="@dimen/ic_width_24dp"
+        android:layout_height="@dimen/ic_height_24dp"
+        android:layout_marginLeft="@dimen/margin_16dp"
         app:layout_constraintBottom_toBottomOf="@+id/imgLike"
         app:layout_constraintStart_toEndOf="@+id/imgLike"
         app:layout_constraintTop_toTopOf="@+id/imgLike"
-        app:srcCompat="@drawable/ic_chat" />
+        android:src="@drawable/ic_comment" />
 
     <ImageView
-        android:layout_width="@dimen/ic_width_32dp"
-        android:layout_height="@dimen/ic_height_32dp"
-        android:layout_marginLeft="@dimen/margin_8dp"
+        android:layout_width="@dimen/ic_width_24dp"
+        android:layout_height="@dimen/ic_height_24dp"
+        android:layout_marginLeft="@dimen/margin_16dp"
         app:layout_constraintBottom_toBottomOf="@id/imgLike"
         app:layout_constraintStart_toEndOf="@id/imgChat"
         app:layout_constraintTop_toTopOf="@id/imgLike"
-        app:srcCompat="@drawable/ic_send" />
+        android:src="@drawable/ic_direct" />
 
     <View
         android:id="@+id/viewLine"
@@ -88,15 +88,16 @@
 
     <ImageView
         android:id="@+id/imgFavoriteFilled"
-        android:layout_width="@dimen/ic_width_16dp"
-        android:layout_height="@dimen/ic_width_16dp"
+        android:layout_width="@dimen/ic_width_12dp"
+        android:layout_height="@dimen/ic_width_12dp"
         android:layout_marginLeft="@dimen/margin_4dp"
-        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_12dp"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@+id/viewLine"
-        app:srcCompat="@drawable/ic_favorite_filled" />
+        android:src="@drawable/ic_heart_bold_active" />
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/tvCountLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,6 +110,7 @@
         tools:text="12" />
 
     <TextView
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_4dp"
