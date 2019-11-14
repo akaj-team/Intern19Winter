@@ -22,7 +22,7 @@ class ViewPagerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewpager.adapter = context?.let { ViewPagerAdapter(it) }
+        viewpager.adapter = ViewPagerAdapter(requireContext())
         tabDots.setupWithViewPager(viewpager, true)
 
         setTextView(tabDots.selectedTabPosition)
