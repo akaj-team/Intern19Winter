@@ -4,7 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.ParcelFileDescriptor
 import android.provider.MediaStore
+import android.view.ContextMenu
+import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -14,18 +18,22 @@ import asiantech.internship.summer.R
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.`at-vinhnguyen`.activity_drawer.*
 
-class DrawerActivity : AppCompatActivity(),RecyclerViewClickListener{
+class DrawerActivity : AppCompatActivity(), RecyclerViewClickListener {
 
-    private lateinit var imageProfile : CircleImageView
+    private lateinit var imageProfile: CircleImageView
 
     override fun onImageClicked(imageView: CircleImageView) {
         imageProfile = imageView
-        dispatchTakePictureIntent()
+        registerForContextMenu(imageProfile)
+        //Show context menu with single click
+        openContextMenu(imageProfile)
     }
 
-    companion object{
+    companion object {
         const val REQUEST_IMAGE_CAPTURE = 1
+        const val GALLERY_REQUEST_CODE = 2
     }
+
     private fun dispatchTakePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(packageManager)?.also {
@@ -34,11 +42,28 @@ class DrawerActivity : AppCompatActivity(),RecyclerViewClickListener{
         }
     }
 
+    private fun getImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.setType("image/*")
+        val mineTypes = arrayListOf("image/jpeg", "image/png")
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mineTypes)
+        startActivityForResult(intent, GALLERY_REQUEST_CODE)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            imageProfile.setImageBitmap(imageBitmap)
+        when (requestCode) {
+            REQUEST_IMAGE_CAPTURE -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    val imageBitmap = data?.extras?.get("data") as Bitmap
+                    imageProfile.setImageBitmap(imageBitmap)
+                }
+            }
+            GALLERY_REQUEST_CODE -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    imageProfile.setImageURI(data?.data)
+                }
+            }
         }
     }
 
@@ -53,16 +78,30 @@ class DrawerActivity : AppCompatActivity(),RecyclerViewClickListener{
     }
 
     private fun initView() {
-        val listItemNav = mutableListOf(null,ItemNav(R.drawable.ic_move_to_inbox_black_24dp, "Inbox"),
+        val listItemNav = mutableListOf(null, ItemNav(R.drawable.ic_move_to_inbox_black_24dp, "Inbox"),
                 ItemNav(R.drawable.ic_send_black_24dp, "Outbox"),
                 ItemNav(R.drawable.ic_delete_black_24dp, "Trash"),
                 ItemNav(R.drawable.ic_info_black_24dp, "Spam"))
-        val adapter = NavAdapter(listItemNav, applicationContext,this )
+        val adapter = NavAdapter(listItemNav, applicationContext, this)
         recyclerViewNav.setHasFixedSize(true)
         recyclerViewNav.layoutManager = LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
         recyclerViewNav.adapter = adapter
     }
 
+    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        menuInflater.inflate(R.menu.menu_img_profile, menu)
+        menu?.setHeaderTitle("Take a profile picture")
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.itemCamera -> dispatchTakePictureIntent()
+            R.id.itemGallery -> getImageFromGallery()
+            else -> return false
+        }
+        return true
+    }
 
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
