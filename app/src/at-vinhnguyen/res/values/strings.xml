@@ -22,4 +22,9 @@
     <string name="login_here">Login Here</string>
     <string name="save_profile">Save Profile</string>
     <string name="user_email_com">user@email.com</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="inbox">Inbox</string>
+    <string name="choose_from_gallery">Choose from gallery</string>
+    <string name="open_camera">Open camera</string>
 </resources>
