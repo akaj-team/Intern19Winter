@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import asiantech.internship.summer.R
 import asiantech.internship.summer.databinding.FragmentTodoBinding
 import asiantech.internship.winter.savedata.db.todo.Todo
+import asiantech.internship.winter.savedata.db.todo.TodoDatabase
 import kotlinx.android.synthetic.`at-trinhnguyen`.fragment_todo.*
 
 class TodoFragment : Fragment() {
-
+    private lateinit var binding: FragmentTodoBinding
     companion object {
         fun newInstance() = TodoFragment()
     }
@@ -22,27 +24,30 @@ class TodoFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val binding = DataBindingUtil.inflate<FragmentTodoBinding>(inflater, R.layout.fragment_todo, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_todo, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val todos = mutableListOf<Todo>().apply {
-            (1..20).forEach {
-                add(Todo(it.toLong(), 111, "Title $it", "Description $it", it % 2 == 0))
-            }
-        }
+
+        val application = requireNotNull(activity?.application)
+        val dataSource = TodoDatabase.getInstance(application).todoDao
+        val viewModelFactory = TodoViewModelFactory(dataSource, application)
+        val todoViewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(TodoViewModel::class.java)
+        binding.todoViewModel = todoViewModel
         val adapter = context?.let { TodoAdapter(it) }
-        adapter?.setTodos(todos.filter { !it.isCompleted })
-        recyclerView.adapter = adapter
 
+        todoViewModel.todos.observe(viewLifecycleOwner, Observer {
+            it?.let { adapter?.setTodos(it) }
+        })
+        binding.recyclerView.adapter = adapter
+        var a = 0
+        fab.setOnClickListener {
+            a++
+            todoViewModel.insert(Todo(0, 111, "$a", "$a", a % 2 == 0))
+        }
+        binding.lifecycleOwner = this
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(TodoViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }

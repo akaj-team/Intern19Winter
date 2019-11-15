@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="asiantech.internship.winter.savedata.ui.home.HomeFragment">
 
+    <data>
+
+        <variable
+            name="homeViewModel"
+            type="asiantech.internship.winter.savedata.ui.home.HomeViewModel" />
+    </data>
+
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
