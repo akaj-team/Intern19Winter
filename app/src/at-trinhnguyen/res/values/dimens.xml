@@ -30,4 +30,7 @@
     <dimen name="text_size_24sp">24sp</dimen>
     <dimen name="text_size_32sp">32sp</dimen>
     <dimen name="text_size_40sp">40sp</dimen>
+    <dimen name="nav_header_height">192dp</dimen>
+    <dimen name="img_profile_picture_width_64dp">64dp</dimen>
+    <dimen name="img_profile_picture_height_64dp">64dp</dimen>
 </resources>
