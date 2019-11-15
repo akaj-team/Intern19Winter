@@ -34,4 +34,6 @@
     <string name="button_text_create_account">Create Account</string>
     <string name="textview_text_start_from_scratch">Start \nfrom Scratch</string>
     <string name="textview_logout">Logout</string>
+    <string name="tablayout_title_todo">Todo</string>
+    <string name="tablayout_title_done">Done</string>
 </resources>

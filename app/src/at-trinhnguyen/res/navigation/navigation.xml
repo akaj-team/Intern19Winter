@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/todoFragment"
-        android:name="asiantech.internship.winter.savedata.ui.TodoFragment"
+        android:name="asiantech.internship.winter.savedata.ui.home.HomeFragment"
         android:label="fragment_todo"
-        tools:layout="@layout/fragment_todo" />
+        tools:layout="@layout/fragment_home" />
 </navigation>
