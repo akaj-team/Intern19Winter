@@ -14,7 +14,8 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".exercise.LoginActivity"/>
         <activity android:name=".exercise.SignActivity"/>
-            <activity android:name=".exercise.ProfileActivity">
+        <activity android:name=".tablayout.SecondActivity"/>
+            <activity android:name=".tablayout.FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
