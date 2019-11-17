@@ -32,5 +32,13 @@
     <string name="edittext_hint_enter_email">Enter email</string>
     <string name="edittext_hint_enter_phone">Enter phone</string>
     <string name="button_text_create_account">Create Account</string>
+    <string name="textview_step_1">Step 1</string>
+    <string name="textview_step_2">Step 2</string>
+    <string name="textview_step_3">Step 3</string>
+    <string name="textview_next">NEXT</string>
+    <string name="tablayout_home">HOME</string>
+    <string name="tablayout_info">INFO</string>
+    <string name="tablayout_another">ANOTHER</string>
+
 </resources>
 
