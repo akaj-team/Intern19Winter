@@ -30,8 +30,9 @@ class FirstActivity : AppCompatActivity(), View.OnClickListener {
         fragments.add(Step3Fragment())
 
         viewPager.adapter = ViewPagerAdapter(supportFragmentManager, fragments, listOf("", "", ""))
-        tabLayout2.setupWithViewPager(viewPager)
+        tabLayoutone.setupWithViewPager(viewPager)
         viewPager.setCurrentItem(0)
+
     }
 
 
