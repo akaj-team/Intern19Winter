@@ -36,4 +36,7 @@
     <string name="textview_logout">Logout</string>
     <string name="tablayout_title_todo">Todo</string>
     <string name="tablayout_title_done">Done</string>
+    <string name="textview_crate_new_todo">Crate new todo</string>
+    <string name="edittext_hint_enter_title">Enter Title</string>
+    <string name="button_text_add_todo">Add Todo</string>
 </resources>

@@ -3,6 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="todo"
+            type="asiantech.internship.winter.savedata.db.todo.Todo" />
+
+        <variable
+            name="clickListener"
+            type="asiantech.internship.winter.savedata.ui.todo.TodoListener" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,29 +44,29 @@
                     tools:text="Title" />
 
                 <ImageView
-                    android:id="@+id/icDelete"
+                    android:id="@+id/btnDelete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/margin_8dp"
                     android:src="@drawable/ic_delete_forever"
                     android:tint="#F54747"
                     app:layout_constraintBottom_toBottomOf="@+id/tvTitle"
-                    app:layout_constraintEnd_toStartOf="@+id/icEdit"
+                    app:layout_constraintEnd_toStartOf="@+id/btnEdit"
                     app:layout_constraintTop_toTopOf="@id/tvTitle" />
 
                 <ImageView
-                    android:id="@+id/icEdit"
+                    android:id="@+id/btnEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/margin_8dp"
                     android:src="@drawable/ic_edit"
                     android:tint="#793131"
                     app:layout_constraintBottom_toBottomOf="@+id/tvTitle"
-                    app:layout_constraintEnd_toStartOf="@id/icDone"
+                    app:layout_constraintEnd_toStartOf="@id/btnDone"
                     app:layout_constraintTop_toTopOf="@id/tvTitle" />
 
                 <ImageView
-                    android:id="@+id/icDone"
+                    android:id="@+id/btnDone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_8dp"

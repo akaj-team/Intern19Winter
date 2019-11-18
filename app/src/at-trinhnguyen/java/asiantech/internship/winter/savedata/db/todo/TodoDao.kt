@@ -28,7 +28,7 @@ interface TodoDao {
     fun deleteAll()
 
     @Query("DELETE FROM todo_table WHERE idTodo= :idTodo")
-    fun deleteTodoById(idTodo: String)
+    fun deleteTodoById(idTodo: Long)
 
     @Query("DELETE FROM todo_table WHERE completed=1")
     fun deleteCompletedTodo(): Int
