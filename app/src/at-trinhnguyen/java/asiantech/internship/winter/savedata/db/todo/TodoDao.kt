@@ -21,14 +21,14 @@ interface TodoDao {
     @Update
     fun updateTodo(todo: Todo)
 
-//    @Query("UPDATE todo_table SET completed=:isCompleted ")
-//    fun updateCompletedById(idTodo: Long, isCompleted: Boolean)
+    @Query("UPDATE todo_table SET completed=:isCompleted WHERE idTodo=:idTodo ")
+    suspend fun updateCompletedById(idTodo: Long, isCompleted: Boolean)
 
     @Query("DELETE FROM todo_table")
     fun deleteAll()
 
     @Query("DELETE FROM todo_table WHERE idTodo= :idTodo")
-    fun deleteTodoById(idTodo: Long)
+    suspend fun deleteTodoById(idTodo: Long)
 
     @Query("DELETE FROM todo_table WHERE completed=1")
     fun deleteCompletedTodo(): Int

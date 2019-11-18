@@ -28,6 +28,22 @@ class TodoViewModel(private val database: TodoDao, application: Application)
         }
     }
 
+    fun deleteTodo(id: Long) {
+        uiScope.launch {
+            withContext(Dispatchers.IO) {
+                database.deleteTodoById(id)
+            }
+        }
+    }
+
+    fun updateCompletedById(idTodo: Long) {
+        uiScope.launch {
+            withContext(Dispatchers.IO) {
+                database.updateCompletedById(idTodo, true)
+            }
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()

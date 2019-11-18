@@ -53,6 +53,6 @@ class TodoAdapter internal constructor(private val mClickListener: TodoListener)
 
 }
 
-class TodoListener(val clickListener: (idTodo: Long, view: Int) -> Unit) {
-    fun onClick(todo: Todo, view: Int) = clickListener(todo.idTodo, view)
+class TodoListener(val clickListener: (todo: Todo, view: Int) -> Unit) {
+    fun onClick(todo: Todo, view: Int) = clickListener(todo, view)
 }

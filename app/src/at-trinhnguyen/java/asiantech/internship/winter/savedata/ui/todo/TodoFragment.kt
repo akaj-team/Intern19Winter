@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -50,11 +51,29 @@ class TodoFragment : Fragment() {
         todoViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(TodoViewModel::class.java)
         binding.todoViewModel = todoViewModel
-        val adapter = TodoAdapter(TodoListener { idTodo, viewId ->
+        val adapter = TodoAdapter(TodoListener { todo, viewId ->
             when (viewId) {
-                R.id.btnDelete -> Toast.makeText(context, "$idTodo delete", Toast.LENGTH_LONG).show()
-                R.id.btnEdit -> Toast.makeText(context, "$idTodo edit ", Toast.LENGTH_LONG).show()
-                R.id.btnDone -> Toast.makeText(context, "$idTodo done", Toast.LENGTH_LONG).show()
+                R.id.btnDelete -> {
+                    todoViewModel.deleteTodo(todo.idTodo)
+                    context?.let {
+                        AlertDialog.Builder(it).apply {
+                            setTitle("Alert")
+                            setMessage("Do you want delete this todo?")
+                            setNegativeButton("No") { _, _ ->
+                            }
+                            setPositiveButton("Yes") { _, _ ->
+                                todoViewModel.deleteTodo(todo.idTodo)
+                                Toast.makeText(context, "Todo ${todo.title} was deleted!", Toast.LENGTH_LONG).show()
+                            }
+                        }.create().show()
+                    }
+                }
+                R.id.btnEdit -> Toast.makeText(context, "$todo edit ", Toast.LENGTH_LONG).show()
+                R.id.btnDone -> {
+                    todoViewModel.updateCompletedById(todo.idTodo)
+                    Toast.makeText(context, "Todo ${todo.title} was completed!", Toast.LENGTH_LONG).show()
+
+                }
             }
         })
 
