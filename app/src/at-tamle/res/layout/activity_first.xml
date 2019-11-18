@@ -23,7 +23,7 @@
         android:id="@+id/tvNext"
         android:layout_margin="16dp"
         android:textSize="20dp"
-        android:text="next"
+        android:text="@string/textview_next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="wrap_content"

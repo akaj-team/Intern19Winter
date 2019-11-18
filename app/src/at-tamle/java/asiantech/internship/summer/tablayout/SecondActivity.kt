@@ -47,11 +47,16 @@ class SecondActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
         if (state == ViewPager.SCROLL_STATE_IDLE) {
             val currPage = viewPager.getCurrentItem()
 
-            val lastReal = viewPager.getAdapter()!!.getCount() - 2
             if (currPage == 1) {
-                viewPager.setCurrentItem(lastReal, false)
-            } else if (currPage > lastReal) {
                 viewPager.setCurrentItem(1, false)
+            } else if (currPage == 2) {
+                viewPager.setCurrentItem(2, false)
+            } else if (currPage == 3) {
+                viewPager.setCurrentItem(3, false)
+            } else if (currPage == 4) {
+                viewPager.setCurrentItem(1, false)
+            } else {
+                viewPager.setCurrentItem(3, false)
             }
         }
     }
