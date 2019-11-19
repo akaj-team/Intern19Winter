@@ -27,4 +27,13 @@
     <string name="edittext_hint_phone">+1 234 567 89</string>
     <string name="button_text_save_info">Save Profile</string>
     <string name="edittext_hint_password">1234</string>
+    <string name="textview_text_step_1">Step 1</string>
+    <string name="textview_text_step_2">Step 2</string>
+    <string name="textview_text_step_3">Step 3</string>
+    <string name="textview_text_skip">Skip</string>
+    <string name="textview_text_next">Next</string>
+    <string name="pagetitle_text_home">HOME</string>
+    <string name="pagetitle_text_info">INFO</string>
+    <string name="pagetitle_text_another">ANOTHER</string>
+
 </resources>

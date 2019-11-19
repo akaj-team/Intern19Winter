@@ -23,7 +23,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".fragment.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".viewpager_tablayout.ViewPagerActivity"
+            android:theme="@style/AppTheme.NoActionBar."
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,4 +39,5 @@
 
     <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 </manifest>
