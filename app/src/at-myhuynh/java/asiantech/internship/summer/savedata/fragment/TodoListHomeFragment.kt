@@ -1,7 +1,6 @@
 package asiantech.internship.summer.savedata.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +25,12 @@ class TodoListHomeFragment : Fragment() {
     private var mUser: User = User(1, "ToDo List", "", "", R.drawable.ic_man)
 
     companion object {
-        fun newInstance() = TodoListHomeFragment()
+        private const val KEY_USER_ID = "userId"
+        fun newInstance(idUser: Int = -1) = TodoListHomeFragment().apply {
+            arguments = Bundle().apply {
+                putInt(KEY_USER_ID, idUser)
+            }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

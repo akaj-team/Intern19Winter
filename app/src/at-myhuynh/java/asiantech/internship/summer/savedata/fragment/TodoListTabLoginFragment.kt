@@ -20,10 +20,11 @@ class TodoListTabLoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        userDatabase = TodoListDatabaseHelper(requireContext())
         btnLogin.setOnClickListener {
-            if (login(edtUserName.text.toString(), edtPassword.text.toString()) != -1) {
-                (activity as? TodoListActivity)?.replaceFragment(TodoListHomeFragment.newInstance(), false)
+            userDatabase = TodoListDatabaseHelper(requireContext())
+            val idUser = login(edtUserName.text.toString(), edtPassword.text.toString())
+            if (idUser != -1) {
+                (activity as? TodoListActivity)?.replaceFragment(TodoListHomeFragment.newInstance(idUser), false)
             } else {
                 Toast.makeText(requireContext(), "Login Fail", Toast.LENGTH_SHORT).show()
             }

@@ -13,7 +13,7 @@ class TodoListDatabaseHelper(context: Context) :
         SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         private const val DATABASE_NAME = "todoList"
-        private const val DATABASE_VERSION = 2
+        private const val DATABASE_VERSION = 1
 
         private const val TABLE_TODO = "todo"
         private const val TABLE_USER = "user"
@@ -39,6 +39,12 @@ class TodoListDatabaseHelper(context: Context) :
                 "$KEY_USER_PASSWORD TEXT, " +
                 "$KEY_USER_NICKNAME TEXT, " +
                 "$KEY_USER_PATH TEXT)"
+
+        private const val DROP_TABLE_TODO = "DROP TABLE IF EXISTS $TABLE_TODO"
+        private const val DROP_TABLE_USER = "DROP TABLE IF EXISTS $TABLE_USER"
+        private const val SELECT_TABLE_USER = "SELECT * FROM $TABLE_USER WHERE $KEY_USER_NAME = ? AND $KEY_USER_PASSWORD = ?"
+        private const val SELECT_TABLE_USER_ALL = "SELECT * FROM $TABLE_USER"
+        private const val SELECT_TABLE_TODO_ALL = "SELECT * FROM $TABLE_TODO"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -48,8 +54,8 @@ class TodoListDatabaseHelper(context: Context) :
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         if (oldVersion != newVersion) {
-            db?.execSQL("DROP TABLE IF EXISTS $TABLE_TODO")
-            db?.execSQL("DROP TABLE IF EXISTS $TABLE_USER")
+            db?.execSQL(DROP_TABLE_TODO)
+            db?.execSQL(DROP_TABLE_USER)
         }
         onCreate(db)
     }
@@ -70,41 +76,40 @@ class TodoListDatabaseHelper(context: Context) :
         val cursor: Cursor?
 
         try {
-            cursor = db.rawQuery(
-                    "SELECT * FROM $TABLE_USER WHERE $KEY_USER_NAME = ? AND $KEY_USER_PASSWORD = ?",
-                    arrayOf(userName, password))
+            cursor = db.rawQuery(SELECT_TABLE_USER, arrayOf(userName, password))
         } catch (e: SQLException) {
             return users
         }
 
-        if (cursor!!.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast) {
                 val id = cursor.getInt(cursor.getColumnIndex(KEY_USER_ID))
-                val userName = cursor.getString(cursor.getColumnIndex(KEY_USER_NAME))
-                val password = cursor.getString(cursor.getColumnIndex(KEY_USER_PASSWORD))
+                val username = cursor.getString(cursor.getColumnIndex(KEY_USER_NAME))
+                val pass = cursor.getString(cursor.getColumnIndex(KEY_USER_PASSWORD))
                 val nickName = cursor.getString(cursor.getColumnIndex(KEY_USER_NICKNAME))
 //                val path = cursor.getString(cursor.getColumnIndex(KEY_USER_PATH))
 
-                users.add(User(id, userName, password, nickName, 0))
+                users.add(User(id, username, pass, nickName, 0))
                 cursor.moveToNext()
             }
         }
+        cursor.close()
         return users
     }
 
     fun readUsers(): MutableList<User> {
         val users = mutableListOf<User>()
         val db = writableDatabase
-        var cursor: Cursor?
+        val cursor: Cursor?
 
         try {
-            cursor = db.rawQuery("SELECT * FROM $TABLE_USER", null)
+            cursor = db.rawQuery(SELECT_TABLE_USER_ALL, null)
         } catch (e: SQLException) {
             db.execSQL(CREATE_TABLE_USER)
             return users
         }
 
-        if (cursor!!.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast) {
                 val id = cursor.getInt(cursor.getColumnIndex(KEY_USER_ID))
                 val userName = cursor.getString(cursor.getColumnIndex(KEY_USER_NAME))
@@ -116,6 +121,7 @@ class TodoListDatabaseHelper(context: Context) :
                 cursor.moveToNext()
             }
         }
+        cursor.close()
         return users
     }
 
@@ -131,16 +137,16 @@ class TodoListDatabaseHelper(context: Context) :
     fun readTodos(): MutableList<Todo> {
         val todoList = mutableListOf<Todo>()
         val db = writableDatabase
-        var cursor: Cursor?
+        val cursor: Cursor?
 
         try {
-            cursor = db.rawQuery("SELECT * FROM $TABLE_TODO", null)
+            cursor = db.rawQuery(SELECT_TABLE_TODO_ALL, null)
         } catch (e: SQLException) {
             db.execSQL(CREATE_TABLE_USER)
             return todoList
         }
 
-        if (cursor!!.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast) {
                 val id = cursor.getInt(cursor.getColumnIndex(KEY_TODO_ID))
                 val idUser = cursor.getInt(cursor.getColumnIndex(KEY_USER_ID_PK))
@@ -151,6 +157,7 @@ class TodoListDatabaseHelper(context: Context) :
                 cursor.moveToNext()
             }
         }
+        cursor.close()
         return todoList
     }
 
