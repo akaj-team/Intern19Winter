@@ -4,7 +4,6 @@
         <shape android:innerRadius="0dp" android:shape="ring" android:thickness="7dp" android:useLevel="false">
             <solid android:color="#FF0000" />
         </shape>
-
     </item>
     <item android:state_selected="false">
         <shape android:innerRadius="0dp" android:shape="ring" android:thickness="7dp" android:useLevel="false">
