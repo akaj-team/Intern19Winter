@@ -7,7 +7,7 @@ import asiantech.internship.summer.R
 import asiantech.internship.summer.databinding.ItemListTodoBinding
 import asiantech.internship.winter.savedata.db.todo.Todo
 
-class TodoAdapter internal constructor(private val mClickListener: TodoListener) :
+class TodoAdapter internal constructor(private val clickListener: TodoListener) :
         RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     private var todos = emptyList<Todo>()
@@ -21,7 +21,7 @@ class TodoAdapter internal constructor(private val mClickListener: TodoListener)
     override fun getItemCount() = todos.size
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        holder.onBind(position, mClickListener)
+        holder.onBind(position, clickListener)
     }
 
     inner class TodoViewHolder constructor(val binding: ItemListTodoBinding)

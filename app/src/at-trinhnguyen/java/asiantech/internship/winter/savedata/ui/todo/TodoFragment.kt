@@ -14,10 +14,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import asiantech.internship.summer.R
 import asiantech.internship.summer.databinding.FragmentTodoBinding
-import asiantech.internship.winter.savedata.db.todo.Todo
-import asiantech.internship.winter.savedata.db.todo.TodoDatabase
+import asiantech.internship.winter.savedata.db.TodoDatabase
+import asiantech.internship.winter.savedata.ui.ViewModelFactory
 
 class TodoFragment : Fragment() {
+
     private lateinit var binding: FragmentTodoBinding
     private lateinit var todoViewModel: TodoViewModel
     private val idUser = 111L
@@ -26,19 +27,11 @@ class TodoFragment : Fragment() {
         fun newInstance() = TodoFragment()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d("aaa", "aaaaa")
-        arguments?.let {
-            Log.d("aaa", "bbbbb")
-            todoViewModel.insert(Todo(0, idUser, it.getString("title")
-                    ?: "null", it.getString("description") ?: "null", false))
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_todo, container, false)
+        Log.d("aaa", "onCreateView")
+
         return binding.root
     }
 
@@ -46,8 +39,8 @@ class TodoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val application = requireNotNull(activity?.application)
-        val dataSource = TodoDatabase.getInstance(application).todoDao
-        val viewModelFactory = TodoViewModelFactory(dataSource, application)
+        val dataSource = TodoDatabase.getInstance(application)
+        val viewModelFactory = ViewModelFactory(dataSource, application)
         todoViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(TodoViewModel::class.java)
         binding.todoViewModel = todoViewModel

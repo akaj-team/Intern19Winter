@@ -8,7 +8,7 @@ import asiantech.internship.summer.R
 import asiantech.internship.winter.savedata.ui.done.DoneFragment
 import asiantech.internship.winter.savedata.ui.todo.TodoFragment
 
-class ViewPagerAdapter(fragmentManager: FragmentManager, private val mContext: Context) : FragmentStatePagerAdapter(fragmentManager) {
+class ViewPagerAdapter(fragmentManager: FragmentManager, private val context: Context) : FragmentStatePagerAdapter(fragmentManager) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
@@ -21,8 +21,8 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, private val mContext: C
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
-            0 -> mContext.getString(R.string.tablayout_title_todo)
-            else -> mContext.getString(R.string.tablayout_title_done)
+            0 -> context.getString(R.string.tablayout_title_todo)
+            else -> context.getString(R.string.tablayout_title_done)
         }
     }
 }

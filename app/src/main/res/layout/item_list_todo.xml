@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/margin_8dp"
                     android:src="@drawable/ic_delete_forever"
-                    android:tint="#F54747"
+                    android:tint="#F02626"
                     app:layout_constraintBottom_toBottomOf="@+id/tvTitle"
                     app:layout_constraintEnd_toStartOf="@+id/btnEdit"
                     app:layout_constraintTop_toTopOf="@id/tvTitle" />
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_8dp"
                     android:src="@drawable/ic_done"
-                    android:tint="#2B2B2B"
+                    android:tint="#2DCA11"
                     app:layout_constraintBottom_toBottomOf="@+id/tvTitle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tvTitle" />

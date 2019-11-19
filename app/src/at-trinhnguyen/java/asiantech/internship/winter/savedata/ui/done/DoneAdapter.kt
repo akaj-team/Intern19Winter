@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 import asiantech.internship.winter.savedata.db.todo.Todo
 
-class DoneAdapter internal constructor(private val mContext: Context) :
+class DoneAdapter internal constructor(private val context: Context) :
         RecyclerView.Adapter<DoneAdapter.DoneViewHolder>() {
 
     private var todos = emptyList<Todo>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoneViewHolder {
         return DoneViewHolder(
-                LayoutInflater.from(mContext).inflate(
+                LayoutInflater.from(context).inflate(
                         R.layout.item_list_done,
                         parent,
                         false

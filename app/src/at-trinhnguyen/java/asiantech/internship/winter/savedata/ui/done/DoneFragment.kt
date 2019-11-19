@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import asiantech.internship.summer.R
 import asiantech.internship.summer.databinding.FragmentDoneBinding
-import asiantech.internship.winter.savedata.db.todo.TodoDatabase
+import asiantech.internship.winter.savedata.db.TodoDatabase
+import asiantech.internship.winter.savedata.ui.ViewModelFactory
 import asiantech.internship.winter.savedata.ui.todo.TodoFragment
-import asiantech.internship.winter.savedata.ui.todo.TodoViewModel
 
 
 class DoneFragment : Fragment() {
@@ -22,20 +22,13 @@ class DoneFragment : Fragment() {
         fun newInstance() = TodoFragment()
     }
 
-    private lateinit var viewModel: TodoViewModel
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_done, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         val application = requireNotNull(activity?.application)
-        val dataSource = TodoDatabase.getInstance(application).todoDao
-        val viewModelFactory = DoneViewModelFactory(dataSource, application)
+        val dataSource = TodoDatabase.getInstance(application)
+        val viewModelFactory = ViewModelFactory(dataSource, application)
         val doneViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(DoneViewModel::class.java)
         binding.doneViewModel = doneViewModel
@@ -46,5 +39,7 @@ class DoneFragment : Fragment() {
         })
         binding.recyclerView.adapter = adapter
         binding.lifecycleOwner = this
+
+        return binding.root
     }
 }
