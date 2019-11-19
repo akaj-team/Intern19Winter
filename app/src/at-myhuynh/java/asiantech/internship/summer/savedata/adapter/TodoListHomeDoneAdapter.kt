@@ -15,7 +15,7 @@ class TodoListHomeDoneAdapter(mTodoLists: MutableList<Todo>) :
 
     init {
         mTodoLists.forEach {
-            if (it.status) {
+            if (it.status == 1) {
                 mTodoListDones.add(it)
             }
         }

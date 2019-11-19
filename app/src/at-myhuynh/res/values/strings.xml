@@ -31,5 +31,6 @@
     <string name="textview_text_nickname">Nick Name</string>
     <string name="textview_text_addnote">Todo</string>
     <string name="btn_text_addnote">Save</string>
+    <string name="textview_text_username">User Name</string>
 
 </resources>

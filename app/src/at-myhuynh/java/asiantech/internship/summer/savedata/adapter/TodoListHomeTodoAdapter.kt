@@ -35,13 +35,13 @@ class TodoListHomeTodoAdapter(private val mTodoLists: MutableList<Todo>) :
         fun onBindData(position: Int) {
             val todoItem = mTodoLists[position]
             val tvTodoContent = itemView.findViewById<TextView>(R.id.tvTodoContent)
-            val status = itemView.findViewById<CheckBox>(R.id.cbStatus)
+            val checkBoxStatus = itemView.findViewById<CheckBox>(R.id.cbStatus)
             val imgEdit = itemView.findViewById<ImageView>(R.id.imgEdit)
             val imgDelete = itemView.findViewById<ImageView>(R.id.imgDelete)
 
             tvTodoContent.text = todoItem.title
-            if (todoItem.status) {
-                status.isChecked = true
+            if (todoItem.status == 1) {
+                checkBoxStatus.isChecked = true
             }
 
             imgEdit.setOnClickListener {
@@ -50,6 +50,10 @@ class TodoListHomeTodoAdapter(private val mTodoLists: MutableList<Todo>) :
 
             imgDelete.setOnClickListener {
                 mTodoItemOnClick?.deleteTodoOnClick(todoItem)
+            }
+
+            checkBoxStatus.setOnClickListener {
+                mTodoItemOnClick?.checkBoxTodoOnClick(todoItem)
             }
         }
     }

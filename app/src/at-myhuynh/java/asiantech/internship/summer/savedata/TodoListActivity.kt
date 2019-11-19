@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import asiantech.internship.summer.R
 import asiantech.internship.summer.savedata.fragment.TodoListLoginFragment
 import kotlinx.android.synthetic.`at-myhuynh`.fragment_todo_list_tab_register.*
@@ -30,6 +31,10 @@ class TodoListActivity : AppCompatActivity() {
         }
         fragmentTransaction.replace(R.id.flTodoListFragment, fragment)
         fragmentTransaction.commit()
+    }
+
+    fun removeFragmentBackStack() {
+        supportFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
