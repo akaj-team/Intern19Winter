@@ -26,8 +26,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".viewpagerTablayout.ViewPagerActivity"
-            android:theme="@style/AppTheme.NoActionBar.">
+            android:name=".viewpager_tablayout.ViewPagerActivity"
+            android:theme="@style/AppTheme.NoActionBar."
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

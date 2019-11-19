@@ -1,4 +1,4 @@
-package asiantech.internship.summer.viewpagerTablayout
+package asiantech.internship.summer.viewpager_tablayout
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

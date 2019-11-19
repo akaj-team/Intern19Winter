@@ -1,4 +1,4 @@
-package asiantech.internship.summer.viewpagerTablayout
+package asiantech.internship.summer.viewpager_tablayout
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import asiantech.internship.summer.R
 
-class AnotherFragment : Fragment() {
+class StepOneFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_another, container, false)
+        return inflater.inflate(R.layout.fragment_step_one, container, false)
     }
 }

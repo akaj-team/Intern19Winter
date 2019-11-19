@@ -1,4 +1,4 @@
-package asiantech.internship.summer.viewpagerTablayout
+package asiantech.internship.summer.viewpager_tablayout
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.`at-myhuynh`.fragment_view_pager.*
 
 class ViewPagerFragment : Fragment() {
 
+    private lateinit var listTabs: MutableList<Tab>
+
     companion object {
         fun newInstance() = ViewPagerFragment()
     }
@@ -22,10 +24,9 @@ class ViewPagerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewpager.adapter = ViewPagerAdapter(requireContext())
-        tabDots.setupWithViewPager(viewpager, true)
-
-        setTextView(tabDots.selectedTabPosition)
+        initData()
+        viewpager.adapter = ViewPagerAdapter(childFragmentManager, listTabs)
+        indicator.setViewPager(viewpager)
 
         viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
@@ -47,6 +48,15 @@ class ViewPagerFragment : Fragment() {
             tvSkip.text = getString(R.string.textview_text_skip)
         } else {
             tvSkip.text = getString(R.string.textview_text_next)
+        }
+    }
+
+    private fun initData() {
+        listTabs = mutableListOf()
+        listTabs.apply {
+            add(Tab(StepOneFragment(), null))
+            add(Tab(StepTwoFragment(), null))
+            add(Tab(StepThreeFragment(), null))
         }
     }
 }

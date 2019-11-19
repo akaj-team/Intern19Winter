@@ -1,4 +1,4 @@
-package asiantech.internship.summer.viewpagerTablayout
+package asiantech.internship.summer.viewpager_tablayout
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.`at-myhuynh`.fragment_tab_layout.*
 
 class TabLayoutFragment : Fragment() {
 
+    private lateinit var listTabs: MutableList<Tab>
+
     companion object {
         fun newInstance() = TabLayoutFragment()
     }
@@ -20,7 +22,18 @@ class TabLayoutFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewpagerTab.adapter = TabLayoutAdapter(childFragmentManager, requireContext())
+        initData()
+        viewpagerTab.adapter = TabLayoutAdapter(childFragmentManager, listTabs)
         tabLayout.setupWithViewPager(viewpagerTab)
+    }
+
+    private fun initData() {
+        listTabs = mutableListOf()
+        listTabs.apply {
+            add(Tab(HomeFragment(), getString(R.string.pagetitle_text_home)))
+            add(Tab(InfoFragment(), getString(R.string.pagetitle_text_info)))
+            add(Tab(AnotherFragment(), getString(R.string.pagetitle_text_another)))
+        }
+
     }
 }
