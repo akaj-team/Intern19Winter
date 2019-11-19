@@ -1,17 +1,13 @@
 package asiantech.internship.summer.tablayout
 
 import android.content.Intent
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import asiantech.internship.summer.R
-
-
 import kotlinx.android.synthetic.`at-tamle`.activity_first.*
 import kotlinx.android.synthetic.`at-tamle`.activity_first.viewPager
-
 
 class FirstActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -21,33 +17,15 @@ class FirstActivity : AppCompatActivity(), View.OnClickListener {
         initView()
     }
 
-
     private fun initView() {
         tvNext.setOnClickListener(this)
         val fragments = mutableListOf<Fragment>()
         fragments.add(Step1Fragment())
         fragments.add(Step2Fragment())
         fragments.add(Step3Fragment())
-
-        viewPager.adapter = ViewPagerAdapter(supportFragmentManager, fragments, listOf("", "", ""))
+        viewPager.adapter = ViewPagerAdapter(supportFragmentManager, fragments, listOf(getString(R.string.tablayout_empty), getString(R.string.tablayout_empty), getString(R.string.tablayout_empty)))
         tabLayoutone.setupWithViewPager(viewPager)
-        viewPager.setCurrentItem(0)
-
     }
-
-
-//    private fun initView() {
-//        tvNext.setOnClickListener(this)
-//        val fragments: MutableList<Fragment> = mutableListOf()
-//        fragments.add(Step1Fragment())
-//        fragments.add(Step2Fragment())
-//        fragments.add(Step3Fragment())
-//
-//        viewPager?.adapter = ViewPagerAdapter(supportFragmentManager, fragments)
-//        circleIndicator.setViewPager(viewPager)
-//
-//
-//    }
 
     override fun onClick(view: View?) {
         val position = viewPager!!.currentItem + 1
@@ -57,5 +35,4 @@ class FirstActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(Intent(this, SecondActivity::class.java))
         }
     }
-
 }
