@@ -13,10 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".layouteditor.CreateAccountActivity" />
         <activity android:name=".layouteditor.LoginActivity" />
         <activity android:name=".layouteditor.EditProfileActivity" />
-        <activity android:name=".viewpager.ViewPagerActivity">
+        <activity
+            android:name=".viewpager.ViewPagerActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
