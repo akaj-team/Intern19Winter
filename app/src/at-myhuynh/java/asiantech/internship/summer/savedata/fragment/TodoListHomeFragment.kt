@@ -1,5 +1,7 @@
 package asiantech.internship.summer.savedata.fragment
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import asiantech.internship.summer.R
+import asiantech.internship.summer.savedata.Constants.Companion.KEY_USER_ID
 import asiantech.internship.summer.savedata.TodoListActivity
 import asiantech.internship.summer.savedata.adapter.NavAdapter
 import asiantech.internship.summer.savedata.adapter.TodoListHomeAdapter
@@ -22,10 +25,11 @@ class TodoListHomeFragment : Fragment() {
     private lateinit var mTodoLists: MutableList<Todo>
     private lateinit var mNavItems: MutableList<NavItem>
     private lateinit var todoListDatabase: TodoListDatabaseHelper
-    private var mUser: User = User(1, "ToDo List", "", "", R.drawable.ic_man)
+    private lateinit var preferences: SharedPreferences
+    private val sharedFile = "userLogin"
+    private var user: User = User(1, "ToDo List", "", "", R.drawable.ic_man)
 
     companion object {
-        private const val KEY_USER_ID = "userId"
         fun newInstance(idUser: Int = -1) = TodoListHomeFragment().apply {
             arguments = Bundle().apply {
                 putInt(KEY_USER_ID, idUser)
@@ -47,7 +51,7 @@ class TodoListHomeFragment : Fragment() {
         vpHome.adapter = vpAdapter
         tlHome.setupWithViewPager(vpHome)
 
-        val navAdapter = NavAdapter(mUser, mNavItems)
+        val navAdapter = NavAdapter(user, mNavItems)
         rvNavigation.layoutManager = LinearLayoutManager(requireContext())
         rvNavigation.adapter = navAdapter
         setOnClickNavItem(navAdapter)
@@ -73,6 +77,10 @@ class TodoListHomeFragment : Fragment() {
         adapter.setOnclickNavItem(object : NavItemOnClick {
             override fun onClick(navItem: NavItem) {
                 if (navItem.mTitle == "Log Out") {
+                    preferences = requireContext().getSharedPreferences(sharedFile, Context.MODE_PRIVATE)
+                    val preferencesEditor = preferences.edit()
+                    preferencesEditor.remove(KEY_USER_ID)
+                    preferencesEditor.apply()
                     (activity as? TodoListActivity)?.removeFragmentBackStack()
                 }
                 (activity as? TodoListActivity)?.replaceFragment(navItem.toFragment, navItem.isAddToBackStack)
