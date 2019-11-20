@@ -34,5 +34,6 @@
     <string name="button_text_create_account">Create Account</string>
     <string name="textview_like">likes</string>
     <string name="textview_text_comment">こんにちは世界</string>
+    <string name="toast_stop_here">chỉ load tối đa 30 trang</string>
 </resources>
 
