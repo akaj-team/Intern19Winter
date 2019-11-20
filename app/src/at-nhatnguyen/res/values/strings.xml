@@ -30,5 +30,7 @@
     <string name="textview_text_step_1">Step 1</string>
     <string name="textview_text_step_3">Step 3</string>
     <string name="textview_text_step_2">Step 2</string>
-
+    <string name="tab_one">Tab 1</string>
+    <string name="tab_two">Tab 2</string>
+    <string name="tab_three">Tab 3</string>
 </resources>

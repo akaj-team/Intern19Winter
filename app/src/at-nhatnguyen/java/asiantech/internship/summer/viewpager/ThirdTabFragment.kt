@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import asiantech.internship.summer.R
 
-class ThirdTabFragment :Fragment(){
+class ThirdTabFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_tab_third,container,false)
+        return inflater.inflate(R.layout.fragment_tab_third, container, false)
     }
 }

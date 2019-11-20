@@ -7,4 +7,9 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="color_text">#30be76</color>
     <color name="colorRed">#FF0000</color>
+    <color name="colorStepOne">#9588F8</color>
+    <color name="colorStepThree">#788D63</color>
+    <color name="colorStepTwo">#7842D1</color>
+    <color name="colorBackgroundTabLayout">#4040BE</color>
+    <color name="colorGreen">#6AFF00</color>
 </resources>

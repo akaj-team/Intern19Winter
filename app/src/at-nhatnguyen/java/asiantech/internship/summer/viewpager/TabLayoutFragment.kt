@@ -8,23 +8,29 @@ import androidx.fragment.app.Fragment
 import asiantech.internship.summer.R
 import kotlinx.android.synthetic.`at-nhatnguyen`.fragment_tablayout.*
 
-class TabLayoutFragment :Fragment(){
+class TabLayoutFragment : Fragment() {
 
-    companion object{
-        @JvmStatic
+    companion object {
         fun newInstance() = TabLayoutFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_tablayout,container,false)
+        return inflater.inflate(R.layout.fragment_tablayout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val fragmentAdapter = fragmentManager?.let {
-            TabLayoutAdapter(it)
+        val listModel = mutableListOf<Model>()
+        listModel.apply {
+            add(Model(FirstTabFragment(),getString(R.string.tab_one)))
+            add(Model(SecondTabFragment(),getString(R.string.tab_two)))
+            add(Model(ThirdTabFragment(),getString(R.string.tab_three)))
         }
-        viewPager.adapter = fragmentAdapter
+
+        val adapter = fragmentManager?.let {
+            TabLayoutAdapter(it, listModel)
+        }
+        viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
     }
 }

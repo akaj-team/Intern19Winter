@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.`at-nhatnguyen`.fragment_indicator.*
 class IndicatorFragment : Fragment() {
 
     companion object {
-        @JvmStatic
         fun newInstance() = IndicatorFragment()
     }
 
@@ -19,20 +18,27 @@ class IndicatorFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_indicator, container, false)
     }
 
-    //truyen adapter indicator
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewPageAdapter = context?.let {
-            IndicatorAdapter(it)
+
+        val listFragment = mutableListOf<Fragment>()
+        listFragment.apply {
+            add(StepOneFragment())
+            add(StepTwoFragment())
+            add(StepThreeFragment())
         }
-        viewPager.adapter = viewPageAdapter
+
+        val adapterViewPager = IndicatorAdapter(childFragmentManager,listFragment)
+        viewPager.adapter = adapterViewPager
         tabLayout.setupWithViewPager(viewPager)
         tvNext.setOnClickListener {
-            when (viewPager.currentItem) {
-                0 -> viewPager.currentItem = 1
-                1 -> viewPager.currentItem = 2
-                2 -> viewPager.currentItem.apply {
-                    fragmentManager?.beginTransaction()?.replace(R.id.frameLayout, TabLayoutFragment.newInstance())?.addToBackStack(null)?.commit()
+            viewPager.currentItem = viewPager.currentItem + 1
+            if (viewPager.currentItem == 2) {
+                tvNext.setOnClickListener {
+                    fragmentManager?.beginTransaction()?.
+                            replace(R.id.frameLayout, TabLayoutFragment.newInstance())?.
+                            addToBackStack(null)?.
+                            commit()
                 }
             }
         }
