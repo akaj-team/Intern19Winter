@@ -3,21 +3,17 @@ package asiantech.internship.summer.recyclerview
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
-import androidx.recyclerview.widget.RecyclerView.OnScrollListener
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import asiantech.internship.summer.R
 import kotlinx.android.synthetic.`at-tamle`.activity_timeline.*
 import kotlin.random.Random
 
-class TimelineActivity : AppCompatActivity() {
-
-    private lateinit var mTimeLines: MutableList<TimelineItem>
-
-    private lateinit var mTimelineAdapter: TimelineAdapter
-    val linearLayoutManager = LinearLayoutManager(this)
-
+class TimelineActivity : AppCompatActivity(), FavoriteOnClickListener,
+        SwipeRefreshLayout.OnRefreshListener {
+    private var timelineItems: MutableList<TimelineItem?> = ArrayList()
+    private lateinit var timelineItemAdapter: TimelineAdapter
     private val listImages = mutableListOf(
             R.drawable.img_food_1,
             R.drawable.img_food_2,
@@ -30,78 +26,82 @@ class TimelineActivity : AppCompatActivity() {
             R.drawable.img_food_9,
             R.drawable.img_food_10
     )
+    private val listAvatar = mutableListOf(
+            R.drawable.img_chibi_boa,
+            R.drawable.img_chibi_cute,
+            R.drawable.img_chibi_hinata,
+            R.drawable.img_chibi_nami,
+            R.drawable.img_chibi_rappit,
+            R.drawable.img_chibi_sakura
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timeline)
-        rvTimeline.layoutManager = linearLayoutManager
-        setUpRV()
-        swipeContainer.setOnRefreshListener {
-            Handler().postDelayed({
-                mTimelineAdapter.reset()
-                setUpRV()
-                swipeContainer.isRefreshing = false
-            }, 1000)
-        }
+
+        initView()
     }
 
-    private fun setUpRV() {
-        initData()
-        mTimelineAdapter = TimelineAdapter(mTimeLines)
-        rvTimeline.adapter = mTimelineAdapter
-        setOnClickListener(mTimelineAdapter)
-        recyclerViewOnScroll(mTimelineAdapter)
+    private fun initView() {
+        randomNewItems()
+        rvTimeline.layoutManager = LinearLayoutManager(this)
+        timelineItemAdapter = TimelineAdapter(rvTimeline, this, timelineItems)
+        rvTimeline.adapter = timelineItemAdapter
+
+        timelineItemAdapter.setLoadMore(this)
+        swipeContainer.setOnRefreshListener(this)
     }
 
+    override fun onLoadMore() {
+        if (timelineItems.size < 30) {
+            timelineItems.add(null)
+            timelineItemAdapter.notifyItemInserted(timelineItems.size - 1)
 
-    private fun recyclerViewOnScroll(timelineAdapter: TimelineAdapter) {
-        rvTimeline.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
+            Handler().postDelayed(Runnable {
+                timelineItems.removeAt(timelineItems.size - 1)
+                timelineItemAdapter.notifyItemRemoved(timelineItems.size)
 
-                if (!timelineAdapter.isLoading()) {
-                    Log.d(
-                            "xxx",
-                            "last visible position: ${linearLayoutManager.findLastVisibleItemPosition()}, total count: ${linearLayoutManager.itemCount}"
+                val index = timelineItems.size
+                val end = index + 10
+                val avatar = Random.nextInt(listAvatar.size)
+                val num = Random.nextInt(listImages.size)
+                for (i in index until end) {
+                    TimelineItem("Name ${i}",
+                            listImages[num],
+                            "ゴーヤーチャンプルー ${i}", (0..100).random(),
+                            false, listAvatar[avatar]
                     )
-                    if (linearLayoutManager.findLastVisibleItemPosition() >= linearLayoutManager.itemCount - 1) {
-                        Log.d("xxx", "end")
 
-                        recyclerView.post {
-                            timelineAdapter.addFooter()
-                        }
-                        Handler().postDelayed({
-                            timelineAdapter.removeFooter()
-                            val lastTimeLine = linearLayoutManager.itemCount
-                            timelineAdapter.loadMore(lastTimeLine)
-                        }, 2000)
-                    }
                 }
-            }
-        })
-    }
-
-    private fun initData() {
-        mTimeLines = mutableListOf()
-        for (i in 0..20) {
-            val index = Random.nextInt(listImages.size)
-            mTimeLines.add(TimelineItem("Name ${i + 1}", listImages[index], "ゴーヤーチャンプルー ${i}", 0))
-
+                timelineItemAdapter.notifyDataSetChanged()
+                timelineItemAdapter.setLoaded()
+            }, 1000)
+        } else {
+            Toast.makeText(this, R.string.toast_stop_here, Toast.LENGTH_SHORT).show()
         }
-
     }
 
-    private fun setOnClickListener(adapter: TimelineAdapter) {
-        adapter.setOnClickListener(object : FavoriteOnClickListener {
-            override fun onItemOnClick(timelineItem: TimelineItem) {
-                timelineItem.isLike = !timelineItem.isLike
-                if (timelineItem.isLike) {
-                    timelineItem.like = timelineItem.like + 1
-                } else {
-                    timelineItem.like = timelineItem.like - 1
-                }
-                adapter.notifyDataSetChanged()
-            }
-        })
+    override fun onRefresh() {
+        Handler().postDelayed(Runnable {
+            timelineItems.clear()
+            randomNewItems()
+            timelineItemAdapter.setLoaded()
+            timelineItemAdapter.notifyDataSetChanged()
+            swipeContainer.isRefreshing = false
+        }, 3000)
+    }
+
+    fun randomNewItems() {
+        for (i in 0..9) {
+            val num = Random.nextInt(listImages.size)
+            val avatar = Random.nextInt(listAvatar.size)
+            timelineItems.add(
+                    TimelineItem("Name ${i}",
+                            listImages[num],
+                            "ゴーヤーチャンプルー ${i}", (0..100).random(),
+                            false, listAvatar[avatar]
+                    )
+            )
+        }
     }
 }

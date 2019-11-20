@@ -1,134 +1,110 @@
 package asiantech.internship.summer.recyclerview
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
+import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.`at-tamle`.item_loading.view.*
+import kotlinx.android.synthetic.`at-tamle`.row_item.view.*
 
 
-class TimelineAdapter(private val mTimeLines: MutableList<TimelineItem>) :
-        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TimelineAdapter(recyclerView: RecyclerView, var activity: Activity, var timelineItems: MutableList<TimelineItem?>)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var timelineOnClickListener: FavoriteOnClickListener? = null
-
-    companion object {
-        var mItemsDisplay = 10
-        private const val VIEW_TYPE_ITEM = 0
-        private const val VIEW_TYPE_LOADING = 1
-        private lateinit var timeLineDisplay: MutableList<TimelineItem>
+    internal class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var progressBar = itemView.pbLoadMore
     }
 
+
+
+    val VIEW_ITEM_TYPE = 0
+    val VIEW_LOADING_TYPE = 1
+    internal var loadMore: FavoriteOnClickListener? = null
+    var isLoading: Boolean = false
+    var visibleThresold = 5
+    var lastVisibleItem = 0
+    var totalItemCount = 0
+
     init {
-        timeLineDisplay = mTimeLines.subList(0, mItemsDisplay)
+        val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                totalItemCount = linearLayoutManager.itemCount
+                lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition()
+                if (!isLoading && totalItemCount <= lastVisibleItem + visibleThresold) {
+                    if (loadMore != null) {
+                        loadMore!!.onLoadMore()
+                    }
+                    isLoading = true
+                }
+            }
+        })
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == VIEW_TYPE_ITEM) {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.row_item, parent, false)
-            TimelineViewHolder(view)
-        } else {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_loading, parent, false)
-            LoadingViewHolder(view)
+        if (viewType == VIEW_ITEM_TYPE) {
+            return ItemViewHolder(LayoutInflater.from(activity).inflate(R.layout.row_item, parent, false))
         }
-
+        return LoadingViewHolder(LayoutInflater.from(activity).inflate(R.layout.item_loading, parent, false))
     }
 
-    override fun getItemCount() = timeLineDisplay.size
+    override fun getItemCount(): Int {
+        return timelineItems.size
+    }
+    internal class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvUserName = itemView.tvName
+        val tvNumOfLike = itemView.tvNumFavorite
+        val tvUserName_Comment = itemView.tvNickName
+        val imgLike = itemView.imgFavorite
+        val imgPicture: ImageView = itemView.imgPicture
+        val tvDescription: TextView =itemView.tvDescription
+        val imgAvatar: CircleImageView =itemView.imgAvatar
+    }
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is ItemViewHolder) {
+            val currTimelineItem = timelineItems.get(position)
+            holder.tvUserName.text = currTimelineItem!!.name
+            holder.imgPicture.setImageResource(currTimelineItem.image)
+            holder.imgAvatar.setImageResource(currTimelineItem.avatar)
+            holder.tvUserName_Comment.text = currTimelineItem.name
+            holder.tvDescription.text=currTimelineItem.description
+            holder.tvNumOfLike.text = currTimelineItem.like.toString()
+            holder.imgLike.setImageResource(if (currTimelineItem.isLike) R.drawable.ic_favorite_red else R.drawable.ic_favorite_border_black)
+            holder.imgLike.setOnClickListener(View.OnClickListener {
+                if (currTimelineItem.isLike) {
+                    currTimelineItem.like = currTimelineItem.like - 1
+                    currTimelineItem.isLike = false
+                } else {
+                    currTimelineItem.like = currTimelineItem.like + 1
+                    currTimelineItem.isLike = true
+                }
+                notifyDataSetChanged()
+            })
+        } else if (holder is LoadingViewHolder) {
+            holder.progressBar.isIndeterminate = true   // progressBar ở chế độ Indeterminate và sẽ không hiển thị quá trình làm việc.
+        }
+    }
 
     override fun getItemViewType(position: Int): Int {
-
-        val item = timeLineDisplay[position]
-        if (item.type == VIEW_TYPE_ITEM) {
-            return VIEW_TYPE_ITEM
-        } else if (item.type == VIEW_TYPE_LOADING && mItemsDisplay != mTimeLines.size) {
-            return VIEW_TYPE_LOADING
-
-        }
-        throw Exception("Error, unknown view type")
+        return if (timelineItems.get(position) == null) VIEW_LOADING_TYPE else VIEW_ITEM_TYPE
     }
 
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder.itemViewType == VIEW_TYPE_ITEM) {
-            holder as TimelineViewHolder
-            holder.onBindData(position)
-        }
+    fun setLoaded() {
+        isLoading = false
     }
 
-    fun isLoading(): Boolean {
-        return if (timeLineDisplay.isEmpty()) {
-            true
-        } else {
-            timeLineDisplay.last().type == VIEW_TYPE_LOADING
-        }
+    fun setLoadMore(loadMore: FavoriteOnClickListener) {
+        this.loadMore = loadMore
     }
-
-    fun loadMore(lastTimeLine: Int) {
-        mItemsDisplay = if (lastTimeLine + 10 < mTimeLines.size) {
-            lastTimeLine + 10
-        } else {
-            mTimeLines.size
-        }
-        timeLineDisplay = mTimeLines.subList(0, mItemsDisplay)
-        notifyDataSetChanged()
-    }
-
-    fun addFooter() {
-        if (!isLoading()) {
-            timeLineDisplay.add(TimelineItem("Footer", R.drawable.img_food_1, "", 0, false, 1))
-            notifyItemInserted(timeLineDisplay.size)
-        }
-    }
-
-    fun removeFooter() {
-        if (isLoading()) {
-            timeLineDisplay.removeAt(timeLineDisplay.size - 1)
-            notifyItemRemoved(timeLineDisplay.size - 1)
-        }
-    }
-
-    fun reset() {
-        mItemsDisplay = 10
-        timeLineDisplay.clear()
-        notifyDataSetChanged()
-    }
-
-    fun setOnClickListener(timelineOnClickListener: FavoriteOnClickListener) {
-        this.timelineOnClickListener = timelineOnClickListener
-    }
-
-    inner class TimelineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun onBindData(position: Int) {
-            val imgAvatar: ImageView = itemView.findViewById(R.id.imgAvatar)
-            val tvName = itemView.findViewById<TextView>(R.id.tvName)
-            val imgPicture: ImageView = itemView.findViewById(R.id.imgPicture)
-            val tvNumFavorite: TextView = itemView.findViewById(R.id.tvNumFavorite)
-            val tvNickname: TextView = itemView.findViewById(R.id.tvNickName)
-            val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
-            val imgFavorite: ImageView = itemView.findViewById(R.id.imgFavorite)
-            val timelineItem = timeLineDisplay[position]
-
-            imgAvatar.setImageResource(R.drawable.ic_man)
-            tvName.text = timelineItem.name
-            imgPicture.setImageResource(timelineItem.image)
-            tvNumFavorite.text = timelineItem.like.toString()
-            tvNickname.text = timelineItem.name
-            tvDescription.text = timelineItem.description
-            imgFavorite.setOnClickListener {
-                timelineOnClickListener?.onItemOnClick(timelineItem)
-            }
-            if (timelineItem.isLike) {
-                imgFavorite.setImageResource(R.drawable.ic_favorite_red)
-            } else {
-                imgFavorite.setImageResource(R.drawable.ic_favorite_border_black)
-            }
-        }
-    }
-
-    inner class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }
+
 
 
