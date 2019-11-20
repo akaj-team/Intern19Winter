@@ -2,21 +2,16 @@ package asiantech.internship.winter.savedata.ui.done
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import asiantech.internship.winter.savedata.db.TodoDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import asiantech.internship.winter.savedata.db.todo.Todo
 
-class DoneViewModel(private val database: TodoDatabase, application: Application)
+class DoneViewModel(database: TodoDatabase, application: Application)
     : AndroidViewModel(application) {
-    private val idUser = 111L
-    private var viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    val todos = database.todoDao.getDones(idUser)
+    private val todoDao = database.todoDao
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
+    fun getDonesByIdUser(idUser: Long): LiveData<List<Todo>> {
+        return todoDao.getDones(idUser)
     }
 }

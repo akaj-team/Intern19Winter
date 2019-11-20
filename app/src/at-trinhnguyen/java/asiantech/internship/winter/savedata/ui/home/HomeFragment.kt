@@ -1,11 +1,16 @@
 package asiantech.internship.winter.savedata.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -13,6 +18,7 @@ import asiantech.internship.summer.R
 import asiantech.internship.summer.databinding.FragmentHomeBinding
 import asiantech.internship.winter.savedata.db.TodoDatabase
 import asiantech.internship.winter.savedata.db.todo.Todo
+import asiantech.internship.winter.savedata.db.user.User
 import asiantech.internship.winter.savedata.ui.ViewModelFactory
 import kotlinx.android.synthetic.`at-trinhnguyen`.fragment_home.*
 
@@ -20,21 +26,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
-    private val idUser = 111L
-
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        val onBackPressedCallback = object : OnBackPressedCallback(true) {
-//            override fun handleOnBackPressed() {
-//            }
-//        }
-//        requireActivity().onBackPressedDispatcher
-//                .addCallback(this, onBackPressedCallback)
-    }
+    private lateinit var drawerLayout: DrawerLayout
+    private var idUser = 0L
+    private var user = User()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -47,9 +41,43 @@ class HomeFragment : Fragment() {
                 .get(HomeViewModel::class.java)
         binding.homeViewModel = homeViewModel
 
+        activity?.getPreferences(Context.MODE_PRIVATE)?.apply {
+            idUser = getLong(getString(R.string.pref_id_user), 0L)
+        }
 
+
+        drawerLayout = binding.drawerLayout
         val navController = findNavController()
         NavigationUI.setupWithNavController(binding.navView, navController)
+        binding.navView.getHeaderView(0).apply {
+            findViewById<TextView>(R.id.tvNickName).text = user.username
+            findViewById<TextView>(R.id.tvEmail).text = user.email
+        }
+
+        binding.navView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.logout -> {
+                    Toast.makeText(context, "aa", Toast.LENGTH_LONG).show()
+                    activity?.getPreferences(Context.MODE_PRIVATE)?.edit()
+                            ?.apply {
+                                putBoolean("PREF_IS_LOGIN", false)
+                                putLong("PREF_ID_USER", 0L)
+                                apply()
+                            }
+                    findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+                }
+            }
+            true
+        }
+
+
+        homeViewModel.navigateToEditTodo.observe(this, Observer { idUser ->
+            idUser?.let {
+                this.findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToEditTodoFragment(idUser))
+                homeViewModel.onEditTodoNavigated()
+            }
+        })
 
 
         return binding.root
@@ -71,4 +99,6 @@ class HomeFragment : Fragment() {
         binding.viewPager.adapter = viewPagerAdapter
         binding.tabLayout.setupWithViewPager(viewPager)
     }
+
+
 }

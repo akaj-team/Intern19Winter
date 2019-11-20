@@ -13,7 +13,7 @@ interface TodoDao {
     fun getDones(idUser: Long): LiveData<List<Todo>>
 
     @Query("SELECT * FROM todo_table WHERE idTodo=:idTodo")
-    fun getTodoById(idTodo: Long): Todo?
+    fun getTodoById(idTodo: Long): LiveData<Todo>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(todo: Todo)

@@ -2,6 +2,8 @@ package asiantech.internship.winter.savedata.ui.home
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import asiantech.internship.winter.savedata.db.TodoDatabase
 import asiantech.internship.winter.savedata.db.todo.Todo
 import asiantech.internship.winter.savedata.db.user.User
@@ -10,24 +12,31 @@ import kotlinx.coroutines.*
 class HomeViewModel(private val database: TodoDatabase, application: Application)
     : AndroidViewModel(application) {
 
-    private val idUser = 111L
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-
-    fun insertUser(user: User) {
-        uiScope.launch {
-            withContext(Dispatchers.IO) {
-                database.userDao.insert(user)
-            }
-        }
-    }
+    private var user: User? = null
 
     private suspend fun update(todo: Todo) {
         withContext(Dispatchers.IO) {
             database.todoDao.updateTodo(todo)
         }
     }
+
+//    private suspend fun getUserById(idUser: Long): User? {
+//        return withContext(Dispatchers.IO) {
+//            val user = database.userDao.getUserById(idUser)
+//            user
+//        }
+//    }
+
+
+//    fun getUser(idUser: Long): User? {
+//        uiScope.launch {
+//            user = getUserById(idUser)
+//        }
+//        return user
+//    }
 
     fun insert(todo: Todo) {
         uiScope.launch {
@@ -51,6 +60,18 @@ class HomeViewModel(private val database: TodoDatabase, application: Application
                 database.todoDao.updateCompletedById(idTodo, true)
             }
         }
+    }
+
+    private val _navigateToEditTodo = MutableLiveData<Long>()
+    val navigateToEditTodo: LiveData<Long>
+        get() = _navigateToEditTodo
+
+    fun onEditClicked(idTodo: Long) {
+        _navigateToEditTodo.value = idTodo
+    }
+
+    fun onEditTodoNavigated() {
+        _navigateToEditTodo.value = null
     }
 
     override fun onCleared() {

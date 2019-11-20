@@ -7,7 +7,7 @@ import asiantech.internship.winter.savedata.db.TodoDatabase
 import asiantech.internship.winter.savedata.ui.done.DoneViewModel
 import asiantech.internship.winter.savedata.ui.home.HomeViewModel
 import asiantech.internship.winter.savedata.ui.login.LoginViewModel
-import asiantech.internship.winter.savedata.ui.login.SignUpViewModel
+import asiantech.internship.winter.savedata.ui.signup.SignUpViewModel
 import asiantech.internship.winter.savedata.ui.todo.TodoViewModel
 
 class ViewModelFactory(private val dataSource: TodoDatabase, private val application: Application)

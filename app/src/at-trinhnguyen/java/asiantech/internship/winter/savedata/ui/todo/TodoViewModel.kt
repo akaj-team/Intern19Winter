@@ -2,18 +2,22 @@ package asiantech.internship.winter.savedata.ui.todo
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import asiantech.internship.winter.savedata.db.TodoDatabase
 import asiantech.internship.winter.savedata.db.todo.Todo
 import kotlinx.coroutines.*
 
 class TodoViewModel(private val database: TodoDatabase, application: Application)
     : AndroidViewModel(application) {
-    private val idUser = 111L
+
     private val todoDao = database.todoDao
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    val todos = todoDao.getTodos(idUser)
+    fun getTodosByIdUser(idUser: Long): LiveData<List<Todo>> {
+        return todoDao.getTodos(idUser)
+    }
 
     private suspend fun update(todo: Todo) {
         withContext(Dispatchers.IO) {
@@ -43,6 +47,18 @@ class TodoViewModel(private val database: TodoDatabase, application: Application
                 todoDao.updateCompletedById(idTodo, true)
             }
         }
+    }
+
+    private val _navigateToEditTodo = MutableLiveData<Long>()
+    val navigateToEditTodo: LiveData<Long>
+        get() = _navigateToEditTodo
+
+    fun onEditClicked(idTodo: Long) {
+        _navigateToEditTodo.value = idTodo
+    }
+
+    fun onEditTodoNavigated() {
+        _navigateToEditTodo.value = null
     }
 
     override fun onCleared() {

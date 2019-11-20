@@ -19,7 +19,6 @@ import asiantech.internship.winter.savedata.db.TodoDatabase
 import asiantech.internship.winter.savedata.db.user.User
 import asiantech.internship.winter.savedata.isEmail
 import asiantech.internship.winter.savedata.ui.ViewModelFactory
-import asiantech.internship.winter.savedata.ui.login.SignUpViewModel
 
 class SignUpFragment : Fragment() {
 
