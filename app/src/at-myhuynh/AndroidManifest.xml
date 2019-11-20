@@ -27,7 +27,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".recyclerview.TimelineActivity"
-            android:theme="@style/TimelineNoActionBar">
+            android:theme="@style/TimelineNoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

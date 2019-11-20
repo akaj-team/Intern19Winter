@@ -1,9 +1,9 @@
 package asiantech.internship.summer.recyclerview
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
@@ -12,44 +12,45 @@ import kotlin.random.Random
 
 class TimelineActivity : AppCompatActivity() {
 
-    private lateinit var mTimeLines: MutableList<TimelineItem>
-    private lateinit var mTimelineAdapter: TimelineAdapter
-    val linearLayoutManager = LinearLayoutManager(this)
-
-    private val listImages = mutableListOf(R.drawable.img_food_1,
-            R.drawable.img_food_2,
-            R.drawable.img_food_3,
-            R.drawable.img_food_4,
-            R.drawable.img_food_5,
-            R.drawable.img_food_6,
-            R.drawable.img_food_7,
-            R.drawable.img_food_8,
-            R.drawable.img_food_9,
-            R.drawable.img_food_10)
+    private lateinit var timeLines: MutableList<TimelineItem>
+    private lateinit var timelineAdapter: TimelineAdapter
+    private val linearLayoutManager = LinearLayoutManager(this)
+    private val listImages = mutableListOf(R.drawable.ic_food_1,
+            R.drawable.ic_food_2,
+            R.drawable.ic_food_3,
+            R.drawable.ic_food_4,
+            R.drawable.ic_food_5,
+            R.drawable.ic_food_6,
+            R.drawable.ic_food_7,
+            R.drawable.ic_food_8,
+            R.drawable.ic_food_9,
+            R.drawable.ic_food_10)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timeline)
 
         rvTimeline.layoutManager = linearLayoutManager
+        initRecyclerView()
+        setOnRefreshListener()
+    }
 
-        setUpRV()
-
+    private fun setOnRefreshListener() {
         swipeContainer.setOnRefreshListener {
             Handler().postDelayed({
-                mTimelineAdapter.reset()
-                setUpRV()
+                timelineAdapter.reset()
+                initRecyclerView()
                 swipeContainer.isRefreshing = false
             }, 1000)
         }
     }
 
-    private fun setUpRV() {
+    private fun initRecyclerView() {
         initData()
-        mTimelineAdapter = TimelineAdapter(mTimeLines)
-        rvTimeline.adapter = mTimelineAdapter
-        setOnClickListener(mTimelineAdapter)
-        recyclerViewOnScroll(mTimelineAdapter)
+        timelineAdapter = TimelineAdapter(timeLines)
+        rvTimeline.adapter = timelineAdapter
+        setOnClickListener(timelineAdapter)
+        recyclerViewOnScroll(timelineAdapter)
     }
 
     private fun recyclerViewOnScroll(timelineAdapter: TimelineAdapter) {
@@ -76,12 +77,11 @@ class TimelineActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        mTimeLines = mutableListOf()
+        timeLines = mutableListOf()
         for (i in 0..25) {
             val index = Random.nextInt(listImages.size)
-            mTimeLines.add(TimelineItem("Name ${i + 1}", listImages[index], "こんにちは世界 $i", i))
+            timeLines.add(TimelineItem("Name ${i + 1}", listImages[index], "こんにちは世界 $i", i))
         }
-//        timeLines.shuffle()
     }
 
     private fun setOnClickListener(adapter: TimelineAdapter) {

@@ -8,5 +8,7 @@
     <dimen name="img_height_80">80sp</dimen>
     <dimen name="layout_padding_10">10dp</dimen>
     <dimen name="layout_padding_5">5dp</dimen>
+    <dimen name="layout_height_10">10dp</dimen>
+    <dimen name="layout_height_2">2dp</dimen>
 
 </resources>

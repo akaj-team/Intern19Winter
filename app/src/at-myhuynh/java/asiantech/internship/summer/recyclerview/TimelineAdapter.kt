@@ -9,20 +9,20 @@ import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 import java.util.*
 
-class TimelineAdapter(private val mTimeLines: MutableList<TimelineItem>) :
+class TimelineAdapter(private val timeLines: MutableList<TimelineItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var timelineOnClickListener: FavoriteOnClickListener? = null
+    private var timelineOnClickListener: FavoriteOnClickListener? = null
+    private var itemsDisplay = 10
 
     companion object {
-        var mItemsDisplay = 10
         private const val VIEW_TYPE_ITEM = 0
         private const val VIEW_TYPE_LOADING = 1
         private lateinit var timeLineDisplay: MutableList<TimelineItem>
     }
 
     init {
-        timeLineDisplay = mTimeLines.subList(0, mItemsDisplay)
+        timeLineDisplay = timeLines.subList(0, itemsDisplay)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -47,7 +47,7 @@ class TimelineAdapter(private val mTimeLines: MutableList<TimelineItem>) :
         val item = timeLineDisplay[position]
         if (item.type == VIEW_TYPE_ITEM) {
             return VIEW_TYPE_ITEM
-        } else if (item.type == VIEW_TYPE_LOADING && mItemsDisplay != mTimeLines.size) {
+        } else if (item.type == VIEW_TYPE_LOADING) {
             return VIEW_TYPE_LOADING
         }
         throw Exception("Error, unknown view type")
@@ -69,19 +69,19 @@ class TimelineAdapter(private val mTimeLines: MutableList<TimelineItem>) :
     }
 
     fun loadMore(lastTimeLine: Int) {
-        mItemsDisplay = if (lastTimeLine + 10 < mTimeLines.size) {
+        itemsDisplay = if (lastTimeLine + 10 < timeLines.size) {
             lastTimeLine + 10
         } else {
-            mTimeLines.size
+            timeLines.size
         }
 
-        timeLineDisplay = mTimeLines.subList(0, mItemsDisplay)
+        timeLineDisplay = timeLines.subList(0, itemsDisplay)
         notifyDataSetChanged()
     }
 
     fun addFooter() {
         if (!isLoading()) {
-            timeLineDisplay.add(TimelineItem("Footer", R.drawable.img_food_1, "", 0, false, 1))
+            timeLineDisplay.add(TimelineItem("Footer", R.drawable.ic_food_1, "", 0, false, 1))
             notifyItemInserted(timeLineDisplay.size)
         }
     }
@@ -94,7 +94,7 @@ class TimelineAdapter(private val mTimeLines: MutableList<TimelineItem>) :
     }
 
     fun reset() {
-        mItemsDisplay = 10
+        itemsDisplay = 10
         timeLineDisplay.clear()
         notifyDataSetChanged()
     }
