@@ -26,5 +26,11 @@
     <string name="textview_text_private_information">Private Information</string>
     <string name="textview_text_phone">Phone</string>
     <string name="button_text_save_profile">Save Profile</string>
-
+    <string name="textview_text_next">Next</string>
+    <string name="textview_text_step_1">Step 1</string>
+    <string name="textview_text_step_3">Step 3</string>
+    <string name="textview_text_step_2">Step 2</string>
+    <string name="tab_one">Tab 1</string>
+    <string name="tab_two">Tab 2</string>
+    <string name="tab_three">Tab 3</string>
 </resources>
