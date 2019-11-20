@@ -10,6 +10,7 @@
             name="loginViewModel"
             type="asiantech.internship.winter.savedata.ui.login.LoginViewModel" />
     </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -153,7 +154,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_8dp"
-                android:hint="@string/edittext_hint_password"
+                android:hint="@string/edittext_hint_enter_password"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"

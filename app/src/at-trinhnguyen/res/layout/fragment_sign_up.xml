@@ -2,7 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="asiantech.internship.winter.savedata.ui.SignUpFragment">
+    tools:context="asiantech.internship.winter.savedata.ui.signup.SignUpFragment">
+
+    <data>
+
+        <variable
+            name="signUpViewModel"
+            type="asiantech.internship.winter.savedata.ui.login.SignUpViewModel" />
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -110,7 +117,6 @@
                 android:hint="@string/edittext_hint_enter_name"
                 android:importantForAutofill="no"
                 android:inputType="text"
-                android:text="@string/edittext_text_nick_evans"
                 app:layout_constraintEnd_toEndOf="@id/guidelineRight"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -140,7 +146,6 @@
                 android:hint="@string/edittext_hint_enter_email"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
-                android:text="@string/edittext_text_cong_trinh_email_com"
                 app:layout_constraintEnd_toEndOf="@id/guidelineRight"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -165,7 +170,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_8dp"
-                android:hint="@string/edittext_hint_password"
+                android:hint="@string/edittext_hint_enter_password"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineRight"

@@ -14,8 +14,11 @@ interface UserDao {
 
     @Query("SELECT * FROM user_table WHERE email=:email AND password=:password ")
     fun login(email: String, password: String): LiveData<List<User>>
-    
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+
+    @Query("SELECT * FROM user_table WHERE email=:email")
+    fun getUsersByEmail(email: String): LiveData<List<User>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: User)
 
     @Query("DELETE FROM user_table")

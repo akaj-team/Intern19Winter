@@ -2,7 +2,7 @@
 <resources>
     <dimen name="guide_line_left">24dp</dimen>
     <dimen name="guide_line_right">24dp</dimen>
-    <dimen name="img_header_height">280dp</dimen>
+    <dimen name="img_header_height">240dp</dimen>
     <dimen name="ic_logo_width">20dp</dimen>
     <dimen name="ic_logo_height">32dp</dimen>
     <dimen name="img_profile_picture_width">120dp</dimen>

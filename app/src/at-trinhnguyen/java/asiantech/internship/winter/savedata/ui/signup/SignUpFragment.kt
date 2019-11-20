@@ -1,8 +1,8 @@
-package asiantech.internship.winter.savedata.ui.login
+package asiantech.internship.winter.savedata.ui.signup
 
-import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,61 +14,57 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import asiantech.internship.summer.R
-import asiantech.internship.summer.databinding.FragmentLoginBinding
+import asiantech.internship.summer.databinding.FragmentSignUpBinding
 import asiantech.internship.winter.savedata.db.TodoDatabase
+import asiantech.internship.winter.savedata.db.user.User
 import asiantech.internship.winter.savedata.isEmail
 import asiantech.internship.winter.savedata.ui.ViewModelFactory
+import asiantech.internship.winter.savedata.ui.login.SignUpViewModel
 
-class LoginFragment : Fragment() {
+class SignUpFragment : Fragment() {
 
-    private lateinit var loginViewModel: LoginViewModel
-    private lateinit var binding: FragmentLoginBinding
+    private lateinit var signUpViewModel: SignUpViewModel
+    private lateinit var binding: FragmentSignUpBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(
-                inflater, R.layout.fragment_login, container, false)
+                inflater, R.layout.fragment_sign_up, container, false)
 
         val application = requireNotNull(activity?.application)
         val dataSource = TodoDatabase.getInstance(application)
         val viewModelFactory = ViewModelFactory(dataSource, application)
-        loginViewModel = ViewModelProviders.of(this, viewModelFactory)
-                .get(LoginViewModel::class.java)
-        binding.loginViewModel = loginViewModel
+        signUpViewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(SignUpViewModel::class.java)
+        binding.signUpViewModel = signUpViewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.apply {
-            getString("email")?.let { email ->
-                binding.edtEmail.setText(email)
-            }
-        }
-        binding.tvCreateAccountHere.setOnClickListener {
-            it.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+        binding.tvLoginHere.setOnClickListener {
+            it.findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
         }
 
-        binding.btnLogin.setOnClickListener {
+        binding.btnSignUp.setOnClickListener {
+            val username = binding.edtFullName.text
             val email = binding.edtEmail.text
             val password = binding.edtPassword.text
-            if (TextUtils.isEmpty(email) || !email.toString().isEmail()) {
+            if (TextUtils.isEmpty(username)) {
+                Toast.makeText(context, "Please enter username!", Toast.LENGTH_LONG).show()
+            } else if (TextUtils.isEmpty(email) || !email.toString().isEmail()) {
                 Toast.makeText(context, "Please enter email!", Toast.LENGTH_LONG).show()
             } else if (TextUtils.isEmpty(password)) {
                 Toast.makeText(context, "Please enter password!", Toast.LENGTH_LONG).show()
             } else {
-                loginViewModel.login(email.toString(), password.toString()).observe(viewLifecycleOwner, Observer {
+                signUpViewModel.getUsersByEmail(email.toString()).observe(viewLifecycleOwner, Observer {
+                    Log.d("aaa", "$it")
                     if (it.isNotEmpty()) {
-                        activity?.getPreferences(Context.MODE_PRIVATE)?.edit()
-                                ?.apply {
-                                    putBoolean("PREF_IS_LOGIN", true)
-                                    putLong("PREF_ID_USER", it[0].idUser)
-                                    apply()
-                                }
-                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                        Toast.makeText(context, "Email already exists. Please choose a different email !", Toast.LENGTH_LONG).show()
                     } else {
-                        Toast.makeText(context, "Email or Password is incorrect!", Toast.LENGTH_LONG).show()
+                        signUpViewModel.insertUser(User(0, username.toString(), email.toString(), password.toString()))
+                        findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToLoginFragment(email.toString()))
                     }
                 })
             }

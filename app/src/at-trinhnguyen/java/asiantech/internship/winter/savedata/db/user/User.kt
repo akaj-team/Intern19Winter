@@ -16,9 +16,6 @@ data class User(
         @ColumnInfo(name = "email")
         var email: String = "",
 
-        @ColumnInfo(name = "phoneNumber")
-        var phoneNumber: String = "",
-
         @ColumnInfo(name = "password")
         var password: String = ""
 
