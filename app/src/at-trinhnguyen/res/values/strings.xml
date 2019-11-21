@@ -32,4 +32,12 @@
     <string name="edittext_hint_enter_phone">Enter phone</string>
     <string name="button_text_create_account">Create Account</string>
     <string name="textview_text_start_from_scratch">Start \nfrom Scratch</string>
+    <string name="navigation_drawer_open">Drawer Open</string>
+    <string name="navigation_drawer_close">Drawer Close</string>
+    <string name="textview_nguyenmaucongtrinh_gmail_com">nguyenmaucongtrinh@gmail.com</string>
+    <string name="textview_trinh_nguyen">Trinh Nguyen</string>
+    <string name="textview_inbox">Inbox</string>
+    <string name="textview_send">Send</string>
+    <string name="textview_trash">Trash</string>
+    <string name="textview_spam">Spam</string>
 </resources>
