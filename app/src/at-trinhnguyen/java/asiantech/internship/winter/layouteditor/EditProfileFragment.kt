@@ -36,7 +36,7 @@ class EditProfileFragment : Fragment() {
             val viewModel = ViewModelProviders.of(it).get(SharedViewModel::class.java)
             btnSaveProfile.setOnClickListener {
                 viewModel.bundle.postValue(Bundle().apply {
-                    putString(ARG_EMAIL, edtEmail.text.toString())
+                    putString(ARG_EMAIL, edtEmaill.text.toString())
                     putString(ARG_PHONE, edtPhone.text.toString())
                 })
             }

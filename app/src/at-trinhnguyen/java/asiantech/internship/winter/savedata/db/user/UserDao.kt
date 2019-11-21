@@ -1,10 +1,7 @@
 package asiantech.internship.winter.savedata.db.user
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface UserDao {
@@ -23,6 +20,9 @@ interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: User)
+
+    @Update
+    fun update(user: User)
 
     @Query("DELETE FROM user_table")
     suspend fun deleteAll()

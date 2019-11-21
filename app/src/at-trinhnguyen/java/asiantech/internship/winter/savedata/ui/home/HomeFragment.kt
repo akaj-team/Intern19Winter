@@ -16,7 +16,6 @@ import androidx.navigation.ui.NavigationUI
 import asiantech.internship.summer.R
 import asiantech.internship.summer.databinding.FragmentHomeBinding
 import asiantech.internship.winter.savedata.db.TodoDatabase
-import asiantech.internship.winter.savedata.db.todo.Todo
 import asiantech.internship.winter.savedata.db.user.User
 import kotlinx.android.synthetic.`at-trinhnguyen`.fragment_home.*
 
@@ -65,7 +64,8 @@ class HomeFragment : Fragment() {
                     findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
                 }
                 R.id.editProfile -> {
-                    //Todo
+                    drawerLayout.closeDrawers()
+                    findNavController().navigate(R.id.action_homeFragment_to_editProfileFragment)
                 }
             }
             true
@@ -77,16 +77,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.apply {
-            getString(getString(R.string.args_title))?.let { title ->
-                getString(getString(R.string.args_description))?.let { description ->
-                    Todo(0, idUser, title
-                            , description, false)
-                }
-            }?.let { homeViewModel.insert(it) }
-        }
-
-        val viewPagerAdapter = fragmentManager?.let { context?.let { it1 -> ViewPagerAdapter(it, it1) } }
+        val viewPagerAdapter = childFragmentManager.let { context?.let { it1 -> ViewPagerAdapter(it, it1) } }
         binding.viewPager.adapter = viewPagerAdapter
         binding.tabLayout.setupWithViewPager(viewPager)
     }

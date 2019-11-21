@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import asiantech.internship.winter.savedata.db.TodoDatabase
+import asiantech.internship.winter.savedata.db.newtodo.NewTodoViewModel
 import asiantech.internship.winter.savedata.ui.done.DoneViewModel
 import asiantech.internship.winter.savedata.ui.login.LoginViewModel
 import asiantech.internship.winter.savedata.ui.signup.SignUpViewModel
@@ -23,6 +24,8 @@ class ViewModelFactory(private val dataSource: TodoDatabase, private val applica
                         LoginViewModel(dataSource, application)
                     isAssignableFrom(SignUpViewModel::class.java) ->
                         SignUpViewModel(dataSource, application)
+                    isAssignableFrom(NewTodoViewModel::class.java) ->
+                        NewTodoViewModel(dataSource, application)
                     else ->
                         throw IllegalArgumentException("Unknown ViewModel class")
                 } as T

@@ -1,7 +1,6 @@
 package asiantech.internship.winter.savedata.ui.edittodo
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,6 @@ class EditTodoFragment : Fragment() {
         val application = requireNotNull(activity?.application)
         val dataSource = TodoDatabase.getInstance(application)
         val idTodo = arguments?.let { EditTodoFragmentArgs.fromBundle(it).idTodo }
-        Log.d("aaa", "$idTodo id todo")
         val viewModelFactory = idTodo?.let { EditTodoViewModelFactory(it, dataSource, application) }
         val editTodoViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(EditTodoViewModel::class.java)

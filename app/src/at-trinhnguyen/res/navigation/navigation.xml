@@ -46,12 +46,6 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpToInclusive="false" />
-        <argument
-            android:name="title"
-            app:argType="string" />
-        <argument
-            android:name="description"
-            app:argType="string" />
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -59,11 +53,15 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_homeFragment_to_editTodoFragment"
-            app:destination="@id/editTodoFragment" />
+            app:destination="@id/editTodoFragment"
+            app:popUpTo="@+id/homeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editProfileFragment"
+            app:destination="@+id/editProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/newTodoFragment"
-        android:name="asiantech.internship.winter.savedata.ui.NewTodoFragment"
+        android:name="asiantech.internship.winter.savedata.db.newtodo.NewTodoFragment"
         android:label="NewTodoFragment"
         tools:layout="@layout/fragment_new_todo">
         <action
@@ -83,5 +81,14 @@
         <argument
             android:name="idTodo"
             app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="asiantech.internship.winter.savedata.ui.editprofile.EditProfileFragment"
+        android:label="EditProfileFragment"
+        tools:layout="@layout/fragment_edit_profile">
+        <action
+            android:id="@+id/action_editProfileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

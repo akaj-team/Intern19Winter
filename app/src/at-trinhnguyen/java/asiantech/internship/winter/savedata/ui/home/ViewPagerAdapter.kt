@@ -12,8 +12,8 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, private val context: Co
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> TodoFragment()
-            else -> DoneFragment()
+            0 -> TodoFragment.newInstance()
+            else -> DoneFragment.newInstance()
         }
     }
 

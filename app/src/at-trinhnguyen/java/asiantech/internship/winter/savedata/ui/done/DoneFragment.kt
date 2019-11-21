@@ -16,13 +16,16 @@ import asiantech.internship.winter.savedata.ui.ViewModelFactory
 
 class DoneFragment : Fragment() {
 
-    private lateinit var binding: FragmentDoneBinding
-    private var idUser = 0L
+    companion object {
+        private val instance = DoneFragment()
+        @JvmStatic
+        fun newInstance() = instance
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_done, container, false)
-
+        val binding = DataBindingUtil
+                .inflate<FragmentDoneBinding>(inflater, R.layout.fragment_done, container, false)
         val application = requireNotNull(activity?.application)
         val dataSource = TodoDatabase.getInstance(application)
         val viewModelFactory = ViewModelFactory(dataSource, application)
@@ -30,6 +33,7 @@ class DoneFragment : Fragment() {
                 .get(DoneViewModel::class.java)
         binding.doneViewModel = doneViewModel
 
+        var idUser = 0L
         activity?.getPreferences(Context.MODE_PRIVATE)?.apply {
             idUser = getLong(getString(R.string.pref_id_user), 0L)
         }
