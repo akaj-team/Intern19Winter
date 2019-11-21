@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 import com.bumptech.glide.Glide
 
-class TimeLineAdapter(private val mTimeLineItems: MutableList<TimeLineItem?>) :
+class TimeLineAdapter(private val timeLineItems: MutableList<TimeLineItem?>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var onItemClick: ((Int) -> Unit)? = null
@@ -19,7 +19,7 @@ class TimeLineAdapter(private val mTimeLineItems: MutableList<TimeLineItem?>) :
         private const val VIEW_TYPE_LOADING = 1
     }
 
-    override fun getItemCount() = mTimeLineItems.size
+    override fun getItemCount() = timeLineItems.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == VIEW_TYPE_ITEM) {
@@ -42,7 +42,7 @@ class TimeLineAdapter(private val mTimeLineItems: MutableList<TimeLineItem?>) :
     inner class TimeLineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun onBindData(position: Int) {
-            val timeLineItem = mTimeLineItems[position]
+            val timeLineItem = timeLineItems[position]
 
             val imgAvatar = itemView.findViewById<ImageView>(R.id.imgAvatar)
             val tvNickNameTop = itemView.findViewById<TextView>(R.id.tvNickNameTop)
@@ -71,17 +71,17 @@ class TimeLineAdapter(private val mTimeLineItems: MutableList<TimeLineItem?>) :
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (mTimeLineItems[position] == null) VIEW_TYPE_LOADING
+        return if (timeLineItems[position] == null) VIEW_TYPE_LOADING
         else VIEW_TYPE_ITEM
     }
 
     fun clear() {
-        mTimeLineItems.clear()
+        timeLineItems.clear()
         notifyDataSetChanged()
     }
 
     fun addAll(list: List<TimeLineItem?>) {
-        mTimeLineItems.addAll(list)
+        timeLineItems.addAll(list)
         notifyDataSetChanged()
     }
 }
