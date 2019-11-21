@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.`at-trinhnguyen`.activity_drawer_layout.*
 import kotlinx.android.synthetic.`at-trinhnguyen`.item_nav_header.*
 
 class DrawerLayoutActivity : AppCompatActivity() {
+
     companion object {
         private const val REQUEST_IMAGE_CAPTURE = 111
         private const val REQUEST_GET_CONTENT_IMAGE = 222

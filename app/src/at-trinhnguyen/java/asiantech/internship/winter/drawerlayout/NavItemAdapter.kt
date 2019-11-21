@@ -14,7 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 
-class NavItemAdapter(private val mNavItems: MutableList<NavItem?>, private val mContext: Context) :
+class NavItemAdapter(private val navItems: MutableList<NavItem?>, private val context: Context) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -34,7 +34,7 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem?>, private val m
         }
     }
 
-    override fun getItemCount() = mNavItems.size
+    override fun getItemCount() = navItems.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is NavItemViewHolder) {
@@ -47,14 +47,14 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem?>, private val m
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind() {
             itemView.findViewById<ImageView>(R.id.imgAvatar).setOnClickListener {
-                AlertDialog.Builder(mContext).apply {
+                AlertDialog.Builder(context).apply {
                     setTitle("Choose Action ")
                     setMessage("Take photo from camera or gallery?")
 
                     setPositiveButton("Camera") { _, _ ->
                         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-                            takePictureIntent.resolveActivity(mContext.packageManager)?.also {
-                                (mContext as android.app.Activity).startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                            takePictureIntent.resolveActivity(context.packageManager)?.also {
+                                (context as android.app.Activity).startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
                             }
                         }
                     }
@@ -62,8 +62,8 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem?>, private val m
                     setNegativeButton("Gallery") { _, _ ->
                         val intent = Intent(Intent.ACTION_GET_CONTENT)
                         intent.type = "image/*"
-                        intent.resolveActivity(mContext.packageManager)?.also {
-                            (mContext as android.app.Activity).startActivityForResult(intent, REQUEST_GET_CONTENT_IMAGE)
+                        intent.resolveActivity(context.packageManager)?.also {
+                            (context as android.app.Activity).startActivityForResult(intent, REQUEST_GET_CONTENT_IMAGE)
                         }
                     }
 
@@ -76,7 +76,7 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem?>, private val m
 
     inner class NavItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(position: Int) {
-            val navItem = mNavItems[position]
+            val navItem = navItems[position]
 
             val icNavItem = itemView.findViewById<ImageView>(R.id.icNavItem)
             val tvNavItem = itemView.findViewById<TextView>(R.id.tvNavItem)
@@ -87,7 +87,7 @@ class NavItemAdapter(private val mNavItems: MutableList<NavItem?>, private val m
             }
 
             itemView.findViewById<ConstraintLayout>(R.id.llNavItem).setOnClickListener {
-                Toast.makeText(mContext, "${navItem?.title} is clicked", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "${navItem?.title} is clicked", Toast.LENGTH_LONG).show()
             }
         }
     }
