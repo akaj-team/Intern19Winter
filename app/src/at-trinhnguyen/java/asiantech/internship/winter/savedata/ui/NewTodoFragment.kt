@@ -29,8 +29,8 @@ class NewTodoFragment : Fragment() {
                 }
                 else -> {
                     it.findNavController().navigate(R.id.action_newTodoFragment_to_homeFragment, Bundle().apply {
-                        putString("title", binding.edtTitle.text.toString())
-                        putString("description", binding.edtDescription.text.toString())
+                        putString(getString(R.string.args_title), binding.edtTitle.text.toString())
+                        putString(getString(R.string.args_description), binding.edtDescription.text.toString())
                     })
                 }
             }

@@ -10,7 +10,6 @@ class LoginViewModel(database: TodoDatabase, application: Application)
     : AndroidViewModel(application) {
     private val userDao = database.userDao
 
-
     fun login(email: String, password: String): LiveData<List<User>> {
         return userDao.login(email, password)
     }

@@ -2,7 +2,6 @@ package asiantech.internship.winter.savedata.ui.signup
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +35,7 @@ class SignUpFragment : Fragment() {
         signUpViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(SignUpViewModel::class.java)
         binding.signUpViewModel = signUpViewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -58,7 +58,6 @@ class SignUpFragment : Fragment() {
                 Toast.makeText(context, "Please enter password!", Toast.LENGTH_LONG).show()
             } else {
                 signUpViewModel.getUsersByEmail(email.toString()).observe(viewLifecycleOwner, Observer {
-                    Log.d("aaa", "$it")
                     if (it.isNotEmpty()) {
                         Toast.makeText(context, "Email already exists. Please choose a different email !", Toast.LENGTH_LONG).show()
                     } else {
@@ -69,6 +68,5 @@ class SignUpFragment : Fragment() {
             }
         }
 
-        binding.lifecycleOwner = this
     }
 }

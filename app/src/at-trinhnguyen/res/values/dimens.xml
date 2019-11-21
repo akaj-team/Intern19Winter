@@ -35,4 +35,5 @@
     <dimen name="nav_header_height">192dp</dimen>
     <dimen name="img_profile_picture_width_64dp">64dp</dimen>
     <dimen name="img_profile_picture_height_64dp">64dp</dimen>
+    <dimen name="edittext_height_200dp">200dp</dimen>
 </resources>

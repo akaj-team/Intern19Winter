@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import asiantech.internship.winter.savedata.db.TodoDatabase
 import asiantech.internship.winter.savedata.ui.done.DoneViewModel
-import asiantech.internship.winter.savedata.ui.home.HomeViewModel
 import asiantech.internship.winter.savedata.ui.login.LoginViewModel
 import asiantech.internship.winter.savedata.ui.signup.SignUpViewModel
 import asiantech.internship.winter.savedata.ui.todo.TodoViewModel
@@ -18,8 +17,6 @@ class ViewModelFactory(private val dataSource: TodoDatabase, private val applica
                 when {
                     isAssignableFrom(TodoViewModel::class.java) ->
                         TodoViewModel(dataSource, application)
-                    isAssignableFrom(HomeViewModel::class.java) ->
-                        HomeViewModel(dataSource, application)
                     isAssignableFrom(DoneViewModel::class.java) ->
                         DoneViewModel(dataSource, application)
                     isAssignableFrom(LoginViewModel::class.java) ->

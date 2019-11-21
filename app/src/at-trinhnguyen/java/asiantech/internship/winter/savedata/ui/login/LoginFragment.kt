@@ -35,6 +35,7 @@ class LoginFragment : Fragment() {
         loginViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(LoginViewModel::class.java)
         binding.loginViewModel = loginViewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -42,7 +43,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.apply {
-            getString("email")?.let { email ->
+            getString(getString(R.string.args_email))?.let { email ->
                 binding.edtEmail.setText(email)
             }
         }
@@ -62,8 +63,8 @@ class LoginFragment : Fragment() {
                     if (it.isNotEmpty()) {
                         activity?.getPreferences(Context.MODE_PRIVATE)?.edit()
                                 ?.apply {
-                                    putBoolean("PREF_IS_LOGIN", true)
-                                    putLong("PREF_ID_USER", it[0].idUser)
+                                    putBoolean(getString(R.string.pref_is_login), true)
+                                    putLong(getString(R.string.pref_id_user), it[0].idUser)
                                     apply()
                                 }
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
@@ -73,7 +74,5 @@ class LoginFragment : Fragment() {
                 })
             }
         }
-
-        binding.lifecycleOwner = this
     }
 }

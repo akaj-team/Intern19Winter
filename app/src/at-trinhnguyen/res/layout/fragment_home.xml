@@ -34,7 +34,7 @@
                 app:tabBackground="@drawable/selector_tab_layout"
                 app:tabIndicator="@null"
                 app:tabSelectedTextColor="@android:color/white"
-                app:tabTextColor="#1c53ec" />
+                app:tabTextColor="@color/colorTablayout" />
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPager"

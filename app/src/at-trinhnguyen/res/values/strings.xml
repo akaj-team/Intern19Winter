@@ -41,6 +41,10 @@
     <string name="button_text_add_todo">Add Todo</string>
     <string name="edittext_hint_enter_password">Enter password</string>
     <string name="pref_id_user">PREF_ID_USER</string>
+    <string name="pref_is_login">PREF_IS_LOGIN</string>
     <string name="textview_edit_todo">Edit Todo</string>
     <string name="button_text_save">Save</string>
+    <string name="args_title">ARGS_TITLE</string>
+    <string name="args_description">ARGS_DESCRIPTION</string>
+    <string name="args_email">ARGS_EMAIL</string>
 </resources>

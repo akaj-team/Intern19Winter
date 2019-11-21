@@ -13,14 +13,11 @@ import androidx.navigation.fragment.findNavController
 import asiantech.internship.summer.R
 import asiantech.internship.summer.databinding.FragmentEditTodoBinding
 import asiantech.internship.winter.savedata.db.TodoDatabase
-import asiantech.internship.winter.savedata.db.todo.Todo
-
 
 class EditTodoFragment : Fragment() {
 
     private lateinit var editTodoViewModel: EditTodoViewModel
     private lateinit var binding: FragmentEditTodoBinding
-    private var todo = Todo()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -29,13 +26,10 @@ class EditTodoFragment : Fragment() {
         val dataSource = TodoDatabase.getInstance(application)
         val idTodo = arguments?.let { EditTodoFragmentArgs.fromBundle(it).idTodo }
         Log.d("aaa", "$idTodo id todo")
-        val viewModelFactory = idTodo?.let { EditTodoViewModelfactory(it, dataSource, application) }
+        val viewModelFactory = idTodo?.let { EditTodoViewModelFactory(it, dataSource, application) }
         val editTodoViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(EditTodoViewModel::class.java)
         binding.editTodoViewModel = editTodoViewModel
-
-
-
 
         binding.btnSave.setOnClickListener {
             editTodoViewModel.getTodo().observe(this, Observer {

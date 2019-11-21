@@ -14,7 +14,6 @@ import asiantech.internship.summer.databinding.FragmentDoneBinding
 import asiantech.internship.winter.savedata.db.TodoDatabase
 import asiantech.internship.winter.savedata.ui.ViewModelFactory
 
-
 class DoneFragment : Fragment() {
 
     private lateinit var binding: FragmentDoneBinding
