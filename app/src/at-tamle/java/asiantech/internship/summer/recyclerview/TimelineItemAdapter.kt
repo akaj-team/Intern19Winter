@@ -13,15 +13,12 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.`at-tamle`.item_loading.view.*
 import kotlinx.android.synthetic.`at-tamle`.row_item.view.*
 
-
-class TimelineAdapter(recyclerView: RecyclerView, var activity: Activity, var timelineItems: MutableList<TimelineItem?>)
+class TimelineItemAdapter(recyclerView: RecyclerView, var activity: Activity, var timelineItems: MutableList<TimelineItem?>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     internal class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var progressBar = itemView.pbLoadMore
     }
-
-
 
     val VIEW_ITEM_TYPE = 0
     val VIEW_LOADING_TYPE = 1
@@ -59,24 +56,26 @@ class TimelineAdapter(recyclerView: RecyclerView, var activity: Activity, var ti
     override fun getItemCount(): Int {
         return timelineItems.size
     }
+
     internal class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvUserName = itemView.tvName
-        val tvNumOfLike = itemView.tvNumFavorite
-        val tvUserName_Comment = itemView.tvNickName
+        val tvName = itemView.tvName
+        val tvNumFavorite = itemView.tvNumFavorite
+        val tvNickname = itemView.tvNickName
         val imgLike = itemView.imgFavorite
         val imgPicture: ImageView = itemView.imgPicture
-        val tvDescription: TextView =itemView.tvDescription
-        val imgAvatar: CircleImageView =itemView.imgAvatar
+        val tvDescription: TextView = itemView.tvDescription
+        val imgAvatar: CircleImageView = itemView.imgAvatar
     }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ItemViewHolder) {
             val currTimelineItem = timelineItems.get(position)
-            holder.tvUserName.text = currTimelineItem!!.name
+            holder.tvName.text = currTimelineItem!!.name
             holder.imgPicture.setImageResource(currTimelineItem.image)
             holder.imgAvatar.setImageResource(currTimelineItem.avatar)
-            holder.tvUserName_Comment.text = currTimelineItem.name
-            holder.tvDescription.text=currTimelineItem.description
-            holder.tvNumOfLike.text = currTimelineItem.like.toString()
+            holder.tvNickname.text = currTimelineItem.name
+            holder.tvDescription.text = currTimelineItem.description
+            holder.tvNumFavorite.text = currTimelineItem.like.toString()
             holder.imgLike.setImageResource(if (currTimelineItem.isLike) R.drawable.ic_favorite_red else R.drawable.ic_favorite_border_black)
             holder.imgLike.setOnClickListener(View.OnClickListener {
                 if (currTimelineItem.isLike) {
@@ -89,7 +88,7 @@ class TimelineAdapter(recyclerView: RecyclerView, var activity: Activity, var ti
                 notifyDataSetChanged()
             })
         } else if (holder is LoadingViewHolder) {
-            holder.progressBar.isIndeterminate = true   // progressBar ở chế độ Indeterminate và sẽ không hiển thị quá trình làm việc.
+            holder.progressBar.isIndeterminate = true
         }
     }
 
@@ -105,6 +104,3 @@ class TimelineAdapter(recyclerView: RecyclerView, var activity: Activity, var ti
         this.loadMore = loadMore
     }
 }
-
-
-

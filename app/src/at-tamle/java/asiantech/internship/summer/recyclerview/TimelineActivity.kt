@@ -13,7 +13,7 @@ import kotlin.random.Random
 class TimelineActivity : AppCompatActivity(), FavoriteOnClickListener,
         SwipeRefreshLayout.OnRefreshListener {
     private var timelineItems: MutableList<TimelineItem?> = ArrayList()
-    private lateinit var timelineItemAdapter: TimelineAdapter
+    private lateinit var timelineItemAdapter: TimelineItemAdapter
     private val listImages = mutableListOf(
             R.drawable.img_food_1,
             R.drawable.img_food_2,
@@ -38,14 +38,13 @@ class TimelineActivity : AppCompatActivity(), FavoriteOnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timeline)
-
         initView()
     }
 
     private fun initView() {
         randomNewItems()
         rvTimeline.layoutManager = LinearLayoutManager(this)
-        timelineItemAdapter = TimelineAdapter(rvTimeline, this, timelineItems)
+        timelineItemAdapter = TimelineItemAdapter(rvTimeline, this, timelineItems)
         rvTimeline.adapter = timelineItemAdapter
 
         timelineItemAdapter.setLoadMore(this)
