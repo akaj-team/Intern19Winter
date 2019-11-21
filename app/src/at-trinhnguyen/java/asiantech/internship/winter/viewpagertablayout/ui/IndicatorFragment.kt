@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import asiantech.internship.summer.R
-import asiantech.internship.winter.viewpagertablayout.adapter.IndicatorPagerAdapter
+import asiantech.internship.winter.viewpagertablayout.Page
+import asiantech.internship.winter.viewpagertablayout.adapter.TabLayoutPagerAdapter
 import kotlinx.android.synthetic.`at-trinhnguyen`.fragment_indicator.*
+import me.relex.circleindicator.CircleIndicator
 
 class IndicatorFragment : Fragment() {
 
@@ -25,21 +27,26 @@ class IndicatorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewPagerAdapter = context?.let { IndicatorPagerAdapter(it) }
-        viewPager.adapter = viewPagerAdapter
-
-        tabLayout.setupWithViewPager(viewPager, true)
+        val pages = mutableListOf<Page>()
+        pages.apply {
+            add(Page(StepOneFragment(), ""))
+            add(Page(StepTwoFragment(), ""))
+            add(Page(StepThreeFragment(), ""))
+        }
+        val adapterViewPager = TabLayoutPagerAdapter(childFragmentManager, pages)
+        viewPager.adapter = adapterViewPager
+        val indicator = view.findViewById<CircleIndicator>(R.id.indicator)
+        indicator.setViewPager(viewPager)
 
         tvNext.setOnClickListener {
-            when (viewPager.currentItem) {
-                0 -> viewPager.currentItem = 1
-                1 -> viewPager.currentItem = 2
-                2 -> fragmentManager?.apply {
+            if (viewPager.currentItem == pages.size - 1) {
+                fragmentManager?.apply {
                     beginTransaction().replace(R.id.container, TabLayoutFragment.newInstance(), null)
                             .addToBackStack(null)
                             .commit()
                 }
             }
+            viewPager.currentItem = viewPager.currentItem + 1
         }
     }
 }

@@ -16,7 +16,9 @@
         <activity android:name="asiantech.internship.winter.layouteditor.EditProfileActivity" />
         <activity android:name="asiantech.internship.winter.layouteditor.SignUpActivity" />
         <activity android:name="asiantech.internship.winter.layouteditor.LoginActivity" />
-        <activity android:name="asiantech.internship.winter.viewpagertablayout.ViewPagerActivity">
+        <activity
+            android:name="asiantech.internship.winter.viewpagertablayout.ViewPagerActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
