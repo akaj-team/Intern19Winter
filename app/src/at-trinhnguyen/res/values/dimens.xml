@@ -2,11 +2,18 @@
 <resources>
     <dimen name="guide_line_left">24dp</dimen>
     <dimen name="guide_line_right">24dp</dimen>
+    <dimen name="guide_line_16dp">16dp</dimen>
     <dimen name="img_header_height">280dp</dimen>
     <dimen name="ic_logo_width">20dp</dimen>
     <dimen name="ic_logo_height">32dp</dimen>
+    <dimen name="ic_width_12dp">12dp</dimen>
+    <dimen name="ic_height_12dp">12dp</dimen>
+    <dimen name="ic_width_24dp">24dp</dimen>
+    <dimen name="ic_height_24dp">24dp</dimen>
     <dimen name="img_profile_picture_width">120dp</dimen>
     <dimen name="img_profile_picture_height">120dp</dimen>
+    <dimen name="img_avatar_width">40dp</dimen>
+    <dimen name="img_avatar_height">40dp</dimen>
     <dimen name="btn_height_54dp">54dp</dimen>
     <dimen name="padding_4dp">4dp</dimen>
     <dimen name="padding_8dp">8dp</dimen>
@@ -27,4 +34,6 @@
     <dimen name="text_size_24sp">24sp</dimen>
     <dimen name="text_size_32sp">32sp</dimen>
     <dimen name="text_size_40sp">40sp</dimen>
+    <dimen name="view_height_1dp">1dp</dimen>
+    <dimen name="view_height_4dp">4dp</dimen>
 </resources>
