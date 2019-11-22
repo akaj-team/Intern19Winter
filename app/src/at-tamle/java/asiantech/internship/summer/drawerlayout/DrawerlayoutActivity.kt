@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.`at-tamle`.activity_drawerlayout.*
-
-
 import android.widget.Toast
 import android.content.Intent
 import asiantech.internship.summer.R
@@ -31,7 +29,7 @@ class DrawerlayoutActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun actionBarVsDrawerLayout() {
         drawerLayout?.setScrimColor(Color.TRANSPARENT)
-        setSupportActionBar(toolbar)    // hamburger button
+        setSupportActionBar(toolbar)
         val hamburger = object : ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawerlayout_open, R.string.drawerlayout_close) {
 
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
