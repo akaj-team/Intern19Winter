@@ -21,9 +21,14 @@
         <activity
             android:name=".kotlinActivity.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".fragment.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".recyclerview.TimelineActivity"
+            android:theme="@style/TimelineNoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="asiantech.internship.summer.recyclerview.TimelineActivity"
+    tools:visibility="visible">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="@dimen/img_height_80"
+        android:layout_height="@dimen/img_height_80"
+        android:padding="@dimen/layout_padding_10"
+        tools:src="@drawable/ic_man"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+        app:layout_constraintTop_toTopOf="@+id/imgAvatar"
+        tools:text="@string/textview_text_username_hint" />
+
+    <ImageView
+        android:id="@+id/imgMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/layout_padding_10"
+        android:src="@drawable/ic_more_horiz_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgAvatar" />
+
+    <ImageView
+        android:id="@+id/imgPicture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgAvatar"
+        tools:src="@drawable/ic_food_1" />
+
+    <ImageView
+        android:id="@+id/imgFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/layout_padding_10"
+        android:src="@drawable/ic_favorite_border_black_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgPicture" />
+
+    <ImageView
+        android:id="@+id/imgComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/layout_padding_10"
+        android:src="@drawable/ic_chat_bubble_outline_black_24dp"
+        app:layout_constraintStart_toEndOf="@id/imgFavorite"
+        app:layout_constraintTop_toTopOf="@id/imgFavorite" />
+
+    <ImageView
+        android:id="@+id/imgShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/layout_padding_10"
+        android:src="@drawable/ic_near_me_black_24dp"
+        app:layout_constraintStart_toEndOf="@id/imgComment"
+        app:layout_constraintTop_toTopOf="@id/imgComment" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_height_2"
+        android:layout_margin="@dimen/layout_padding_10"
+        android:background="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgFavorite"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <ImageView
+        android:id="@+id/imgNumFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/layout_padding_10"
+        android:layout_marginTop="@dimen/layout_padding_10"
+        android:src="@drawable/ic_favorite_black_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <TextView
+        android:id="@+id/tvNumFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/layout_padding_5"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintStart_toEndOf="@id/imgNumFavorite"
+        app:layout_constraintTop_toTopOf="@+id/imgNumFavorite"
+        tools:text="@string/textview_text_like_number" />
+
+    <TextView
+        android:id="@+id/tvLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/layout_padding_5"
+        android:text="@string/textview_text_like"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintStart_toEndOf="@id/tvNumFavorite"
+        app:layout_constraintTop_toTopOf="@+id/imgNumFavorite" />
+
+    <TextView
+        android:id="@+id/tvNickName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="@id/imgNumFavorite"
+        app:layout_constraintTop_toBottomOf="@id/imgNumFavorite"
+        tools:text="@string/textview_text_username_hint" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/layout_padding_10"
+        app:layout_constraintStart_toEndOf="@id/tvNickName"
+        app:layout_constraintTop_toTopOf="@+id/tvNickName"
+        tools:text="@string/textview_text_comment" />
+
+    <TextView
+        android:id="@+id/tvComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/layout_padding_10"
+        android:text="@string/textview_text_comment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNickName" />
+
+    <View
+        android:id="@+id/dividerBottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_height_10"
+        android:layout_marginTop="@dimen/layout_padding_10"
+        android:background="@color/colorBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvComment" />
+</androidx.constraintlayout.widget.ConstraintLayout>
