@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menutHome"
+            android:icon="@drawable/icon_home"
+            android:title="@string/textview_text_home" />
+        <item
+            android:id="@+id/menuProfile"
+            android:icon="@drawable/user"
+            android:title="@string/button_text_edit_profile" />
+        <item
+            android:id="@+id/menuAdd"
+            android:icon="@drawable/icon_add"
+            android:title="@string/edittext_text_add_todo" />
+        <item
+            android:id="@+id/menuLogout"
+            android:icon="@drawable/icon_logout"
+            android:title="@string/textview_logout" />
+    </group>
+
+</menu>
