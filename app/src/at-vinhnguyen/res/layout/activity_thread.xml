@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvProcess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/dp_28"
+        android:textSize="@dimen/sp_24"
+        android:textColor="@color/colorBlack"
+        android:text="@string/number_0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/percent_symbol"
+        android:textSize="@dimen/sp_24"
+        android:layout_marginStart="@dimen/dp_4"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvProcess"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toEndOf="@id/tvProcess" />
+
+    <ProgressBar
+        android:id="@+id/progressBarDownload"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvProcess"
+        android:layout_margin="@dimen/dp_28" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/start"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarDownload"
+        app:layout_constraintStart_toStartOf="@+id/progressBarDownload"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarDownload" />
+
+    <ImageView
+        android:id="@+id/imgDownload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_marginTop="@dimen/dp_28"
+        app:layout_constraintTop_toBottomOf="@id/btnStart" />
+</androidx.constraintlayout.widget.ConstraintLayout>

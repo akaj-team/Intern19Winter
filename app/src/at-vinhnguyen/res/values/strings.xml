@@ -22,4 +22,6 @@
     <string name="login_here">Login Here</string>
     <string name="save_profile">Save Profile</string>
     <string name="user_email_com">user@email.com</string>
+    <string name="percent_symbol">%</string>
+    <string name="number_0">0</string>
 </resources>
