@@ -99,6 +99,7 @@
             android:hint="@string/edittext_text_full_name_hint"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@+id/tvFullName"
             tools:ignore="Autofill" />

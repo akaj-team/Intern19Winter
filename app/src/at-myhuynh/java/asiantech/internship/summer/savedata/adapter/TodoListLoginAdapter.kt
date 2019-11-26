@@ -1,26 +1,14 @@
 package asiantech.internship.summer.savedata.adapter
 
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import asiantech.internship.summer.savedata.fragment.TodoListTabLoginFragment
-import asiantech.internship.summer.savedata.fragment.TodoListTabRegisterFragment
+import asiantech.internship.summer.savedata.entity.Tab
 
-class TodoListLoginAdapter(fm: FragmentManager) :
+class TodoListLoginAdapter(fm: FragmentManager, private val tabLogins: MutableList<Tab>) :
         FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    override fun getItem(position: Int): Fragment {
-        return when (position) {
-            0 -> TodoListTabLoginFragment()
-            else -> TodoListTabRegisterFragment()
-        }
-    }
+    override fun getItem(position: Int) = tabLogins[position].fragment
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return when (position) {
-            0 -> "Login"
-            else -> "Register"
-        }
-    }
+    override fun getPageTitle(position: Int) = tabLogins[position].title
 
-    override fun getCount() = 2
+    override fun getCount() = tabLogins.size
 }

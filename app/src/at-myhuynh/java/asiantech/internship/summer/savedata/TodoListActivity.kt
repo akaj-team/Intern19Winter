@@ -1,21 +1,12 @@
 package asiantech.internship.summer.savedata
 
-import android.app.Activity
-import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import asiantech.internship.summer.R
 import asiantech.internship.summer.savedata.fragment.TodoListLoginFragment
-import kotlinx.android.synthetic.`at-myhuynh`.fragment_todo_list_tab_register.*
 
 class TodoListActivity : AppCompatActivity() {
-
-    companion object {
-        private const val REQUEST_IMAGE_CAPTURE = 0
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,20 +24,9 @@ class TodoListActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    fun removeFragmentBackStack() {
-        supportFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                REQUEST_IMAGE_CAPTURE -> {
-                    val imageBitmap = data?.extras?.get("data") as Bitmap
-                    imgAvatar.setImageBitmap(imageBitmap)
-                }
-                else -> imgAvatar.setImageURI(data?.data)
-            }
-        }
+    fun removeFragmentInBackStack(fragment: Fragment) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.remove(fragment)
+        supportFragmentManager.popBackStack()
     }
 }

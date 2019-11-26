@@ -7,10 +7,9 @@ import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import asiantech.internship.summer.savedata.entity.Todo
 import asiantech.internship.summer.savedata.entity.User
 
-class TodoListDatabaseHelper(context: Context) :
+class UserDatabaseHelper(context: Context) :
         SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         private const val DATABASE_NAME = "todoList"
@@ -155,91 +154,5 @@ class TodoListDatabaseHelper(context: Context) :
         }
         cursor.close()
         return users
-    }
-
-    fun insertTodo(todo: Todo) {
-        val db = writableDatabase
-        val value = ContentValues()
-        value.put(KEY_TODO_CONTENT, todo.title)
-        value.put(KEY_USER_ID_PK, todo.userId)
-        value.put(KEY_TODO_STATUS, todo.status)
-        db.insertOrThrow(TABLE_TODO, null, value)
-    }
-
-    fun readTodos(userId: Int): MutableList<Todo> {
-        val todoList = mutableListOf<Todo>()
-        val db = writableDatabase
-        val cursor: Cursor?
-
-        try {
-            cursor = db.rawQuery(SELECT_TABLE_TODO, arrayOf(userId.toString()))
-        } catch (e: SQLException) {
-            db.execSQL(CREATE_TABLE_USER)
-            return todoList
-        }
-
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast) {
-                val id = cursor.getInt(cursor.getColumnIndex(KEY_TODO_ID))
-                val idUser = cursor.getInt(cursor.getColumnIndex(KEY_USER_ID_PK))
-                val title = cursor.getString(cursor.getColumnIndex(KEY_TODO_CONTENT))
-                val status = cursor.getInt(cursor.getColumnIndex(KEY_TODO_STATUS))
-
-                todoList.add(Todo(id, idUser, title, status))
-                cursor.moveToNext()
-            }
-        }
-        cursor.close()
-        return todoList
-    }
-
-    fun readTodoDones(userId: Int): MutableList<Todo> {
-        val todoList = mutableListOf<Todo>()
-        val db = writableDatabase
-        val cursor: Cursor?
-
-        try {
-            cursor = db.rawQuery(SELECT_TABLE_TODO_DONE, arrayOf(userId.toString(), "1"))
-        } catch (e: SQLException) {
-            db.execSQL(CREATE_TABLE_USER)
-            return todoList
-        }
-
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast) {
-                val id = cursor.getInt(cursor.getColumnIndex(KEY_TODO_ID))
-                val idUser = cursor.getInt(cursor.getColumnIndex(KEY_USER_ID_PK))
-                val title = cursor.getString(cursor.getColumnIndex(KEY_TODO_CONTENT))
-                val status = cursor.getInt(cursor.getColumnIndex(KEY_TODO_STATUS))
-
-                todoList.add(Todo(id, idUser, title, status))
-                cursor.moveToNext()
-            }
-        }
-        cursor.close()
-        return todoList
-    }
-
-    fun updateTodo(todo: Todo): Int {
-        val db = writableDatabase
-        val value = ContentValues()
-        value.put(KEY_TODO_CONTENT, todo.title)
-        value.put(KEY_TODO_STATUS, todo.status)
-        return db.update(TABLE_TODO, value, "$KEY_TODO_ID = ?", arrayOf(todo.id.toString()))
-    }
-
-    fun deleteTodo(todo: Todo): Int {
-        val db = writableDatabase
-        return db.delete(TABLE_TODO, "$KEY_TODO_ID = ?", arrayOf(todo.id.toString()))
-    }
-
-    fun updateUser(user: User): Int {
-        val db = writableDatabase
-        val value = ContentValues()
-        value.put(KEY_USER_NAME, user.userName)
-        value.put(KEY_USER_NICKNAME, user.nickname)
-        value.put(KEY_USER_PATH, user.avatar)
-
-        return db.update(TABLE_USER, value, "$KEY_USER_ID = ?", arrayOf(user.id.toString()))
     }
 }

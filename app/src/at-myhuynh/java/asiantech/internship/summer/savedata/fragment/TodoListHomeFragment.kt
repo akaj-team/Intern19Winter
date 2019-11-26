@@ -16,24 +16,32 @@ import asiantech.internship.summer.savedata.adapter.NavAdapter
 import asiantech.internship.summer.savedata.adapter.TodoListHomeAdapter
 import asiantech.internship.summer.savedata.data.TodoListDatabaseHelper
 import asiantech.internship.summer.savedata.entity.NavItem
-import asiantech.internship.summer.savedata.entity.Todo
+import asiantech.internship.summer.savedata.entity.Tab
 import asiantech.internship.summer.savedata.entity.User
 import asiantech.internship.summer.savedata.interfaces.NavItemOnClick
 import kotlinx.android.synthetic.`at-myhuynh`.fragment_todo_list_home.*
 
 class TodoListHomeFragment : Fragment() {
-    private lateinit var mTodoLists: MutableList<Todo>
-    private lateinit var mNavItems: MutableList<NavItem>
+    private lateinit var navItems: MutableList<NavItem>
     private lateinit var todoListDatabase: TodoListDatabaseHelper
     private lateinit var preferences: SharedPreferences
-    private val sharedFile = "userLogin"
-    private var user: User = User(1, "ToDo List", "", "", R.drawable.ic_man)
+    private lateinit var tabTodos: MutableList<Tab>
+    private var userId: Int = -1
+    private lateinit var user: User
 
     companion object {
-        fun newInstance(idUser: Int = -1) = TodoListHomeFragment().apply {
+        private const val FILE_NAME = "userLogin"
+        fun newInstance(userId: Int) = TodoListHomeFragment().apply {
             arguments = Bundle().apply {
-                putInt(KEY_USER_ID, idUser)
+                putInt(KEY_USER_ID, userId)
             }
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            userId = it.getInt(KEY_USER_ID)
         }
     }
 
@@ -44,56 +52,57 @@ class TodoListHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         todoListDatabase = TodoListDatabaseHelper(requireContext())
-        readTodos()
+        user = todoListDatabase.readUser(userId)
         initNav()
+        initTabs()
 
-        val vpAdapter = TodoListHomeAdapter(childFragmentManager, mTodoLists)
+        val vpAdapter = TodoListHomeAdapter(childFragmentManager, tabTodos)
         vpHome.adapter = vpAdapter
         tlHome.setupWithViewPager(vpHome)
 
-        val navAdapter = NavAdapter(user, mNavItems)
+        val navAdapter = NavAdapter(user, navItems)
         rvNavigation.layoutManager = LinearLayoutManager(requireContext())
         rvNavigation.adapter = navAdapter
         setOnClickNavItem(navAdapter)
 
-        /**/
         vpHome.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                readTodos()
+            override fun onPageSelected(position: Int) {
                 vpAdapter.notifyDataSetChanged()
             }
-
-            override fun onPageSelected(position: Int) {}
         })
-    }
-
-    private fun readTodos() {
-        mTodoLists = todoListDatabase.readTodos()
     }
 
     private fun setOnClickNavItem(adapter: NavAdapter) {
         adapter.setOnclickNavItem(object : NavItemOnClick {
             override fun onClick(navItem: NavItem) {
-                if (navItem.mTitle == "Log Out") {
-                    preferences = requireContext().getSharedPreferences(sharedFile, Context.MODE_PRIVATE)
+                if (navItem.title == "Log Out") {
+                    preferences = requireContext().getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
                     val preferencesEditor = preferences.edit()
                     preferencesEditor.remove(KEY_USER_ID)
                     preferencesEditor.apply()
-                    (activity as? TodoListActivity)?.removeFragmentBackStack()
+                    (activity as? TodoListActivity)?.removeFragmentInBackStack(navItem.toFragment)
                 }
                 (activity as? TodoListActivity)?.replaceFragment(navItem.toFragment, navItem.isAddToBackStack)
             }
-
         })
     }
 
+    private fun initTabs() {
+        tabTodos = mutableListOf()
+        tabTodos.apply {
+            add(Tab(TodoListHomeTodoFragment.newInstance(userId), "Todo"))
+            add(Tab(TodoListHomeDoneFragment.newInstance(userId), "Done"))
+        }
+    }
+
     private fun initNav() {
-        mNavItems = mutableListOf()
-        mNavItems.apply {
-            add(NavItem((R.drawable.ic_people_black_24dp), "Edit Profile", TodoListEditProfileFragment.newInstance(), true))
-            add(NavItem((R.drawable.ic_add_circle_black_24dp), "Add Todo", TodoListAddNoteFragment.newInstance(), true))
+        navItems = mutableListOf()
+        navItems.apply {
+            add(NavItem((R.drawable.ic_people_black_24dp), "Edit Profile", TodoListEditProfileFragment.newInstance(userId), true))
+            add(NavItem((R.drawable.ic_add_circle_black_24dp), "Add Todo", TodoListAddTodoFragment.newInstance(userId = userId), true))
             add(NavItem((R.drawable.ic_assignment_return_black_24dp), "Log Out", TodoListLoginFragment.newInstance(), false))
         }
     }

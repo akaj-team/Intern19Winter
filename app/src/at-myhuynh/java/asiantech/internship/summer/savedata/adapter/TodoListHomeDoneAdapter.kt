@@ -8,25 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 import asiantech.internship.summer.savedata.entity.Todo
 
-class TodoListHomeDoneAdapter(mTodoLists: MutableList<Todo>) :
+class TodoListHomeDoneAdapter(private var todoLists: MutableList<Todo>) :
         RecyclerView.Adapter<TodoListHomeDoneAdapter.HomeTodoListDoneViewHolder>() {
-
-    private var mTodoListDones = mutableListOf<Todo>()
-
-    init {
-        mTodoLists.forEach {
-            if (it.status == 1) {
-                mTodoListDones.add(it)
-            }
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeTodoListDoneViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_item_todo_done, parent, false)
         return HomeTodoListDoneViewHolder(view)
     }
 
-    override fun getItemCount() = mTodoListDones.size
+    override fun getItemCount() = todoLists.size
 
     override fun onBindViewHolder(holder: HomeTodoListDoneViewHolder, position: Int) {
         holder.onBindData(position)
@@ -34,7 +24,7 @@ class TodoListHomeDoneAdapter(mTodoLists: MutableList<Todo>) :
 
     inner class HomeTodoListDoneViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBindData(position: Int) {
-            val todoItem = mTodoListDones[position]
+            val todoItem = todoLists[position]
             val tvTodoContent = itemView.findViewById<TextView>(R.id.tvTodoContent)
             tvTodoContent.text = todoItem.title
         }

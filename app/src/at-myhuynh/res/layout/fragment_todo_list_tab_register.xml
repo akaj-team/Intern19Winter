@@ -32,7 +32,7 @@
             android:id="@+id/imgAvatar"
             android:layout_width="@dimen/img_width_120"
             android:layout_height="@dimen/img_height_120"
-            android:src="@drawable/ic_man"
+            android:src="@drawable/ic_avatar_default"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintStart_toStartOf="parent"

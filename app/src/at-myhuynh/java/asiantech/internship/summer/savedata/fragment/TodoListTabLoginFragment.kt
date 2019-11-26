@@ -22,6 +22,7 @@ class TodoListTabLoginFragment : Fragment() {
 
     companion object {
         private const val USER_ID_DEFAULT = -1
+        fun newInstance() = TodoListTabLoginFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +33,7 @@ class TodoListTabLoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         preferences = requireContext().getSharedPreferences(sharedFile, Context.MODE_PRIVATE)
         val userId = readSharedPreferences()
+
         if (userId != USER_ID_DEFAULT) {
             (activity as? TodoListActivity)?.replaceFragment(TodoListHomeFragment.newInstance(userId), false)
         } else {
@@ -42,7 +44,7 @@ class TodoListTabLoginFragment : Fragment() {
                     val preferencesEditor = preferences.edit()
                     preferencesEditor.putInt(KEY_USER_ID, user.id)
                     preferencesEditor.apply()
-                    (activity as? TodoListActivity)?.replaceFragment(TodoListHomeFragment.newInstance(id), false)
+                    (activity as? TodoListActivity)?.replaceFragment(TodoListHomeFragment.newInstance(user.id), false)
                 } else {
                     Toast.makeText(requireContext(), "Login Fail", Toast.LENGTH_SHORT).show()
                 }

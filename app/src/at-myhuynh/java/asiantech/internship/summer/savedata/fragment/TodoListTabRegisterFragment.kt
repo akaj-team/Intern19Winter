@@ -3,6 +3,8 @@ package asiantech.internship.summer.savedata.fragment
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -16,13 +18,20 @@ import asiantech.internship.summer.R
 import asiantech.internship.summer.savedata.Constants.Companion.OPTION_CANCEL
 import asiantech.internship.summer.savedata.Constants.Companion.OPTION_CHOOSE_GALLERY
 import asiantech.internship.summer.savedata.Constants.Companion.OPTION_TAKE_PHOTO
+import asiantech.internship.summer.savedata.Constants.Companion.REQUEST_IMAGE_CAPTURE
 import asiantech.internship.summer.savedata.data.TodoListDatabaseHelper
 import asiantech.internship.summer.savedata.entity.User
 import kotlinx.android.synthetic.`at-myhuynh`.fragment_todo_list_tab_register.*
+import java.io.ByteArrayOutputStream
 
 class TodoListTabRegisterFragment : Fragment() {
 
-    lateinit var userDatabase: TodoListDatabaseHelper
+    private lateinit var userDatabase: TodoListDatabaseHelper
+    private var pathImage: String? = null
+
+    companion object{
+        fun newInstance() = TodoListTabRegisterFragment()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -49,7 +58,7 @@ class TodoListTabRegisterFragment : Fragment() {
     }
 
     private fun register() {
-        val user = User(0, edtFullName.text.toString(), edtPassword.text.toString(), edtNickName.text.toString(), 1)
+        val user = User(0, edtFullName.text.toString(), edtPassword.text.toString(), edtNickName.text.toString(), pathImage)
         userDatabase.insertUser(user)
         Toast.makeText(requireContext(), "Inserted", Toast.LENGTH_SHORT).show()
     }
@@ -81,5 +90,40 @@ class TodoListTabRegisterFragment : Fragment() {
             }
         }
         builder.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d("zzz", "On ActivityResult")
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                REQUEST_IMAGE_CAPTURE -> {
+                    val imageBitmap = data?.extras?.get("data") as Bitmap
+                    imgAvatar.setImageBitmap(imageBitmap)
+                    val projection = arrayOf(MediaStore.Images.Media.DATA)
+                    val imageUri = getImageUri(imageBitmap)
+                    val cursor = imageUri?.let { requireContext().contentResolver.query(it, projection, null, null, null) }
+                    val index = cursor?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                    cursor?.moveToFirst()
+                    pathImage = index?.let { cursor.getString(it) }.toString()
+                }
+                else -> {
+                    imgAvatar.setImageURI(data?.data)
+                    val projection = arrayOf(MediaStore.Images.Media.DATA)
+                    val uri = data?.data
+                    val cursor = uri?.let { requireContext().contentResolver.query(it, projection, null, null, null) }
+                    val index = cursor?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                    cursor?.moveToFirst()
+                    pathImage = index?.let { cursor.getString(it) }.toString()
+                }
+            }
+        }
+    }
+
+    private fun getImageUri(bitmap: Bitmap): Uri? {
+        val bytes = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(requireContext().contentResolver, bitmap, "Title", null)
+        return Uri.parse(path)
     }
 }

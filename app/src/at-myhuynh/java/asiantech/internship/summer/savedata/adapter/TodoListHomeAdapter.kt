@@ -1,27 +1,18 @@
 package asiantech.internship.summer.savedata.adapter
 
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import asiantech.internship.summer.savedata.entity.Todo
-import asiantech.internship.summer.savedata.fragment.TodoListHomeDoneFragment
-import asiantech.internship.summer.savedata.fragment.TodoListHomeTodoFragment
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.PagerAdapter
+import asiantech.internship.summer.savedata.entity.Tab
 
-class TodoListHomeAdapter(fm: FragmentManager, private val mTodoLists: MutableList<Todo>) :
-        FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    override fun getItem(position: Int): Fragment {
-        return when (position) {
-            0 -> TodoListHomeTodoFragment.newInstance(mTodoLists)
-            else -> TodoListHomeDoneFragment.newInstance(mTodoLists)
-        }
-    }
+class TodoListHomeAdapter(fm: FragmentManager, private val tabTodos: MutableList<Tab>) :
+        FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-    override fun getCount() = 2
+    override fun getItem(position: Int) = tabTodos[position].fragment
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return when (position) {
-            0 -> "Todo"
-            else -> "Done"
-        }
-    }
+    override fun getCount() = tabTodos.size
+
+    override fun getPageTitle(position: Int) = tabTodos[position].title
+
+    override fun getItemPosition(`object`: Any) = PagerAdapter.POSITION_NONE
 }

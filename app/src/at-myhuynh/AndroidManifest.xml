@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fragment.MainActivity"/>
+        <activity android:name=".fragment.MainActivity" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".kotlinActivity.EditProfileActivity"
@@ -35,5 +35,5 @@
             </intent-filter>
         </activity>
     </application>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>

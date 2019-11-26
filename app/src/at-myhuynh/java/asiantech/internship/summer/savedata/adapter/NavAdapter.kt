@@ -1,5 +1,6 @@
 package asiantech.internship.summer.savedata.adapter
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import asiantech.internship.summer.savedata.entity.NavItem
 import asiantech.internship.summer.savedata.entity.User
 import asiantech.internship.summer.savedata.interfaces.NavItemOnClick
 
-class NavAdapter(val mUser: User, val mNavItems: MutableList<NavItem>) :
+class NavAdapter(val user: User, val navItems: MutableList<NavItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var navItemOnClick: NavItemOnClick? = null
@@ -32,7 +33,7 @@ class NavAdapter(val mUser: User, val mNavItems: MutableList<NavItem>) :
         }
     }
 
-    override fun getItemCount() = mNavItems.size + 1
+    override fun getItemCount() = navItems.size + 1
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.apply {
@@ -55,9 +56,12 @@ class NavAdapter(val mUser: User, val mNavItems: MutableList<NavItem>) :
             val imgAvatar = itemView.findViewById<ImageView>(R.id.imgAvatar)
             val tvUserName = itemView.findViewById<TextView>(R.id.tvUserName)
 
-            imgAvatar.setImageResource(mUser.avatar)
-            tvUserName.text = mUser.userName
-
+            if (user.avatar != null) {
+                imgAvatar.setImageBitmap(BitmapFactory.decodeFile(user.avatar))
+            } else {
+                imgAvatar.setImageResource(R.drawable.ic_avatar_default)
+            }
+            tvUserName.text = user.userName
         }
     }
 
@@ -69,10 +73,10 @@ class NavAdapter(val mUser: User, val mNavItems: MutableList<NavItem>) :
         fun onBindData(position: Int) {
             val imgIcon = itemView.findViewById<ImageView>(R.id.imgIcon)
             val tvNavItemName = itemView.findViewById<TextView>(R.id.tvNavItemName)
-            val navItem = mNavItems[position]
+            val navItem = navItems[position]
 
-            imgIcon.setImageResource(navItem.mIcon)
-            tvNavItemName.text = navItem.mTitle
+            imgIcon.setImageResource(navItem.icon)
+            tvNavItemName.text = navItem.title
 
             itemView.setOnClickListener {
                 navItemOnClick?.onClick(navItem)
