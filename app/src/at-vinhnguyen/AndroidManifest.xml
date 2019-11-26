@@ -18,13 +18,15 @@
         <activity android:name=".layouteditor.RegisterActivity" />
         <activity android:name=".layouteditor.EditProfileActivity" />
         <activity android:name=".layouteditor.LoginActivity" />
-        <activity android:name=".viewpagertablayout.ViewPagerActivity">
+        <activity
+            android:name=".viewpagertablayout.ViewPagerActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".viewpagertablayout.TabLayoutActivity"/>
+        <activity android:name=".viewpagertablayout.TabLayoutActivity" />
     </application>
 
 </manifest>

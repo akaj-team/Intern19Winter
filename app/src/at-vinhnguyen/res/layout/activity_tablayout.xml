@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tabGravity="fill" />
 
-        <asiantech.internship.summer.viewpagertablayout.NonSwipableViewPager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPagerTabLayout"
             app:layout_constraintTop_toBottomOf="@+id/tabLayout"
             app:layout_constraintStart_toStartOf="@id/tabLayout"
