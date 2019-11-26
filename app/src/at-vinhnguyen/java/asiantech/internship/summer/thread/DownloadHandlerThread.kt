@@ -1,20 +1,22 @@
 package asiantech.internship.summer.thread
 
 import android.content.Context
-import android.os.AsyncTask
-import android.util.Log
+import android.os.Bundle
+import android.os.Handler
+import android.os.Message
+import asiantech.internship.summer.thread.HandlerActivity.Companion.DOWNLOADED_PROCESS
+import asiantech.internship.summer.thread.HandlerActivity.Companion.IMAGE_PATH
+import asiantech.internship.summer.thread.HandlerActivity.Companion.UPDATE_PROCESS
 import java.io.*
 import java.net.MalformedURLException
 import java.net.URL
 
-class DownloadAsyncTask(var onDownLoadedListener: OnDownLoadedListener) : AsyncTask<String, Int, String>() {
-
-    override fun doInBackground(vararg p0: String?): String {
-        val context = onDownLoadedListener as Context
+class DownloadHandlerThread(val context: Context, private val handler: Handler, private val urlPath: String) : Runnable {
+    override fun run() {
         val imgLength: Int
-        var imgFile = File("")
+        val imgFile: File
         try {
-            val url = URL(p0[0])
+            val url = URL(urlPath)
             val connection = url.openConnection()
             connection.connect()
             imgLength = connection.contentLength
@@ -22,7 +24,7 @@ class DownloadAsyncTask(var onDownLoadedListener: OnDownLoadedListener) : AsyncT
             if (!imgFolder.exists()) {
                 imgFolder.mkdirs()
             }
-            imgFile = File(imgFolder, "asynctaskimg.jpg")
+            imgFile = File(imgFolder, "handlerimg.jpg")
             val outputStream: OutputStream = FileOutputStream(imgFile)
             val inputStream: InputStream = BufferedInputStream(url.openStream(), 8192)
             val data = ByteArray(1024)
@@ -32,29 +34,23 @@ class DownloadAsyncTask(var onDownLoadedListener: OnDownLoadedListener) : AsyncT
                 total += count
                 outputStream.write(data, 0, count)
                 val progress: Int = 100 * total / imgLength
-                publishProgress(progress)
-                Log.i("Info", "Progress: $progress")
+                val message = Message()
+                message.what = UPDATE_PROCESS
+                message.arg1 = progress
+                handler.sendMessage(message)
             }
+            val message = Message()
+            message.what = DOWNLOADED_PROCESS
+            val bundle = Bundle()
+            bundle.putString(IMAGE_PATH, imgFile.absolutePath)
+            message.data = bundle
+            handler.sendMessage(message)
             inputStream.close()
             outputStream.close()
-
         } catch (e: IOException) {
             e.printStackTrace()
         } catch (e: MalformedURLException) {
             e.printStackTrace()
-        }
-        return imgFile.absolutePath
-    }
-
-    override fun onProgressUpdate(vararg values: Int?) {
-        values.get(0)?.let { onDownLoadedListener.onUpdateProcess(it) }
-    }
-
-    override fun onPostExecute(result: String?) {
-        if (result != null) {
-            if (result.isNotEmpty()) {
-                onDownLoadedListener.onDownloaded(result)
-            }
         }
     }
 }

@@ -30,7 +30,7 @@
         android:id="@+id/progressBarDownload"
         style="?android:attr/progressBarStyleHorizontal"
         android:max="100"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

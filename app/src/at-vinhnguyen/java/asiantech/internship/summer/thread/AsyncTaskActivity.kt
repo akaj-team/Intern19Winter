@@ -11,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import asiantech.internship.summer.R
 import kotlinx.android.synthetic.`at-vinhnguyen`.activity_thread.*
 
-class ThreadActivity : AppCompatActivity(), OnDownLoadedListener, View.OnClickListener {
+class AsyncTaskActivity : AppCompatActivity(), OnDownLoadedListener, View.OnClickListener {
 
     companion object {
-        const val MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 100
+        private const val MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 100
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,9 +30,8 @@ class ThreadActivity : AppCompatActivity(), OnDownLoadedListener, View.OnClickLi
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
             MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE -> {
-                if (grantResults.size > 0
-                        || grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                } else{
+                if (grantResults.isEmpty()
+                        || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show()
                 }
             }
