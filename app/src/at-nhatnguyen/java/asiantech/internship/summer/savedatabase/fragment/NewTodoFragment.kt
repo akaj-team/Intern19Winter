@@ -34,7 +34,7 @@ class NewTodoFragment : Fragment() {
                 Toast.makeText(activity, "Done", Toast.LENGTH_SHORT).show()
 
                 fragmentManager?.beginTransaction()?.
-                        replace(R.id.frameLayout, ViewPagerFragment.newInstance())?.
+                        replace(R.id.frameLayoutActivity, ViewPagerFragment.newInstance())?.
                         addToBackStack(null)?.
                         commit()
             }

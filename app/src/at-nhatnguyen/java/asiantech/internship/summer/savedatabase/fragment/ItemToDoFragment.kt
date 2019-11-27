@@ -34,7 +34,7 @@ class ItemToDoFragment : Fragment() {
         recyclerView.adapter = adapter
 
         floatingActionButton.setOnClickListener {
-            fragmentManager?.beginTransaction()?.replace(R.id.frameLayout, NewTodoFragment.newInstance())?.commit()
+            fragmentManager?.beginTransaction()?.replace(R.id.frameLayoutActivity, NewTodoFragment.newInstance())?.commit()
         }
         adapter?.let { setOnClickIconEditToDo(it) }
     }
@@ -43,7 +43,7 @@ class ItemToDoFragment : Fragment() {
         adapter.onClick(object : ItemTodoOnclick {
             override fun onClick(onclick: TodoModel) {
                 if (onclick.todoName != "") {
-                    fragmentManager?.beginTransaction()?.replace(R.id.frameLayout, EditToDoFragment.newInstance(onclick.todoName, onclick.todoContent))?.addToBackStack(null)?.commit()
+                    fragmentManager?.beginTransaction()?.replace(R.id.frameLayoutActivity, EditTodoFragment.newInstance(onclick.todoName, onclick.todoContent))?.addToBackStack(null)?.commit()
                 }
             }
         })

@@ -39,7 +39,7 @@ class LoginFragment : Fragment() {
             val pass = edtPassword.text.toString()
             if (userHandling!!.checkUser(email = email,password = pass)){
             fragmentManager?.beginTransaction()?.
-                    replace(R.id.frameLayout, ViewPagerFragment.newInstance())?.
+                    replace(R.id.frameLayoutActivity, ViewPagerFragment.newInstance())?.
                     commit()
         }else{
                 Toast.makeText(activity,"Email or password incorrect",Toast.LENGTH_SHORT).show()
@@ -47,7 +47,7 @@ class LoginFragment : Fragment() {
         }
 
         tvCreateAccount.setOnClickListener {
-            fragmentManager?.beginTransaction()?.replace(R.id.frameLayout, RegisterFragment.newInstance())?.addToBackStack(null)?.commit()
+            fragmentManager?.beginTransaction()?.replace(R.id.frameLayoutActivity, RegisterFragment.newInstance())?.addToBackStack(null)?.commit()
         }
     }
 }

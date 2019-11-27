@@ -55,7 +55,7 @@ class RegisterFragment : Fragment() {
                 userHandling?.insertUser(UserModel(fullName = fullName, email = email, password = pass))
                 Toast.makeText(activity, "Done", Toast.LENGTH_SHORT).show()
                 fragmentManager?.beginTransaction()?.
-                        replace(R.id.frameLayout, LoginFragment.newInstance(email, pass))?.
+                        replace(R.id.frameLayoutActivity, LoginFragment.newInstance(email, pass))?.
                         commit()
             }
         }
@@ -63,7 +63,7 @@ class RegisterFragment : Fragment() {
         tvLoginHere.setOnClickListener {
             val email = ""
             val pass = ""
-            fragmentManager?.beginTransaction()?.replace(R.id.frameLayout, LoginFragment.newInstance(email, pass))?.addToBackStack(null)?.commit()
+            fragmentManager?.beginTransaction()?.replace(R.id.frameLayoutActivity, LoginFragment.newInstance(email, pass))?.addToBackStack(null)?.commit()
         }
     }
 

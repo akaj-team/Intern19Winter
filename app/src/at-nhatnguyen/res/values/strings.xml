@@ -28,10 +28,6 @@
     <string name="button_text_save_profile">Save Profile</string>
     <string name="todo">Todo</string>
     <string name="done">Done</string>
-    <string name="textview_text_input">Input</string>
-    <string name="textview_text_todo_new">Todo new</string>
-    <string name="button_text_done">Done</string>
-    <string name="textview_text_edit_profile">Edit Profile</string>
     <string name="textview_text_todo">todo</string>
     <string name="textview_text_done_1">done 1</string>
     <string name="button_text_done">Done</string>

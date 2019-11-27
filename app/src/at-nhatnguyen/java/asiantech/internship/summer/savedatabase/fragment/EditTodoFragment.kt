@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import asiantech.internship.summer.R
-import kotlinx.android.synthetic.main.fragment_edit_todo.*
+import kotlinx.android.synthetic.`at-nhatnguyen`.fragment_edit_todo.*
 
-class EditToDoFragment : Fragment(){
+class EditTodoFragment : Fragment(){
 
     companion object{
         private const val ARG_TODO_NAME = "todoName"
         private const val ARG_TODO_CONTENT = "todoContent"
-        fun newInstance(toDoName:String,todoContent:String) = EditToDoFragment().apply {
+        fun newInstance(toDoName:String,todoContent:String) = EditTodoFragment().apply {
             arguments = Bundle().apply {
                 putString(ARG_TODO_NAME,toDoName)
                 putString(ARG_TODO_CONTENT,todoContent)

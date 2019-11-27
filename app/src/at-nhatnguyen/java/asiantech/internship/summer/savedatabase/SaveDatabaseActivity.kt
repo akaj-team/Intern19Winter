@@ -13,6 +13,6 @@ class SaveDatabaseActivity : AppCompatActivity() {
 
         val email =""
         val pass = ""
-        supportFragmentManager.beginTransaction().add(R.id.frameLayout, LoginFragment.newInstance(email,pass)).commit()
+        supportFragmentManager.beginTransaction().add(R.id.frameLayoutActivity, LoginFragment.newInstance(email,pass)).commit()
     }
 }
