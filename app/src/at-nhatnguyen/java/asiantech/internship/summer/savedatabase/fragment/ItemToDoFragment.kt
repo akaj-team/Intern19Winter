@@ -9,11 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import asiantech.internship.summer.R
 import asiantech.internship.summer.savedatabase.adapter.RowTodoAdapter
 import asiantech.internship.summer.savedatabase.database.DBHandling
+import asiantech.internship.summer.savedatabase.database.ItemTodoOnclick
+import asiantech.internship.summer.savedatabase.database.TodoModel
 import kotlinx.android.synthetic.`at-nhatnguyen`.fragment_item_todo.*
 
 class ItemToDoFragment : Fragment() {
 
     companion object {
+
         fun newInstance() = ItemToDoFragment()
     }
 
@@ -27,13 +30,22 @@ class ItemToDoFragment : Fragment() {
         val todoHandling = DBHandling(requireContext())
         val iTemTodo = todoHandling.readTodo()
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        val adapter = RowTodoAdapter(iTemTodo)
+        val adapter = context?.let { RowTodoAdapter(iTemTodo, it) }
         recyclerView.adapter = adapter
 
         floatingActionButton.setOnClickListener {
-            fragmentManager?.beginTransaction()?.
-                    replace(R.id.frameLayout,NewTodoFragment.newInstance())?.
-                    commit()
+            fragmentManager?.beginTransaction()?.replace(R.id.frameLayout, NewTodoFragment.newInstance())?.commit()
         }
+        adapter?.let { setOnClickIconEditToDo(it) }
+    }
+
+    private fun setOnClickIconEditToDo(adapter: RowTodoAdapter) {
+        adapter.onClick(object : ItemTodoOnclick {
+            override fun onClick(onclick: TodoModel) {
+                if (onclick.todoName != "") {
+                    fragmentManager?.beginTransaction()?.replace(R.id.frameLayout, EditToDoFragment.newInstance(onclick.todoName, onclick.todoContent))?.addToBackStack(null)?.commit()
+                }
+            }
+        })
     }
 }

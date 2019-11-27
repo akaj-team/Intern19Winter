@@ -41,20 +41,30 @@ class RegisterFragment : Fragment() {
             val fullName = edtFullName.text.toString()
             val email = edtEmail.text.toString()
             val pass = edtPassword.text.toString()
+            val confirmPassword = edtConfirmPassword.text.toString()
 
-            val a = userHandling?.insertUser(UserModel(fullName = fullName, email = email, password = pass))
-            Toast.makeText(activity, "$a", Toast.LENGTH_SHORT).show()
-            fragmentManager?.beginTransaction()?.
-                    replace(R.id.frameLayout,LoginFragment.newInstance(email,pass))?.
-                    commit()
+            if (fullName == ""){
+                Toast.makeText(activity,"please, enter your full name",Toast.LENGTH_SHORT).show()
+            }else if (email == "" || pass == "") {
+                Toast.makeText(activity, "please enter your email and password", Toast.LENGTH_SHORT).show()
+            }else if (confirmPassword == "") {
+                Toast.makeText(activity, "please confirm the password", Toast.LENGTH_SHORT).show()
+            }else if (pass != confirmPassword){
+                Toast.makeText(activity,"Incorrect confirmation",Toast.LENGTH_SHORT).show()
+            }else{
+                userHandling?.insertUser(UserModel(fullName = fullName, email = email, password = pass))
+                Toast.makeText(activity, "Done", Toast.LENGTH_SHORT).show()
+                fragmentManager?.beginTransaction()?.
+                        replace(R.id.frameLayout, LoginFragment.newInstance(email, pass))?.
+                        commit()
+            }
         }
 
         tvLoginHere.setOnClickListener {
             val email = ""
             val pass = ""
-            fragmentManager?.beginTransaction()?.replace(R.id.frameLayout, LoginFragment.newInstance(email,pass))?.addToBackStack(null)?.commit()
+            fragmentManager?.beginTransaction()?.replace(R.id.frameLayout, LoginFragment.newInstance(email, pass))?.addToBackStack(null)?.commit()
         }
-
     }
 
     private fun takePhotoFromCamera() {

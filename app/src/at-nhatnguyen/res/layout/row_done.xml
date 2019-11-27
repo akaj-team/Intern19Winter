@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:paddingBottom="25dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="25dp">
+
     <TextView
         android:id="@+id/tvDone"
-        android:layout_marginLeft="@dimen/margin_40dp"
-        android:text="done 1"
-        android:textSize="@dimen/text_size_20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_40dp"
+        android:text="@string/textview_text_done_1"
+        android:textSize="@dimen/text_size_20dp" />
 
 </LinearLayout>

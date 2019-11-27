@@ -11,7 +11,8 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_mode_edit_black" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -20,6 +21,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="20dp"
-        android:text="Edit Profile"
+        android:text="@string/textview_text_edit_profile"
         android:textColor="#000000" />
+
 </LinearLayout>

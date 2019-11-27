@@ -14,7 +14,11 @@ object DBContract {
             const val COLUMN_TODO_ID = "id"
             const val TABLE_NAME_TODO = "todo"
             const val COLUMN_TODO_NAME = "todoname"
+            const val COLUMN_TODO_CONTENT = "content"
 
+            const val COLUMN_DONE_ID = "id"
+            const val TABLE_NAME_DONE = "done"
+            const val COLUMN_DONE_NAME = "donename"
         }
     }
 }

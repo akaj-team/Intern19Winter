@@ -38,7 +38,9 @@ class LoginFragment : Fragment() {
             val email = edtEmail.text.toString()
             val pass = edtPassword.text.toString()
             if (userHandling!!.checkUser(email = email,password = pass)){
-            fragmentManager?.beginTransaction()?.replace(R.id.frameLayout, ViewPagerFragment.newInstance(email))?.addToBackStack(null)?.commit()
+            fragmentManager?.beginTransaction()?.
+                    replace(R.id.frameLayout, ViewPagerFragment.newInstance())?.
+                    commit()
         }else{
                 Toast.makeText(activity,"Email or password incorrect",Toast.LENGTH_SHORT).show()
             }

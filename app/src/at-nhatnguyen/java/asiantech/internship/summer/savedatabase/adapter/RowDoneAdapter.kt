@@ -17,7 +17,6 @@ class RowDoneAdapter(private val mName: MutableList<ItemDone>) : RecyclerView.Ad
 
     override fun getItemCount() = mName.size
 
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is RowDoneItemViewHolder) {
             holder.onBindData(position)
@@ -25,11 +24,10 @@ class RowDoneAdapter(private val mName: MutableList<ItemDone>) : RecyclerView.Ad
     }
 
     inner class RowDoneItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvDone: TextView = itemView.findViewById(R.id.tvDone)
+        private val tvDone: TextView = itemView.findViewById(R.id.tvDone)
         fun onBindData(position: Int) {
             val it = mName[position]
             tvDone.text = it.mNameTodoDone
         }
     }
-
 }

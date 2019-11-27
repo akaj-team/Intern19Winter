@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 import asiantech.internship.summer.savedatabase.items.ItemDrawerBody
 import asiantech.internship.summer.savedatabase.items.ItemDrawerHeader
+import asiantech.internship.summer.savedatabase.items.ItemOnclick
 
 class DrawerAdapter(private val mItemHeader: MutableList<ItemDrawerHeader>, private val mItemBody: MutableList<ItemDrawerBody>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    var itemOnclick: ItemOnclick? = null
 
     enum class ViewType(val type: Int) {
         TYPE_ONE(0), TYPE_TWO(1)
@@ -55,21 +57,26 @@ class DrawerAdapter(private val mItemHeader: MutableList<ItemDrawerHeader>, priv
             val it = mItemHeader[position]
             imgAvatar.setImageResource(it.mAvatar)
             tvEmail.text = it.mEmail
-
         }
+    }
+
+    fun onClick(itemOnclick: ItemOnclick) {
+        this.itemOnclick = itemOnclick
     }
 
     inner class ItemBodyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val icon: ImageView = itemView.findViewById(R.id.imgIcon)
+        private val imgIcon: ImageView = itemView.findViewById(R.id.imgIcon)
         private val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
+
         fun onBindData(position: Int) {
-            val it = mItemBody[position]
-            icon.setImageResource(it.mIcon)
-            tvTitle.text = it.mTitle
+            val itemDrawerBody = mItemBody[position]
 
+            itemDrawerBody.mIcon?.let { it1 -> imgIcon.setImageResource(it1) }
+            tvTitle.text = itemDrawerBody.mTitle
+
+            itemView.setOnClickListener {
+                itemOnclick?.onclick(itemDrawerBody)
+            }
         }
-
-
     }
-
 }
