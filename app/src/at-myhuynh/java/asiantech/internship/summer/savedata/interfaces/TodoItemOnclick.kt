@@ -7,5 +7,4 @@ interface TodoItemOnclick {
     fun editTodoOnClick(todo: Todo)
     fun deleteTodoOnClick(todo: Todo)
     fun checkBoxTodoOnClick(todo: Todo)
-
 }

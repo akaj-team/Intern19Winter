@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,6 @@ import asiantech.internship.summer.savedata.data.TodoListDatabaseHelper
 import asiantech.internship.summer.savedata.entity.User
 import kotlinx.android.synthetic.`at-myhuynh`.fragment_todo_list_edit_profile.*
 import java.io.ByteArrayOutputStream
-
 
 class TodoListEditProfileFragment : Fragment() {
 
@@ -115,7 +113,6 @@ class TodoListEditProfileFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.d("zzz", "On ActivityResult")
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 REQUEST_IMAGE_CAPTURE -> {

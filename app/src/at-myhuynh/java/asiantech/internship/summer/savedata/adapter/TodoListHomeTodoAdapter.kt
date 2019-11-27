@@ -14,7 +14,7 @@ import asiantech.internship.summer.savedata.interfaces.TodoItemOnclick
 class TodoListHomeTodoAdapter(private val todoLists: MutableList<Todo>) :
         RecyclerView.Adapter<TodoListHomeTodoAdapter.HomeTodoViewHolder>() {
 
-    var todoOnClick: TodoItemOnclick? = null
+    private var todoOnClick: TodoItemOnclick? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeTodoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_item_todo, parent, false)

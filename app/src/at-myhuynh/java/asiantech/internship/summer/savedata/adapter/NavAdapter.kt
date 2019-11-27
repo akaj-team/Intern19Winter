@@ -15,7 +15,7 @@ import asiantech.internship.summer.savedata.interfaces.NavItemOnClick
 class NavAdapter(val user: User, val navItems: MutableList<NavItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var navItemOnClick: NavItemOnClick? = null
+    private var navItemOnClick: NavItemOnClick? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {

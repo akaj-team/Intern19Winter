@@ -11,6 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import asiantech.internship.summer.R
 import asiantech.internship.summer.savedata.Constants.Companion.KEY_USER_ID
+import asiantech.internship.summer.savedata.Constants.Companion.NAV_ADD_TODO
+import asiantech.internship.summer.savedata.Constants.Companion.NAV_EDIT_PROFILE
+import asiantech.internship.summer.savedata.Constants.Companion.NAV_LOG_OUT
+import asiantech.internship.summer.savedata.Constants.Companion.TAB_DONE
+import asiantech.internship.summer.savedata.Constants.Companion.TAB_TODO
 import asiantech.internship.summer.savedata.TodoListActivity
 import asiantech.internship.summer.savedata.adapter.NavAdapter
 import asiantech.internship.summer.savedata.adapter.TodoListHomeAdapter
@@ -78,7 +83,7 @@ class TodoListHomeFragment : Fragment() {
     private fun setOnClickNavItem(adapter: NavAdapter) {
         adapter.setOnclickNavItem(object : NavItemOnClick {
             override fun onClick(navItem: NavItem) {
-                if (navItem.title == "Log Out") {
+                if (navItem.title == NAV_LOG_OUT) {
                     preferences = requireContext().getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
                     val preferencesEditor = preferences.edit()
                     preferencesEditor.remove(KEY_USER_ID)
@@ -93,17 +98,17 @@ class TodoListHomeFragment : Fragment() {
     private fun initTabs() {
         tabTodos = mutableListOf()
         tabTodos.apply {
-            add(Tab(TodoListHomeTodoFragment.newInstance(userId), "Todo"))
-            add(Tab(TodoListHomeDoneFragment.newInstance(userId), "Done"))
+            add(Tab(TodoListHomeTodoFragment.newInstance(userId), TAB_TODO))
+            add(Tab(TodoListHomeDoneFragment.newInstance(userId), TAB_DONE))
         }
     }
 
     private fun initNav() {
         navItems = mutableListOf()
         navItems.apply {
-            add(NavItem((R.drawable.ic_people_black_24dp), "Edit Profile", TodoListEditProfileFragment.newInstance(userId), true))
-            add(NavItem((R.drawable.ic_add_circle_black_24dp), "Add Todo", TodoListAddTodoFragment.newInstance(userId = userId), true))
-            add(NavItem((R.drawable.ic_assignment_return_black_24dp), "Log Out", TodoListLoginFragment.newInstance(), false))
+            add(NavItem((R.drawable.ic_people_black_24dp), NAV_EDIT_PROFILE, TodoListEditProfileFragment.newInstance(userId), true))
+            add(NavItem((R.drawable.ic_add_circle_black_24dp), NAV_ADD_TODO, TodoListAddTodoFragment.newInstance(userId = userId), true))
+            add(NavItem((R.drawable.ic_assignment_return_black_24dp), NAV_LOG_OUT, TodoListLoginFragment.newInstance(), false))
         }
     }
 }

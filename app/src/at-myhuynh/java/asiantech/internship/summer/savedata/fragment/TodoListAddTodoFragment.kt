@@ -18,7 +18,7 @@ class TodoListAddTodoFragment : Fragment() {
     private var userId: Int = -1
     private var title: String? = null
     private var status: Int = 0
-    private lateinit var todoListData: TodoListDatabaseHelper
+    private lateinit var todoListDataHelper: TodoListDatabaseHelper
 
     companion object {
         private const val ARG_TODO_ID = "id"
@@ -51,7 +51,7 @@ class TodoListAddTodoFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        todoListData = TodoListDatabaseHelper(requireContext())
+        todoListDataHelper = TodoListDatabaseHelper(requireContext())
         edtAddNote.setText(title)
 
         Toast.makeText(requireContext(), "Add: $userId", Toast.LENGTH_SHORT).show()
@@ -61,7 +61,7 @@ class TodoListAddTodoFragment : Fragment() {
                 if (title.isEmpty()) {
                     Toast.makeText(requireContext(), "Input Todo", Toast.LENGTH_SHORT).show()
                 } else {
-                    todoListData.insertTodo(Todo(0, userId, edtAddNote.text.toString()))
+                    todoListDataHelper.insertTodo(Todo(0, userId, edtAddNote.text.toString()))
                     (activity as? TodoListActivity)?.removeFragmentInBackStack(TodoListHomeFragment.newInstance(userId))
                     (activity as? TodoListActivity)?.replaceFragment(TodoListHomeFragment.newInstance(userId), false)
                 }
@@ -70,7 +70,7 @@ class TodoListAddTodoFragment : Fragment() {
                     Toast.makeText(requireContext(), "Input Todo", Toast.LENGTH_SHORT).show()
                 } else {
                     val todo = Todo(todoId, userId, title, status)
-                    todoListData.updateTodo(todo)
+                    todoListDataHelper.updateTodo(todo)
                     Toast.makeText(requireContext(), "Update", Toast.LENGTH_SHORT).show()
                     (activity as? TodoListActivity)?.removeFragmentInBackStack(TodoListHomeFragment.newInstance(userId))
                     (activity as? TodoListActivity)?.replaceFragment(TodoListHomeFragment.newInstance(userId), false)
