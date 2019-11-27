@@ -13,7 +13,7 @@ import asiantech.internship.summer.savedatabase.database.DBHandling
 import asiantech.internship.summer.savedatabase.database.ItemTodoOnclick
 import asiantech.internship.summer.savedatabase.database.TodoModel
 
-class RowTodoAdapter(private val mItemToDo: MutableList<TodoModel>,private val mContext: Context) :
+class RowTodoAdapter(private val itemToDos: MutableList<TodoModel>, private val mContext: Context) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var itemOnClick : ItemTodoOnclick? = null
@@ -25,7 +25,7 @@ class RowTodoAdapter(private val mItemToDo: MutableList<TodoModel>,private val m
     }
 
     override fun getItemCount(): Int {
-        return mItemToDo.size
+        return itemToDos.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -43,13 +43,13 @@ class RowTodoAdapter(private val mItemToDo: MutableList<TodoModel>,private val m
         private val imgDelete:ImageView = itemView.findViewById(R.id.imgIconDelete)
         private val imgEdit:ImageView = itemView.findViewById(R.id.imgIconEdit)
         fun onBindData(position: Int) {
-            val itemTodo = mItemToDo[position]
+            val itemTodo = itemToDos[position]
             tvNameTodo.text = itemTodo.todoName
 
             imgDelete.setOnClickListener {
                Toast.makeText(mContext,"Deleted ${itemTodo.todoName}",Toast.LENGTH_SHORT).show()
                 todoDBHandling.deleteTodo(TodoModel(itemTodo.todoName,itemTodo.todoContent))
-                mItemToDo.remove(itemTodo)
+                itemToDos.remove(itemTodo)
                 notifyDataSetChanged()
             }
 
