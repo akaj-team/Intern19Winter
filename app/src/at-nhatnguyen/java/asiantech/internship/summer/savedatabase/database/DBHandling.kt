@@ -131,8 +131,9 @@ class DBHandling(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
 
         if (cursor!!.moveToFirst()) {
             while (!cursor.isAfterLast) {
-                val name = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_TODO_NAME))
                 val content = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_TODO_CONTENT))
+                val name = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_TODO_NAME))
+
                 users.add(TodoModel(name, content))
                 cursor.moveToNext()
             }

@@ -33,4 +33,6 @@
     <string name="button_text_done">Done</string>
     <string name="textview_text_input">Input</string>
     <string name="textview_text_todo_new">Todo new</string>
+    <string name="text_edit_profile">Edit profile</string>
+    <string name="text_log_out">Log out</string>
 </resources>

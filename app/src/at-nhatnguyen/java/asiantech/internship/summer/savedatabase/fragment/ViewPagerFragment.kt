@@ -48,8 +48,8 @@ class ViewPagerFragment : Fragment() {
         val items = mutableListOf(listHeader)
 
         val listItemBody = mutableListOf<ItemDrawerBody>()
-        listItemBody.add(ItemDrawerBody(R.drawable.ic_mode_edit_black, "Edit profile"))
-        listItemBody.add(ItemDrawerBody(R.drawable.ic_logout_black, "Log out"))
+        listItemBody.add(ItemDrawerBody(R.drawable.ic_mode_edit_black, getString(R.string.text_edit_profile)))
+        listItemBody.add(ItemDrawerBody(R.drawable.ic_logout_black, getString(R.string.text_log_out)))
 
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
