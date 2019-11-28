@@ -48,7 +48,7 @@ class RowTodoAdapter(private val itemToDos: MutableList<TodoModel>, private val 
 
             imgDelete.setOnClickListener {
                Toast.makeText(mContext,"Deleted ${itemTodo.todoName}",Toast.LENGTH_SHORT).show()
-                todoDBHandling.deleteTodo(TodoModel(itemTodo.todoName,itemTodo.todoContent))
+                todoDBHandling.deleteTodo(TodoModel(itemTodo.todoName,itemTodo.todoContent,itemTodo.userId,itemTodo.todoId))
                 itemToDos.remove(itemTodo)
                 notifyDataSetChanged()
             }

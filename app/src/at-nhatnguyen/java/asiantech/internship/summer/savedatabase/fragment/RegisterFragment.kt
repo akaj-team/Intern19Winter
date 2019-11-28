@@ -43,20 +43,18 @@ class RegisterFragment : Fragment() {
             val pass = edtPassword.text.toString()
             val confirmPassword = edtConfirmPassword.text.toString()
 
-            if (fullName == ""){
-                Toast.makeText(activity,"please, enter your full name",Toast.LENGTH_SHORT).show()
-            }else if (email == "" || pass == "") {
+            if (fullName == "") {
+                Toast.makeText(activity, "please, enter your full name", Toast.LENGTH_SHORT).show()
+            } else if (email == "" || pass == "") {
                 Toast.makeText(activity, "please enter your email and password", Toast.LENGTH_SHORT).show()
-            }else if (confirmPassword == "") {
+            } else if (confirmPassword == "") {
                 Toast.makeText(activity, "please confirm the password", Toast.LENGTH_SHORT).show()
-            }else if (pass != confirmPassword){
-                Toast.makeText(activity,"Incorrect confirmation",Toast.LENGTH_SHORT).show()
-            }else{
-                userHandling?.insertUser(UserModel(fullName = fullName, email = email, password = pass))
+            } else if (pass != confirmPassword) {
+                Toast.makeText(activity, "Incorrect confirmation", Toast.LENGTH_SHORT).show()
+            } else {
+                userHandling?.insertUser(UserModel(userId = 0, fullName = fullName, email = email, password = pass))
                 Toast.makeText(activity, "Done", Toast.LENGTH_SHORT).show()
-                fragmentManager?.beginTransaction()?.
-                        replace(R.id.frameLayoutActivity, LoginFragment.newInstance(email, pass))?.
-                        commit()
+                fragmentManager?.beginTransaction()?.replace(R.id.frameLayoutActivity, LoginFragment.newInstance(email, pass))?.commit()
             }
         }
 

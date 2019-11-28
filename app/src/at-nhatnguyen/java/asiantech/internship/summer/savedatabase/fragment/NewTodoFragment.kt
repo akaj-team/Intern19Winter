@@ -14,7 +14,12 @@ import kotlinx.android.synthetic.`at-nhatnguyen`.fragment_new_todo.*
 class NewTodoFragment : Fragment() {
 
     companion object {
-        fun newInstance() = NewTodoFragment()
+        const val ARG_USER_ID = "userId"
+        fun newInstance(userId: Int) = NewTodoFragment().apply {
+            arguments = Bundle().apply {
+                putInt(ARG_USER_ID, userId)
+            }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -23,20 +28,17 @@ class NewTodoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        val userId = arguments?.getInt(ARG_USER_ID)
         btnDone.setOnClickListener {
             val todoHandling = context?.let { it1 -> DBHandling(it1) }
             val newTodo = edtTodoNew.text.toString()
-            val inputTodo = edtTodo.text.toString()
-            if (newTodo == "" || inputTodo == "") {
+            val todoContent = edtTodo.text.toString()
+            if (newTodo == "" || todoContent == "") {
                 Toast.makeText(activity, "Enter full information", Toast.LENGTH_SHORT).show()
             } else {
-                todoHandling?.insertTodo(TodoModel(todoName = newTodo,todoContent = inputTodo))
+                todoHandling?.insertTodo(TodoModel(todoName = newTodo, todoContent = todoContent, userId = userId!!, todoId = 0))
                 Toast.makeText(activity, "Done", Toast.LENGTH_SHORT).show()
-
-                fragmentManager?.beginTransaction()?.
-                        replace(R.id.frameLayoutActivity, ViewPagerFragment.newInstance())?.
-                        addToBackStack(null)?.
-                        commit()
+                fragmentManager?.beginTransaction()?.replace(R.id.frameLayoutActivity, ViewPagerFragment.newInstance(userId!!))?.addToBackStack(null)?.commit()
             }
         }
     }

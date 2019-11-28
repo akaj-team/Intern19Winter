@@ -10,7 +10,6 @@ class SaveDatabaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_save_database)
-
         val email =""
         val pass = ""
         supportFragmentManager.beginTransaction().add(R.id.frameLayoutActivity, LoginFragment.newInstance(email,pass)).commit()
