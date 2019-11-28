@@ -3,6 +3,9 @@
     package="asiantech.internship.summer">
 
     <uses-feature android:name="android.hardware.camera" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -12,16 +15,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name="asiantech.internship.winter.layouteditor.EditProfileActivity" />
         <activity android:name="asiantech.internship.winter.layouteditor.SignUpActivity" />
-        <activity android:name="asiantech.internship.winter.layouteditor.LoginActivity">
+        <activity android:name="asiantech.internship.winter.savedata.SaveDataActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="asiantech.internship.winter"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>
