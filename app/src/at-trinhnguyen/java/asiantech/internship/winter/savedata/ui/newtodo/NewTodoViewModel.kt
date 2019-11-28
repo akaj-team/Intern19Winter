@@ -1,4 +1,4 @@
-package asiantech.internship.winter.savedata.db.newtodo
+package asiantech.internship.winter.savedata.ui.newtodo
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

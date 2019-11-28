@@ -17,5 +17,8 @@ data class User(
         var email: String = "",
 
         @ColumnInfo(name = "password")
-        var password: String = ""
+        var password: String = "",
+
+        @ColumnInfo(name = "avatarPath")
+        var avatarPath: String = ""
 )

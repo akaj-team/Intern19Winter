@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import asiantech.internship.winter.savedata.db.TodoDatabase
-import asiantech.internship.winter.savedata.db.newtodo.NewTodoViewModel
 import asiantech.internship.winter.savedata.ui.done.DoneViewModel
 import asiantech.internship.winter.savedata.ui.login.LoginViewModel
+import asiantech.internship.winter.savedata.ui.newtodo.NewTodoViewModel
 import asiantech.internship.winter.savedata.ui.signup.SignUpViewModel
 import asiantech.internship.winter.savedata.ui.todo.TodoViewModel
 

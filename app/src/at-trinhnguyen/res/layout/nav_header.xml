@@ -13,9 +13,9 @@
         android:id="@+id/imgAvatar"
         android:layout_width="@dimen/img_profile_picture_width_64dp"
         android:layout_height="@dimen/img_profile_picture_height_64dp"
-        android:layout_marginBottom="@dimen/margin_16dp"
+        android:layout_marginBottom="@dimen/margin_20dp"
         android:paddingTop="@dimen/padding_8dp"
-        android:src="@drawable/img_profile" />
+        android:src="@drawable/ic_account_circle" />
 
     <TextView
         android:id="@+id/tvNickName"

@@ -1,4 +1,4 @@
-package asiantech.internship.winter.savedata.db.newtodo
+package asiantech.internship.winter.savedata.ui.newtodo
 
 
 import android.content.Context
@@ -32,7 +32,6 @@ class NewTodoFragment : Fragment() {
                 .get(NewTodoViewModel::class.java)
         binding.newTodoViewModel = newTodoViewModel
 
-
         binding.btnAdd.setOnClickListener {
             when {
                 TextUtils.isEmpty(binding.edtTitle.text) -> {
@@ -48,7 +47,7 @@ class NewTodoFragment : Fragment() {
                     }
                     newTodoViewModel.insert(Todo(0, idUser, binding.edtTitle.text.toString(),
                             binding.edtDescription.text.toString(), false))
-                    findNavController().navigate(R.id.action_newTodoFragment_to_homeFragment)
+                    findNavController().popBackStack()
                 }
             }
         }

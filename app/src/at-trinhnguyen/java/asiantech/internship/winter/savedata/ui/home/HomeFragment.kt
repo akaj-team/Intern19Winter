@@ -1,10 +1,12 @@
 package asiantech.internship.winter.savedata.ui.home
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
@@ -16,7 +18,6 @@ import androidx.navigation.ui.NavigationUI
 import asiantech.internship.summer.R
 import asiantech.internship.summer.databinding.FragmentHomeBinding
 import asiantech.internship.winter.savedata.db.TodoDatabase
-import asiantech.internship.winter.savedata.db.user.User
 import kotlinx.android.synthetic.`at-trinhnguyen`.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -25,7 +26,6 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var drawerLayout: DrawerLayout
     private var idUser = 0L
-    private var user = User()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -41,10 +41,14 @@ class HomeFragment : Fragment() {
                 .get(HomeViewModel::class.java)
         binding.homeViewModel = homeViewModel
 
+        val viewPagerAdapter = childFragmentManager.let { context?.let { context -> ViewPagerAdapter(it, context) } }
+        binding.viewPager.adapter = viewPagerAdapter
+
         homeViewModel.getUser().observe(this, Observer {
             binding.navView.getHeaderView(0).apply {
                 findViewById<TextView>(R.id.tvNickName).text = it.username
                 findViewById<TextView>(R.id.tvEmail).text = it.email
+                findViewById<ImageView>(R.id.imgAvatar).setImageURI(Uri.parse(it.avatarPath))
             }
         })
 
@@ -77,8 +81,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewPagerAdapter = childFragmentManager.let { context?.let { it1 -> ViewPagerAdapter(it, it1) } }
-        binding.viewPager.adapter = viewPagerAdapter
         binding.tabLayout.setupWithViewPager(viewPager)
     }
 }

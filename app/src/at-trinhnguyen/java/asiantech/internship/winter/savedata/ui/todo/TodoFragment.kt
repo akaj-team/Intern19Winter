@@ -48,7 +48,6 @@ class TodoFragment : Fragment() {
         val adapter = TodoAdapter(TodoListener { todo, viewId ->
             when (viewId) {
                 R.id.btnDelete -> {
-                    todoViewModel.deleteTodo(todo.idTodo)
                     context?.let {
                         AlertDialog.Builder(it).apply {
                             setTitle("Alert")
