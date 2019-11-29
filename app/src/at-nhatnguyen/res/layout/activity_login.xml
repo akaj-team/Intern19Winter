@@ -120,7 +120,7 @@
         android:layout_marginTop="@dimen/dp_12"
         android:background="@drawable/bg_btn_login"
         android:gravity="center"
-        android:padding="@dimen/padding_16dp"
+        android:padding="@dimen/dp_16"
         android:text="@string/button_text_login"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"

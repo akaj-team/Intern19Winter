@@ -174,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_8"
             android:background="@drawable/bg_btn_login"
-            android:padding="@dimen/padding_16dp"
+            android:padding="@dimen/dp_16"
             android:text="@string/button_text_save_profile"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/dp_24"
