@@ -1,5 +1,6 @@
 package asiantech.internship.summer.savedatabase.database
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -69,6 +70,7 @@ class DBHandling(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
         return true
     }
 
+    @SuppressLint("Recycle")
     fun checkLogin(email: String, password: String): MutableList<UserModel> {
         val users = mutableListOf<UserModel>()
         val db = writableDatabase
@@ -104,6 +106,7 @@ class DBHandling(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
         return true
     }
 
+    @SuppressLint("Recycle")
     fun readTodo(userId: Int): MutableList<TodoModel> {
         val users = mutableListOf<TodoModel>()
         val db = writableDatabase
@@ -129,6 +132,31 @@ class DBHandling(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
     }
 
 
+    @SuppressLint("Recycle")
+    fun readUser(userId: Int): UserModel {
+        val users = mutableListOf<UserModel>()
+        val db = writableDatabase
+        val cursor: Cursor?
+        try {
+            cursor = db.rawQuery("select * from " + DBContract.UserEntry.TABLE_NAME_USERS + " WHERE " + DBContract.UserEntry.COLUMN_USER_ID + " = ?", arrayOf(userId.toString()))
+        } catch (e: SQLiteException1) {
+            db.execSQL(CREATE_TODO_TABLE)
+            return users[0]
+        }
+
+        if (cursor!!.moveToFirst()) {
+            while (!cursor.isAfterLast) {
+                val fullName = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_USER_FULL_NAME))
+                val email = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_USER_EMAIL))
+                val id = cursor.getInt(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_USER_ID))
+                val pass = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_USER_PASSWORD))
+                users.add(UserModel(id, fullName, email, pass))
+                cursor.moveToNext()
+            }
+        }
+        return users[0]
+    }
+
     fun updateTodo(todo: TodoModel) {
         val db = this.writableDatabase
         val values = ContentValues()
@@ -142,6 +170,17 @@ class DBHandling(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
         val db = writableDatabase
         db.delete(DBContract.UserEntry.TABLE_NAME_TODO, "${DBContract.UserEntry.COLUMN_TODO_NAME} =?",
                 arrayOf(todoModel.todoName))
+        db.close()
+    }
+
+    fun updateUser(user: UserModel) {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(DBContract.UserEntry.COLUMN_USER_FULL_NAME, user.fullName)
+        values.put(DBContract.UserEntry.COLUMN_USER_EMAIL, user.email)
+        values.put(DBContract.UserEntry.COLUMN_USER_PASSWORD, user.password)
+        db.update(DBContract.UserEntry.TABLE_NAME_USERS, values, "${DBContract.UserEntry.COLUMN_USER_ID} = ?",
+                arrayOf(user.userId.toString()))
         db.close()
     }
 }

@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="25dp">
+    android:paddingBottom="@dimen/dp_24">
 
     <TextView
         android:id="@+id/tvDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_40dp"
+        android:layout_marginLeft="@dimen/dp_40"
         android:text="@string/textview_text_done_1"
-        android:textSize="@dimen/text_size_20dp" />
+        android:textSize="@dimen/dp_24" />
 
 </LinearLayout>

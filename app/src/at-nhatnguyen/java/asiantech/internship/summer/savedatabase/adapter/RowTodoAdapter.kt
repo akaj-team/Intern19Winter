@@ -42,6 +42,7 @@ class RowTodoAdapter(private val itemToDos: MutableList<TodoModel>, private val 
         private val tvNameTodo: TextView = itemView.findViewById(R.id.tvTodoName)
         private val imgDelete:ImageView = itemView.findViewById(R.id.imgIconDelete)
         private val imgEdit:ImageView = itemView.findViewById(R.id.imgIconEdit)
+        private val imgDone:ImageView = itemView.findViewById(R.id.imgIconDone)
         fun onBindData(position: Int) {
             val itemTodo = itemToDos[position]
             tvNameTodo.text = itemTodo.todoName
@@ -54,7 +55,11 @@ class RowTodoAdapter(private val itemToDos: MutableList<TodoModel>, private val 
             }
 
             imgEdit.setOnClickListener {
-                itemOnClick?.onClick(itemTodo)
+                itemOnClick?.editTodoOnclick(itemTodo)
+            }
+
+            imgDone.setOnClickListener {
+                itemOnClick?.doneTodoOnclick(itemTodo)
             }
         }
     }

@@ -8,19 +8,19 @@
 
     <ImageView
         android:id="@+id/imgIcon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_24"
         android:src="@drawable/ic_mode_edit_black" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="@dimen/dp_52"
+        android:layout_marginTop="@dimen/dp_32"
+        android:layout_marginBottom="@dimen/dp_24"
         android:text="@string/textview_text_edit_profile"
         android:textColor="#000000" />
 

@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import asiantech.internship.summer.R
 import asiantech.internship.summer.savedatabase.adapter.DrawerAdapter
 import asiantech.internship.summer.savedatabase.adapter.TabLayoutAdapter
+import asiantech.internship.summer.savedatabase.database.DBHandling
 import asiantech.internship.summer.savedatabase.items.ItemDrawerBody
 import asiantech.internship.summer.savedatabase.items.ItemDrawerHeader
-import asiantech.internship.summer.savedatabase.items.ItemOnclick
+import asiantech.internship.summer.savedatabase.items.ItemDrawerOnclick
 import asiantech.internship.summer.savedatabase.items.ListFragment
 import kotlinx.android.synthetic.`at-nhatnguyen`.fragment_viewpager.*
 
@@ -45,13 +46,15 @@ class ViewPagerFragment : Fragment() {
         viewPager.adapter = viewPagerFragment
         tabLayout.setupWithViewPager(viewPager)
 
-        val listHeader = ItemDrawerHeader(R.drawable.ic_man, "nnnn")
+        val dbHandling = DBHandling(requireContext())
+        val users = dbHandling.readUser(userID!!)
+        val emailLogin = users.email
+        val listHeader = ItemDrawerHeader(R.drawable.ic_man, emailLogin)
         val items = mutableListOf(listHeader)
 
         val listItemBody = mutableListOf<ItemDrawerBody>()
         listItemBody.add(ItemDrawerBody(R.drawable.ic_mode_edit_black, getString(R.string.text_edit_profile)))
         listItemBody.add(ItemDrawerBody(R.drawable.ic_logout_black, getString(R.string.text_log_out)))
-
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
         val adapter = context?.let { DrawerAdapter(items, listItemBody) }
@@ -61,12 +64,13 @@ class ViewPagerFragment : Fragment() {
     }
 
     private fun setOnClickDrawerBody(adapter: DrawerAdapter) {
-        adapter.onClick(object : ItemOnclick {
-            override fun onclick(item: ItemDrawerBody) {
-                if (item.mTitle == "Log out") {
+        adapter.onClick(object : ItemDrawerOnclick {
+            override fun onclick(itemDrawerBody: ItemDrawerBody) {
+                val userId = arguments?.getInt(ARG_USER_ID)
+                if (itemDrawerBody.mTitle == "Log out") {
                     fragmentManager?.beginTransaction()?.replace(R.id.frameLayoutActivity, LoginFragment.newInstance("",""))?.commit()
                 } else {
-                    fragmentManager?.beginTransaction()?.replace(R.id.frameLayoutActivity, EditProfileFragment.newInstance())?.commit()
+                    fragmentManager?.beginTransaction()?.replace(R.id.frameLayoutActivity, EditProfileFragment.newInstance(userId!!))?.commit()
                 }
             }
         })

@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 import asiantech.internship.summer.savedatabase.items.ItemDrawerBody
 import asiantech.internship.summer.savedatabase.items.ItemDrawerHeader
-import asiantech.internship.summer.savedatabase.items.ItemOnclick
+import asiantech.internship.summer.savedatabase.items.ItemDrawerOnclick
 
 class DrawerAdapter(private val mItemHeader: MutableList<ItemDrawerHeader>, private val mItemBody: MutableList<ItemDrawerBody>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var itemOnclick: ItemOnclick? = null
+    var itemOnclick: ItemDrawerOnclick? = null
 
     enum class ViewType(val type: Int) {
         TYPE_ONE(0), TYPE_TWO(1)
@@ -60,14 +60,13 @@ class DrawerAdapter(private val mItemHeader: MutableList<ItemDrawerHeader>, priv
         }
     }
 
-    fun onClick(itemOnclick: ItemOnclick) {
+    fun onClick(itemOnclick: ItemDrawerOnclick) {
         this.itemOnclick = itemOnclick
     }
 
     inner class ItemBodyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imgIcon: ImageView = itemView.findViewById(R.id.imgIcon)
         private val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
-
         fun onBindData(position: Int) {
             val itemDrawerBody = mItemBody[position]
 

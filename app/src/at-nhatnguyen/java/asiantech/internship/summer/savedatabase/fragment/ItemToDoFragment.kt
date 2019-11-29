@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import asiantech.internship.summer.R
@@ -46,10 +47,17 @@ class ItemToDoFragment : Fragment() {
 
     private fun setOnClickIconEditToDo(adapter: RowTodoAdapter) {
         adapter.onClick(object : ItemTodoOnclick {
-            override fun onClick(onclick: TodoModel) {
+            override fun doneTodoOnclick(todoModel: TodoModel) {
+                Toast.makeText(activity,"nnnnnnnnnnnnnnnnn",Toast.LENGTH_SHORT).show()
+               // imgIconDone.setImageResource(R.drawable.ic_mode_edit_black)
+            }
+
+            override fun editTodoOnclick(todoModel: TodoModel) {
                 val userId = arguments?.getInt(ARG_USER_ID)
-                if (onclick.todoName != "") {
-                    fragmentManager?.beginTransaction()?.replace(R.id.frameLayoutActivity, EditTodoFragment.newInstance(onclick.todoName, onclick.todoContent, userId!!, onclick.todoId))?.addToBackStack(null)?.commit()
+                if (todoModel.todoName != "") {
+                    fragmentManager?.beginTransaction()?.replace(R.id.frameLayoutActivity, EditTodoFragment.newInstance(todoModel.todoName, todoModel.todoContent, userId!!, todoModel.todoId))?.
+                            addToBackStack(null)?.
+                            commit()
                 }
             }
         })

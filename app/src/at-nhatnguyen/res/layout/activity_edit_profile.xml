@@ -22,9 +22,9 @@
 
     <ImageView
         android:id="@+id/imgIconBack"
-        android:layout_marginTop="@dimen/margin_4dp"
-        android:layout_width="@dimen/ic_back_width_20dp"
-        android:layout_height="@dimen/ic_back_height_20dp"
+        android:layout_marginTop="@dimen/dp_4"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
         android:id="@+id/tvBackProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_12dp"
+        android:layout_marginLeft="@dimen/dp_12"
         android:text="@string/textview_text_back_to_profile"
         app:layout_constraintStart_toEndOf="@id/imgIconBack"
         app:layout_constraintTop_toTopOf="@id/imgIconBack" />
@@ -42,19 +42,19 @@
         android:id="@+id/tvEditProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_4dp"
+        android:layout_marginTop="@dimen/dp_4"
         android:text="@string/textview_text_edit_profile"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/text_size_32dp"
+        android:textSize="@dimen/dp_32"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/imgIconBack" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
-        android:layout_width="@dimen/img_profile_picture_width_120dp"
-        android:layout_height="@dimen/img_profile_picture_height_120dp"
-        android:layout_marginTop="@dimen/margin_12dp"
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="@dimen/dp_120"
+        android:layout_marginTop="@dimen/dp_12"
         android:src="@drawable/ic_man"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -65,7 +65,7 @@
         android:id="@+id/tvEditPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_12dp"
+        android:layout_marginTop="@dimen/dp_12"
         android:text="@string/textview_text_edit_profile_picture"
         android:textColor="@color/color_text"
         android:textSize="@dimen/text_size_20dp"
@@ -78,7 +78,7 @@
         android:id="@+id/tvFullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_12dp"
+        android:layout_marginTop="@dimen/dp_12"
         android:text="@string/textview_text_full_name"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvEditPicture" />
@@ -98,7 +98,7 @@
         android:id="@+id/tvBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/dp_16"
         android:text="@string/textview_hint_bio"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/edtFullName" />
@@ -118,7 +118,7 @@
         android:id="@+id/tvPrivateInformation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/dp_16"
         android:text="@string/textview_text_private_information"
         android:textColor="@color/colorBlack"
         android:textStyle="bold"
@@ -129,7 +129,7 @@
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/dp_16"
         android:text="@string/textview_text_email"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvPrivateInformation" />
@@ -138,7 +138,7 @@
         android:id="@+id/edtEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/dp_16"
         android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
@@ -147,10 +147,10 @@
         tools:ignore="LabelFor" />
 
     <TextView
-        android:id="@+id/tvPhone"
+        android:id="@+id/tvPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/dp_16"
         android:text="@string/textview_text_phone"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
@@ -163,19 +163,19 @@
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvPhone"
+        app:layout_constraintTop_toBottomOf="@+id/tvPassword"
         tools:ignore="LabelFor,TextFields" />
 
     <Button
         android:id="@+id/btnSaveProfile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginTop="@dimen/dp_8"
         android:background="@drawable/bg_btn_login"
-        android:padding="@dimen/padding_16dp"
+        android:padding="@dimen/dp_16"
         android:text="@string/button_text_save_profile"
         android:textColor="@color/colorWhite"
-        android:textSize="@dimen/text_size_20dp"
+        android:textSize="@dimen/dp_24"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"

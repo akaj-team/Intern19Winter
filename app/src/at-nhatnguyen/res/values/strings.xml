@@ -24,8 +24,8 @@
     <string name="textview_text_edit_profile_picture">Edit Profile Picture</string>
     <string name="textview_hint_bio">Bio</string>
     <string name="textview_text_private_information">Private Information</string>
-    <string name="textview_text_phone">Phone</string>
     <string name="button_text_save_profile">Save Profile</string>
+    <string name="textview_text_phone">Phone</string>
     <string name="todo">Todo</string>
     <string name="done">Done</string>
     <string name="textview_text_todo">todo</string>
@@ -35,4 +35,5 @@
     <string name="textview_text_todo_new">Todo new</string>
     <string name="text_edit_profile">Edit profile</string>
     <string name="text_log_out">Log out</string>
+    <string name="textview_text_confirm_password">Confirm password</string>
 </resources>
