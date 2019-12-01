@@ -29,5 +29,7 @@
     <string name="edittext_hint_password">1234</string>
     <string name="btn_text_download_handler">Download - Handler</string>
     <string name="btn_text_download_async">Download - Async</string>
-    <string name="edt_text_link_download">https://cnet4.cbsistatic.com/img/QJcTT2ab–sYWwOGrxJc0MXSt3UI=/2011/10/27/a66dfbb7–fdc7-11e2-8c7c-d4ae52e62bcc/android-wallpaper5_2560x1600_1.jpg</string>
+    <string name="edt_text_link_download">https://wallpaperaccess.com/full/1356237.jpg</string>
+    <string name="textview_text_ratio">%</string>
+    <string name="textview_text_0">0</string>
 </resources>

@@ -1,61 +1,55 @@
 package asiantech.internship.summer.thread_handler_asynctask
 
+import android.content.Context
 import android.os.AsyncTask
-import android.os.Environment
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
+import java.io.BufferedInputStream
+import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
 import java.io.InputStream
-import java.io.OutputStream
-import java.net.HttpURLConnection
 import java.net.URL
+import java.util.*
 
-class DownloadAsyncTask : AsyncTask<String, Int, String>() {
+class DownloadAsyncTask(var context: Context, var progressBar: ProgressBar, var tvRatioNumber: TextView) : AsyncTask<String, String, String>() {
 
-    override fun doInBackground(vararg params: String?): String? {
-        var input: InputStream? = null
-        var output: OutputStream? = null
-        var connection: HttpURLConnection? = null
-        try {
-            val url = URL(params[0])
-            connection = url.openConnection() as HttpURLConnection
-            connection.connect()
-            if (connection.responseCode != HttpURLConnection.HTTP_OK) {
-                return ("Server returned HTTP " + connection.responseCode
-                        + " " + connection.responseMessage)
-            }
-            val fileLength = connection.contentLength
-            // download the file
-            input = connection.inputStream
-            output = FileOutputStream(Environment.getExternalStorageDirectory().path)
-            val data = ByteArray(4096)
-            var total: Long = 0
-            var count: Int
-            while (input.read(data).also { count = it } != -1) {
-                if (isCancelled) {
-                    input.close()
-                    return null
-                }
-                total += count.toLong()
+    override fun onPreExecute() {
+        super.onPreExecute()
+        Toast.makeText(context, "Starting download", Toast.LENGTH_SHORT).show()
+    }
 
+    override fun doInBackground(vararg params: String?): String {
+        var count: Int
+        var total = 0
+        val url = URL(params[0])
+        val connection = url.openConnection()
+        connection.connect()
 
-                if (fileLength > 0)
-                    publishProgress((total * 100 / fileLength).toInt())
-                output.write(data, 0, count)
-            }
-        } catch (e: Exception) {
-            return e.toString()
-        } finally {
-            try {
-                output?.close()
-                input?.close()
-            } catch (ignored: IOException) {
-            }
-            connection?.disconnect()
+        val lengthOfFile = connection.contentLength
+        val input: InputStream = BufferedInputStream(url.openStream(), 8192)
+        val output = FileOutputStream(File("${context.getExternalFilesDir(null)}/${Date().time}.jpg"))
+        val data = ByteArray(1024)
+        while (input.read(data).also { count = it } != -1) {
+            total += count
+            output.write(data, 0, count)
+            publishProgress("${(total * 100) / lengthOfFile}")
         }
-        return null
+        output.flush()
+        output.close()
+        input.close()
+        return ""
     }
 
-    override fun onProgressUpdate(vararg values: Int?) {
+    override fun onProgressUpdate(vararg values: String?) {
         super.onProgressUpdate(*values)
+        values[0]?.let { progressBar.progress = it.toInt() }
+        tvRatioNumber.text = values[0]
     }
+
+    override fun onPostExecute(result: String?) {
+        super.onPostExecute(result)
+        Toast.makeText(context, "Download done", Toast.LENGTH_SHORT).show()
+    }
+
 }

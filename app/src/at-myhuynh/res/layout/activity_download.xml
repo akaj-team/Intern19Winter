@@ -16,6 +16,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvRatioNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/tvRatio"
+        app:layout_constraintTop_toBottomOf="@id/progressBar"
+        android:text="@string/textview_text_0" />
+
+    <TextView
+        android:id="@+id/tvRatio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressBar"
+        android:text="@string/textview_text_ratio" />
+
     <EditText
         android:id="@+id/tvUrl"
         android:layout_width="match_parent"
@@ -23,7 +39,7 @@
         android:inputType="text"
         android:text="@string/edt_text_link_download"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progressBar"
+        app:layout_constraintTop_toBottomOf="@id/tvRatio"
         tools:ignore="Autofill,LabelFor,TextFields" />
 
     <Button
