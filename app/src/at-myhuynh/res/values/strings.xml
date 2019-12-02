@@ -27,4 +27,7 @@
     <string name="edittext_hint_phone">+1 234 567 89</string>
     <string name="button_text_save_info">Save Profile</string>
     <string name="edittext_hint_password">1234</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
