@@ -131,8 +131,8 @@
             android:id="@+id/edtPhone"
             style="@style/EditText"
             android:inputType="phone"
-            app:layout_constraintStart_toStartOf="@id/tvPhone"
-            app:layout_constraintTop_toBottomOf="@+id/tvPhone"
+            app:layout_constraintStart_toStartOf="@id/tvPassword"
+            app:layout_constraintTop_toBottomOf="@+id/tvPassword"
             tools:ignore="Autofill,LabelFor" />
 
         <Button
