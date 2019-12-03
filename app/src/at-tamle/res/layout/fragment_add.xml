@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <EditText
+        android:id="@+id/edtNewTodo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_30dp"
@@ -17,6 +18,7 @@
         android:padding="@dimen/padding_50dp" />
 
     <Button
+        android:id="@+id/btnAddTodo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_30dp"

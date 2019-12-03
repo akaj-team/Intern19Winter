@@ -13,7 +13,6 @@
         android:src="@drawable/img_chibi" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edtUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_30dp"
@@ -21,6 +20,7 @@
         android:layout_marginRight="@dimen/margin_30dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/edittext_text_user_name"
@@ -63,6 +63,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_30dp"
