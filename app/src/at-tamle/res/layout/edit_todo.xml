@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/edtDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_8dp"
+        android:text="@string/textview_text_edit_todo"
+        android:textSize="@dimen/text_size_25sp" />
+
+    <EditText
+        android:id="@+id/edtNewTodo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_30dp"
+        android:layout_marginTop="@dimen/margin_30dp"
+        android:layout_marginRight="@dimen/margin_30dp"
+        android:background="@drawable/shape_edit_user"
+        android:hint="@string/textview_text_edit_todo"
+        android:padding="@dimen/padding_8dp"
+        android:textSize="@dimen/text_size_25sp"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+</LinearLayout>

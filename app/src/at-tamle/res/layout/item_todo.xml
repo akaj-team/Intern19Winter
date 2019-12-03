@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="@dimen/padding_8dp">
+
+    <TextView
+        android:id="@+id/tvTodo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10dp"
+        android:text="@string/textview_text_todo"
+        android:textSize="@dimen/text_size_30sp" />
+
+    <ImageView
+        android:id="@+id/iconBin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10dp"
+        android:src="@drawable/icon_bin" />
+
+    <ImageView
+        android:id="@+id/iconEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_10dp"
+        android:src="@drawable/icon_edit" />
+
+    <ImageView
+        android:id="@+id/iconCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_10dp"
+        android:src="@drawable/icon_tick" />
+</LinearLayout>
