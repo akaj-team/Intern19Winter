@@ -1,4 +1,4 @@
-package asiantech.internship.winter.musicplayer.Utils
+package asiantech.internship.winter.musicplayer
 
 import android.content.ContentUris
 import android.content.Context
@@ -21,19 +21,19 @@ object Utils {
     fun songArt(path: String, context: Context): Bitmap {
         val retriever = MediaMetadataRetriever()
         val inputStream: InputStream
-        retriever.setDataSource(path)
+        try {
+            retriever.setDataSource(path)
+        } catch (e: IllegalArgumentException) {
+            print(e)
+        }
         return if (retriever.embeddedPicture != null) {
             inputStream = ByteArrayInputStream(retriever.embeddedPicture)
             val bitmap = BitmapFactory.decodeStream(inputStream)
             retriever.release()
             bitmap
         } else {
-            getLargeIcon(context)
+            BitmapFactory.decodeResource(context.resources, R.drawable.ic_zing)
         }
-    }
-
-    private fun getLargeIcon(context: Context): Bitmap {
-        return BitmapFactory.decodeResource(context.resources, R.drawable.ic_headphones)
     }
 
     fun formatDuration(duration: Int): String {
@@ -66,7 +66,7 @@ object Utils {
             val contentResolver = activity.contentResolver
             val c = contentResolver.query(queryUri, projection, selection, selectionArgs, null)
             if (c!!.moveToFirst()) {
-                // We found the ID. Deleting the item via the content provider will also remove the file
+                // We found the ID. Deleting the item_list_song via the content provider will also remove the file
                 val id = c.getLong(c.getColumnIndexOrThrow(MediaStore.Audio.Media._ID))
                 val deleteUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id)
                 contentResolver.delete(deleteUri, null, null)

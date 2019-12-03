@@ -9,11 +9,11 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
-import asiantech.internship.winter.musicplayer.Utils.Utils
 import asiantech.internship.winter.musicplayer.model.Song
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 class SongAdapter(private val context: Context) : RecyclerView.Adapter<SongAdapter.SongViewHolder>() {
     private var onSongClicked: SongClicked? = null
@@ -46,9 +46,9 @@ class SongAdapter(private val context: Context) : RecyclerView.Adapter<SongAdapt
     }
 
     inner class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val itemContainer: ConstraintLayout = itemView.findViewById(R.id.container)
         private val title: TextView = itemView.findViewById(R.id.tvSongTitle)
-        private val artist: TextView = itemView.findViewById(R.id.tvArtistName)
-        private val container: ConstraintLayout = itemView.findViewById(R.id.container)
+        private val artist: TextView = itemView.findViewById(R.id.tvArtist)
         private val imgSongArt = itemView.findViewById<ImageView>(R.id.imgSongArt)
 
         fun onBind(position: Int) {
@@ -57,13 +57,15 @@ class SongAdapter(private val context: Context) : RecyclerView.Adapter<SongAdapt
             artist.text = song.artistName
             Glide.with(context)
                     .load(song.path?.let { Utils.songArt(it, context) })
+                    .transform(RoundedCorners(4))
                     .priority(Priority.LOW)
                     .thumbnail(.01f)
+                    .error(R.drawable.ic_headphones)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.ic_image)
                     .into(imgSongArt)
 
-            container.setOnClickListener {
+            itemContainer.setOnClickListener {
                 onSongClicked?.onSongClicked(song)
             }
         }

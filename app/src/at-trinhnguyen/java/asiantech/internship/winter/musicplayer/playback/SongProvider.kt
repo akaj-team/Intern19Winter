@@ -1,4 +1,4 @@
-package asiantech.internship.winter.musicplayer.Utils
+package asiantech.internship.winter.musicplayer.playback
 
 import android.content.Context
 import android.database.Cursor
@@ -25,10 +25,16 @@ object SongProvider {
             MediaStore.Audio.AudioColumns.ARTIST_ID, // 6
             MediaStore.Audio.AudioColumns.ARTIST)// 7
 
-    private val mAllDeviceSongs = ArrayList<Song>()
+    private val allDeviceSongs = ArrayList<Song>()
 
     fun getAllDeviceSongs(context: Context): MutableList<Song> {
-        val cursor = makeSongCursor(context)
+        var cursor: Cursor? = null
+        try {
+            cursor = context.contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                    BASE_PROJECTION, null, null, null)
+        } catch (e: SecurityException) {
+            cursor?.close()
+        }
         return getSongs(cursor)
     }
 
@@ -38,15 +44,13 @@ object SongProvider {
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 val song = getSongFromCursorImpl(cursor)
-                if (song.duration >= 30000) {
+                if (song.duration >= 30000 && song.artistName != "<unknown>") {
                     songs.add(song)
-                    mAllDeviceSongs.add(song)
+                    allDeviceSongs.add(song)
                 }
             } while (cursor.moveToNext())
         }
-
         cursor?.close()
-
         return songs
     }
 
@@ -61,14 +65,5 @@ object SongProvider {
         val artistName = cursor.getString(ARTIST)
 
         return Song(title, trackNumber, year, duration, uri, albumName, artistId, artistName)
-    }
-
-    private fun makeSongCursor(context: Context): Cursor? {
-        return try {
-            context.contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                    BASE_PROJECTION, null, null, null)
-        } catch (e: SecurityException) {
-            null
-        }
     }
 }

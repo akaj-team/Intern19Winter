@@ -16,7 +16,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import asiantech.internship.summer.R
 import asiantech.internship.winter.musicplayer.MusicActivity
-import asiantech.internship.winter.musicplayer.Utils.Utils
+import asiantech.internship.winter.musicplayer.Utils
 import asiantech.internship.winter.musicplayer.model.Song
 
 class MusicNotificationManager internal constructor(private val musicService: MusicService) {

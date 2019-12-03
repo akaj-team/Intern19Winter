@@ -16,13 +16,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import asiantech.internship.summer.R
-import asiantech.internship.winter.musicplayer.Utils.SongProvider
-import asiantech.internship.winter.musicplayer.Utils.Utils
 import asiantech.internship.winter.musicplayer.model.Song
-import asiantech.internship.winter.musicplayer.playback.MusicNotificationManager
-import asiantech.internship.winter.musicplayer.playback.MusicService
-import asiantech.internship.winter.musicplayer.playback.PlaybackInfoListener
-import asiantech.internship.winter.musicplayer.playback.PlayerAdapter
+import asiantech.internship.winter.musicplayer.playback.*
 import kotlinx.android.synthetic.`at-trinhnguyen`.activity_music.*
 import kotlinx.android.synthetic.`at-trinhnguyen`.controls.*
 
@@ -44,8 +39,6 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         doBindService()
         initViews()
         initSeekBar()
-
-
     }
 
     override fun onPause() {
@@ -85,7 +78,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         }
     }
 
-    private val mConnection = object : ServiceConnection {
+    private val connection = object : ServiceConnection {
         override fun onServiceConnected(componentName: ComponentName, iBinder: IBinder) {
 
             musicService = (iBinder as MusicService.LocalBinder).instance
@@ -181,7 +174,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         // we know will be running in our own process (and thus won't be
         // supporting component replacement by other applications).
         bindService(Intent(this,
-                MusicService::class.java), mConnection, Context.BIND_AUTO_CREATE)
+                MusicService::class.java), connection, Context.BIND_AUTO_CREATE)
         isBound = true
 
         val startNotStickyIntent = Intent(this, MusicService::class.java)
@@ -191,7 +184,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     private fun doUnbindService() {
         if (isBound!!) {
             // Detach our existing connection.
-            unbindService(mConnection)
+            unbindService(connection)
             isBound = false
         }
     }

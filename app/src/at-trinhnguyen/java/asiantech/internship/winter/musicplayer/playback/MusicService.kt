@@ -6,7 +6,7 @@ import android.os.Binder
 import android.os.IBinder
 
 class MusicService : Service() {
-    private val mIBinder = LocalBinder()
+    private val iBinder = LocalBinder()
 
     var mediaPlayerHolder: MediaPlayerHolder? = null
         private set
@@ -33,7 +33,7 @@ class MusicService : Service() {
             musicNotificationManager = MusicNotificationManager(this)
             mediaPlayerHolder!!.registerNotificationActionsReceiver(true)
         }
-        return mIBinder
+        return iBinder
     }
 
     inner class LocalBinder : Binder() {
