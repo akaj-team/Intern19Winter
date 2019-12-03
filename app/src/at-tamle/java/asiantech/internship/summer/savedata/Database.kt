@@ -8,14 +8,12 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
     companion object {
         const val DB_NAME = "quanlyuser"
         const val DB_VERSION = 1
-
         const val TBL_USER = "USER"
         const val US_ID = "Id"
         const val US_USERNAME = "Username"
         const val US_NICKNAME = "Nickname"
         const val US_PASSWORD = "Password"
         const val US_PHOTO_PATH = "Path"
-
         const val TBL_TODO = "TODO"
         const val TD_ID = "IdTodo"
         const val TD_IDUSER = "IdUser"

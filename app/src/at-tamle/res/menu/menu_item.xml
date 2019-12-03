@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/menutHome"
+            android:id="@+id/menuHome"
             android:icon="@drawable/icon_home"
             android:title="@string/textview_text_home" />
         <item
