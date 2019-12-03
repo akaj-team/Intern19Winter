@@ -12,4 +12,15 @@ class SwipeAndDragSongList(dragDirs: Int, swipeDirs: Int, val songAdapter: SongA
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+        return super.getMovementFlags(recyclerView, viewHolder)
+    }
+
+    override fun getDragDirs(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+        return super.getDragDirs(recyclerView, viewHolder)
+    }
+
+    override fun getSwipeDirs(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+        return super.getSwipeDirs(recyclerView, viewHolder)
+    }
 }

@@ -6,4 +6,5 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorGreen400">#00e676</color>
+    <color name="bottomNavBarColor">#e3e8ee</color>
 </resources>

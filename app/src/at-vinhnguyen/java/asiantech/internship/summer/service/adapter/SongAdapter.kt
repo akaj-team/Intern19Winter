@@ -1,25 +1,37 @@
 package asiantech.internship.summer.service.adapter
 
+import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import asiantech.internship.summer.R
 import asiantech.internship.summer.service.model.Song
 
-class SongAdapter(val songsList: MutableList<Song>) : RecyclerView.Adapter<SongAdapter.ViewHolder>() {
+class SongAdapter(val songsList: MutableList<Song>, val context: Context) : RecyclerView.Adapter<SongAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongAdapter.ViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val view = LayoutInflater.from(context).inflate(R.layout.item_song, parent, false)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return songsList.size
     }
 
     override fun onBindViewHolder(holder: SongAdapter.ViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        holder.bindView(position)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        val tvSongName = itemView.findViewById<TextView>(R.id.tvSongName)
+        val tvArtists = itemView.findViewById<TextView>(R.id.tvArtist)
+
+        fun bindView(position: Int) {
+            tvSongName.text = songsList[position].title
+            tvArtists.text = songsList[position].artist
+        }
     }
 }
