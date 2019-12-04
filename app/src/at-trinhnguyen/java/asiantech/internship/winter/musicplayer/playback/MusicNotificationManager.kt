@@ -76,14 +76,14 @@ class MusicNotificationManager internal constructor(private val musicService: Mu
     private fun notificationAction(action: String): NotificationCompat.Action {
 
         val icon: Int = when (action) {
-            PREV_ACTION -> R.drawable.ic_skip_previous
+            PREV_ACTION -> R.drawable.ic_media_prev
             PLAY_PAUSE_ACTION ->
                 if (musicService.mediaPlayerHolder?.getState() != PlaybackInfoListener.State.PAUSED)
-                    R.drawable.ic_pause
+                    R.drawable.ic_media_pause
                 else
-                    R.drawable.ic_play
-            NEXT_ACTION -> R.drawable.ic_skip_next
-            else -> R.drawable.ic_skip_previous
+                    R.drawable.ic_media_play
+            NEXT_ACTION -> R.drawable.ic_media_next
+            else -> R.drawable.ic_media_prev
         }
         return NotificationCompat.Action.Builder(icon, action, playerAction(action)).build()
     }

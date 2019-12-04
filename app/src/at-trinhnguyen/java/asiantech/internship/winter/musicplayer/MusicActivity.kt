@@ -19,7 +19,7 @@ import asiantech.internship.summer.R
 import asiantech.internship.winter.musicplayer.model.Song
 import asiantech.internship.winter.musicplayer.playback.*
 import kotlinx.android.synthetic.`at-trinhnguyen`.activity_music.*
-import kotlinx.android.synthetic.`at-trinhnguyen`.controls.*
+import kotlinx.android.synthetic.main.action_player.*
 
 class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.SongClicked {
 
@@ -31,6 +31,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     private var deviceSongs = mutableListOf<Song>()
     private var musicNotificationManager: MusicNotificationManager? = null
     private lateinit var songAdapter: SongAdapter
+    private var seekBar: SeekBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +46,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         super.onPause()
         doUnbindService()
         if (playerAdapter != null && playerAdapter!!.isMediaPlayer()) {
-            playerAdapter!!.onPauseActivity()
+            playerAdapter?.onPauseActivity()
         }
     }
 
@@ -53,7 +54,6 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         super.onResume()
         doBindService()
         if (playerAdapter != null && playerAdapter!!.isPlaying()) {
-
             restorePlayerStatus()
         }
     }
@@ -67,6 +67,9 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     }
 
     private fun initViews() {
+        seekBar = findViewById(R.id.seekBar)
+        tvSongTitle.text = ""
+        tvArtist.text = ""
         imgBtnPlay.setOnClickListener(this)
         imgBtnNext.setOnClickListener(this)
         imgBtnPrevious!!.setOnClickListener(this)
@@ -82,12 +85,12 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         override fun onServiceConnected(componentName: ComponentName, iBinder: IBinder) {
 
             musicService = (iBinder as MusicService.LocalBinder).instance
-            playerAdapter = musicService!!.mediaPlayerHolder
-            musicNotificationManager = musicService!!.musicNotificationManager
+            playerAdapter = musicService?.mediaPlayerHolder
+            musicNotificationManager = musicService?.musicNotificationManager
 
             if (playbackListener == null) {
                 playbackListener = PlaybackListener()
-                playerAdapter!!.setPlaybackInfoListener(playbackListener!!)
+                playerAdapter?.setPlaybackInfoListener(playbackListener!!)
             }
             if (playerAdapter != null && playerAdapter!!.isPlaying()) {
 
@@ -113,58 +116,55 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         songAdapter.addSongs(deviceSongs)
     }
 
-    private fun updatePlayingInfo(restore: Boolean, startPlay: Boolean) {
+    private fun updatePlayingInfo(isRestore: Boolean, isStartPlay: Boolean) {
 
-        if (startPlay) {
-            playerAdapter!!.getMediaPlayer()?.start()
+        if (isStartPlay) {
+            playerAdapter?.getMediaPlayer()?.start()
             Handler().postDelayed({
-                musicService!!.startForeground(MusicNotificationManager.NOTIFICATION_ID,
-                        musicNotificationManager!!.createNotification())
+                musicService?.startForeground(MusicNotificationManager.NOTIFICATION_ID,
+                        musicNotificationManager?.createNotification())
             }, 200)
         }
 
-        val selectedSong = playerAdapter!!.getCurrentSong()
-
-        tvSongTitle?.text = selectedSong?.title
+        val selectedSong = playerAdapter?.getCurrentSong()
+        tvSongTitle.text = selectedSong?.title
+        tvArtist.text = selectedSong?.artistName
         val duration = selectedSong?.duration
         seekBar?.max = duration!!
         imgSongArtCurrent.setImageBitmap(selectedSong.path?.let { Utils.songArt(it, this@MusicActivity) })
 
-        if (restore) {
-            seekBar!!.progress = playerAdapter!!.getPlayerPosition()
+        if (isRestore) {
+            seekBar?.progress = playerAdapter!!.getPlayerPosition()
             updatePlayingStatus()
-
-
             Handler().postDelayed({
                 //stop foreground if coming from pause state
-                if (musicService!!.isRestoredFromPause) {
-                    musicService!!.stopForeground(false)
-                    musicService!!.musicNotificationManager!!.notificationManager
-                            .notify(MusicNotificationManager.NOTIFICATION_ID,
-                                    musicService!!.musicNotificationManager!!.notificationBuilder!!.build())
-                    musicService!!.isRestoredFromPause = false
+                if (musicService != null && musicService!!.isRestoredFromPause) {
+                    musicService?.stopForeground(false)
+                    musicService?.musicNotificationManager?.notificationManager
+                            ?.notify(MusicNotificationManager.NOTIFICATION_ID,
+                                    musicService?.musicNotificationManager?.notificationBuilder?.build())
+                    musicService?.isRestoredFromPause = false
                 }
             }, 200)
         }
     }
 
     private fun updatePlayingStatus() {
-        val drawable = if (playerAdapter!!.getState() != PlaybackInfoListener.State.PAUSED)
-            R.drawable.ic_pause
+        val drawable = if (playerAdapter?.getState() != PlaybackInfoListener.State.PAUSED)
+            R.drawable.ic_media_pause
         else
-            R.drawable.ic_play
-        imgBtnPlay!!.post { imgBtnPlay!!.setImageResource(drawable) }
+            R.drawable.ic_media_play
+        imgBtnPlay.post { imgBtnPlay.setImageResource(drawable) }
     }
 
     private fun restorePlayerStatus() {
-        seekBar!!.isEnabled = playerAdapter!!.isMediaPlayer()
+        seekBar?.isEnabled = playerAdapter!!.isMediaPlayer()
 
         //if we are playing and the activity was restarted
-        //update the controls panel
+        //update the action_player_full panel
         if (playerAdapter != null && playerAdapter!!.isMediaPlayer()) {
-
-            playerAdapter!!.onResumeActivity()
-            updatePlayingInfo(true, false)
+            playerAdapter?.onResumeActivity()
+            updatePlayingInfo(isRestore = true, isStartPlay = false)
         }
     }
 
@@ -190,27 +190,26 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     }
 
     private fun onSongSelected(song: Song, songs: List<Song>) {
-        if (!seekBar!!.isEnabled) {
+        if (seekBar != null && !seekBar!!.isEnabled) {
             seekBar!!.isEnabled = true
         }
         try {
-            playerAdapter!!.setCurrentSong(song, songs)
-            playerAdapter!!.initMediaPlayer()
+            playerAdapter?.setCurrentSong(song, songs)
+            playerAdapter?.initMediaPlayer()
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
 
     private fun skipPrev() {
         if (checkIsPlayer()) {
-            playerAdapter!!.instantReset()
+            playerAdapter?.instantReset()
         }
     }
 
     private fun resumeOrPause() {
         if (checkIsPlayer()) {
-            playerAdapter!!.resumeOrPause()
+            playerAdapter?.resumeOrPause()
         } else {
             val songs = SongProvider.getAllDeviceSongs(this)
             if (songs.isNotEmpty()) {
@@ -222,7 +221,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
 
     private fun skipNext() {
         if (checkIsPlayer()) {
-            playerAdapter!!.skip(true)
+            playerAdapter?.skip(true)
         }
     }
 
@@ -245,7 +244,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     }
 
     private fun initSeekBar() {
-        seekBar.setOnSeekBarChangeListener(
+        seekBar?.setOnSeekBarChangeListener(
                 object : SeekBar.OnSeekBarChangeListener {
                     var userSelectedPosition = 0
 
@@ -265,7 +264,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
 
                         }
                         userIsSeeking = false
-                        playerAdapter!!.seekTo(userSelectedPosition)
+                        playerAdapter?.seekTo(userSelectedPosition)
                     }
                 })
     }
@@ -278,16 +277,16 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
 
         override fun onPositionChanged(position: Int) {
             if (!userIsSeeking) {
-                seekBar!!.progress = position
+                seekBar?.progress = position
             }
         }
 
         override fun onStateChanged(@State state: Int) {
 
             updatePlayingStatus()
-            if (playerAdapter!!.getState() != State.PAUSED
-                    && playerAdapter!!.getState() != State.PAUSED) {
-                updatePlayingInfo(restore = false, startPlay = true)
+            if (playerAdapter?.getState() != State.PAUSED
+                    && playerAdapter?.getState() != State.PAUSED) {
+                updatePlayingInfo(isRestore = false, isStartPlay = true)
             }
         }
 

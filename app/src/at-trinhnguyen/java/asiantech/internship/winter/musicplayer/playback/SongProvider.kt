@@ -1,5 +1,6 @@
 package asiantech.internship.winter.musicplayer.playback
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
 import android.provider.MediaStore
@@ -16,6 +17,7 @@ object SongProvider {
     private const val ARTIST_ID = 6
     private const val ARTIST = 7
 
+    @SuppressLint("InlinedApi")
     private val BASE_PROJECTION = arrayOf(MediaStore.Audio.AudioColumns.TITLE, // 0
             MediaStore.Audio.AudioColumns.TRACK, // 1
             MediaStore.Audio.AudioColumns.YEAR, // 2

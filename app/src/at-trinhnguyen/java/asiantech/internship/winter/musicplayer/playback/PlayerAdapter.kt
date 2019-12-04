@@ -38,7 +38,6 @@ interface PlayerAdapter {
 
     fun registerNotificationActionsReceiver(isRegister: Boolean)
 
-
     fun setCurrentSong(song: Song, songs: List<Song>)
 
     fun onPauseActivity()

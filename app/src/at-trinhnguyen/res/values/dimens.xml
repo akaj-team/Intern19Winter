@@ -27,4 +27,13 @@
     <dimen name="text_size_24sp">24sp</dimen>
     <dimen name="text_size_32sp">32sp</dimen>
     <dimen name="text_size_40sp">40sp</dimen>
+    <dimen name="img_song_art_52dp">52dp</dimen>
+    <dimen name="card_corner_radius_4dp">4dp</dimen>
+    <dimen name="item_list_song_height_64dp">64dp</dimen>
+    <dimen name="item_list_song_content_height_48dp">48dp</dimen>
+    <dimen name="img_download_12dp">12dp</dimen>
+    <dimen name="img_song_art_48dp">48dp</dimen>
+    <dimen name="card_corner_radius_24dp">24dp</dimen>
+    <dimen name="img_btn_20dp">20dp</dimen>
+    <dimen name="img_btn_24dp">24dp</dimen>
 </resources>

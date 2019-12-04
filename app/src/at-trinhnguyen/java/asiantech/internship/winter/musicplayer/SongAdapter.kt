@@ -59,10 +59,9 @@ class SongAdapter(private val context: Context) : RecyclerView.Adapter<SongAdapt
                     .load(song.path?.let { Utils.songArt(it, context) })
                     .transform(RoundedCorners(4))
                     .priority(Priority.LOW)
-                    .thumbnail(.01f)
-                    .error(R.drawable.ic_headphones)
+                    .error(R.drawable.ic_song)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.ic_image)
+                    .placeholder(R.drawable.ic_song)
                     .into(imgSongArt)
 
             itemContainer.setOnClickListener {
