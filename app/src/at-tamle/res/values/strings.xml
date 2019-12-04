@@ -33,6 +33,7 @@
     <string name="edittext_hint_enter_phone">Enter phone</string>
     <string name="button_text_create_account">Create Account</string>
     <string name="threadhandle">Download thread handle</string>
+    <string name="asynctask">Download async task</string>
     <string name="count">%</string>
 </resources>
 
