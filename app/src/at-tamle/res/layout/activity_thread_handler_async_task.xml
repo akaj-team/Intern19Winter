@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_200dp"
+        android:layout_marginTop="@dimen/margin_top_38dp"
+        android:text="@string/count"
+        android:textSize="@dimen/text_size_16sp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_54dp" />
+
+    <Button
+        android:id="@+id/btnDownloadThread"
+        android:layout_width="@dimen/margin_200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_96dp"
+        android:layout_marginTop="@dimen/margin_top_54dp"
+        android:text="@string/threadhandle" />
+
+    <Button
+        android:id="@+id/btnDownloadAsyncTask"
+        android:layout_width="@dimen/margin_200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_96dp"
+        android:layout_marginTop="@dimen/margin_top_54dp"
+        android:text="@string/asynctask" />
+</LinearLayout>
