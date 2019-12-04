@@ -1,3 +1,4 @@
 package asiantech.internship.summer.broadcastreceiver.model
 
-class SongModel(val songName:String)
+
+class SongModel(var songName:String,var artist:String, var duration: Int)

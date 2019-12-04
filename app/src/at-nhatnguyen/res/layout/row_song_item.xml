@@ -1,14 +1,48 @@
-<androidx.constraintlayout.widget.ConstraintLayout android:layout_height="wrap_content"
-    android:layout_width="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="30dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView
-        android:id="@+id/tvSongName"
-        android:text="Ten bai hat"
-        android:layout_marginTop="@dimen/margin_16dp"
-        android:layout_marginLeft="@dimen/margin_16dp"
+
+    <ImageView
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/imgPlay"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@android:drawable/ic_media_play" />
+
+    <TextView
+        android:id="@+id/tvName"
+        app:layout_constraintBottom_toBottomOf="@+id/imgPlay"
+        app:layout_constraintTop_toTopOf="@+id/imgPlay"
+        app:layout_constraintStart_toEndOf="@+id/imgPlay"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="SongName"
+        android:textColor="#000"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvArtist"
+        app:layout_constraintBottom_toBottomOf="@+id/tvName"
+        app:layout_constraintTop_toTopOf="@+id/tvName"
+        app:layout_constraintStart_toEndOf="@+id/tvName"
+        android:layout_marginLeft="@dimen/margin_20dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Artistnnnn" />
+
+    <TextView
+        android:id="@+id/tvDuration"
+        app:layout_constraintTop_toTopOf="@id/tvArtist"
+        app:layout_constraintStart_toEndOf="@+id/tvArtist"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="left"
+        android:text="0:00" />
 </androidx.constraintlayout.widget.ConstraintLayout>
