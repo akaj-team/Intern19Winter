@@ -33,6 +33,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".service_broadcast_receiver.service.AudioService" />
     </application>
 
     <uses-permission-sdk-23 android:name="android.permission.CAMERA" />

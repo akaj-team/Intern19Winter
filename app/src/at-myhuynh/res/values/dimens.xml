@@ -7,4 +7,5 @@
     <dimen name="img_height_120">120sp</dimen>
     <dimen name="padding_15">15dp</dimen>
     <dimen name="margin_5">5dp</dimen>
+    <dimen name="img_width_50">50dp</dimen>
 </resources>

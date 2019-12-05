@@ -1,3 +1,5 @@
 package asiantech.internship.summer.service_broadcast_receiver
 
-data class Song(var name: String, var artist: String, var time: String = "00:00")
+import android.net.Uri
+
+data class Song(var name: String, var artist: String, var path: Uri, var duration: String = "00:00")

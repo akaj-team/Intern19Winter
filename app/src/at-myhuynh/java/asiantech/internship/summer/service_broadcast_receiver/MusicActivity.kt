@@ -11,10 +11,11 @@ class MusicActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_music)
-        repalceFragment(ListSongFragment.newInstance(), false)
+        replaceFragment(ListSongFragment.newInstance(), false)
+
     }
 
-    fun repalceFragment(fragment: Fragment, isAddToBackStack: Boolean) {
+    fun replaceFragment(fragment: Fragment, isAddToBackStack: Boolean) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         if (isAddToBackStack) {
             fragmentTransaction.addToBackStack(fragment.javaClass.simpleName)
