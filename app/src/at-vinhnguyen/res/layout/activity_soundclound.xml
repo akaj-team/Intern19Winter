@@ -6,6 +6,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+    <FrameLayout
+        android:id="@+id/frmContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationHome"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="1dp" />
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -13,15 +22,5 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/bottomNavBarColor"
-        app:menu="@menu/menu_home" />
-
-    <FrameLayout
-        android:id="@+id/frmContainer"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationHome"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp">
-
-    </FrameLayout>
+        app:menu="@menu/menu_bottom_home" />
 </androidx.constraintlayout.widget.ConstraintLayout>

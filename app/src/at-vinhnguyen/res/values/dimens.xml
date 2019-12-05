@@ -11,4 +11,6 @@
     <dimen name="dp_28">28dp</dimen>
     <dimen name="dp_60">60dp</dimen>
     <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
 </resources>

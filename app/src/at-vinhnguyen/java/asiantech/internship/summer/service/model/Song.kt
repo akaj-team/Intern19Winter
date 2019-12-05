@@ -3,13 +3,13 @@ package asiantech.internship.summer.service.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Song(val id: Int, val title: String, val artist: String, val duration: Int) : Parcelable {
+data class Song(val id: Int, val title: String, val artist: String, val duration: Int, val songArt: String) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
             parcel.readString().toString(),
             parcel.readString().toString(),
-            parcel.readInt()) {
-    }
+            parcel.readInt(),
+            parcel.readString().toString())
 
     override fun writeToParcel(p0: Parcel?, p1: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

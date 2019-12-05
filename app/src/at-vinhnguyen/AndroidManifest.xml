@@ -19,7 +19,7 @@
         <activity android:name=".layouteditor.RegisterActivity" />
         <activity android:name=".layouteditor.EditProfileActivity" />
         <activity android:name=".layouteditor.LoginActivity" />
-        <activity android:name=".service.screen.HomeActivity">
+        <activity android:name=".service.screen.SoundCloudActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
