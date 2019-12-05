@@ -35,7 +35,7 @@ class MusicNotificationManager internal constructor(private val musicService: Mu
         return PendingIntent.getBroadcast(musicService, REQUEST_CODE, pauseIntent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
-    fun createNotification(): Notification {
+    fun createNotification(): Notification? {
         val song = musicService.mediaPlayerHolder?.getCurrentSong()
 
         notificationBuilder = NotificationCompat.Builder(musicService, CHANNEL_ID)
@@ -49,28 +49,28 @@ class MusicNotificationManager internal constructor(private val musicService: Mu
         val contentIntent = PendingIntent.getActivity(musicService, REQUEST_CODE,
                 openPlayerIntent, 0)
 
-        val artist = song!!.artistName
-        val songTitle = song.title
+        val artist = song?.artistName
+        val songTitle = song?.title
 
-        initMediaSession(song)
+        song?.let { initMediaSession(it) }
 
-        notificationBuilder!!
-                .setShowWhen(false)
-                .setSmallIcon(R.drawable.ic_music_player)
-                .setLargeIcon(Utils.songArt(song.path!!, musicService.baseContext))
-                .setColor(ContextCompat.getColor(context, R.color.colorAccent))
-                .setContentTitle(songTitle)
-                .setContentText(artist)
-                .setContentIntent(contentIntent)
-                .addAction(notificationAction(PREV_ACTION))
-                .addAction(notificationAction(PLAY_PAUSE_ACTION))
-                .addAction(notificationAction(NEXT_ACTION))
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-
-        notificationBuilder!!.setStyle(androidx.media.app.NotificationCompat.MediaStyle()
-                .setMediaSession(mediaSession!!.sessionToken)
+        notificationBuilder?.apply {
+            setShowWhen(false)
+            setSmallIcon(R.drawable.ic_music_player)
+            setLargeIcon(song?.path?.let { Utils.songArt(it, musicService.baseContext) })
+            color = ContextCompat.getColor(context, R.color.colorAccent)
+            setContentTitle(songTitle)
+            setContentText(artist)
+            setContentIntent(contentIntent)
+            addAction(notificationAction(PREV_ACTION))
+            addAction(notificationAction(PLAY_PAUSE_ACTION))
+            addAction(notificationAction(NEXT_ACTION))
+            setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+        }
+        notificationBuilder?.setStyle(androidx.media.app.NotificationCompat.MediaStyle()
+                .setMediaSession(mediaSession?.sessionToken)
                 .setShowActionsInCompactView(0, 1, 2))
-        return notificationBuilder!!.build()
+        return notificationBuilder?.build()
     }
 
     private fun notificationAction(action: String): NotificationCompat.Action {
@@ -109,15 +109,15 @@ class MusicNotificationManager internal constructor(private val musicService: Mu
     private fun initMediaSession(song: Song) {
         mediaSessionManager = context.getSystemService(Context.MEDIA_SESSION_SERVICE) as MediaSessionManager
         mediaSession = MediaSessionCompat(context, "AudioPlayer")
-        transportControls = mediaSession!!.controller.transportControls
-        mediaSession!!.isActive = true
-        mediaSession!!.setFlags(MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS)
+        transportControls = mediaSession?.controller?.transportControls
+        mediaSession?.isActive = true
+        mediaSession?.setFlags(MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS)
         updateMetaData(song)
     }
 
     private fun updateMetaData(song: Song) {
-        mediaSession!!.setMetadata(MediaMetadataCompat.Builder()
-                .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, Utils.songArt(song.path!!, context))
+        mediaSession?.setMetadata(MediaMetadataCompat.Builder()
+                .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, song.path?.let { Utils.songArt(it, context) })
                 .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, song.artistName)
                 .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, song.albumName)
                 .putString(MediaMetadataCompat.METADATA_KEY_TITLE, song.title)

@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 
 class MediaPlayerHolder(private val musicService: MusicService?) :
         PlayerAdapter, MediaPlayer.OnCompletionListener, MediaPlayer.OnPreparedListener {
-    private val context: Context = musicService!!.applicationContext
+    private val context: Context? = musicService?.applicationContext
     private val audioManager: AudioManager
     private var mediaPlayer: MediaPlayer? = null
     private var playbackInfoListener: PlaybackInfoListener? = null
@@ -55,7 +55,7 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
     }
 
     init {
-        audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audioManager = context?.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     }
 
     private fun registerActionsReceiver() {
@@ -70,7 +70,7 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
         intentFilter.addAction(Intent.ACTION_HEADSET_PLUG)
         intentFilter.addAction(AudioManager.ACTION_AUDIO_BECOMING_NOISY)
 
-        musicService!!.registerReceiver(notificationActionsReceiver, intentFilter)
+        musicService?.registerReceiver(notificationActionsReceiver, intentFilter)
     }
 
     private fun unregisterActionsReceiver() {
@@ -132,10 +132,10 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
                 onAudioFocusChangeListener,
                 AudioManager.STREAM_MUSIC,
                 AudioManager.AUDIOFOCUS_GAIN)
-        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-            currentAudioFocusState = AUDIO_FOCUSED
+        currentAudioFocusState = if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+            AUDIO_FOCUSED
         } else {
-            currentAudioFocusState = AUDIO_NO_FOCUS_NO_DUCK
+            AUDIO_NO_FOCUS_NO_DUCK
         }
     }
 
@@ -145,7 +145,7 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
         }
     }
 
-    override fun setPlaybackInfoListener(playbackInfoListener: PlaybackInfoListener) {
+    override fun setPlaybackInfoListener(playbackInfoListener: PlaybackInfoListener?) {
         this.playbackInfoListener = playbackInfoListener
     }
 
@@ -153,28 +153,28 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
 
         this.state = state
         if (playbackInfoListener != null) {
-            playbackInfoListener!!.onStateChanged(state)
+            playbackInfoListener?.onStateChanged(state)
         }
     }
 
     private fun resumeMediaPlayer() {
         if (!isPlaying()) {
-            mediaPlayer!!.start()
+            mediaPlayer?.start()
             setStatus(PlaybackInfoListener.State.RESUMED)
-            musicService!!.startForeground(MusicNotificationManager.NOTIFICATION_ID, musicNotificationManager!!.createNotification())
+            musicService?.startForeground(MusicNotificationManager.NOTIFICATION_ID, musicNotificationManager?.createNotification())
         }
     }
 
     private fun pauseMediaPlayer() {
         setStatus(PlaybackInfoListener.State.PAUSED)
-        mediaPlayer!!.pause()
-        musicService!!.stopForeground(false)
-        musicNotificationManager!!.notificationManager.notify(MusicNotificationManager.NOTIFICATION_ID, musicNotificationManager!!.createNotification())
+        mediaPlayer?.pause()
+        musicService?.stopForeground(false)
+        musicNotificationManager?.notificationManager?.notify(MusicNotificationManager.NOTIFICATION_ID, musicNotificationManager?.createNotification())
     }
 
     private fun resetSong() {
-        mediaPlayer!!.seekTo(0)
-        mediaPlayer!!.start()
+        mediaPlayer?.seekTo(0)
+        mediaPlayer?.start()
         setStatus(PlaybackInfoListener.State.PLAYING)
     }
 
@@ -200,27 +200,31 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
     // Reports media playback position to mPlaybackProgressCallback.
     private fun stopUpdatingCallbackWithPosition() {
         if (executor != null) {
-            executor!!.shutdownNow()
+            executor?.shutdownNow()
             executor = null
             seekBarPositionUpdateTask = null
         }
     }
 
     private fun updateProgressCallbackTask() {
-        if (isMediaPlayer() && mediaPlayer!!.isPlaying) {
-            val currentPosition = mediaPlayer!!.currentPosition
-            if (playbackInfoListener != null) {
-                playbackInfoListener!!.onPositionChanged(currentPosition)
+        mediaPlayer?.let { mediaPlayer ->
+            if (isMediaPlayer() && mediaPlayer.isPlaying) {
+                val currentPosition = mediaPlayer.currentPosition
+                if (playbackInfoListener != null) {
+                    currentPosition.let { playbackInfoListener?.onPositionChanged(it) }
+                }
             }
         }
     }
 
     override fun instantReset() {
         if (isMediaPlayer()) {
-            if (mediaPlayer!!.currentPosition < 5000) {
-                skip(false)
-            } else {
-                resetSong()
+            mediaPlayer?.let { mediaPlayer ->
+                if (mediaPlayer.currentPosition < 5000) {
+                    skip(false)
+                } else {
+                    resetSong()
+                }
             }
         }
     }
@@ -240,10 +244,10 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
                         .setUsage(AudioAttributes.USAGE_MEDIA)
                         .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                         .build())
-                musicNotificationManager = musicService!!.musicNotificationManager
+                musicNotificationManager = musicService?.musicNotificationManager
             }
             tryToGetAudioFocus()
-            mediaPlayer?.setDataSource(selectedSong!!.path)
+            mediaPlayer?.setDataSource(selectedSong?.path)
             mediaPlayer?.prepare()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -266,7 +270,7 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
 
     override fun release() {
         if (isMediaPlayer()) {
-            mediaPlayer!!.release()
+            mediaPlayer?.release()
             mediaPlayer = null
             giveUpAudioFocus()
             unregisterActionsReceiver()
@@ -274,7 +278,7 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
     }
 
     override fun isPlaying(): Boolean {
-        return isMediaPlayer() && mediaPlayer!!.isPlaying
+        return isMediaPlayer() && requireNotNull(mediaPlayer).isPlaying
     }
 
     override fun resumeOrPause() {
@@ -308,29 +312,33 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
     }
 
     private fun getSkipSong(isNext: Boolean) {
-        val currentIndex = songs!!.indexOf(selectedSong)
+        songs?.let { songs ->
+            val currentIndex = songs.indexOf(selectedSong)
+            val index: Int
 
-        val index: Int
-
-        try {
-            index = if (isNext) currentIndex + 1 else currentIndex - 1
-            selectedSong = songs!![index]
-        } catch (e: IndexOutOfBoundsException) {
-            selectedSong = if (currentIndex != 0) songs!![0] else songs!![songs!!.size - 1]
-            e.printStackTrace()
+            try {
+                index = if (isNext) {
+                    currentIndex + 1
+                } else {
+                    currentIndex - 1
+                }
+                selectedSong = songs[index]
+            } catch (e: IndexOutOfBoundsException) {
+                selectedSong = if (currentIndex != 0) songs[0] else songs[songs.size - 1]
+                e.printStackTrace()
+            }
         }
-
         initMediaPlayer()
     }
 
     override fun seekTo(position: Int) {
         if (isMediaPlayer()) {
-            mediaPlayer!!.seekTo(position)
+            mediaPlayer?.seekTo(position)
         }
     }
 
-    override fun getPlayerPosition(): Int {
-        return mediaPlayer!!.currentPosition
+    override fun getPlayerPosition(): Int? {
+        return mediaPlayer?.currentPosition
     }
 
     /**
@@ -349,9 +357,9 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
 
             if (currentAudioFocusState == AUDIO_NO_FOCUS_CAN_DUCK) {
                 // We're permitted to play, but only if we 'duck', ie: play softly
-                mediaPlayer!!.setVolume(VOLUME_DUCK, VOLUME_DUCK)
+                mediaPlayer?.setVolume(VOLUME_DUCK, VOLUME_DUCK)
             } else {
-                mediaPlayer!!.setVolume(VOLUME_NORMAL, VOLUME_NORMAL)
+                mediaPlayer?.setVolume(VOLUME_NORMAL, VOLUME_NORMAL)
             }
 
             // If we were playing when we lost focus, we need to resume playing.
@@ -365,7 +373,7 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
     private inner class NotificationReceiver : BroadcastReceiver() {
 
         override fun onReceive(context: Context, intent: Intent) {
-            // TODO Auto-generated method stub
+
             val action = intent.action
 
             if (action != null) {

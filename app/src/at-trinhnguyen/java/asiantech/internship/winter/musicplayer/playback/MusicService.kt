@@ -21,9 +21,9 @@ class MusicService : Service() {
     }
 
     override fun onDestroy() {
-        mediaPlayerHolder!!.registerNotificationActionsReceiver(false)
+        mediaPlayerHolder?.registerNotificationActionsReceiver(false)
         musicNotificationManager = null
-        mediaPlayerHolder!!.release()
+        mediaPlayerHolder?.release()
         super.onDestroy()
     }
 
@@ -31,7 +31,7 @@ class MusicService : Service() {
         if (mediaPlayerHolder == null) {
             mediaPlayerHolder = MediaPlayerHolder(this)
             musicNotificationManager = MusicNotificationManager(this)
-            mediaPlayerHolder!!.registerNotificationActionsReceiver(true)
+            mediaPlayerHolder?.registerNotificationActionsReceiver(true)
         }
         return iBinder
     }

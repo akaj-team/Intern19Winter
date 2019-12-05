@@ -17,7 +17,7 @@ interface PlayerAdapter {
     @State
     fun getState(): Int
 
-    fun getPlayerPosition(): Int
+    fun getPlayerPosition(): Int?
 
     fun getMediaPlayer(): MediaPlayer?
     fun initMediaPlayer()
@@ -34,7 +34,7 @@ interface PlayerAdapter {
 
     fun seekTo(position: Int)
 
-    fun setPlaybackInfoListener(playbackInfoListener: PlaybackInfoListener)
+    fun setPlaybackInfoListener(playbackInfoListener: PlaybackInfoListener?)
 
     fun registerNotificationActionsReceiver(isRegister: Boolean)
 

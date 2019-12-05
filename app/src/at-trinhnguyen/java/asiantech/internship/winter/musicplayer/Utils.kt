@@ -65,17 +65,18 @@ object Utils {
             val queryUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
             val contentResolver = activity.contentResolver
             val c = contentResolver.query(queryUri, projection, selection, selectionArgs, null)
-            if (c!!.moveToFirst()) {
-                // We found the ID. Deleting the item_list_song via the content provider will also remove the file
-                val id = c.getLong(c.getColumnIndexOrThrow(MediaStore.Audio.Media._ID))
-                val deleteUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id)
-                contentResolver.delete(deleteUri, null, null)
+            c?.let {
+                if (c.moveToFirst()) {
+                    // We found the ID. Deleting the item_list_song via the content provider will also remove the file
+                    val id = c.getLong(c.getColumnIndexOrThrow(MediaStore.Audio.Media._ID))
+                    val deleteUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id)
+                    contentResolver.delete(deleteUri, null, null)
 
-            } else {
-                Log.w("Media ", "Media not found!!")
-
+                } else {
+                    Log.w("Media ", "Media not found!")
+                }
+                c.close()
             }
-            c.close()
         }, 70)
     }
 }

@@ -3,6 +3,7 @@ package asiantech.internship.winter.musicplayer.playback
 import androidx.annotation.IntDef
 
 abstract class PlaybackInfoListener {
+
     open fun onPositionChanged(position: Int) {}
 
     open fun onStateChanged(@State state: Int) {}
