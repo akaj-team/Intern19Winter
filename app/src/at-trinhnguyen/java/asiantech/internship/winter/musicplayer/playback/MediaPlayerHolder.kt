@@ -97,7 +97,6 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
         return selectedSong
     }
 
-
     override fun setCurrentSong(song: Song, songs: List<Song>) {
         selectedSong = song
         this.songs = songs
@@ -105,8 +104,8 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
 
     override fun onCompletion(mediaPlayer: MediaPlayer) {
         if (playbackInfoListener != null) {
-            playbackInfoListener!!.onStateChanged(PlaybackInfoListener.State.COMPLETED)
-            playbackInfoListener!!.onPlaybackCompleted()
+            playbackInfoListener?.onStateChanged(PlaybackInfoListener.State.COMPLETED)
+            playbackInfoListener?.onPlaybackCompleted()
         }
 
         if (isReplaySong) {
@@ -230,22 +229,22 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
 
         try {
             if (mediaPlayer != null) {
-                mediaPlayer!!.reset()
+                mediaPlayer?.reset()
             } else {
                 mediaPlayer = MediaPlayer()
 
-                mediaPlayer!!.setOnPreparedListener(this)
-                mediaPlayer!!.setOnCompletionListener(this)
-                mediaPlayer!!.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK)
-                mediaPlayer!!.setAudioAttributes(AudioAttributes.Builder()
+                mediaPlayer?.setOnPreparedListener(this)
+                mediaPlayer?.setOnCompletionListener(this)
+                mediaPlayer?.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK)
+                mediaPlayer?.setAudioAttributes(AudioAttributes.Builder()
                         .setUsage(AudioAttributes.USAGE_MEDIA)
                         .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                         .build())
                 musicNotificationManager = musicService!!.musicNotificationManager
             }
             tryToGetAudioFocus()
-            mediaPlayer!!.setDataSource(selectedSong!!.path)
-            mediaPlayer!!.prepare()
+            mediaPlayer?.setDataSource(selectedSong!!.path)
+            mediaPlayer?.prepare()
         } catch (e: Exception) {
             e.printStackTrace()
             skip(true)

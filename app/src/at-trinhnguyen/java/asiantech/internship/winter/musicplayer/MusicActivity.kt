@@ -18,8 +18,8 @@ import androidx.core.content.ContextCompat
 import asiantech.internship.summer.R
 import asiantech.internship.winter.musicplayer.model.Song
 import asiantech.internship.winter.musicplayer.playback.*
+import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.*
 import kotlinx.android.synthetic.`at-trinhnguyen`.activity_music.*
-import kotlinx.android.synthetic.main.action_player.*
 
 class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.SongClicked {
 
@@ -78,6 +78,10 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         recyclerView.apply {
             adapter = songAdapter
             hasFixedSize()
+        }
+        val songs = SongProvider.getAllDeviceSongs(this)
+        if (songs.isNotEmpty()) {
+            onSongSelected(songs[0], songs)
         }
     }
 
@@ -214,7 +218,6 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
             val songs = SongProvider.getAllDeviceSongs(this)
             if (songs.isNotEmpty()) {
                 onSongSelected(songs[0], songs)
-
             }
         }
     }
