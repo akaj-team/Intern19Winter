@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
+import android.util.Log
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
@@ -18,7 +19,13 @@ import androidx.core.content.ContextCompat
 import asiantech.internship.summer.R
 import asiantech.internship.winter.musicplayer.model.Song
 import asiantech.internship.winter.musicplayer.playback.*
-import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.*
+import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.imgBtnNext
+import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.imgBtnPlay
+import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.imgBtnPrevious
+import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.imgSongArtCurrent
+import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.tvArtist
+import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.tvSongTitle
+import kotlinx.android.synthetic.`at-trinhnguyen`.action_player_full.*
 import kotlinx.android.synthetic.`at-trinhnguyen`.activity_music.*
 
 class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.SongClicked {
@@ -72,8 +79,6 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
 
     private fun initViews() {
         seekBar = findViewById(R.id.seekBar)
-        tvSongTitle.text = ""
-        tvArtist.text = ""
         imgBtnPlay.setOnClickListener(this)
         imgBtnNext.setOnClickListener(this)
         imgBtnPrevious.setOnClickListener(this)
@@ -84,9 +89,11 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
             hasFixedSize()
         }
         val songs = SongProvider.getAllDeviceSongs(this)
-        if (songs.isNotEmpty()) {
-            onSongSelected(songs[0], songs)
-        }
+        tvSongTitle.text = songs[0].title
+        tvArtist.text = songs[0].artistName
+        tvDurationLeft.text = getString(R.string.textview_start_duration)
+        tvDurationRight.text = Utils.formatDuration(songs[0].duration)
+        imgSongArtCurrent.setImageBitmap(songs[0].path?.let { Utils.songArt(it, this@MusicActivity) })
     }
 
     private val connection = object : ServiceConnection {
@@ -137,10 +144,10 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         }
 
         val selectedSong = playerAdapter?.getCurrentSong()
-        selectedSong?.let {
-            tvSongTitle.text = it.title
-            tvArtist.text = it.artistName
-            seekBar?.max = it.duration
+        selectedSong?.let { song ->
+            tvSongTitle.text = song.title
+            tvArtist.text = song.artistName
+            seekBar?.max = song.duration
             imgSongArtCurrent.setImageBitmap(selectedSong.path?.let { Utils.songArt(it, this@MusicActivity) })
         }
 
@@ -284,6 +291,11 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
                     override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                         if (fromUser) {
                             userSelectedPosition = progress
+                            Log.d("aaa", userSelectedPosition.toString())
+                        }
+                        tvDurationLeft.text = Utils.formatDuration(progress)
+                        tvDurationRight.text = playerAdapter?.getCurrentSong()?.duration?.let { duration ->
+                            Utils.formatDuration(duration - progress)
                         }
                     }
 
@@ -295,6 +307,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
                         userIsSeeking = false
                         playerAdapter?.seekTo(userSelectedPosition)
                     }
+
                 })
     }
 

@@ -24,7 +24,7 @@ object Utils {
         try {
             retriever.setDataSource(path)
         } catch (e: IllegalArgumentException) {
-            print(e)
+            e.printStackTrace()
         }
         return if (retriever.embeddedPicture != null) {
             inputStream = ByteArrayInputStream(retriever.embeddedPicture)

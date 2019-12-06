@@ -33,4 +33,6 @@
     <string name="button_text_create_account">Create Account</string>
     <string name="textview_text_start_from_scratch">Start \nfrom Scratch</string>
     <string name="separator" translatable="false">\u2022</string>
+    <string name="textview_start_duration">00:00</string>
+    <string name="textview_minus">-</string>
 </resources>
