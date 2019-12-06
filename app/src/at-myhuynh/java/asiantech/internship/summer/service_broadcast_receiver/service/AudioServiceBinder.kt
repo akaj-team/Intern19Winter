@@ -9,7 +9,7 @@ import android.os.Message
 import java.io.IOException
 
 class AudioServiceBinder : Binder() {
-    private var audioPlayer: MediaPlayer? = null
+    private var player: MediaPlayer? = null
     var audioFileUri: Uri? = null
     var context: Context? = null
     var audioSeekBarUpdateHandler: Handler? = null
@@ -20,26 +20,26 @@ class AudioServiceBinder : Binder() {
 
     fun startAudio() {
         initAudioPlayer()
-        audioPlayer?.start()
+        player?.start()
     }
 
     fun pauseAudio() {
-        audioPlayer?.pause()
+        player?.pause()
     }
 
     fun stopAudio() {
-        audioPlayer?.let {
-            it.start()
+        player?.let {
+            it.stop()
             destroyAudioPlayer()
         }
     }
 
     private fun initAudioPlayer() {
         try {
-            if (audioPlayer == null) {
-                audioPlayer = MediaPlayer()
-                context?.let { audioFileUri?.let { it1 -> audioPlayer?.setDataSource(it, it1) } }
-                audioPlayer?.prepare()
+            if (player == null) {
+                player = MediaPlayer()
+                context?.let { audioFileUri?.let { it1 -> player?.setDataSource(it, it1) } }
+                player?.prepare()
                 val updateAudioProgressThread: Thread = object : Thread() {
                     override fun run() {
                         while (true) {
@@ -62,24 +62,24 @@ class AudioServiceBinder : Binder() {
     }
 
     private fun destroyAudioPlayer() {
-        audioPlayer?.let {
+        player?.let {
             if (it.isPlaying) {
                 it.stop()
             }
             it.release()
         }
-        audioPlayer = null
+        player = null
     }
 
     private fun currentAudioPosition(): Int {
         var audioPosition = 0
-        audioPlayer?.let { audioPosition = it.currentPosition }
+        player?.let { audioPosition = it.currentPosition }
         return audioPosition
     }
 
     private fun totalAudioDuration(): Int {
         var audioDuration = 0
-        audioPlayer?.let { audioDuration = it.duration }
+        player?.let { audioDuration = it.duration }
         return audioDuration
     }
 

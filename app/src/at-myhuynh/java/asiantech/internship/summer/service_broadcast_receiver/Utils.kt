@@ -9,6 +9,12 @@ import android.net.Uri
 class Utils {
 
     companion object {
+        const val SONG_ART_NAME = "<unknown>"
+        const val SONG_ART = "SONG_ART"
+        const val SONG_NAME = "SONG_NAME"
+        const val SONG_URI = "SONG_URI"
+        const val ARG_SONG = "ARG_SONG"
+
         fun getCoverPicture(context: Context, uri: Uri): Bitmap? {
             val mmr = MediaMetadataRetriever()
             val rawArt: ByteArray?

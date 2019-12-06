@@ -1,20 +1,28 @@
 package asiantech.internship.summer.service_broadcast_receiver.fragment
 
-import android.content.*
+import android.content.ComponentName
+import android.content.ContentUris
+import android.content.Intent
+import android.content.ServiceConnection
+import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.os.IBinder
-import android.os.Message
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import asiantech.internship.summer.R
+import asiantech.internship.summer.service_broadcast_receiver.MusicActivity
 import asiantech.internship.summer.service_broadcast_receiver.Song
 import asiantech.internship.summer.service_broadcast_receiver.Utils
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_ART
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_ART_NAME
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_NAME
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_URI
 import asiantech.internship.summer.service_broadcast_receiver.`interface`.HandleOnclickSongItem
 import asiantech.internship.summer.service_broadcast_receiver.adapter.ListSongAdapter
 import asiantech.internship.summer.service_broadcast_receiver.service.AudioService
@@ -29,24 +37,10 @@ class ListSongFragment : Fragment(), View.OnClickListener {
     private var position = 0
     private var isPlay = false
     private var audioServiceBinder: AudioServiceBinder? = null
-    private var audioSeekBarUpdateHandler: Handler? = null
 
     companion object {
+
         fun newInstance() = ListSongFragment()
-        private class SeekBarHandler(private val listSongFragment: ListSongFragment) : Handler() {
-            override fun handleMessage(msg: Message) {
-                super.handleMessage(msg)
-                if (msg.what == AudioServiceBinder.UPDATE_AUDIO_PROGRESS_BAR) {
-                    if (listSongFragment.audioServiceBinder != null) {
-                        val currProgress = listSongFragment.audioServiceBinder?.audioProgress()
-                        if (currProgress != null) {
-                            listSongFragment.seekBar.progress = currProgress
-                            Log.d("xxx", currProgress.toString())
-                        }
-                    }
-                }
-            }
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -63,42 +57,10 @@ class ListSongFragment : Fragment(), View.OnClickListener {
         rvListSong.adapter = listSongAdapter
         setOnClickSongItem(listSongAdapter)
         setMusicPlay()
-        seekBar.max = 100
-        bindAudioService()
 
         imgBack.setOnClickListener(this)
         imgNext.setOnClickListener(this)
         imgPlay.setOnClickListener(this)
-    }
-
-    private val serviceConnection = object : ServiceConnection {
-        override fun onServiceDisconnected(name: ComponentName?) {
-            audioServiceBinder = null
-        }
-
-        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-            audioServiceBinder = service as? AudioServiceBinder
-        }
-    }
-
-    private fun bindAudioService() {
-        audioServiceBinder?.let {
-            val intent = Intent(requireContext(), AudioService().javaClass)
-            requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
-        }
-    }
-
-    private fun unBoundAudioService() {
-        audioServiceBinder?.let {
-            requireContext().unbindService(serviceConnection)
-        }
-    }
-
-    private fun createAudioSeekBarUpdater() {
-        if (audioSeekBarUpdateHandler == null) {
-            audioSeekBarUpdateHandler = SeekBarHandler(this)
-        }
-
     }
 
     override fun onDestroy() {
@@ -115,10 +77,7 @@ class ListSongFragment : Fragment(), View.OnClickListener {
                     position = 0
                 }
                 setMusicPlay()
-                createAudioSeekBarUpdater()
-                audioServiceBinder?.audioSeekBarUpdateHandler = audioSeekBarUpdateHandler
-                audioServiceBinder?.stopAudio()
-                playSong()
+                startService(listSong[position])
             }
 
             imgBack -> {
@@ -128,46 +87,28 @@ class ListSongFragment : Fragment(), View.OnClickListener {
                     position = listSong.size - 1
                 }
                 setMusicPlay()
-                audioServiceBinder?.stopAudio()
-                playSong()
-                createAudioSeekBarUpdater()
-                audioServiceBinder?.audioSeekBarUpdateHandler = audioSeekBarUpdateHandler
+                startService(listSong[position])
             }
 
             imgPlay -> {
                 isPlay = if (!isPlay) {
-                    imgPlay.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
-                    audioServiceBinder?.pauseAudio()
-                    createAudioSeekBarUpdater()
-                    audioServiceBinder?.audioSeekBarUpdateHandler = audioSeekBarUpdateHandler
+                    changeIconAudioPlay()
+                    stopService()
                     true
                 } else {
-                    imgPlay.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp)
-                    playSong()
-                    createAudioSeekBarUpdater()
-                    audioServiceBinder?.audioSeekBarUpdateHandler = audioSeekBarUpdateHandler
+                    changeIconAudioPlay()
+                    startService(listSong[position])
                     false
                 }
             }
         }
     }
 
-    private fun playSong() {
-        audioServiceBinder?.audioFileUri = listSong[position].path
-        audioServiceBinder?.context = requireContext()
-        audioServiceBinder?.startAudio()
-    }
-
-    private fun setMusicPlay() {
-        val song = listSong[position]
-        tvSongName.text = song.name
-        tvSongArtistPlay.text = song.artist
-        tvTimePlay.text = song.duration
-        val imageBitmap = Utils.getCoverPicture(requireContext(), song.path)
-        if (imageBitmap != null) {
-            imgSongPlay.setImageBitmap(imageBitmap)
+    private fun changeIconAudioPlay() {
+        if (isPlay) {
+            imgPlay.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp)
         } else {
-            imgSongPlay.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
+            imgPlay.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
         }
     }
 
@@ -176,10 +117,43 @@ class ListSongFragment : Fragment(), View.OnClickListener {
             override fun songItemOnClick(song: Song) {
                 position = listSong.lastIndexOf(song)
                 setMusicPlay()
-                audioServiceBinder?.stopAudio()
-                playSong()
+                isPlay = true
+                changeIconAudioPlay()
+                (activity as? MusicActivity)?.replaceFragment(AudioPlayFragment.newInstance(song), true)
+            }
+
+            override fun songItemOnLongClick(song: Song) {
+                stopService()
             }
         })
+    }
+
+    private fun startService(song: Song) {
+        val intent = Intent(requireContext(), AudioService::class.java)
+        requireContext().stopService(intent)
+        intent.putExtra(SONG_NAME, song.name)
+        intent.putExtra(SONG_ART, song.artist)
+        intent.putExtra(SONG_URI, song.path.toString())
+        requireContext().startService(intent)
+    }
+
+    private fun stopService() {
+        Toast.makeText(requireContext(), "Stop service", Toast.LENGTH_SHORT).show()
+        val intent = Intent(requireContext(), AudioService::class.java)
+        requireContext().stopService(intent)
+        isPlay = false
+    }
+
+    private fun setMusicPlay() {
+        val song = listSong[position]
+        tvSongName.text = song.name
+        tvSongArtistPlay.text = song.artist
+        val imageBitmap = Utils.getCoverPicture(requireContext(), Uri.parse(song.path))
+        if (imageBitmap != null) {
+            imgSongPlay.setImageBitmap(imageBitmap)
+        } else {
+            imgSongPlay.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
+        }
     }
 
     private fun getListSong() {
@@ -217,10 +191,28 @@ class ListSongFragment : Fragment(), View.OnClickListener {
                     ":$seconds"
                 }
 
-                Log.d("xxx", songUri.toString())
-                listSong.add(Song(songName, songArt, songUri, duration))
+                Log.d("xxx", songArt)
+                if (songArt != SONG_ART_NAME) {
+                    listSong.add(Song(songName, songArt, songUri.toString(), duration))
+                }
             } while (cursor.moveToNext())
             cursor.close()
+        }
+    }
+
+    private val serviceConnection = object : ServiceConnection {
+        override fun onServiceDisconnected(name: ComponentName?) {
+            audioServiceBinder = null
+        }
+
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            audioServiceBinder = service as? AudioServiceBinder
+        }
+    }
+
+    private fun unBoundAudioService() {
+        audioServiceBinder?.let {
+            requireContext().unbindService(serviceConnection)
         }
     }
 }

@@ -1,6 +1,7 @@
 package asiantech.internship.summer.service_broadcast_receiver.adapter
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +40,7 @@ class ListSongAdapter(private val context: Context, private val listSong: Mutabl
             val songTime = itemView.findViewById<TextView>(R.id.tvSongTime)
             val songItem = listSong[position]
 
-            val imageBitmap = Utils.getCoverPicture(context, songItem.path)
+            val imageBitmap = Utils.getCoverPicture(context, Uri.parse(songItem.path))
             if (imageBitmap != null) {
                 songImage.setImageBitmap(imageBitmap)
             } else {
@@ -51,6 +52,10 @@ class ListSongAdapter(private val context: Context, private val listSong: Mutabl
             songTime.text = songItem.duration
 
             itemView.setOnClickListener { songItemOnClick.songItemOnClick(songItem) }
+            itemView.setOnLongClickListener {
+                songItemOnClick.songItemOnLongClick(songItem)
+                true
+            }
         }
     }
 }
