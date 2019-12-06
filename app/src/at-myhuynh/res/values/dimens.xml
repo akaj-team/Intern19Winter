@@ -5,4 +5,5 @@
     <dimen name="text_size_20">20sp</dimen>
     <dimen name="img_width_120">120sp</dimen>
     <dimen name="img_height_120">120sp</dimen>
+    <dimen name="margin_15">15dp</dimen>
 </resources>

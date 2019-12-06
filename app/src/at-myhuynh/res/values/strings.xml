@@ -27,4 +27,9 @@
     <string name="edittext_hint_phone">+1 234 567 89</string>
     <string name="button_text_save_info">Save Profile</string>
     <string name="edittext_hint_password">1234</string>
+    <string name="btn_text_download_handler">Download - Handler</string>
+    <string name="btn_text_download_async">Download - Async</string>
+    <string name="edt_text_link_download">https://wallpaperaccess.com/full/1356237.jpg</string>
+    <string name="textview_text_ratio">%</string>
+    <string name="textview_text_0">0</string>
 </resources>
