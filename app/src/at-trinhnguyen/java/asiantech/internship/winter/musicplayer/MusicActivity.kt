@@ -1,6 +1,8 @@
 package asiantech.internship.winter.musicplayer
 
 import android.Manifest
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -11,6 +13,7 @@ import android.os.Handler
 import android.os.IBinder
 import android.util.Log
 import android.view.View
+import android.view.animation.LinearInterpolator
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,14 +22,8 @@ import androidx.core.content.ContextCompat
 import asiantech.internship.summer.R
 import asiantech.internship.winter.musicplayer.model.Song
 import asiantech.internship.winter.musicplayer.playback.*
-import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.imgBtnNext
-import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.imgBtnPlay
-import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.imgBtnPrevious
-import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.imgSongArtCurrent
-import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.tvArtist
-import kotlinx.android.synthetic.`at-trinhnguyen`.action_player.tvSongTitle
-import kotlinx.android.synthetic.`at-trinhnguyen`.action_player_full.*
 import kotlinx.android.synthetic.`at-trinhnguyen`.activity_music.*
+
 
 class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.SongClicked {
 
@@ -39,6 +36,8 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     private var musicNotificationManager: MusicNotificationManager? = null
     private lateinit var songAdapter: SongAdapter
     private var seekBar: SeekBar? = null
+    private lateinit var lastSong: Song
+    private lateinit var rotate: ObjectAnimator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,16 +83,27 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         imgBtnPrevious.setOnClickListener(this)
         deviceSongs = SongProvider.getAllDeviceSongs(this)
         songAdapter.setOnSongClicked(this)
+
         recyclerView.apply {
             adapter = songAdapter
             hasFixedSize()
         }
+
         val songs = SongProvider.getAllDeviceSongs(this)
+        lastSong = songs[0]
         tvSongTitle.text = songs[0].title
         tvArtist.text = songs[0].artistName
         tvDurationLeft.text = getString(R.string.textview_start_duration)
         tvDurationRight.text = Utils.formatDuration(songs[0].duration)
+        seekBar?.max = songs[0].duration
         imgSongArtCurrent.setImageBitmap(songs[0].path?.let { Utils.songArt(it, this@MusicActivity) })
+
+        rotate = ObjectAnimator.ofFloat(imgSongArtCurrent, "rotation", 0f, 360f).apply {
+            duration = 15000
+            repeatCount = ValueAnimator.INFINITE
+            repeatMode = ValueAnimator.RESTART
+            interpolator = LinearInterpolator()
+        }
     }
 
     private val connection = object : ServiceConnection {
@@ -141,16 +151,19 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
                 musicService?.startForeground(MusicNotificationManager.NOTIFICATION_ID,
                         musicNotificationManager?.createNotification())
             }, 200)
-        }
 
-        val selectedSong = playerAdapter?.getCurrentSong()
-        selectedSong?.let { song ->
-            tvSongTitle.text = song.title
-            tvArtist.text = song.artistName
-            seekBar?.max = song.duration
-            imgSongArtCurrent.setImageBitmap(selectedSong.path?.let { Utils.songArt(it, this@MusicActivity) })
-        }
 
+            playerAdapter?.getCurrentSong()?.let { currentSong ->
+                if (lastSong != currentSong) {
+                    lastSong = currentSong
+                    tvSongTitle.text = currentSong.title
+                    tvArtist.text = currentSong.artistName
+                    seekBar?.max = currentSong.duration
+                    Log.d("aaa", imgSongArtCurrent.resources.toString())
+                    imgSongArtCurrent.setImageBitmap(currentSong.path?.let { Utils.songArt(it, this@MusicActivity) })
+                }
+            }
+        }
         if (isRestore) {
             playerAdapter?.getPlayerPosition()?.let {
                 seekBar?.progress = it
@@ -172,10 +185,14 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     }
 
     private fun updatePlayingStatus() {
-        val drawable = if (playerAdapter?.getState() != PlaybackInfoListener.State.PAUSED)
-            R.drawable.ic_media_pause
-        else
-            R.drawable.ic_media_play
+        val drawable: Int
+        if (playerAdapter?.getState() != PlaybackInfoListener.State.PAUSED) {
+            drawable = R.drawable.ic_media_pause
+            rotate.resume()
+        } else {
+            drawable = R.drawable.ic_media_play
+            rotate.pause()
+        }
         imgBtnPlay.post { imgBtnPlay.setImageResource(drawable) }
     }
 
@@ -217,6 +234,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     }
 
     private fun onSongSelected(song: Song, songs: List<Song>) {
+        rotate.start()
         seekBar?.let {
             if (!it.isEnabled) {
                 it.isEnabled = true
@@ -324,10 +342,8 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         }
 
         override fun onStateChanged(@State state: Int) {
-
             updatePlayingStatus()
-            if (playerAdapter?.getState() != State.PAUSED
-                    && playerAdapter?.getState() != State.PAUSED) {
+            if (playerAdapter?.getState() != State.PAUSED) {
                 updatePlayingInfo(isRestore = false, isStartPlay = true)
             }
         }
