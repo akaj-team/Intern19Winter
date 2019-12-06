@@ -2,6 +2,7 @@ package asiantech.internship.summer.broadcastreceiver.fragment
 
 import android.Manifest
 import android.app.Activity
+import android.content.ContentUris
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import asiantech.internship.summer.R
 import asiantech.internship.summer.broadcastreceiver.adapter.ListSongAdapter
 import asiantech.internship.summer.broadcastreceiver.model.SongModel
+import asiantech.internship.summer.broadcastreceiver.model.Utils
 import kotlinx.android.synthetic.`at-nhatnguyen`.fragment_list_song.*
 
 class ListSongFragment : Fragment() {
@@ -36,24 +38,27 @@ class ListSongFragment : Fragment() {
         val adapter = ListSongAdapter(listSong, requireContext())
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
+        setOnclick(adapter)
     }
 
     private fun listSongDevice() {
         listSong = mutableListOf()
         val contentResolver = context?.contentResolver
         val uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-        // val proj = arrayListOf(MediaStore.Images.Media.DATA)
         val cursor = contentResolver?.query(uri, null, null, null, null)
 
         if (cursor != null && cursor.moveToFirst()) {
+            val id = cursor.getColumnIndex(MediaStore.Audio.Media._ID)
             val title = cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)
             val artist = cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST)
             val duration = cursor.getColumnIndex(MediaStore.Audio.Media.DURATION)
             do {
+                val currentId = cursor.getLong(id)
+                val path = ContentUris.withAppendedId(uri, currentId)
                 val currentTitle = cursor.getString(title)
                 val currentArtist = cursor.getString(artist)
                 val currentDuration = cursor.getInt(duration)
-                listSong.add(SongModel(currentTitle, currentArtist, currentDuration))
+                listSong.add(SongModel(currentTitle, currentArtist, currentDuration, path,currentId))
             } while (cursor.moveToNext())
             cursor.close()
         }
@@ -68,5 +73,21 @@ class ListSongFragment : Fragment() {
 
     private fun makeRequest() {
         ActivityCompat.requestPermissions(context as Activity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_CODE_READ)
+    }
+
+    private fun setOnclick(adapter: ListSongAdapter) {
+        adapter.click(object : ListSongAdapter.OnClick {
+            override fun click(songModel: SongModel) {
+                tvSongName.text = songModel.songName
+                tvArtist.text = songModel.artist
+                tvDuration.text = adapter.getDuration(songModel.duration)
+                val bitmap = context?.let { Utils.songImg(it, songModel.path) }
+                imgSongIcon.setImageBitmap(bitmap)
+                if (bitmap == null) {
+                    imgSongIcon.setImageResource(R.drawable.ic_song)
+                }
+            }
+
+        })
     }
 }

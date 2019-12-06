@@ -10,8 +10,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/imgPlay"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:src="@android:drawable/ic_media_play" />
 
     <TextView
@@ -19,10 +19,10 @@
         app:layout_constraintBottom_toBottomOf="@+id/imgPlay"
         app:layout_constraintTop_toTopOf="@+id/imgPlay"
         app:layout_constraintStart_toEndOf="@+id/imgPlay"
-        android:layout_width="180dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:text="SongName"
+        android:text="@string/textview_songname"
         android:textColor="#000"
         android:textStyle="bold" />
 
@@ -31,18 +31,20 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvName"
         app:layout_constraintTop_toTopOf="@+id/tvName"
         app:layout_constraintStart_toEndOf="@+id/tvName"
-        android:layout_marginLeft="@dimen/margin_20dp"
-        android:layout_width="100dp"
+        android:layout_marginLeft="8dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="Artistnnnn" />
+        android:text="@string/textView_artist" />
 
     <TextView
         android:id="@+id/tvDuration"
+        app:layout_constraintBottom_toBottomOf="@+id/tvArtist"
         app:layout_constraintTop_toTopOf="@id/tvArtist"
         app:layout_constraintStart_toEndOf="@+id/tvArtist"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_weight="0"
+        android:layout_marginLeft="@dimen/margin_8dp"
         android:gravity="left"
-        android:text="0:00" />
+        android:text="@string/textview_0_00" />
 </androidx.constraintlayout.widget.ConstraintLayout>
