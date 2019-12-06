@@ -12,7 +12,7 @@ import java.io.InputStream
 import java.net.URL
 import java.util.*
 
-class DownloadAsyncTask(var context: Context, var progressBar: ProgressBar, var tvRatioNumber: TextView) : AsyncTask<String, String, String>() {
+class DownloadAsyncTask(private val context: Context,private val progressBar: ProgressBar,private val tvRatioNumber: TextView) : AsyncTask<String, String, String>() {
 
     override fun onPreExecute() {
         super.onPreExecute()

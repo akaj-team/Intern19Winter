@@ -13,6 +13,16 @@ class DownloadActivity : AppCompatActivity() {
 
     companion object {
         private const val START_PROGRESS = 100
+
+        private class Handle(private val downloadActivity: DownloadActivity) : Handler() {
+            override fun handleMessage(msg: Message) {
+                super.handleMessage(msg)
+                if (msg.what == START_PROGRESS) {
+                    downloadActivity.progressBar.progress = msg.arg1
+                    downloadActivity.tvRatioNumber.text = msg.arg1.toString()
+                }
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,14 +44,6 @@ class DownloadActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        handler = object : Handler() {
-            override fun handleMessage(msg: Message) {
-                super.handleMessage(msg)
-                if (msg.what == START_PROGRESS) {
-                    progressBar.progress = msg.arg1
-                    tvRatioNumber.text = msg.arg1.toString()
-                }
-            }
-        }
+        handler = Handle(this)
     }
 }
