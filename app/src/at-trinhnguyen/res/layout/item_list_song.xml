@@ -27,7 +27,6 @@
             android:src="@drawable/ic_song" />
     </androidx.cardview.widget.CardView>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clContent"
         android:layout_width="0dp"
@@ -83,8 +82,8 @@
 
     <ImageButton
         android:id="@+id/imgBtnMore"
-        android:layout_width="40dp"
-        android:layout_height="56dp"
+        android:layout_width="@dimen/btn_width_40dp"
+        android:layout_height="@dimen/btn_height_56dp"
         android:background="@drawable/ripple_btn"
         android:src="@drawable/ic_more"
         android:tint="@android:color/white"

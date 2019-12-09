@@ -21,6 +21,16 @@
                 motion:percentX="0" />
             <KeyPosition
                 motion:curveFit="linear"
+                motion:framePosition="30"
+                motion:motionTarget="@+id/tvSongTitle"
+                motion:percentX="0" />
+            <KeyPosition
+                motion:curveFit="linear"
+                motion:framePosition="30"
+                motion:motionTarget="@+id/tvArtist"
+                motion:percentX="0" />
+            <KeyPosition
+                motion:curveFit="linear"
                 motion:framePosition="90"
                 motion:motionTarget="@id/container"
                 motion:percentWidth="0" />
@@ -49,11 +59,10 @@
         <Constraint
             android:id="@id/container"
             android:layout_width="0dp"
-            android:layout_height="54dp"
+            android:layout_height="@dimen/player_bar_56dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent" />
-
         <Constraint
             android:id="@id/imgSongArtCurrent"
             android:layout_width="@dimen/img_song_art_48dp"
@@ -64,7 +73,6 @@
             motion:layout_constraintBottom_toBottomOf="@id/container"
             motion:layout_constraintStart_toStartOf="@id/container"
             motion:layout_constraintTop_toTopOf="@id/container" />
-
         <Constraint
             android:id="@+id/tvDurationLeft"
             android:layout_width="wrap_content"
@@ -74,7 +82,6 @@
             android:alpha="0"
             motion:layout_constraintStart_toStartOf="@id/container"
             motion:layout_constraintTop_toBottomOf="@id/container" />
-
         <Constraint
             android:id="@+id/tvMinus"
             android:layout_width="wrap_content"
@@ -84,7 +91,6 @@
             android:alpha="0"
             motion:layout_constraintEnd_toStartOf="@id/tvDurationRight"
             motion:layout_constraintTop_toBottomOf="@id/container" />
-
         <Constraint
             android:id="@+id/tvDurationRight"
             android:layout_width="wrap_content"
@@ -95,10 +101,17 @@
             motion:layout_constraintEnd_toEndOf="@id/container"
             motion:layout_constraintTop_toBottomOf="@id/container" />
         <Constraint
+            android:id="@+id/tbShuffle"
+            android:layout_width="@dimen/btn_48dp"
+            android:layout_height="@dimen/btn_48dp"
+            android:alpha="0"
+            motion:layout_constraintStart_toEndOf="@id/container"
+            motion:layout_constraintBottom_toTopOf="@id/tvDurationRight" />
+        <Constraint
             android:id="@+id/tvSongTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_20dp"
+            android:layout_marginStart="@dimen/margin_12dp"
             android:layout_marginEnd="@dimen/margin_8dp"
             motion:layout_constraintBottom_toTopOf="@id/tvArtist"
             motion:layout_constraintEnd_toStartOf="@id/imgBtnPrevious"
@@ -114,11 +127,9 @@
             motion:layout_constraintTop_toBottomOf="@id/tvSongTitle" />
         <Constraint
             android:id="@+id/imgBtnPrevious"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_width="@dimen/btn_48dp"
+            android:layout_height="@dimen/btn_48dp"
             android:layout_marginTop="@dimen/margin_12dp"
-            android:layout_marginEnd="@dimen/margin_8dp"
             android:layout_marginBottom="@dimen/margin_12dp"
             motion:layout_constraintBottom_toBottomOf="@id/container"
             motion:layout_constraintEnd_toStartOf="@id/imgBtnPlay"
@@ -126,28 +137,24 @@
             motion:layout_constraintTop_toTopOf="@id/container" />
         <Constraint
             android:id="@+id/imgBtnPlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_8dp"
-            android:layout_marginEnd="@dimen/margin_8dp"
+            android:layout_width="@dimen/btn_48dp"
+            android:layout_height="@dimen/btn_48dp"
             motion:layout_constraintBottom_toBottomOf="@id/imgBtnPrevious"
             motion:layout_constraintEnd_toStartOf="@id/imgBtnNext"
             motion:layout_constraintStart_toEndOf="@id/imgBtnPrevious"
             motion:layout_constraintTop_toTopOf="@id/imgBtnPrevious" />
         <Constraint
             android:id="@+id/imgBtnNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_8dp"
-            android:layout_marginEnd="@dimen/margin_8dp"
+            android:layout_width="@dimen/btn_48dp"
+            android:layout_height="@dimen/btn_48dp"
             motion:layout_constraintBottom_toBottomOf="@id/imgBtnPrevious"
             motion:layout_constraintEnd_toEndOf="@id/container"
             motion:layout_constraintStart_toEndOf="@id/imgBtnPlay"
             motion:layout_constraintTop_toTopOf="@id/imgBtnPrevious" />
         <Constraint
             android:id="@+id/view"
-            android:layout_width="32dp"
-            android:layout_height="1dp"
+            android:layout_width="@dimen/view_width_32dp"
+            android:layout_height="@dimen/view_height_2dp"
             android:layout_marginTop="@dimen/margin_8dp"
             android:alpha="0"
             motion:layout_constraintEnd_toEndOf="parent"

@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import asiantech.internship.summer.R
 import asiantech.internship.winter.musicplayer.model.Song
 import asiantech.internship.winter.musicplayer.playback.*
@@ -38,14 +39,28 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     private var seekBar: SeekBar? = null
     private lateinit var lastSong: Song
     private lateinit var rotate: ObjectAnimator
+    private var isShuffle = false
+    private var shuffledSongs = mutableListOf<Song>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_music)
+
         songAdapter = SongAdapter(this)
         doBindService()
         initViews()
         initSeekBar()
+        restoreLastSongPlay()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        playerAdapter?.apply {
+            if (isPlaying()) {
+                restorePlayerStatus()
+            }
+        }
     }
 
     override fun onPause() {
@@ -81,6 +96,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         imgBtnPlay.setOnClickListener(this)
         imgBtnNext.setOnClickListener(this)
         imgBtnPrevious.setOnClickListener(this)
+        view.setOnClickListener(this)
         deviceSongs = SongProvider.getAllDeviceSongs(this)
         songAdapter.setOnSongClicked(this)
 
@@ -89,21 +105,35 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
             hasFixedSize()
         }
 
-        val songs = SongProvider.getAllDeviceSongs(this)
-        lastSong = songs[0]
-        tvSongTitle.text = songs[0].title
-        tvArtist.text = songs[0].artistName
-        tvDurationLeft.text = getString(R.string.textview_start_duration)
-        tvDurationRight.text = Utils.formatDuration(songs[0].duration)
-        seekBar?.max = songs[0].duration
-        imgSongArtCurrent.setImageBitmap(songs[0].path?.let { Utils.songArt(it, this@MusicActivity) })
+        tbShuffle.setOnCheckedChangeListener { _, isChecked ->
+            isShuffle = isChecked
+        }
+
+        if (deviceSongs.isNotEmpty()) {
+            try {
+                lastSong = deviceSongs[0]
+                tvSongTitle.text = ""
+                tvArtist.text = ""
+                tvDurationLeft.text = ""
+                tvDurationRight.text = ""
+//                seekBar?.max = deviceSongs[0].duration
+//                imgSongArtCurrent.setImageBitmap(deviceSongs[0].path?.let { Utils.songArt(it, this@MusicActivity) })
+            } catch (e: IndexOutOfBoundsException) {
+                e.printStackTrace()
+            }
+        }
+
+
 
         rotate = ObjectAnimator.ofFloat(imgSongArtCurrent, "rotation", 0f, 360f).apply {
             duration = 15000
             repeatCount = ValueAnimator.INFINITE
             repeatMode = ValueAnimator.RESTART
             interpolator = LinearInterpolator()
+            start()
+            pause()
         }
+
     }
 
     private val connection = object : ServiceConnection {
@@ -111,6 +141,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
 
             musicService = (iBinder as MusicService.LocalBinder).instance
             playerAdapter = musicService?.mediaPlayerHolder
+            Log.d("aaa", "playerAdapter")
             musicNotificationManager = musicService?.musicNotificationManager
 
             if (playbackListener == null) {
@@ -127,6 +158,13 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         }
 
         override fun onServiceDisconnected(componentName: ComponentName) {
+            val sharedPref = applicationContext?.getSharedPreferences(getString(R.string.shared_prefs_file_name), Context.MODE_PRIVATE)
+                    ?: return
+            Log.d("aaa", "end service" + playerAdapter?.getCurrentSong()?.title.toString())
+            with(sharedPref.edit()) {
+                putString(getString(R.string.shared_prefs_song_index), playerAdapter?.getCurrentSong()?.title)
+                commit()
+            }
             musicService = null
         }
     }
@@ -139,8 +177,9 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     }
 
     private fun getMusic() {
+        deviceSongs.clear()
         deviceSongs.addAll(SongProvider.getAllDeviceSongs(this))
-        songAdapter.addSongs(deviceSongs)
+        songAdapter.submitSongs(deviceSongs)
     }
 
     private fun updatePlayingInfo(isRestore: Boolean, isStartPlay: Boolean) {
@@ -151,17 +190,15 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
                 musicService?.startForeground(MusicNotificationManager.NOTIFICATION_ID,
                         musicNotificationManager?.createNotification())
             }, 200)
+        }
 
-
-            playerAdapter?.getCurrentSong()?.let { currentSong ->
-                if (lastSong != currentSong) {
-                    lastSong = currentSong
-                    tvSongTitle.text = currentSong.title
-                    tvArtist.text = currentSong.artistName
-                    seekBar?.max = currentSong.duration
-                    Log.d("aaa", imgSongArtCurrent.resources.toString())
-                    imgSongArtCurrent.setImageBitmap(currentSong.path?.let { Utils.songArt(it, this@MusicActivity) })
-                }
+        playerAdapter?.getCurrentSong()?.let { currentSong ->
+            if (lastSong != currentSong) {
+                lastSong = currentSong
+                tvSongTitle.text = currentSong.title
+                tvArtist.text = currentSong.artistName
+                seekBar?.max = currentSong.duration
+                imgSongArtCurrent.setImageBitmap(currentSong.path?.let { Utils.songArt(it, this@MusicActivity) })
             }
         }
         if (isRestore) {
@@ -234,7 +271,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     }
 
     private fun onSongSelected(song: Song, songs: List<Song>) {
-        rotate.start()
+        Log.d("aaa", "onSongSelected")
         seekBar?.let {
             if (!it.isEnabled) {
                 it.isEnabled = true
@@ -243,6 +280,17 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
 
         try {
             playerAdapter?.setCurrentSong(song, songs)
+            val sharedPref = applicationContext?.getSharedPreferences(getString(R.string.shared_prefs_file_name), Context.MODE_PRIVATE)
+                    ?: return
+            with(sharedPref.edit()) {
+                deviceSongs.indexOf(playerAdapter?.getCurrentSong()).let {
+                    if (it != -1) {
+                        Log.d("aaa", "setCurrentSong" + deviceSongs.indexOf(playerAdapter?.getCurrentSong()).toString())
+                        putInt(getString(R.string.shared_prefs_song_index), it)
+                    }
+                }
+                commit()
+            }
             playerAdapter?.initMediaPlayer()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -263,7 +311,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
             if (it) {
                 playerAdapter?.resumeOrPause()
             } else {
-                val songs = SongProvider.getAllDeviceSongs(this)
+                val songs = deviceSongs
                 if (songs.isNotEmpty()) {
                     onSongSelected(songs[0], songs)
                 }
@@ -294,6 +342,20 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
             R.id.imgBtnPrevious -> {
                 skipPrev()
             }
+            R.id.view -> {
+                restoreLastSongPlay()
+            }
+        }
+    }
+
+    private fun restoreLastSongPlay() {
+        getSharedPreferences(getString(R.string.shared_prefs_file_name), Context.MODE_PRIVATE)?.apply {
+            val songIndex = getInt(getString(R.string.shared_prefs_song_index), 0)
+            Log.d("aaa", "song index $songIndex")
+            recyclerView.postDelayed({
+                onSongSelected(deviceSongs[songIndex], deviceSongs)
+                (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(songIndex, 160)
+            }, 2000)
         }
     }
 

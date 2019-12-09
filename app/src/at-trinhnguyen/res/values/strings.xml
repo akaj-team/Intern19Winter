@@ -35,4 +35,6 @@
     <string name="separator" translatable="false">\u2022</string>
     <string name="textview_start_duration">00:00</string>
     <string name="textview_minus">-</string>
+    <string name="shared_prefs_file_name">shared_prefs_song</string>
+    <string name="shared_prefs_song_index">SONG_INDEX</string>
 </resources>

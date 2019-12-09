@@ -1,7 +1,7 @@
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="#D0365C">
+    android:color="@color/colorDarkAccent">
     <item>
-        <color android:color="#2b2b2b" />
+        <color android:color="@color/colorDark" />
     </item>
 
     <item
@@ -10,7 +10,7 @@
         <shape android:shape="rectangle">
 
             <corners android:radius="4dp" />
-            <solid android:color="#D0365C" />
+            <solid android:color="@color/colorDarkAccent" />
         </shape>
     </item>
 </ripple>

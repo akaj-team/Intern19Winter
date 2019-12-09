@@ -31,7 +31,7 @@ class SongAdapter(private val context: Context) : RecyclerView.Adapter<SongAdapt
         return songs.size
     }
 
-    fun addSongs(songs: MutableList<Song>) {
+    fun submitSongs(songs: MutableList<Song>) {
         this.songs.clear()
         this.songs.addAll(songs)
         notifyDataSetChanged()

@@ -9,6 +9,7 @@ import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.PowerManager
+import asiantech.internship.summer.R
 import asiantech.internship.winter.musicplayer.model.Song
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
@@ -321,6 +322,14 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
                     currentIndex + 1
                 } else {
                     currentIndex - 1
+                }
+                val sharedPref = context?.getSharedPreferences(
+                        context.getString(R.string.shared_prefs_file_name),
+                        Context.MODE_PRIVATE)
+                        ?: return
+                with(sharedPref.edit()) {
+                    putInt(context.getString(R.string.shared_prefs_song_index), index)
+                    commit()
                 }
                 selectedSong = songs[index]
             } catch (e: IndexOutOfBoundsException) {
