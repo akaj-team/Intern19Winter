@@ -1,6 +1,7 @@
 package asiantech.internship.summer.broadcastreceiver.adapter
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +39,7 @@ class ListSongAdapter(private val listSong: MutableList<SongModel>, var mContext
             tvSongName.text = songModel.songName
             tvArtist.text = songModel.artist
             tvDuration.text = getDuration(songModel.duration)
-            val bitmap = Utils.songImg(mContext, songModel.path)
+            val bitmap = Utils.songImg(mContext, Uri.parse(songModel.path))
             if (bitmap != null) {
                 imgSong.setImageBitmap(bitmap)
             } else imgSong.setImageResource(R.drawable.ic_song)

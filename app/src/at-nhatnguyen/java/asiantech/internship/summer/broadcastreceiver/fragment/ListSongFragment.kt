@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.ContentUris
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -27,6 +28,7 @@ class ListSongFragment : Fragment() {
     private val REQUEST_CODE_READ = 100
     private lateinit var listSong: MutableList<SongModel>
     private lateinit var intent: Intent
+    private var isPlay = false
 
     companion object {
         fun newInstance() = ListSongFragment()
@@ -42,11 +44,9 @@ class ListSongFragment : Fragment() {
         val adapter = ListSongAdapter(listSong, requireContext())
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
-        setOnclick(adapter)
 
-        imgPlay.setOnClickListener {
-            context?.startService(intent)
-        }
+        setOnclick(adapter)
+       // playSong()
     }
 
     private fun listSongDevice() {
@@ -66,7 +66,7 @@ class ListSongFragment : Fragment() {
                 val currentTitle = cursor.getString(title)
                 val currentArtist = cursor.getString(artist)
                 val currentDuration = cursor.getInt(duration)
-                listSong.add(SongModel(currentTitle, currentArtist, currentDuration, path, currentId))
+                listSong.add(SongModel(currentTitle, currentArtist, currentDuration, path.toString(), currentId))
             } while (cursor.moveToNext())
             cursor.close()
         }
@@ -89,17 +89,38 @@ class ListSongFragment : Fragment() {
                 tvSongName.text = songModel.songName
                 tvArtist.text = songModel.artist
                 tvDuration.text = adapter.getDuration(songModel.duration)
-                val bitmap = context?.let { Utils.songImg(it, songModel.path) }
+                val bitmap = context?.let { Utils.songImg(it, Uri.parse(songModel.path)) }
                 imgSongIcon.setImageBitmap(bitmap)
                 if (bitmap == null) {
                     imgSongIcon.setImageResource(R.drawable.ic_song)
                 }
 
-                intent = Intent(context, MusicService::class.java)
-                context?.stopService(intent)
-                intent.putExtra("URI", songModel.path.toString())
-                // context?.startService(intent)
+                fragmentManager?.beginTransaction()?.
+                        replace(R.id.frlActivity,PlayMp3Fragment.newInstance(songModel))?.addToBackStack(null)?.
+                        commit()
+                //starService(songModel)
             }
         })
     }
+
+    private fun starService(songModel:SongModel){
+        intent = Intent(context,MusicService::class.java)
+        context?.stopService(intent)
+        intent.putExtra("URI",songModel.path.toString())
+    }
+
+     fun playSong(){
+        imgPlay.setOnClickListener {
+            if (isPlay == false){
+                context?.startService(intent)
+                imgPlay.setImageResource(R.drawable.ic_pause_circle_filled)
+                isPlay = true
+            }else{
+                context?.stopService(intent)
+                imgPlay.setImageResource(R.drawable.ic_play_arrow)
+                isPlay = false
+            }
+        }
+    }
+
 }

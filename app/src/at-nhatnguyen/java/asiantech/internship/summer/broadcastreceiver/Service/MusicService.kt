@@ -27,8 +27,17 @@ class MusicService : Service() {
         return START_STICKY
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mediaPlayer.stop()
+    fun pause(){
+        mediaPlayer.pause()
     }
+
+    fun start(){
+        mediaPlayer.start()
+    }
+
+
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        mediaPlayer.stop()
+//    }
 }
