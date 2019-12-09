@@ -3,6 +3,7 @@ package asiantech.internship.summer.broadcastreceiver.fragment
 import android.Manifest
 import android.app.Activity
 import android.content.ContentUris
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import asiantech.internship.summer.R
+import asiantech.internship.summer.broadcastreceiver.Service.MusicService
 import asiantech.internship.summer.broadcastreceiver.adapter.ListSongAdapter
 import asiantech.internship.summer.broadcastreceiver.model.SongModel
 import asiantech.internship.summer.broadcastreceiver.model.Utils
@@ -21,8 +23,10 @@ import kotlinx.android.synthetic.`at-nhatnguyen`.fragment_list_song.*
 
 class ListSongFragment : Fragment() {
 
+
     private val REQUEST_CODE_READ = 100
     private lateinit var listSong: MutableList<SongModel>
+    private lateinit var intent: Intent
 
     companion object {
         fun newInstance() = ListSongFragment()
@@ -39,6 +43,10 @@ class ListSongFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
         setOnclick(adapter)
+
+        imgPlay.setOnClickListener {
+            context?.startService(intent)
+        }
     }
 
     private fun listSongDevice() {
@@ -58,7 +66,7 @@ class ListSongFragment : Fragment() {
                 val currentTitle = cursor.getString(title)
                 val currentArtist = cursor.getString(artist)
                 val currentDuration = cursor.getInt(duration)
-                listSong.add(SongModel(currentTitle, currentArtist, currentDuration, path,currentId))
+                listSong.add(SongModel(currentTitle, currentArtist, currentDuration, path, currentId))
             } while (cursor.moveToNext())
             cursor.close()
         }
@@ -86,8 +94,12 @@ class ListSongFragment : Fragment() {
                 if (bitmap == null) {
                     imgSongIcon.setImageResource(R.drawable.ic_song)
                 }
-            }
 
+                intent = Intent(context, MusicService::class.java)
+                context?.stopService(intent)
+                intent.putExtra("URI", songModel.path.toString())
+                // context?.startService(intent)
+            }
         })
     }
 }
