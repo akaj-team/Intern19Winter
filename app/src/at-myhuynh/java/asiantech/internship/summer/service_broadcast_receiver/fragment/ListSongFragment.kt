@@ -19,10 +19,14 @@ import asiantech.internship.summer.R
 import asiantech.internship.summer.service_broadcast_receiver.MusicActivity
 import asiantech.internship.summer.service_broadcast_receiver.Song
 import asiantech.internship.summer.service_broadcast_receiver.Utils
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_PAUSE
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_PLAY
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_ART
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_ART_NAME
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_NAME
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_URI
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.STATE_NEED_PLAY
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.STATE_PLAYING
 import asiantech.internship.summer.service_broadcast_receiver.`interface`.HandleOnclickSongItem
 import asiantech.internship.summer.service_broadcast_receiver.adapter.ListSongAdapter
 import asiantech.internship.summer.service_broadcast_receiver.service.AudioService
@@ -35,32 +39,53 @@ class ListSongFragment : Fragment(), View.OnClickListener {
     private lateinit var listSong: MutableList<Song>
     private lateinit var listSongAdapter: ListSongAdapter
     private var position = 0
-    private var isPlay = false
+    private var isPlaying = false
     private var audioServiceBinder: AudioServiceBinder? = null
 
     companion object {
-
+        private const val STATE_IS_PLAYING = "isPlaying"
         fun newInstance() = ListSongFragment()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean(STATE_IS_PLAYING, isPlaying)
+        super.onSaveInstanceState(outState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_list_song, container, false)
+        val view = inflater.inflate(R.layout.fragment_list_song, container, false)
+        savedInstanceState?.let {
+            isPlaying = it.getBoolean(STATE_IS_PLAYING)
+        }
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initListSong()
+        initView()
+        initOnClickListener()
+    }
+
+    private fun initOnClickListener() {
+        setOnClickSongItem(listSongAdapter)
+        imgBack.setOnClickListener(this)
+        imgNext.setOnClickListener(this)
+        imgPlay.setOnClickListener(this)
+    }
+
+    private fun initView() {
+        setMusicPlay()
+        changeIconAudioPlay()
+    }
+
+    private fun initListSong() {
         getListSong()
         Log.d("xxx", "${listSong.size}")
         rvListSong.layoutManager = LinearLayoutManager(requireContext())
         listSongAdapter = ListSongAdapter(requireContext(), listSong)
         rvListSong.adapter = listSongAdapter
-        setOnClickSongItem(listSongAdapter)
-        setMusicPlay()
-
-        imgBack.setOnClickListener(this)
-        imgNext.setOnClickListener(this)
-        imgPlay.setOnClickListener(this)
     }
 
     override fun onDestroy() {
@@ -91,21 +116,30 @@ class ListSongFragment : Fragment(), View.OnClickListener {
             }
 
             imgPlay -> {
-                isPlay = if (!isPlay) {
+                isPlaying = if (!isPlaying) {
                     changeIconAudioPlay()
-                    stopService()
+                    pauseOrResumeAudio(ACTION_PAUSE)
                     true
                 } else {
                     changeIconAudioPlay()
-                    startService(listSong[position])
+                    pauseOrResumeAudio(ACTION_PLAY)
                     false
                 }
             }
         }
     }
 
+    private fun pauseOrResumeAudio(action: String) {
+        val song = listSong[position]
+        val intent = Intent(action, Uri.parse(listSong[position].path), requireContext(), AudioService::class.java)
+        intent.putExtra(SONG_NAME, song.name)
+        intent.putExtra(SONG_ART, song.artist)
+        intent.putExtra(SONG_URI, listSong[position].path)
+        requireContext().startService(intent)
+    }
+
     private fun changeIconAudioPlay() {
-        if (isPlay) {
+        if (isPlaying) {
             imgPlay.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp)
         } else {
             imgPlay.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
@@ -115,11 +149,16 @@ class ListSongFragment : Fragment(), View.OnClickListener {
     private fun setOnClickSongItem(adapter: ListSongAdapter) {
         adapter.setOnClickSongItem(object : HandleOnclickSongItem {
             override fun songItemOnClick(song: Song) {
-                position = listSong.lastIndexOf(song)
-                setMusicPlay()
-                isPlay = true
-                changeIconAudioPlay()
-                (activity as? MusicActivity)?.replaceFragment(AudioPlayFragment.newInstance(song), true)
+                if (!isPlaying || (isPlaying && position != listSong.lastIndexOf(song))) {
+                    position = listSong.lastIndexOf(song)
+                    setMusicPlay()
+                    isPlaying = true
+                    changeIconAudioPlay()
+                    (activity as? MusicActivity)?.replaceFragment(AudioPlayFragment.newInstance(song, isPlaying, STATE_NEED_PLAY), true)
+                } else {
+                    (activity as? MusicActivity)?.replaceFragment(AudioPlayFragment.newInstance(song, isPlaying, STATE_PLAYING), true)
+                }
+
             }
 
             override fun songItemOnLongClick(song: Song) {
@@ -141,7 +180,7 @@ class ListSongFragment : Fragment(), View.OnClickListener {
         Toast.makeText(requireContext(), "Stop service", Toast.LENGTH_SHORT).show()
         val intent = Intent(requireContext(), AudioService::class.java)
         requireContext().stopService(intent)
-        isPlay = false
+        isPlaying = false
     }
 
     private fun setMusicPlay() {

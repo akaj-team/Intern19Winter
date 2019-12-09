@@ -11,13 +11,16 @@ import android.net.Uri
 import android.os.Handler
 import android.os.IBinder
 import android.os.Message
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import asiantech.internship.summer.R
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_PAUSE
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_PLAY
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_START
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_ART
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_NAME
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_URI
 import asiantech.internship.summer.service_broadcast_receiver.fragment.ListSongFragment
-
 
 class AudioService : Service() {
 
@@ -25,6 +28,7 @@ class AudioService : Service() {
     private var player: MediaPlayer? = null
     private lateinit var notificationManager: NotificationManager
     var audioSeekBarUpdateHandler: Handler? = null
+    private var audioPosition = 0
 
     companion object {
         private const val NOTIFICATION_ID = 1
@@ -37,11 +41,25 @@ class AudioService : Service() {
     override fun onCreate() {
         super.onCreate()
         player = MediaPlayer()
+        player?.isLooping = true
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         showNotification(intent)
-        initAudioPlayer(intent)
+        Log.d("xxx", "action ===> ${intent?.action}")
+        when (intent?.action) {
+            ACTION_PAUSE -> {
+                pauseProcess()
+            }
+
+            ACTION_PLAY -> {
+                playProcess()
+            }
+
+            ACTION_START -> {
+                initAudioPlayer(intent)
+            }
+        }
         return START_STICKY
     }
 
@@ -55,6 +73,16 @@ class AudioService : Service() {
             it.release()
         }
         player = null
+    }
+
+    private fun pauseProcess() {
+        player?.pause()
+        audioPosition = currentAudioPosition()
+    }
+
+    private fun playProcess() {
+        player?.seekTo(audioPosition)
+        player?.start()
     }
 
     private fun initAudioPlayer(intent: Intent?) {
