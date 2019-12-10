@@ -39,23 +39,29 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     private var seekBar: SeekBar? = null
     private lateinit var lastSong: Song
     private lateinit var rotate: ObjectAnimator
-    private var isShuffle = false
-    private var shuffledSongs = mutableListOf<Song>()
+
+    companion object {
+        private var isOnCreateFirstTime = false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_music)
-
+        Log.d("aaa", "onCreate")
         songAdapter = SongAdapter(this)
         doBindService()
         initViews()
         initSeekBar()
-        restoreLastSongPlay()
 
+        if (!isOnCreateFirstTime) {
+            restoreLastSongPlay()
+            isOnCreateFirstTime = true
+        }
     }
 
     override fun onStart() {
         super.onStart()
+        Log.d("aaa", "onStart")
         playerAdapter?.apply {
             if (isPlaying()) {
                 restorePlayerStatus()
@@ -65,6 +71,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
 
     override fun onPause() {
         super.onPause()
+        Log.d("aaa", "onPause")
         doUnbindService()
         playerAdapter?.apply {
             if (isMediaPlayer()) {
@@ -75,6 +82,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
 
     override fun onResume() {
         super.onResume()
+        Log.d("aaa", "onResume")
         doBindService()
         playerAdapter?.apply {
             if (isPlaying()) {
@@ -106,8 +114,10 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         }
 
         tbShuffle.setOnCheckedChangeListener { _, isChecked ->
-            isShuffle = isChecked
+            musicService?.mediaPlayerHolder?.setShuffle(isChecked)
         }
+
+
 
         if (deviceSongs.isNotEmpty()) {
             try {
@@ -141,7 +151,6 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
 
             musicService = (iBinder as MusicService.LocalBinder).instance
             playerAdapter = musicService?.mediaPlayerHolder
-            Log.d("aaa", "playerAdapter")
             musicNotificationManager = musicService?.musicNotificationManager
 
             if (playbackListener == null) {
@@ -158,13 +167,6 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         }
 
         override fun onServiceDisconnected(componentName: ComponentName) {
-            val sharedPref = applicationContext?.getSharedPreferences(getString(R.string.shared_prefs_file_name), Context.MODE_PRIVATE)
-                    ?: return
-            Log.d("aaa", "end service" + playerAdapter?.getCurrentSong()?.title.toString())
-            with(sharedPref.edit()) {
-                putString(getString(R.string.shared_prefs_song_index), playerAdapter?.getCurrentSong()?.title)
-                commit()
-            }
             musicService = null
         }
     }
@@ -201,6 +203,13 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
                 imgSongArtCurrent.setImageBitmap(currentSong.path?.let { Utils.songArt(it, this@MusicActivity) })
             }
         }
+
+        musicService?.mediaPlayerHolder?.apply {
+            if (isShuffle()) {
+                tbShuffle.isChecked = true
+            }
+        }
+
         if (isRestore) {
             playerAdapter?.getPlayerPosition()?.let {
                 seekBar?.progress = it
@@ -302,7 +311,6 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
             if (it) {
                 playerAdapter?.instantReset()
             }
-
         }
     }
 

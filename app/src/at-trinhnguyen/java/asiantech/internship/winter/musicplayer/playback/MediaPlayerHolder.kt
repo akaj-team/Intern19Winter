@@ -9,6 +9,7 @@ import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.PowerManager
+import android.util.Log
 import asiantech.internship.summer.R
 import asiantech.internship.winter.musicplayer.model.Song
 import java.util.concurrent.Executors
@@ -25,7 +26,9 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
     private var seekBarPositionUpdateTask: Runnable? = null
     private var selectedSong: Song? = null
     private var songs: List<Song>? = null
+    private var shuffledSongs = mutableListOf<Song>()
     private var isReplaySong = false
+    private var isShuffle = false
     @PlaybackInfoListener.State
     private var state: Int = 0
     private var notificationActionsReceiver: NotificationReceiver? = null
@@ -81,7 +84,6 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
             } catch (e: IllegalArgumentException) {
                 e.printStackTrace()
             }
-
         }
     }
 
@@ -312,29 +314,79 @@ class MediaPlayerHolder(private val musicService: MusicService?) :
         getSkipSong(isNext)
     }
 
+    internal fun setShuffle(isShuffle: Boolean) {
+        this@MediaPlayerHolder.isShuffle = isShuffle
+        if (isShuffle) {
+            songs?.let { songs ->
+                shuffledSongs.apply {
+                    clear()
+                    addAll(songs)
+                    shuffle()
+                    Log.d("bbb", shuffledSongs.subList(0, 4).toString())
+                }
+            }
+        } else {
+            songs?.let { songs ->
+                shuffledSongs.apply {
+                    clear()
+                    addAll(songs)
+                    Log.d("bbb", shuffledSongs.subList(0, 4).toString())
+                }
+            }
+        }
+    }
+
+    internal fun isShuffle(): Boolean {
+        return isShuffle
+    }
+
     private fun getSkipSong(isNext: Boolean) {
         songs?.let { songs ->
-            val currentIndex = songs.indexOf(selectedSong)
-            val index: Int
 
-            try {
-                index = if (isNext) {
-                    currentIndex + 1
-                } else {
-                    currentIndex - 1
+            if (!isShuffle) {
+                val currentIndex = songs.indexOf(selectedSong)
+                val index: Int
+                try {
+                    index = if (isNext) {
+                        currentIndex + 1
+                    } else {
+                        currentIndex - 1
+                    }
+                    val sharedPref = context?.getSharedPreferences(
+                            context.getString(R.string.shared_prefs_file_name),
+                            Context.MODE_PRIVATE)
+                            ?: return
+                    with(sharedPref.edit()) {
+                        putInt(context.getString(R.string.shared_prefs_song_index), index)
+                        commit()
+                    }
+                    selectedSong = songs[index]
+                } catch (e: IndexOutOfBoundsException) {
+                    selectedSong = if (currentIndex != 0) songs[0] else songs[songs.size - 1]
+                    e.printStackTrace()
                 }
-                val sharedPref = context?.getSharedPreferences(
-                        context.getString(R.string.shared_prefs_file_name),
-                        Context.MODE_PRIVATE)
-                        ?: return
-                with(sharedPref.edit()) {
-                    putInt(context.getString(R.string.shared_prefs_song_index), index)
-                    commit()
+            } else {
+                val currentIndex = shuffledSongs.indexOf(selectedSong)
+                val index: Int
+                try {
+                    index = if (isNext) {
+                        currentIndex + 1
+                    } else {
+                        currentIndex - 1
+                    }
+                    val sharedPref = context?.getSharedPreferences(
+                            context.getString(R.string.shared_prefs_file_name),
+                            Context.MODE_PRIVATE)
+                            ?: return
+                    with(sharedPref.edit()) {
+                        putInt(context.getString(R.string.shared_prefs_song_index), index)
+                        commit()
+                    }
+                    selectedSong = shuffledSongs[index]
+                } catch (e: IndexOutOfBoundsException) {
+                    selectedSong = if (currentIndex != 0) shuffledSongs[0] else shuffledSongs[shuffledSongs.size - 1]
+                    e.printStackTrace()
                 }
-                selectedSong = songs[index]
-            } catch (e: IndexOutOfBoundsException) {
-                selectedSong = if (currentIndex != 0) songs[0] else songs[songs.size - 1]
-                e.printStackTrace()
             }
         }
         initMediaPlayer()
