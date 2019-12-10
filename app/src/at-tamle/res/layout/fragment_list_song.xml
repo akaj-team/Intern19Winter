@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvNameMusic"
-        android:src="@android:drawable/ic_media_previous" />
+        android:src="@drawable/ic_arrow_back_black_24dp" />
 
     <ImageButton
         android:id="@+id/imgPlay"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvNameMusic"
         android:layout_toRightOf="@+id/imgPrev"
-        android:src="@android:drawable/ic_media_play" />
+        android:src="@drawable/ic_play_arrow_black_24dp" />
 
     <ImageButton
         android:id="@+id/imgStop"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvNameMusic"
         android:layout_toRightOf="@+id/imgPlay"
-        android:src="@android:drawable/ic_media_stop" />
+        android:src="@drawable/ic_stop_black_24dp" />
 
     <ImageButton
         android:id="@+id/imgNext"
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvNameMusic"
         android:layout_toRightOf="@+id/imgStop"
-        android:src="@android:drawable/ic_media_next" />
+        android:src="@drawable/ic_navigate_next_black_24dp" />
 
     <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/seekBarSong"

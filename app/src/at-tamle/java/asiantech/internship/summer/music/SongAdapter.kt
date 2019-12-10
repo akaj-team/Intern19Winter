@@ -18,7 +18,6 @@ class SongAdapter(private val listSong: MutableList<SongModel>, var mContext: Co
 
     override fun getItemCount(): Int = listSong.size
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBindata(position)
     }

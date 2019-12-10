@@ -7,6 +7,7 @@
     tools:context="asiantech.internship.summer.music.Music2Activity">
 
     <FrameLayout
+        android:id="@+id/frMusic"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
