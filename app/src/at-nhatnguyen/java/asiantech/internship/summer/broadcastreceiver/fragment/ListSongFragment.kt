@@ -2,11 +2,10 @@ package asiantech.internship.summer.broadcastreceiver.fragment
 
 import android.Manifest
 import android.app.Activity
-import android.content.ContentUris
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
+import android.os.IBinder
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
@@ -19,16 +18,15 @@ import asiantech.internship.summer.R
 import asiantech.internship.summer.broadcastreceiver.Service.MusicService
 import asiantech.internship.summer.broadcastreceiver.adapter.ListSongAdapter
 import asiantech.internship.summer.broadcastreceiver.model.SongModel
-import asiantech.internship.summer.broadcastreceiver.model.Utils
 import kotlinx.android.synthetic.`at-nhatnguyen`.fragment_list_song.*
 
 class ListSongFragment : Fragment() {
 
-
     private val REQUEST_CODE_READ = 100
     private lateinit var listSong: MutableList<SongModel>
-    private lateinit var intent: Intent
-    private var isPlay = false
+    private var playIntent: Intent? = null
+    private var musicBound = false
+    private lateinit var musicService: MusicService
 
     companion object {
         fun newInstance() = ListSongFragment()
@@ -46,7 +44,6 @@ class ListSongFragment : Fragment() {
         recyclerView.adapter = adapter
 
         setOnclick(adapter)
-       // playSong()
     }
 
     private fun listSongDevice() {
@@ -86,41 +83,36 @@ class ListSongFragment : Fragment() {
     private fun setOnclick(adapter: ListSongAdapter) {
         adapter.click(object : ListSongAdapter.OnClick {
             override fun click(songModel: SongModel) {
-                tvSongName.text = songModel.songName
-                tvArtist.text = songModel.artist
-                tvDuration.text = adapter.getDuration(songModel.duration)
-                val bitmap = context?.let { Utils.songImg(it, Uri.parse(songModel.path)) }
-                imgSongIcon.setImageBitmap(bitmap)
-                if (bitmap == null) {
-                    imgSongIcon.setImageResource(R.drawable.ic_song)
-                }
-
-                fragmentManager?.beginTransaction()?.
-                        replace(R.id.frlActivity,PlayMp3Fragment.newInstance(songModel))?.addToBackStack(null)?.
-                        commit()
-                //starService(songModel)
+                fragmentManager?.beginTransaction()?.replace(R.id.frlActivity, PlayMp3Fragment.newInstance(songModel))?.
+                        addToBackStack(null)?.commit()
+                val intent = Intent(context, MusicService::class.java)
+                intent.putExtra("ID", songModel.songId)
             }
         })
     }
 
-    private fun starService(songModel:SongModel){
-        intent = Intent(context,MusicService::class.java)
-        context?.stopService(intent)
-        intent.putExtra("URI",songModel.path.toString())
+    private var musicConnection = object : ServiceConnection {
+        override fun onServiceDisconnected(name: ComponentName?) {
+            musicBound = false
+        }
+
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            val binder = service as MusicService.MusicBinder
+            // Log.d("xxx","${listSong.size}")
+
+            musicService = binder.getService
+            musicService.setList(listSong)
+            musicBound = true
+        }
+
     }
 
-     fun playSong(){
-        imgPlay.setOnClickListener {
-            if (isPlay == false){
-                context?.startService(intent)
-                imgPlay.setImageResource(R.drawable.ic_pause_circle_filled)
-                isPlay = true
-            }else{
-                context?.stopService(intent)
-                imgPlay.setImageResource(R.drawable.ic_play_arrow)
-                isPlay = false
-            }
+    override fun onStart() {
+        super.onStart()
+        if (playIntent == null) {
+            playIntent = Intent(context, MusicService::class.java)
+            context?.bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE)
+            context?.startService(playIntent)
         }
     }
-
 }
