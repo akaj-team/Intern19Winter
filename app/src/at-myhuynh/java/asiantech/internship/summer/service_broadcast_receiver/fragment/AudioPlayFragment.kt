@@ -20,6 +20,9 @@ import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.AC
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ARG_Is_PLAYING
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ARG_SONG
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ARG_STATE_SONG
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_ART
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_NAME
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_URI
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.STATE_NEED_PLAY
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.STATE_PLAYING
 import asiantech.internship.summer.service_broadcast_receiver.service.AudioService
@@ -60,17 +63,40 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
         when (stateSong) {
             STATE_NEED_PLAY -> {
                 Log.d("xxx", STATE_NEED_PLAY)
-                startService(song)
+                startOrContinueService(ACTION_START, song)
             }
 
             STATE_PLAYING -> {
-                //Todo continue service
                 Log.d("xxx", STATE_PLAYING)
+                startOrContinueService(ACTION_PLAY, song)
             }
         }
 
         imgPlay.setOnClickListener(this)
         setRotateImageSong()
+    }
+
+    override fun onClick(v: View?) {
+        when (v) {
+            imgPlay -> {
+                isPlaying = if (!isPlaying) {
+                    pauseOrResumeAudio(ACTION_PAUSE)
+                    true
+                } else {
+                    pauseOrResumeAudio(ACTION_PLAY)
+                    false
+                }
+            }
+        }
+    }
+
+    private fun pauseOrResumeAudio(action: String) {
+        changeIconAudioPlay()
+        val intent = Intent(action, Uri.parse(song?.path), requireContext(), AudioService::class.java)
+        intent.putExtra(SONG_URI, song?.path)
+        intent.putExtra(SONG_NAME, song?.name)
+        intent.putExtra(SONG_ART, song?.artist)
+        requireContext().startService(intent)
     }
 
     private fun setRotateImageSong() {
@@ -99,33 +125,13 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun startService(song: Song?) {
-        val intent = Intent(ACTION_START, Uri.parse(song?.path), requireContext(), AudioService::class.java)
+    private fun startOrContinueService(action: String, song: Song?) {
+        val intent = Intent(action, Uri.parse(song?.path), requireContext(), AudioService::class.java)
         requireContext().stopService(intent)
         intent.putExtra(Utils.SONG_NAME, song?.name)
         intent.putExtra(Utils.SONG_ART, song?.artist)
         intent.putExtra(Utils.SONG_URI, song?.path)
         requireContext().startService(intent)
-    }
-
-    override fun onClick(v: View?) {
-        when (v) {
-            imgPlay -> {
-                isPlaying = if (!isPlaying) {
-                    changeIconAudioPlay()
-                    val intent = Intent(ACTION_PAUSE, Uri.parse(song?.path), requireContext(), AudioService::class.java)
-                    intent.putExtra(Utils.SONG_URI, song?.path)
-                    requireContext().startService(intent)
-                    true
-                } else {
-                    changeIconAudioPlay()
-                    val intent = Intent(ACTION_PLAY, Uri.parse(song?.path), requireContext(), AudioService::class.java)
-                    intent.putExtra(Utils.SONG_URI, song?.path)
-                    requireContext().startService(intent)
-                    false
-                }
-            }
-        }
     }
 
     private fun changeIconAudioPlay() {

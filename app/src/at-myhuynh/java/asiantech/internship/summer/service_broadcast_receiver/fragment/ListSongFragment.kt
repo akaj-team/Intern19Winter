@@ -34,6 +34,7 @@ import asiantech.internship.summer.service_broadcast_receiver.service.AudioServi
 import kotlinx.android.synthetic.`at-myhuynh`.fragment_list_song.*
 import java.util.concurrent.TimeUnit
 
+
 class ListSongFragment : Fragment(), View.OnClickListener {
 
     private lateinit var listSong: MutableList<Song>
@@ -116,33 +117,22 @@ class ListSongFragment : Fragment(), View.OnClickListener {
             }
 
             imgPlay -> {
-                isPlaying = if (!isPlaying) {
-                    changeIconAudioPlay()
-                    pauseOrResumeAudio(ACTION_PAUSE)
-                    true
+                if (!(activity as MusicActivity).isMyServiceRunning(AudioService::class.java)) {
+                    Log.d("xxx", "service is not running")
+                    startService(listSong[position])
                 } else {
-                    changeIconAudioPlay()
-                    pauseOrResumeAudio(ACTION_PLAY)
-                    false
+                    Log.d("xxx", "service is running")
+                    isPlaying = if (!isPlaying) {
+                        changeIconAudioPlay()
+                        pauseOrResumeAudio(ACTION_PAUSE)
+                        true
+                    } else {
+                        changeIconAudioPlay()
+                        pauseOrResumeAudio(ACTION_PLAY)
+                        false
+                    }
                 }
             }
-        }
-    }
-
-    private fun pauseOrResumeAudio(action: String) {
-        val song = listSong[position]
-        val intent = Intent(action, Uri.parse(listSong[position].path), requireContext(), AudioService::class.java)
-        intent.putExtra(SONG_NAME, song.name)
-        intent.putExtra(SONG_ART, song.artist)
-        intent.putExtra(SONG_URI, listSong[position].path)
-        requireContext().startService(intent)
-    }
-
-    private fun changeIconAudioPlay() {
-        if (isPlaying) {
-            imgPlay.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp)
-        } else {
-            imgPlay.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
         }
     }
 
@@ -154,11 +144,12 @@ class ListSongFragment : Fragment(), View.OnClickListener {
                     setMusicPlay()
                     isPlaying = true
                     changeIconAudioPlay()
+                    Log.d("xxx" , "Can phat")
                     (activity as? MusicActivity)?.replaceFragment(AudioPlayFragment.newInstance(song, isPlaying, STATE_NEED_PLAY), true)
                 } else {
+                    Log.d("xxx" , "Dang phat")
                     (activity as? MusicActivity)?.replaceFragment(AudioPlayFragment.newInstance(song, isPlaying, STATE_PLAYING), true)
                 }
-
             }
 
             override fun songItemOnLongClick(song: Song) {
@@ -167,9 +158,28 @@ class ListSongFragment : Fragment(), View.OnClickListener {
         })
     }
 
+    private fun pauseOrResumeAudio(action: String) {
+        val song = listSong[position]
+        val intent = Intent(action, Uri.parse(song.path), requireContext(), AudioService::class.java)
+        intent.putExtra(SONG_NAME, song.name)
+        intent.putExtra(SONG_ART, song.artist)
+        intent.putExtra(SONG_URI, song.path)
+        requireContext().startService(intent)
+    }
+
+    private fun changeIconAudioPlay() {
+        if (isPlaying) {
+            imgPlay.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp)
+        } else {
+            imgPlay.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
+        }
+    }
+
     private fun startService(song: Song) {
         val intent = Intent(requireContext(), AudioService::class.java)
         requireContext().stopService(intent)
+        isPlaying = true
+        changeIconAudioPlay()
         intent.putExtra(SONG_NAME, song.name)
         intent.putExtra(SONG_ART, song.artist)
         intent.putExtra(SONG_URI, song.path.toString())
@@ -230,7 +240,7 @@ class ListSongFragment : Fragment(), View.OnClickListener {
                     ":$seconds"
                 }
 
-                Log.d("xxx", songArt)
+//                Log.d("xxx", songArt)
                 if (songArt != SONG_ART_NAME) {
                     listSong.add(Song(songName, songArt, songUri.toString(), duration))
                 }

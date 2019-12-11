@@ -16,11 +16,11 @@ class Utils {
         const val ARG_SONG = "ARG_SONG"
         const val ARG_Is_PLAYING = "ARG_Is_PLAYING"
         const val ARG_STATE_SONG = "ARG_STATE_SONG"
-        const val ACTION_PAUSE = "PAUSE"
-        const val ACTION_PLAY = "PLAY"
-        const val ACTION_START = "START"
-        const val STATE_PLAYING = "PLAYING"
-        const val STATE_NEED_PLAY = "NEED_PLAY"
+        const val ACTION_PAUSE = "ACTION_PAUSE"
+        const val ACTION_PLAY = "ACTION_PLAY"
+        const val ACTION_START = "ACTION_START"
+        const val STATE_PLAYING = "STATE_PLAYING"
+        const val STATE_NEED_PLAY = "STATE_NEED_PLAY"
 
         fun getCoverPicture(context: Context, uri: Uri): Bitmap? {
             val mmr = MediaMetadataRetriever()

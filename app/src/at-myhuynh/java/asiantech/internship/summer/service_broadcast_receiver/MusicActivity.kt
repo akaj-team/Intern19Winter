@@ -1,5 +1,7 @@
 package asiantech.internship.summer.service_broadcast_receiver
 
+import android.app.ActivityManager
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -22,5 +24,15 @@ class MusicActivity : AppCompatActivity() {
         }
         fragmentTransaction.replace(R.id.flFragment, fragment)
         fragmentTransaction.commit()
+    }
+
+     fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
+        val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (service in manager.getRunningServices(Int.MAX_VALUE)) {
+            if (serviceClass.name == service.service.className) {
+                return true
+            }
+        }
+        return false
     }
 }

@@ -45,14 +45,16 @@ class AudioService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        showNotification(intent)
         Log.d("xxx", "action ===> ${intent?.action}")
+        showNotification(intent)
         when (intent?.action) {
             ACTION_PAUSE -> {
+                Log.d("xxx", ACTION_PAUSE)
                 pauseProcess()
             }
 
             ACTION_PLAY -> {
+                Log.d("xxx", ACTION_PLAY)
                 playProcess()
             }
 
@@ -73,6 +75,8 @@ class AudioService : Service() {
             it.release()
         }
         player = null
+        audioSeekBarUpdateHandler = null
+        audioPosition = 0
     }
 
     private fun pauseProcess() {
