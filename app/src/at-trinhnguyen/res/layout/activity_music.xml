@@ -69,6 +69,16 @@
             app:layout_constraintStart_toStartOf="@+id/container"
             app:layout_constraintTop_toTopOf="@+id/container" />
 
+        <ImageButton
+            android:id="@+id/imgBtnDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple_btn"
+            android:src="@drawable/ic_arrow_down"
+            android:tint="@android:color/darker_gray"
+            app:layout_constraintEnd_toStartOf="@id/container"
+            app:layout_constraintTop_toTopOf="@id/container" />
+
         <TextView
             android:id="@+id/tvSongTitle"
             android:layout_width="0dp"
@@ -87,7 +97,7 @@
 
         <TextView
             android:id="@+id/tvArtist"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:singleLine="true"
@@ -95,8 +105,19 @@
             android:textSize="@dimen/text_size_12sp"
             app:layout_constraintBottom_toBottomOf="@id/imgSongArtCurrent"
             app:layout_constraintStart_toStartOf="@id/tvSongTitle"
-            app:layout_constraintTop_toBottomOf="@id/tvSongTitle"
-            tools:text="Artist" />
+            app:layout_constraintTop_toBottomOf="@id/tvSongTitle" />
+
+        <ImageButton
+            android:id="@+id/imgBtnMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:background="@drawable/ripple_btn"
+            android:src="@drawable/ic_more"
+            android:tint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@id/tvArtist"
+            app:layout_constraintStart_toEndOf="@id/container"
+            app:layout_constraintTop_toTopOf="@id/tvSongTitle" />
 
         <TextView
             android:id="@+id/tvDurationLeft"
