@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="@string/title" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listmusic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle" />
+
+    <TextView
+
+        android:id="@+id/tvNameMusic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listmusic"
+        android:layout_marginTop="2dp"
+        android:padding="20dp"
+        android:text="@string/name_music" />
+
+    <ImageButton
+        android:id="@+id/imgPrev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNameMusic"
+        android:src="@drawable/ic_arrow_back_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/imgPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNameMusic"
+        android:layout_toRightOf="@+id/imgPrev"
+        android:src="@drawable/ic_play_arrow_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/imgStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNameMusic"
+        android:layout_toRightOf="@+id/imgPlay"
+        android:src="@drawable/ic_stop_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/imgNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNameMusic"
+        android:layout_toRightOf="@+id/imgStop"
+        android:src="@drawable/ic_navigate_next_black_24dp" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seekBarSong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgStop" />
+
+    <TextView
+        android:id="@+id/tvTimeSong"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBarSong"
+        android:text="@string/time" />
+
+    <TextView
+        android:id="@+id/tvTimeTotal"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBarSong"
+        android:layout_alignParentEnd="true"
+        android:text="@string/time" />
+
+</RelativeLayout>
