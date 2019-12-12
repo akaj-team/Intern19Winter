@@ -25,8 +25,8 @@ class SongAdapter(private val listSong: MutableList<SongModel>, var mContext: Co
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var tvName: TextView = itemView.findViewById(R.id.tvName)
         fun onBindata(position: Int) {
-            val songModel: SongModel = listSong[position]
-            tvName.setText(songModel.songName)
+            val songModel = listSong[position]
+            tvName.text = songModel.songName
         }
     }
 }

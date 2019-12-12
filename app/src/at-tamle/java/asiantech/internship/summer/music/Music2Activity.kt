@@ -32,10 +32,8 @@ class Music2Activity : AppCompatActivity() {
         } else {
 
             Log.d("aaa", "Permission has already been granted")
-            Log.d("aaa", getMusic()[0].path)
+            // Log.d("aaa", getMusic()[0].path)
         }
-
-
         supportFragmentManager.beginTransaction().add(R.id.frMusic, ListSongFragment.newInstance()).commit()
     }
 
@@ -46,7 +44,7 @@ class Music2Activity : AppCompatActivity() {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
 
                     Log.d("aaa", "permission was granted")
-                    Log.d("aaa", getMusic()[0].path)
+                    // Log.d("aaa", getMusic()[0].path)
 
                 } else {
                     Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
@@ -56,37 +54,5 @@ class Music2Activity : AppCompatActivity() {
             else -> {
             }
         }
-    }
-
-    @SuppressLint("InlinedApi")
-    private fun getMusic(): List<SongModel> {
-        val listSong = mutableListOf<SongModel>()
-        val contentResolver = contentResolver
-        val songUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-        val songCursor = contentResolver?.query(songUri, arrayOf(
-//                MediaStore.Audio.Media.ALBUM,
-//                MediaStore.Audio.Media.ARTIST,
-//                MediaStore.Audio.Media.TRACK,
-//                MediaStore.Audio.Media.TITLE,
-                MediaStore.Audio.Media.DISPLAY_NAME,
-                MediaStore.Audio.Media.DATA
-//                MediaStore.Audio.Media.DURATION,
-//                MediaStore.Audio.Media.YEAR
-        ), null, null, null)
-        if (songCursor != null && songCursor.moveToFirst()) {
-            do {
-//                val currentAlbum = songCursor.getString(songCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM))
-//                val currentArtist = songCursor.getString(songCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST))
-//                val currentTrack = songCursor.getInt(songCursor.getColumnIndex(MediaStore.Audio.Media.TRACK))
-//                val currentTitle = songCursor.getString(songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE))
-                val currentName = songCursor.getString(songCursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME))
-                val currentPath = songCursor.getString(songCursor.getColumnIndex(MediaStore.Audio.Media.DATA))
-//                val currentDuration = songCursor.getInt(songCursor.getColumnIndex(MediaStore.Audio.Media.DURATION))
-//                val currentYear = songCursor.getInt(songCursor.getColumnIndex(MediaStore.Audio.Media.YEAR))
-                // listSong.add(SongModel(currentAlbum, currentArtist, currentTrack, currentTitle, currentName, currentPath, currentDuration, currentYear))
-                listSong.add(SongModel(currentName, currentPath))
-            } while (songCursor.moveToNext())
-        }
-        return listSong
     }
 }
