@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#372B57"
     android:padding="@dimen/padding_15">
 
     <ImageView
         android:id="@+id/imgSong"
         android:layout_width="@dimen/img_width_50"
         android:layout_height="@dimen/img_width_50"
-        android:src="@drawable/ic_play_circle_outline_black_24dp"
+        android:src="@drawable/ic_playlist"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,6 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_5"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/imgSong"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Song name" />
@@ -28,18 +31,19 @@
         android:id="@+id/tvSongArtist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvSongName"
         app:layout_constraintTop_toBottomOf="@id/tvSongName"
         tools:text="@string/app_name" />
 
-    <TextView
-        android:id="@+id/tvSongTime"
+    <ImageView
+        android:id="@+id/imgSongMore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/ic_more_horiz_white_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="04:05" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,6 @@
 package asiantech.internship.summer.service_broadcast_receiver.fragment
 
-import android.content.ComponentName
-import android.content.ContentUris
-import android.content.Intent
-import android.content.ServiceConnection
+import android.content.*
 import android.net.Uri
 import android.os.Bundle
 import android.os.IBinder
@@ -19,21 +16,19 @@ import asiantech.internship.summer.R
 import asiantech.internship.summer.service_broadcast_receiver.MusicActivity
 import asiantech.internship.summer.service_broadcast_receiver.Song
 import asiantech.internship.summer.service_broadcast_receiver.Utils
-import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_PAUSE
-import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_PLAY
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_BACK_NOTIFY
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_NEXT_NOTIFY
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_PAUSE_NOTIFY
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_START
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_ART
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_ART_NAME
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_NAME
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_URI
-import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.STATE_NEED_PLAY
-import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.STATE_PLAYING
 import asiantech.internship.summer.service_broadcast_receiver.`interface`.HandleOnclickSongItem
 import asiantech.internship.summer.service_broadcast_receiver.adapter.ListSongAdapter
 import asiantech.internship.summer.service_broadcast_receiver.service.AudioService
 import asiantech.internship.summer.service_broadcast_receiver.service.AudioServiceBinder
 import kotlinx.android.synthetic.`at-myhuynh`.fragment_list_song.*
-import java.util.concurrent.TimeUnit
-
 
 class ListSongFragment : Fragment(), View.OnClickListener {
 
@@ -67,6 +62,19 @@ class ListSongFragment : Fragment(), View.OnClickListener {
         initListSong()
         initView()
         initOnClickListener()
+        bindAudioService()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val filter = IntentFilter(ACTION_NEXT_NOTIFY)
+        filter.addAction(ACTION_BACK_NOTIFY)
+        requireContext().registerReceiver(notificationReceiver, filter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        requireContext().unregisterReceiver(notificationReceiver)
     }
 
     private fun initOnClickListener() {
@@ -83,7 +91,6 @@ class ListSongFragment : Fragment(), View.OnClickListener {
 
     private fun initListSong() {
         getListSong()
-        Log.d("xxx", "${listSong.size}")
         rvListSong.layoutManager = LinearLayoutManager(requireContext())
         listSongAdapter = ListSongAdapter(requireContext(), listSong)
         rvListSong.adapter = listSongAdapter
@@ -103,7 +110,11 @@ class ListSongFragment : Fragment(), View.OnClickListener {
                     position = 0
                 }
                 setMusicPlay()
+                audioServiceBinder?.stopAudio()
                 startService(listSong[position])
+                if (isPlaying) {
+                    playSong(listSong[position])
+                }
             }
 
             imgBack -> {
@@ -113,25 +124,23 @@ class ListSongFragment : Fragment(), View.OnClickListener {
                     position = listSong.size - 1
                 }
                 setMusicPlay()
+                audioServiceBinder?.stopAudio()
                 startService(listSong[position])
+                if (isPlaying) {
+                    playSong(listSong[position])
+                }
             }
 
             imgPlay -> {
-                if (!(activity as MusicActivity).isMyServiceRunning(AudioService::class.java)) {
-                    Log.d("xxx", "service is not running")
+                isPlaying = if (!isPlaying) {
                     startService(listSong[position])
+                    playSong(listSong[position])
+                    true
                 } else {
-                    Log.d("xxx", "service is running")
-                    isPlaying = if (!isPlaying) {
-                        changeIconAudioPlay()
-                        pauseOrResumeAudio(ACTION_PAUSE)
-                        true
-                    } else {
-                        changeIconAudioPlay()
-                        pauseOrResumeAudio(ACTION_PLAY)
-                        false
-                    }
+                    audioServiceBinder?.pauseAudio()
+                    false
                 }
+                changeIconAudioPlay()
             }
         }
     }
@@ -144,27 +153,30 @@ class ListSongFragment : Fragment(), View.OnClickListener {
                     setMusicPlay()
                     isPlaying = true
                     changeIconAudioPlay()
-                    Log.d("xxx" , "Can phat")
-                    (activity as? MusicActivity)?.replaceFragment(AudioPlayFragment.newInstance(song, isPlaying, STATE_NEED_PLAY), true)
+                    Log.d("xxx", "Can phat")
+                    startService(song)
+                    playSong(song)
+                    (activity as? MusicActivity)?.replaceFragment(AudioPlayFragment.newInstance(song, isPlaying, listSong, position), true)
                 } else {
-                    Log.d("xxx" , "Dang phat")
-                    (activity as? MusicActivity)?.replaceFragment(AudioPlayFragment.newInstance(song, isPlaying, STATE_PLAYING), true)
+                    Log.d("xxx", "Dang phat")
+                    (activity as? MusicActivity)?.replaceFragment(AudioPlayFragment.newInstance(song, isPlaying, listSong, position), true)
                 }
             }
 
             override fun songItemOnLongClick(song: Song) {
                 stopService()
+                audioServiceBinder?.stopAudio()
+                unBoundAudioService()
             }
         })
     }
 
-    private fun pauseOrResumeAudio(action: String) {
-        val song = listSong[position]
-        val intent = Intent(action, Uri.parse(song.path), requireContext(), AudioService::class.java)
-        intent.putExtra(SONG_NAME, song.name)
-        intent.putExtra(SONG_ART, song.artist)
-        intent.putExtra(SONG_URI, song.path)
-        requireContext().startService(intent)
+    private fun playSong(song: Song) {
+        audioServiceBinder?.audioFileUri = Uri.parse(song.path)
+        audioServiceBinder?.context = requireContext()
+        audioServiceBinder?.songs = listSong
+        audioServiceBinder?.position = position
+        audioServiceBinder?.startAudio()
     }
 
     private fun changeIconAudioPlay() {
@@ -177,7 +189,6 @@ class ListSongFragment : Fragment(), View.OnClickListener {
 
     private fun startService(song: Song) {
         val intent = Intent(requireContext(), AudioService::class.java)
-        requireContext().stopService(intent)
         isPlaying = true
         changeIconAudioPlay()
         intent.putExtra(SONG_NAME, song.name)
@@ -188,9 +199,10 @@ class ListSongFragment : Fragment(), View.OnClickListener {
 
     private fun stopService() {
         Toast.makeText(requireContext(), "Stop service", Toast.LENGTH_SHORT).show()
+        isPlaying = false
+        changeIconAudioPlay()
         val intent = Intent(requireContext(), AudioService::class.java)
         requireContext().stopService(intent)
-        isPlaying = false
     }
 
     private fun setMusicPlay() {
@@ -201,7 +213,7 @@ class ListSongFragment : Fragment(), View.OnClickListener {
         if (imageBitmap != null) {
             imgSongPlay.setImageBitmap(imageBitmap)
         } else {
-            imgSongPlay.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
+            imgSongPlay.setImageResource(R.drawable.ic_playlist)
         }
     }
 
@@ -213,7 +225,7 @@ class ListSongFragment : Fragment(), View.OnClickListener {
                 MediaStore.Audio.Media._ID,
                 MediaStore.Audio.Media.TITLE,
                 MediaStore.Audio.Media.ARTIST,
-                MediaStore.Audio.Media.DURATION)
+                MediaStore.MediaColumns.DURATION)
         val cursor = contentResolver.query(musicUri, projection, selection, null, null)
 
         listSong = mutableListOf()
@@ -223,26 +235,9 @@ class ListSongFragment : Fragment(), View.OnClickListener {
                 val songName = cursor.getString(1)
                 val songArt = cursor.getString(2)
                 val songDuration = cursor.getString(3).toLong()
-                val minutes = TimeUnit.MILLISECONDS.toMinutes(songDuration)
-                val seconds = TimeUnit.MILLISECONDS.toSeconds(songDuration - TimeUnit.MINUTES.toMillis(minutes))
                 val songUri = ContentUris.withAppendedId(musicUri, songId)
-                var duration: String
-
-                duration = if (minutes < 10) {
-                    "0$minutes"
-                } else {
-                    "$minutes"
-                }
-
-                duration += if (seconds < 10) {
-                    ":0$seconds"
-                } else {
-                    ":$seconds"
-                }
-
-//                Log.d("xxx", songArt)
                 if (songArt != SONG_ART_NAME) {
-                    listSong.add(Song(songName, songArt, songUri.toString(), duration))
+                    listSong.add(Song(songName, songArt, songUri.toString(), songDuration))
                 }
             } while (cursor.moveToNext())
             cursor.close()
@@ -262,6 +257,57 @@ class ListSongFragment : Fragment(), View.OnClickListener {
     private fun unBoundAudioService() {
         audioServiceBinder?.let {
             requireContext().unbindService(serviceConnection)
+        }
+    }
+
+    private fun bindAudioService() {
+        if (audioServiceBinder == null) {
+            val intent = Intent(requireContext(), AudioService::class.java)
+            requireContext().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+        }
+    }
+
+    private val notificationReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            when (intent?.action) {
+                ACTION_NEXT_NOTIFY -> {
+                    requireContext().stopService(Intent(ACTION_START, Uri.parse(listSong[position].path), requireContext(), AudioService::class.java))
+                    if (position < listSong.size - 1) {
+                        position++
+                    } else {
+                        position = 0
+                    }
+                    setMusicPlay()
+                    val song = listSong[position]
+                    val i = Intent(ACTION_START, Uri.parse(song.path), requireContext(), AudioService::class.java)
+                    i.putExtra(SONG_NAME, song.name)
+                    i.putExtra(SONG_ART, song.artist)
+                    i.putExtra(SONG_URI, song.path.toString())
+                    requireContext().startService(i)
+                }
+
+                ACTION_BACK_NOTIFY -> {
+                    requireContext().stopService(Intent(ACTION_START, Uri.parse(listSong[position].path), requireContext(), AudioService::class.java))
+                    if (position > 0) {
+                        position--
+                    } else {
+                        position = listSong.size - 1
+                    }
+                    setMusicPlay()
+                    val song = listSong[position]
+                    val i = Intent(ACTION_START, Uri.parse(song.path), requireContext(), AudioService::class.java)
+                    requireContext().stopService(i)
+                    i.putExtra(SONG_NAME, song.name)
+                    i.putExtra(SONG_ART, song.artist)
+                    i.putExtra(SONG_URI, song.path.toString())
+                    requireContext().startService(i)
+                }
+
+                ACTION_PAUSE_NOTIFY -> {
+                    isPlaying = !isPlaying
+                    changeIconAudioPlay()
+                }
+            }
         }
     }
 }

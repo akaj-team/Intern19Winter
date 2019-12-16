@@ -37,19 +37,17 @@ class ListSongAdapter(private val context: Context, private val listSong: Mutabl
             val songImage = itemView.findViewById<ImageView>(R.id.imgSong)
             val songName = itemView.findViewById<TextView>(R.id.tvSongName)
             val songArtist = itemView.findViewById<TextView>(R.id.tvSongArtist)
-            val songTime = itemView.findViewById<TextView>(R.id.tvSongTime)
             val songItem = listSong[position]
 
             val imageBitmap = Utils.getCoverPicture(context, Uri.parse(songItem.path))
             if (imageBitmap != null) {
                 songImage.setImageBitmap(imageBitmap)
             } else {
-                songImage.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
+                songImage.setImageResource(R.drawable.ic_playlist)
             }
 
             songName.text = songItem.name
             songArtist.text = songItem.artist
-            songTime.text = songItem.duration
 
             itemView.setOnClickListener { songItemOnClick.songItemOnClick(songItem) }
             itemView.setOnLongClickListener {

@@ -27,5 +27,6 @@
     <string name="edittext_hint_phone">+1 234 567 89</string>
     <string name="button_text_save_info">Save Profile</string>
     <string name="edittext_hint_password">1234</string>
+    <string name="edittext_time_start">00:00</string>
 
 </resources>
