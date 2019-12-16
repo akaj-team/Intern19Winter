@@ -1,5 +1,6 @@
 package asiantech.internship.summer.service_broadcast_receiver.fragment
 
+import android.animation.ObjectAnimator
 import android.content.*
 import android.net.Uri
 import android.os.Bundle
@@ -9,9 +10,7 @@ import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import asiantech.internship.summer.R
@@ -37,6 +36,7 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
     private var isPlaying = true
     private var audioServiceBinder: AudioServiceBinder? = null
     private var audioSeekBarUpdateHandler: Handler? = null
+    private var imageSongAnimator: ObjectAnimator? = null
 
     companion object {
         fun newInstance(song: Song, isPlaying: Boolean, songs: MutableList<Song>, position: Int) = AudioPlayFragment().apply {
@@ -120,10 +120,12 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
         when (v) {
             imgPlay -> {
                 if (!isPlaying) {
+                    imageSongAnimator?.resume()
                     playSong()
                     bindUpdateSeekBar()
                 } else {
                     audioServiceBinder?.pauseAudio()
+                    imageSongAnimator?.pause()
                 }
                 isPlaying = !isPlaying
                 changeIconAudioPlay()
@@ -216,14 +218,12 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setRotateImageSong() {
-        val rotateAnimation = RotateAnimation(
-                0f, 360f,
-                Animation.RELATIVE_TO_SELF, 0.5f,
-                Animation.RELATIVE_TO_SELF, 0.5f)
-        rotateAnimation.interpolator = LinearInterpolator()
-        rotateAnimation.duration = 60000
-        rotateAnimation.repeatCount = Animation.INFINITE
-        imgSong.startAnimation(rotateAnimation)
+        imageSongAnimator = ObjectAnimator.ofFloat(imgSong, "rotation", 0f, 360f)
+        imageSongAnimator?.duration = 200000
+        imageSongAnimator?.repeatCount = ObjectAnimator.INFINITE
+        imageSongAnimator?.repeatMode = ObjectAnimator.RESTART
+        imageSongAnimator?.interpolator = LinearInterpolator()
+        imageSongAnimator?.start()
     }
 
     private fun initView() {
