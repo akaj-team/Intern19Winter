@@ -1,57 +1,88 @@
 package asiantech.internship.summer.broadcastreceiver.fragment
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
-import android.media.MediaPlayer
+import android.content.ServiceConnection
 import android.net.Uri
 import android.os.Bundle
+import android.os.IBinder
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.LinearInterpolator
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
-import asiantech.internship.summer.R
 import asiantech.internship.summer.broadcastreceiver.Service.MusicService
 import asiantech.internship.summer.broadcastreceiver.model.SongModel
 import asiantech.internship.summer.broadcastreceiver.model.Utils
 import kotlinx.android.synthetic.`at-nhatnguyen`.fragment_play_mp3.*
+import kotlin.collections.ArrayList
+
 
 class PlayMp3Fragment : Fragment() {
 
+    private lateinit var rotate: ObjectAnimator
+    private var musicBound = false
+    private var position: Int? = 0
     private var ARG_SONG = "songModel"
+    private val LIST_SONG = "listSong"
+    private val POSITION = "position"
     private var songModel: SongModel? = null
     private var playIntent: Intent? = null
     private var musicService = MusicService()
     private var isPlay = false
-    private lateinit var mediaPlayer: MediaPlayer
-    private lateinit var listSong: MutableList<SongModel>
+
+    private lateinit var listSong: ArrayList<SongModel>
 
     companion object {
-        fun newInstance(songModel: SongModel) = PlayMp3Fragment().apply {
+
+        fun newInstance(listSong: ArrayList<SongModel>, position: Int, songModel: SongModel) = PlayMp3Fragment().apply {
             arguments = Bundle().apply {
+                putParcelableArrayList(LIST_SONG, listSong)
+                putInt(POSITION, position)
                 putParcelable(ARG_SONG, songModel)
             }
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_play_mp3, container, false)
+        return inflater.inflate(asiantech.internship.summer.R.layout.fragment_play_mp3, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        listSong = arguments?.getParcelableArrayList(LIST_SONG)!!
+        position = arguments?.getInt(POSITION)
+        Log.d("xxx", "${listSong.size}")
         songModel = arguments?.getParcelable(ARG_SONG)
-        tvSongName.text = songModel?.songName
-        tvEndTime.text = songModel?.duration?.let { getDuration(it) }
-        val bitmap = context?.let { Utils.songImg(it, Uri.parse(songModel?.path)) }
+        // val uri = Uri.parse(songModel?.path)
+        val songModel = listSong[position!!]
+
+
+        tvSongName.text = songModel.songName
+        // tvSongName.text = songModel?.songName
+        tvEndTime.text = getDuration(songModel.duration)
+        val bitmap = context?.let { Utils.songImg(it, Uri.parse(songModel.path)) }
         circleImageView.setImageBitmap(bitmap)
         if (bitmap == null) {
-            circleImageView.setImageResource(R.drawable.ic_music_background)
+            circleImageView.setImageResource(asiantech.internship.summer.R.drawable.ic_music_background)
         }
-        val uri = Uri.parse(songModel?.path)
-        mediaPlayer = MediaPlayer.create(context, uri)
-        mediaPlayer.start()
-        seekBar()
+
+
+        //seekBar()
         control()
+
+        rotate = ObjectAnimator.ofFloat(circleImageView, "rotation", 0f, 360f).apply {
+            duration = 6000
+            repeatCount = ValueAnimator.INFINITE
+            repeatMode = ValueAnimator.RESTART
+            interpolator = LinearInterpolator()
+            start()
+        }
+
     }
 
     private fun getDuration(duration: Int): String {
@@ -60,24 +91,108 @@ class PlayMp3Fragment : Fragment() {
         return String.format("%02d: %02d", minutes, seconds)
     }
 
-    private fun doPrev() {
-        musicService.playPrev()
+    private fun control() {
+        imgPlay.setOnClickListener {
+            if (isPlay == false) {
+                musicService.pause()
+                imgPlay.setImageResource(asiantech.internship.summer.R.drawable.ic_play_arrow)
+                isPlay = true
+                rotate.pause()
+            } else {
+                musicService.start()
+                imgPlay.setImageResource(asiantech.internship.summer.R.drawable.ic_pause_circle_filled)
+                isPlay = false
+                rotate.resume()
+            }
+        }
+
+        imgNexSong.setOnClickListener {
+            nexSong()
+        }
+
+        imgPreviousSong.setOnClickListener {
+            prev()
+        }
     }
 
-    private fun next() {
-        musicService.playNext()
+    private var musicConnection = object : ServiceConnection {
+        override fun onServiceDisconnected(name: ComponentName?) {
+            musicBound = false
+        }
+
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            val binder = service as MusicService.MusicBinder
+
+            musicService = binder.getService
+            musicService.setList(listSong)
+            position?.let { musicService.setSongPosition(it) }
+            musicService.playSong()
+            musicBound = true
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (playIntent == null) {
+            playIntent = Intent(context, MusicService::class.java)
+            context?.bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        activity?.stopService(playIntent)
+    }
+
+    private fun nexSong() {
+        if (isPlay == false){
+            musicService.playNext()
+            setSongData()
+        }else{
+            musicService.playNext()
+            setSongData()
+            imgPlay.setImageResource(asiantech.internship.summer.R.drawable.ic_pause_circle_filled)
+            rotate.resume()
+            isPlay = false
+        }
+    }
+
+    private fun prev() {
+        if (isPlay == false){
+            musicService.playPrev()
+            setSongData()
+        }else{
+            musicService.playPrev()
+            setSongData()
+            imgPlay.setImageResource(asiantech.internship.summer.R.drawable.ic_pause_circle_filled)
+            rotate.resume()
+            isPlay = false
+        }
+    }
+
+    private fun setSongData(){
+        val model = listSong[musicService.getPosition()]
+        tvSongName.text = model.songName
+        val endTime = model.duration
+        tvEndTime.text = getDuration(endTime)
+        val imgBitmap = context?.let { Utils.songImg(it, Uri.parse(model.path)) }
+        circleImageView.setImageBitmap(imgBitmap)
+        if (imgBitmap == null) {
+            circleImageView.setImageResource(asiantech.internship.summer.R.drawable.ic_music_background)
+        }
     }
 
     private fun seekBar() {
+
         val startSeekBar = object : Thread() {
             override fun run() {
                 super.run()
-                val total = mediaPlayer.duration
+                val total = musicService.getDuration()
                 var currentPosition = 0
-                while (currentPosition < total) {
+                while (currentPosition < total!!) {
                     try {
                         sleep(500)
-                        currentPosition = mediaPlayer.currentPosition
+                        currentPosition = musicService.getCurrentPosition()!!
                         seekBar.progress = currentPosition
 
                     } catch (e: InterruptedException) {
@@ -86,14 +201,17 @@ class PlayMp3Fragment : Fragment() {
                 }
             }
         }
-        mediaPlayer.setOnPreparedListener {
-            startSeekBar.start()
-            seekBar.max = mediaPlayer.duration
-        }
+        startSeekBar.start()
+        seekBar.max = musicService.getDuration()!!
+//        mediaPlayer?.setOnPreparedListener {
+//            startSeekBar.start()
+//            seekBar.max = musicService.getDuration()!!
+//        }
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    mediaPlayer.seekTo(progress)
+                    musicService.seekBar(progress)
+                    // mediaPlayer?.seekTo(progress)
                 }
             }
 
@@ -103,36 +221,6 @@ class PlayMp3Fragment : Fragment() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
             }
-
         })
-    }
-
-    private fun control() {
-        imgPlay.setOnClickListener {
-            if (isPlay == false) {
-                mediaPlayer.pause()
-                imgPlay.setImageResource(R.drawable.ic_play_arrow)
-                isPlay = true
-            } else {
-                mediaPlayer.start()
-                imgPlay.setImageResource(R.drawable.ic_pause_circle_filled)
-                isPlay = false
-            }
-        }
-
-        imgNexSong.setOnClickListener {
-            //mediaPlayer.reset()
-          //  next()
-        }
-
-        imgPreviousSong.setOnClickListener {
-            doPrev()
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        playIntent?.let { activity?.stopService(playIntent) }
-        activity?.stopService(playIntent)
     }
 }

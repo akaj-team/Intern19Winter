@@ -2,10 +2,10 @@ package asiantech.internship.summer.broadcastreceiver.fragment
 
 import android.Manifest
 import android.app.Activity
-import android.content.*
+import android.content.ContentUris
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.IBinder
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
@@ -22,11 +22,15 @@ import kotlinx.android.synthetic.`at-nhatnguyen`.fragment_list_song.*
 
 class ListSongFragment : Fragment() {
 
+    private var position: Int = 0
     private val REQUEST_CODE_READ = 100
-    private lateinit var listSong: MutableList<SongModel>
+    private lateinit var listSong: ArrayList<SongModel>
     private var playIntent: Intent? = null
     private var musicBound = false
-    private lateinit var musicService: MusicService
+    private var playMp3Fragment = PlayMp3Fragment()
+    //private lateinit var musicService: MusicService
+    private var musicService = MusicService()
+
 
     companion object {
         fun newInstance() = ListSongFragment()
@@ -37,6 +41,7 @@ class ListSongFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         runTimePermission()
         listSongDevice()
         val adapter = ListSongAdapter(listSong, requireContext())
@@ -44,10 +49,11 @@ class ListSongFragment : Fragment() {
         recyclerView.adapter = adapter
 
         setOnclick(adapter)
+
     }
 
     private fun listSongDevice() {
-        listSong = mutableListOf()
+        listSong = arrayListOf()
         val contentResolver = context?.contentResolver
         val uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
         val cursor = contentResolver?.query(uri, null, null, null, null)
@@ -83,36 +89,14 @@ class ListSongFragment : Fragment() {
     private fun setOnclick(adapter: ListSongAdapter) {
         adapter.click(object : ListSongAdapter.OnClick {
             override fun click(songModel: SongModel) {
-                fragmentManager?.beginTransaction()?.replace(R.id.frlActivity, PlayMp3Fragment.newInstance(songModel))?.
-                        addToBackStack(null)?.commit()
-                val intent = Intent(context, MusicService::class.java)
-                intent.putExtra("ID", songModel.songId)
+                val playIntent = Intent(context, MusicService::class.java)
+                playIntent.putExtra("SongName", songModel.songName)
+                context?.let { ContextCompat.startForegroundService(it, playIntent) }
+
+                position = listSong.indexOf(songModel)
+                fragmentManager?.beginTransaction()?.replace(R.id.frlActivity, PlayMp3Fragment.newInstance(listSong, position, songModel))?.addToBackStack(null)?.commit()
+
             }
         })
-    }
-
-    private var musicConnection = object : ServiceConnection {
-        override fun onServiceDisconnected(name: ComponentName?) {
-            musicBound = false
-        }
-
-        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-            val binder = service as MusicService.MusicBinder
-            // Log.d("xxx","${listSong.size}")
-
-            musicService = binder.getService
-            musicService.setList(listSong)
-            musicBound = true
-        }
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if (playIntent == null) {
-            playIntent = Intent(context, MusicService::class.java)
-            context?.bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE)
-            context?.startService(playIntent)
-        }
     }
 }

@@ -1,6 +1,5 @@
 package asiantech.internship.summer.broadcastreceiver.model
 
-import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
 
