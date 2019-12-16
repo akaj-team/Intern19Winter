@@ -22,9 +22,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import asiantech.internship.summer.R
 import asiantech.internship.winter.musicplayer.model.Song
+import asiantech.internship.winter.musicplayer.network.SongApi
+import asiantech.internship.winter.musicplayer.network.SongResponse
 import asiantech.internship.winter.musicplayer.playback.*
 import kotlinx.android.synthetic.`at-trinhnguyen`.activity_music.*
-
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.SongClicked {
 
@@ -104,6 +108,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         imgBtnPlay.setOnClickListener(this)
         imgBtnNext.setOnClickListener(this)
         imgBtnPrevious.setOnClickListener(this)
+        imgBtnSearch.setOnClickListener(this)
         view.setOnClickListener(this)
         deviceSongs = SongProvider.getAllDeviceSongs(this)
         songAdapter.setOnSongClicked(this)
@@ -132,8 +137,6 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
                 e.printStackTrace()
             }
         }
-
-
 
         rotate = ObjectAnimator.ofFloat(imgSongArtCurrent, "rotation", 0f, 360f).apply {
             duration = 15000
@@ -174,7 +177,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
     private fun checkReadStoragePermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.INTERNET), 1)
         } else getMusic()
     }
 
@@ -350,10 +353,31 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
             R.id.imgBtnPrevious -> {
                 skipPrev()
             }
-            R.id.view -> {
-                restoreLastSongPlay()
+            R.id.imgBtnSearch -> {
+                search()
             }
         }
+    }
+
+    private fun search() {
+        Toast.makeText(this, edtSearch.text, Toast.LENGTH_SHORT).show()
+        val call = SongApi.songApiService.getSong("chung ta khong thuoc ve nhau")
+        call.enqueue(object : Callback<SongResponse> {
+            override fun onFailure(call: Call<SongResponse>, t: Throwable) {
+                Log.d("bbb", "fail")
+                call.cancel()
+            }
+
+            override fun onResponse(call: Call<SongResponse>, response: Response<SongResponse>) {
+
+                response.body()?.let { songResponse ->
+                    //Toast.makeText(applicationContext, songProperty.messages?.get(0)?.attachment?.payload?.url, Toast.LENGTH_SHORT).show()
+                    Log.d("bbb", songResponse.messages.toString())
+
+                }
+            }
+
+        })
     }
 
     private fun restoreLastSongPlay() {
@@ -388,10 +412,6 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
                     }
 
                     override fun onStopTrackingTouch(seekBar: SeekBar) {
-
-                        if (userIsSeeking) {
-
-                        }
                         userIsSeeking = false
                         playerAdapter?.seekTo(userSelectedPosition)
                     }

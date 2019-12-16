@@ -37,4 +37,5 @@
     <string name="textview_minus">-</string>
     <string name="shared_prefs_file_name">shared_prefs_song</string>
     <string name="shared_prefs_song_index">SONG_INDEX</string>
+    <string name="edittext_search_for_songs">Search for songs</string>
 </resources>
