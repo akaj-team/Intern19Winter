@@ -1,8 +1,7 @@
 package asiantech.internship.summer.service.screen
 
-import android.net.Uri
+import android.content.Context
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,18 +11,22 @@ import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 import asiantech.internship.summer.service.adapter.SongAdapter
 import asiantech.internship.summer.service.model.Song
+import asiantech.internship.summer.service.utils.SongUtils.EXTRA_SONGS
 import kotlinx.android.synthetic.`at-vinhnguyen`.fragment_playlist.*
 
 class PlayListFragment : Fragment() {
 
+    private lateinit var songs: ArrayList<Song>
+
     companion object {
-        val MUSIC_URI: Uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-        fun newInstance(): PlayListFragment {
-            return PlayListFragment()
+        fun newInstance(songs: ArrayList<Song>): PlayListFragment {
+            val bundle = Bundle()
+            bundle.putParcelableArrayList(EXTRA_SONGS, songs)
+            val playListFragment = PlayListFragment()
+            playListFragment.arguments = bundle
+            return playListFragment
         }
     }
-
-    var songList = ArrayList<Song>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_playlist, container, false)
@@ -31,47 +34,26 @@ class PlayListFragment : Fragment() {
         return view
     }
 
+    private fun getData() {
+        arguments?.apply {
+            songs = getParcelableArrayList<Song>(EXTRA_SONGS) as ArrayList<Song>
+        }
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
-    }
-
-    private fun initView() {
-        recyclerViewPlaylist.setHasFixedSize(true)
-        recyclerViewPlaylist.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        val adapterSong: SongAdapter
         context?.apply {
-            adapterSong = SongAdapter(songList, this)
-            recyclerViewPlaylist.adapter = adapterSong
+            initView(this)
         }
     }
 
-    private fun getData() {
-        getSongsList()
-    }
-
-    private fun getSongsList() {
-        val cursorCols = arrayOf(
-                MediaStore.Audio.Media._ID,
-                MediaStore.Audio.Media.TITLE,
-                MediaStore.Audio.Media.ARTIST,
-                MediaStore.Audio.Media.DURATION,
-                MediaStore.Audio.Media.DATA
-        )
-
-        val cursor = context?.contentResolver?.query(MUSIC_URI, cursorCols, null, null, MediaStore.Audio.Media.TITLE)
-        cursor?.let {
-            it.moveToFirst()
-            val idIndex = it.getColumnIndex(cursorCols[0])
-            val titleIndex = it.getColumnIndex(cursorCols[1])
-            val artistIndex = it.getColumnIndex(cursorCols[2])
-            val durationIndex = it.getColumnIndex(cursorCols[3])
-            val songArtIndex = it.getColumnIndex(cursorCols[4])
-            while (!it.isAfterLast) {
-                songList.add(Song(it.getInt(idIndex), it.getString(titleIndex), it.getString(artistIndex), it.getInt(durationIndex), it.getString(songArtIndex)))
-                it.moveToNext()
-            }
-        }
-        cursor?.close()
+    private fun initView(context: Context) {
+        songs = SoundCloudActivity.songs
+        val songAdapter = SongAdapter(context, songs)
+        val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        recyclerViewPlaylist.layoutManager = layoutManager
+        recyclerViewPlaylist.setHasFixedSize(true)
+        recyclerViewPlaylist.adapter = songAdapter
     }
 }

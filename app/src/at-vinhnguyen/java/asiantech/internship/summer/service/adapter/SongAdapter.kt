@@ -15,9 +15,9 @@ import asiantech.internship.summer.service.utils.SongUtils
 import java.io.File
 
 
-class SongAdapter(val songsList: MutableList<Song>, val context: Context) : RecyclerView.Adapter<SongAdapter.ViewHolder>() {
+class SongAdapter(val context: Context, val songsList: MutableList<Song>) : RecyclerView.Adapter<SongAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_song, parent, false)
         return ViewHolder(view)
     }
@@ -35,13 +35,13 @@ class SongAdapter(val songsList: MutableList<Song>, val context: Context) : Recy
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         lateinit var onRecyclerViewItemClickListener: OnRecyclerViewItemClick
         val tvSongName = itemView.findViewById<TextView>(R.id.tvSongName)
-        val tvArtists = itemView.findViewById<TextView>(R.id.tvArtist)
+        val tvArtist = itemView.findViewById<TextView>(R.id.tvArtist)
         val imgAlbumArt = itemView.findViewById<ImageView>(R.id.imgViewAlbumArt)
 
         fun bindView(position: Int) {
             itemView.setOnClickListener(this)
             tvSongName.text = songsList[position].title
-            tvArtists.text = songsList[position].artist
+            tvArtist.text = songsList[position].artist
             imgAlbumArt.setImageBitmap(SongUtils.getSongArt(File(songsList[position].songArt).absolutePath, context))
         }
 
