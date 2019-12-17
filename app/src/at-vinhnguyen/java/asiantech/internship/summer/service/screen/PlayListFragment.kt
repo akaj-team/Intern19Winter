@@ -34,17 +34,17 @@ class PlayListFragment : Fragment() {
         return view
     }
 
-    private fun getData() {
-        arguments?.apply {
-            songs = getParcelableArrayList<Song>(EXTRA_SONGS) as ArrayList<Song>
-        }
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.apply {
             initView(this)
+        }
+    }
+
+    private fun getData() {
+        arguments?.apply {
+            songs = getParcelableArrayList<Song>(EXTRA_SONGS) as ArrayList<Song>
         }
     }
 

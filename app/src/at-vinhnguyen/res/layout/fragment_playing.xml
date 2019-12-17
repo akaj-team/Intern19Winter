@@ -65,7 +65,7 @@
         android:orientation="horizontal"
         android:gravity="center">
         <ImageView
-            android:id="@+id/imgSuffle"
+            android:id="@+id/imgShuffle"
             android:src="@drawable/ic_shuffle_black_36dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

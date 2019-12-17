@@ -11,6 +11,9 @@ import asiantech.internship.summer.service.model.Song
 import java.io.ByteArrayInputStream
 
 object SongUtils {
+    const val ACTION_PLAY_AND_PAUSE = "ACTION_PLAY_PAUSE"
+    const val ACTION_NEXT = "ACTION_SKIP_NEXT"
+    const val ACTION_PREVIOUS = "ACTION_SKIP_PREVIOUS"
     const val EXTRA_SONGS = "extra_songs"
     const val EXTRA_SONG_POSITION = "song_position"
     const val DEFAULT_SONG_POSITION = 0
@@ -54,7 +57,12 @@ object SongUtils {
             val durationIndex = it.getColumnIndex(cursorCols[3])
             val songArtIndex = it.getColumnIndex(cursorCols[4])
             while (!it.isAfterLast) {
-                songList.add(Song(it.getInt(idIndex), it.getString(titleIndex), it.getString(artistIndex), MUSIC_URI.toString() + it.getString(idIndex), it.getInt(durationIndex), it.getString(songArtIndex)))
+                songList.add(Song(it.getInt(idIndex),
+                        it.getString(titleIndex),
+                        it.getString(artistIndex),
+                        Uri.withAppendedPath(MUSIC_URI, it.getInt(idIndex).toString()).toString(),
+                        it.getInt(durationIndex),
+                        it.getString(songArtIndex)))
                 it.moveToNext()
             }
         }
@@ -64,5 +72,19 @@ object SongUtils {
 
     fun convertToStringTime(milisecond: Int): String {
         return (String.format("%02d", milisecond / 1000 / 60) + " : " + String.format("%02d", milisecond / 100 % 60))
+    }
+
+    annotation class LoopType {
+        companion object {
+            var LOOP_ALL = 0
+            var LOOP_ONE = 1
+        }
+    }
+    annotation class ActionType {
+        companion object {
+            var ACTION_NEXT_INT = 2
+            var ACTION_PREVIOUS_INT = 0
+            var ACTION_PLAY_AND_PAUSE = 1
+        }
     }
 }

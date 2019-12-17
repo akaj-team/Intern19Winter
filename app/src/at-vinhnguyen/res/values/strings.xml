@@ -24,4 +24,9 @@
     <string name="user_email_com">user@email.com</string>
     <string name="play_list">Play List</string>
     <string name="playing">Playing</string>
+    <string name="channel_name">Sound Cloud</string>
+    <string name="chanel_description">Asian Tech Music Service</string>
+    <string name="pause">Pause</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 </resources>

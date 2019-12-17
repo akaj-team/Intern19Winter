@@ -22,8 +22,8 @@ data class Song(val id: Int,
         p0?.apply {
             writeInt(id)
             writeString(title)
-            writeString(songUri)
             writeString(artist)
+            writeString(songUri)
             writeInt(duration)
             writeString(songArt)
         }
