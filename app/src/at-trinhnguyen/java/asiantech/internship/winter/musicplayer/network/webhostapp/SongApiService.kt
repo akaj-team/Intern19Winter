@@ -1,4 +1,4 @@
-package asiantech.internship.winter.musicplayer.network
+package asiantech.internship.winter.musicplayer.network.webhostapp
 
 import retrofit2.Call
 import retrofit2.Retrofit

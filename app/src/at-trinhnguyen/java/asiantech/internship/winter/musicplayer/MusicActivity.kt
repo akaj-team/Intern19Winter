@@ -22,8 +22,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import asiantech.internship.summer.R
 import asiantech.internship.winter.musicplayer.model.Song
-import asiantech.internship.winter.musicplayer.network.SongApi
-import asiantech.internship.winter.musicplayer.network.SongResponse
+import asiantech.internship.winter.musicplayer.network.mockapi.SongMockApi
+import asiantech.internship.winter.musicplayer.network.mockapi.SongMockApiResponse
+import asiantech.internship.winter.musicplayer.network.webhostapp.SongApi
+import asiantech.internship.winter.musicplayer.network.webhostapp.SongResponse
 import asiantech.internship.winter.musicplayer.playback.*
 import kotlinx.android.synthetic.`at-trinhnguyen`.activity_music.*
 import retrofit2.Call
@@ -359,25 +361,153 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         }
     }
 
+    val rawString = "Cô Thắm Không Về\n" +
+            "Tự Tâm\n" +
+            "Từng Yêu\n" +
+            "Em Muốn Ta Là Gì\n" +
+            "Hongkong 12\n" +
+            "Đi Đu Đưa Đi\n" +
+            "Kết Thúc Thôi Chuyện Của Mình\n" +
+            "Khó Vẽ Nụ Cười\n" +
+            "Nghe Nói Anh Sắp Kết Hôn\n" +
+            "Xiêu Lòng\n" +
+            "Hãy Trao Cho Anh\n" +
+            "Ai Đưa Em Về\n" +
+            "I'm Still Loving You\n" +
+            "Nàng Thơ\n" +
+            "So Close\n" +
+            "Anh Hiểu Không\n" +
+            "Tự Tâm Cover\n" +
+            "Mượn Rượu Tỏ Tình\n" +
+            "Để Mị Nói Cho Mà Nghe\n" +
+            "Cao Ốc 20\n" +
+            "Sáng Mắt Chưa\n" +
+            "Em Ơi Lên Phố Cover\n" +
+            "Say Goodbye\n" +
+            "Bỗng Dưng Anh Thành Người Lạ\n" +
+            "Có Người\n" +
+            "Liệu Giờ\n" +
+            "Lạnh Lẽo\n" +
+            "Em Đây Chẳng Phải Thúy Kiều\n" +
+            "Con Đường Mưa\n" +
+            "Cầu Vồng Khuyết\n" +
+            "Duyên Âm\n" +
+            "Truyền Thái Y\n" +
+            "Ta Là Của Nhau\n" +
+            "Đừng Chờ Anh Nữa\n" +
+            "Tự Dưng Nhớ Anh\n" +
+            "Được Không Anh\n" +
+            "Lắm Mối Tối Ngồi Không\n" +
+            "Kẻ Cắp Gặp Bà Già\n" +
+            "Em Thật May Mắn\n" +
+            "Trời Giấu Trời Mang Đi Cover\n" +
+            "Duyên Nợ Chỉ Là Cái Cớ\n" +
+            "Vì Một Người Ra Đi\n" +
+            "nàng ther\n" +
+            "Dĩ Vãng Phai Màu\n" +
+            "Tưởng Chia Tay Sẽ Vui\n" +
+            "Kẽo Cà Kẽo Kẹt\n" +
+            "Cố Nhớ Để Mà Quên\n" +
+            "Níu Ân Tình\n" +
+            "Nhạt\n" +
+            "Yêu Lại Từ Đầu\n" +
+            "Mãi Mãi Bên Nhau\n" +
+            "1 Phút\n" +
+            "Những Kẻ Mộng Mơ\n" +
+            "Tình Khúc Vàng\n" +
+            "An Tâm Đi Đầu Thai\n" +
+            "Dối Lòng\n" +
+            "Chẳng Một Ai Thấy\n" +
+            "Rực Rỡ Tháng Năm (Tháng Năm Rực Rỡ OST)\n" +
+            "Chờ Ngày Anh Nhận Ra Em (Mối Tình Đầu Của Tôi OST)\n" +
+            "Tôi Không Tin\n" +
+            "Lần Đầu\n" +
+            "Anh Chẳng Sao Mà\n" +
+            "Điều Ngọt Ngào Nhất\n" +
+            "Dĩ Nhiên Em Không Ở Đây\n" +
+            "Đi Về Nơi Xa\n" +
+            "Tình Yêu Lung Linh\n" +
+            "Anh Đưa Em Đi\n" +
+            "Hành Lang Cũ (Hạ Nhớ) Cover\n" +
+            "Người Ta Nói (Ballad Version 2017)\n" +
+            "Nuối Tiếc (Phúc Acoustic 1)\n" +
+            "Nếu Anh Là\n" +
+            "Thương Em Là Điều Anh Không Thể Ngờ\n" +
+            "Em Đừng Hỏi\n" +
+            "Mình Xa Mình Yêu\n" +
+            "Đến Sau Một Người\n" +
+            "Tình Đơn Phương\n" +
+            "Chúng Ta Không Thuộc Về Nhau\n" +
+            "Sai Người Sai Thời Điểm\n" +
+            "Chạy Ngay Đi\n" +
+            "Hẹn Một Mai\n" +
+            "Cầu Hôn\n" +
+            "Xin Cho Mãi Yêu\n" +
+            "Tim Anh Thắt Lại\n" +
+            "Thật Lòng\n" +
+            "Trưởng Thành\n" +
+            "Liệu Anh Có Thể Yêu Em\n" +
+            "Chúng Ta Dừng Lại Ở Đây Thôi\n" +
+            "Nơi Em Muốn Tới\n" +
+            "Xa Một Trời Thương Nhớ\n" +
+            "Hết Yêu Thì Em Cứ Đi\n" +
+            "Điều Không Đơn Giản\n" +
+            "Gánh Mẹ\n" +
+            "Chúng Ta Chẳng Giống Nhau\n" +
+            "Xứng Đôi Cưới Thôi \n" +
+            "Người Ta Thành Đôi Hết Rồi\n" +
+            "Bùa Yêu\n" +
+            "Điều Gì Đến Sẽ Đến\n" +
+            "Lửng Lơ"
+
+    private val songNames: List<String> = rawString.split("\n")
+
     private fun search() {
         Toast.makeText(this, edtSearch.text, Toast.LENGTH_SHORT).show()
-        val call = SongApi.songApiService.getSong("chung ta khong thuoc ve nhau")
-        call.enqueue(object : Callback<SongResponse> {
-            override fun onFailure(call: Call<SongResponse>, t: Throwable) {
-                Log.d("bbb", "fail")
-                call.cancel()
-            }
 
-            override fun onResponse(call: Call<SongResponse>, response: Response<SongResponse>) {
+        songNames.forEach {
+            SongApi.songApiService.getSong(it)
+                    .enqueue(object : Callback<SongResponse> {
+                        override fun onFailure(call: Call<SongResponse>, t: Throwable) {
+                            Log.d("bbb", "fail")
+                            call.cancel()
+                        }
 
-                response.body()?.let { songResponse ->
-                    //Toast.makeText(applicationContext, songProperty.messages?.get(0)?.attachment?.payload?.url, Toast.LENGTH_SHORT).show()
-                    Log.d("bbb", songResponse.messages.toString())
+                        override fun onResponse(call: Call<SongResponse>, response: Response<SongResponse>) {
 
-                }
-            }
+                            response.body()?.let { songResponse ->
+                                //Toast.makeText(applicationContext, songProperty.messages?.get(0)?.attachment?.payload?.url, Toast.LENGTH_SHORT).show()
+                                //Log.d("bbb", songResponse.messages.toString())
+                                val a: List<String> = songResponse.messages?.get(0)?.text.toString().split("Bài ")
+                                val title: List<String> = a[1].split(" của ca sĩ ")
+                                val artist: List<String> = title[1].split(" phải không?")
 
-        })
+                                SongMockApiResponse(
+                                        "",
+                                        title[0],
+                                        artist[0],
+                                        songResponse.messages?.get(1)?.attachment?.payload?.url.toString(),
+                                        songResponse.messages?.get(1)?.attachment?.payload?.url.toString()
+                                ).let { songMockApiResponse ->
+                                    SongMockApi.songMockApiService.postSong(songMockApiResponse)
+                                            .enqueue(object : Callback<SongMockApiResponse> {
+                                                override fun onFailure(call: Call<SongMockApiResponse>, t: Throwable) {
+                                                    Log.d("bbb", "mock fail")
+                                                    call.cancel()
+                                                }
+
+                                                override fun onResponse(call: Call<SongMockApiResponse>, response: Response<SongMockApiResponse>) {
+                                                    response.body()?.let { songResponse ->
+                                                        Log.d("bbb", songResponse.toString())
+                                                    }
+
+                                                }
+                                            })
+                                }
+                            }
+                        }
+                    })
+        }
     }
 
     private fun restoreLastSongPlay() {
@@ -385,7 +515,11 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
             val songIndex = getInt(getString(R.string.shared_prefs_song_index), 0)
             Log.d("aaa", "song index $songIndex")
             recyclerView.postDelayed({
-                onSongSelected(deviceSongs[songIndex], deviceSongs)
+                try {
+                    onSongSelected(deviceSongs[songIndex], deviceSongs)
+                } catch (e: IndexOutOfBoundsException) {
+                    e.printStackTrace()
+                }
                 (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(songIndex, 160)
             }, 2000)
         }
