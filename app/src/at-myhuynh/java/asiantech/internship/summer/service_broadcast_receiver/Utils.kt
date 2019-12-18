@@ -21,7 +21,7 @@ class Utils {
         const val ACTION_PAUSE_NOTIFY = "ACTION_PAUSE_NOTIFY"
         const val ACTION_BACK_NOTIFY = "ACTION_BACK_NOTIFY"
         const val ACTION_NEXT_NOTIFY = "ACTION_NEXT_NOTIFY"
-        const val ACTION_START = "ACTION_START"
+        const val ACTION_CLEAR_NOTIFY = "ACTION_CLEAR_NOTIFY"
 
         fun getCoverPicture(context: Context, uri: Uri): Bitmap? {
             val mmr = MediaMetadataRetriever()

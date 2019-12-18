@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
 import android.os.Message
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import asiantech.internship.summer.R
 import asiantech.internship.summer.service_broadcast_receiver.Song
 import asiantech.internship.summer.service_broadcast_receiver.Utils
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_BACK_NOTIFY
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_CLEAR_NOTIFY
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_NEXT_NOTIFY
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_PAUSE_NOTIFY
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ARG_Is_PLAYING
@@ -108,6 +110,8 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
         super.onResume()
         val filter = IntentFilter(ACTION_NEXT_NOTIFY)
         filter.addAction(ACTION_BACK_NOTIFY)
+        filter.addAction(ACTION_PAUSE_NOTIFY)
+        filter.addAction(ACTION_CLEAR_NOTIFY)
         requireContext().registerReceiver(notificationReceiver, filter)
     }
 
@@ -170,9 +174,11 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
 
     private val notificationReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
+            Log.d("xxx", "Fragment Play")
             when (intent?.action) {
                 ACTION_NEXT_NOTIFY -> {
                     initNextAudio()
+
                 }
 
                 ACTION_BACK_NOTIFY -> {
@@ -247,8 +253,11 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
     private fun changeIconAudioPlay() {
         if (isPlaying) {
             imgPlay.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp)
+            imageSongAnimator?.resume()
+
         } else {
             imgPlay.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
+            imageSongAnimator?.pause()
         }
     }
 

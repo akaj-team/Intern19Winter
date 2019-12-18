@@ -17,9 +17,9 @@ import asiantech.internship.summer.service_broadcast_receiver.MusicActivity
 import asiantech.internship.summer.service_broadcast_receiver.Song
 import asiantech.internship.summer.service_broadcast_receiver.Utils
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_BACK_NOTIFY
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_CLEAR_NOTIFY
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_NEXT_NOTIFY
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_PAUSE_NOTIFY
-import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_START
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_ART
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_ART_NAME
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SONG_NAME
@@ -69,6 +69,8 @@ class ListSongFragment : Fragment(), View.OnClickListener {
         super.onResume()
         val filter = IntentFilter(ACTION_NEXT_NOTIFY)
         filter.addAction(ACTION_BACK_NOTIFY)
+        filter.addAction(ACTION_PAUSE_NOTIFY)
+        filter.addAction(ACTION_CLEAR_NOTIFY)
         requireContext().registerReceiver(notificationReceiver, filter)
     }
 
@@ -154,6 +156,7 @@ class ListSongFragment : Fragment(), View.OnClickListener {
                     isPlaying = true
                     changeIconAudioPlay()
                     Log.d("xxx", "Can phat")
+                    audioServiceBinder?.stopAudio()
                     startService(song)
                     playSong(song)
                     (activity as? MusicActivity)?.replaceFragment(AudioPlayFragment.newInstance(song, isPlaying, listSong, position), true)
@@ -181,9 +184,9 @@ class ListSongFragment : Fragment(), View.OnClickListener {
 
     private fun changeIconAudioPlay() {
         if (isPlaying) {
-            imgPlay.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp)
-        } else {
             imgPlay.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
+        } else {
+            imgPlay.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp)
         }
     }
 
@@ -269,45 +272,46 @@ class ListSongFragment : Fragment(), View.OnClickListener {
 
     private val notificationReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
+            Log.d("xxx", "List song fragment - ${intent?.action}")
             when (intent?.action) {
                 ACTION_NEXT_NOTIFY -> {
-                    requireContext().stopService(Intent(ACTION_START, Uri.parse(listSong[position].path), requireContext(), AudioService::class.java))
                     if (position < listSong.size - 1) {
                         position++
                     } else {
                         position = 0
                     }
                     setMusicPlay()
-                    val song = listSong[position]
-                    val i = Intent(ACTION_START, Uri.parse(song.path), requireContext(), AudioService::class.java)
-                    i.putExtra(SONG_NAME, song.name)
-                    i.putExtra(SONG_ART, song.artist)
-                    i.putExtra(SONG_URI, song.path.toString())
-                    requireContext().startService(i)
+                    startForegroundService(listSong)
                 }
 
                 ACTION_BACK_NOTIFY -> {
-                    requireContext().stopService(Intent(ACTION_START, Uri.parse(listSong[position].path), requireContext(), AudioService::class.java))
                     if (position > 0) {
                         position--
                     } else {
                         position = listSong.size - 1
                     }
                     setMusicPlay()
-                    val song = listSong[position]
-                    val i = Intent(ACTION_START, Uri.parse(song.path), requireContext(), AudioService::class.java)
-                    requireContext().stopService(i)
-                    i.putExtra(SONG_NAME, song.name)
-                    i.putExtra(SONG_ART, song.artist)
-                    i.putExtra(SONG_URI, song.path.toString())
-                    requireContext().startService(i)
+                    startForegroundService(listSong)
                 }
 
                 ACTION_PAUSE_NOTIFY -> {
                     isPlaying = !isPlaying
                     changeIconAudioPlay()
                 }
+
+                ACTION_CLEAR_NOTIFY -> {
+                    Log.d("xxx", "ListSongFragment - Close")
+                }
             }
         }
+    }
+
+    private fun startForegroundService(songs: MutableList<Song>?) {
+        val song = songs?.get(position)
+        val intent = Intent(requireContext(), AudioService::class.java)
+        intent.putExtra(SONG_NAME, song?.name)
+        intent.putExtra(SONG_ART, song?.artist)
+        intent.putExtra(SONG_URI, song?.path.toString())
+        requireContext().startService(intent)
     }
 }
