@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="asiantech.internship.summer">
-    <uses-feature android:name="android.hardware.camera"
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
 
     <application
@@ -11,15 +16,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".layouteditor.CreateAccountActivity"/>
+
+        <activity android:name=".layouteditor.CreateAccountActivity" />
         <activity android:name=".layouteditor.LoginActivity" />
-        <activity android:name=".layouteditor.EditProfileActivity">
+        <activity android:name=".layouteditor.EditProfileActivity" />
+        <activity android:name=".broadcastreceiver.MusicActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".broadcastreceiver.Service.MusicService"/>
     </application>
+
+
 
 </manifest>
