@@ -7,41 +7,59 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import asiantech.internship.summer.R
 import asiantech.internship.summer.savedata.TodoListActivity
 import asiantech.internship.summer.savedata.adapter.TodoListHomeTodoAdapter
-import asiantech.internship.summer.savedata.data.TodoListDatabaseHelper
 import asiantech.internship.summer.savedata.entity.Todo
+import asiantech.internship.summer.savedata.interfaces.APITodoInterface
 import asiantech.internship.summer.savedata.interfaces.TodoItemOnclick
 import kotlinx.android.synthetic.`at-myhuynh`.fragment_todo_list_home_todo.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class TodoListHomeTodoFragment : Fragment() {
 
-    private lateinit var todoListDatabase: TodoListDatabaseHelper
     private lateinit var todoLists: MutableList<Todo>
-    private var userId = -1
+    private val baseUrl = "https://5dfb221b38678a00145fa94a.mockapi.io/api/v1/"
+    private lateinit var homeTodoAdapter: TodoListHomeTodoAdapter
 
     companion object {
-        private const val ARG_USER_ID = "userId"
-        fun newInstance(userId: Int) = TodoListHomeTodoFragment().apply {
-            arguments = Bundle().apply {
-                putInt(ARG_USER_ID, userId)
-            }
-        }
+        fun newInstance() = TodoListHomeTodoFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            userId = it.getInt(ARG_USER_ID)
-        }
+        val retrofit = Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
 
-        todoListDatabase = TodoListDatabaseHelper(requireContext())
-        todoLists = todoListDatabase.readTodos(userId)
+        val service = retrofit.create(APITodoInterface::class.java)
+        val call = service.getAllTodoData()
+        call.enqueue(object : Callback<MutableList<Todo>> {
+            override fun onFailure(call: Call<MutableList<Todo>>, t: Throwable) {
+                Log.d("xxx", "onFailure -> ${t.message}")
+            }
+
+            override fun onResponse(call: Call<MutableList<Todo>>, response: Response<MutableList<Todo>>) {
+                if (response.code() == 200) {
+                    val response = response.body()
+                    response?.forEach {
+                        Log.d("xxx", "${it.id} - ${it.title} - ${it.status}")
+                    }
+                    response?.let {
+                        todoLists = it
+                    }
+                }
+            }
+        })
     }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -55,9 +73,12 @@ class TodoListHomeTodoFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        todoListDatabase = TodoListDatabaseHelper(requireContext())
         rvHomeTodo.layoutManager = LinearLayoutManager(requireContext())
-        val homeTodoAdapter = TodoListHomeTodoAdapter(todoLists)
+        todoLists = mutableListOf()
+
+        Log.d("xxx", todoLists.size.toString())
+
+        homeTodoAdapter = TodoListHomeTodoAdapter(todoLists)
         rvHomeTodo.adapter = homeTodoAdapter
         setOnClickListenerTodoItem(homeTodoAdapter)
     }
@@ -65,28 +86,16 @@ class TodoListHomeTodoFragment : Fragment() {
     private fun setOnClickListenerTodoItem(adapter: TodoListHomeTodoAdapter) {
         adapter.setTodoItemOnClick(object : TodoItemOnclick {
             override fun editTodoOnClick(todo: Todo) {
-                (activity as? TodoListActivity)?.replaceFragment(TodoListAddTodoFragment.newInstance(todo.id, todo.userId, todo.title, todo.status), true)
+                (activity as? TodoListActivity)?.replaceFragment(TodoListAddTodoFragment.newInstance(todo.id, todo.title, todo.status), true)
             }
 
             override fun deleteTodoOnClick(todo: Todo) {
-                val delete = todoListDatabase.deleteTodo(todo)
                 todoLists.remove(todo)
                 adapter.notifyDataSetChanged()
-                Toast.makeText(requireContext(), "Deleted $delete", Toast.LENGTH_SHORT).show()
             }
 
             override fun checkBoxTodoOnClick(todo: Todo) {
-                if (todo.status == 0) {
-                    todo.status = 1
-                } else todo.status = 0
-
-                val update = todoListDatabase.updateTodo(todo)
-                todoLists = todoListDatabase.readTodos(todo.userId)
-
-                todoListDatabase.readTodos(todo.userId).forEach {
-                    Log.d("zzz", "${it.id} - ${it.userId} - ${it.title} - ${it.status}")
-                }
-                Toast.makeText(requireContext(), "Update $update", Toast.LENGTH_SHORT).show()
+                todo.status = !todo.status
             }
         })
     }

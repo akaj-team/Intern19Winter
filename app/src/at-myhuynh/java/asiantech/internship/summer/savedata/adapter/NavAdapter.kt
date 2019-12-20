@@ -1,6 +1,5 @@
 package asiantech.internship.summer.savedata.adapter
 
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
 import asiantech.internship.summer.savedata.entity.NavItem
-import asiantech.internship.summer.savedata.entity.User
 import asiantech.internship.summer.savedata.interfaces.NavItemOnClick
 
-class NavAdapter(val user: User, val navItems: MutableList<NavItem>) :
+class NavAdapter(val navItems: MutableList<NavItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var navItemOnClick: NavItemOnClick? = null
@@ -54,14 +52,8 @@ class NavAdapter(val user: User, val navItems: MutableList<NavItem>) :
     inner class NavHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBindData() {
             val imgAvatar = itemView.findViewById<ImageView>(R.id.imgAvatar)
-            val tvUserName = itemView.findViewById<TextView>(R.id.tvUserName)
 
-            if (user.avatar != null) {
-                imgAvatar.setImageBitmap(BitmapFactory.decodeFile(user.avatar))
-            } else {
-                imgAvatar.setImageResource(R.drawable.ic_avatar_default)
-            }
-            tvUserName.text = user.userName
+            imgAvatar.setImageResource(R.drawable.ic_avatar_default)
         }
     }
 

@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import asiantech.internship.summer.R
-import asiantech.internship.summer.savedata.fragment.TodoListLoginFragment
+import asiantech.internship.summer.savedata.fragment.TodoListHomeFragment
 
 class TodoListActivity : AppCompatActivity() {
 
@@ -12,7 +12,7 @@ class TodoListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo_list)
 
-        replaceFragment(TodoListLoginFragment.newInstance(), false)
+        replaceFragment(TodoListHomeFragment.newInstance(), false)
     }
 
     fun replaceFragment(fragment: Fragment, isAddToBackStack: Boolean) {

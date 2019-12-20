@@ -40,7 +40,7 @@ class TodoListHomeTodoAdapter(private val todoLists: MutableList<Todo>) :
             val imgDelete = itemView.findViewById<ImageView>(R.id.imgDelete)
 
             tvTodoContent.text = todoItem.title
-            if (todoItem.status == 1) {
+            if (todoItem.status) {
                 checkBoxStatus.isChecked = true
             }
 
