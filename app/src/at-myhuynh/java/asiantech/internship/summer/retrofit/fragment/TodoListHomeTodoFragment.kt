@@ -58,6 +58,7 @@ class TodoListHomeTodoFragment : Fragment() {
 
             override fun deleteTodoOnClick(todo: Todo) {
                 todoLists.remove(todo)
+                todoViewModel.deleteTodo(todo.id)
                 adapter.notifyDataSetChanged()
             }
 

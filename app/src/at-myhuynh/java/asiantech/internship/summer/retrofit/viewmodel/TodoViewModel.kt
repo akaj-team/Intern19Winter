@@ -7,8 +7,9 @@ import asiantech.internship.summer.retrofit.repository.TodoRepository
 class TodoViewModel(application: Application) : AndroidViewModel(application) {
 
     private val todoRepository = TodoRepository.newInstance()
-    private val todoResponseLiveData = todoRepository.getAllTodo()
 
-    fun getTodoResponseLiveData() = todoResponseLiveData
+    fun getTodoResponseLiveData() = todoRepository.getAllTodo()
+
+    fun deleteTodo(id: Int) = todoRepository.deleteTodo(id)
 
 }

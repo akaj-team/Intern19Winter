@@ -7,6 +7,7 @@ import asiantech.internship.summer.retrofit.model.Todo
 import asiantech.internship.summer.retrofit.retrofit.APIRequest
 import asiantech.internship.summer.retrofit.retrofit.RetrofitRequest
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class TodoRepository {
@@ -20,7 +21,7 @@ class TodoRepository {
 
     fun getAllTodo(): LiveData<MutableList<Todo>> {
         val data = MutableLiveData<MutableList<Todo>>()
-        apiRequest?.getAllTodo()?.enqueue(object : retrofit2.Callback<MutableList<Todo>> {
+        apiRequest?.getAllTodo()?.enqueue(object : Callback<MutableList<Todo>> {
             override fun onFailure(call: Call<MutableList<Todo>>, t: Throwable) {
                 Log.d("xxx", "Fail: ${t.message}")
             }
@@ -34,5 +35,22 @@ class TodoRepository {
         })
 
         return data
+    }
+
+    fun deleteTodo(id: Int): Todo? {
+        var todoDelete: Todo? = null
+        apiRequest?.deleteTodo(id)?.enqueue(object : Callback<Todo> {
+            override fun onFailure(call: Call<Todo>, t: Throwable) {
+                Log.d("xxx", "Fail: ${t.message}")
+            }
+
+            override fun onResponse(call: Call<Todo>, response: Response<Todo>) {
+                response.body()?.let {
+                    todoDelete = it
+                }
+            }
+
+        })
+        return todoDelete
     }
 }
