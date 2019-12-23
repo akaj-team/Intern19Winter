@@ -1,10 +1,12 @@
 package asiantech.internship.summer.service.screen
 
 import android.Manifest
-import android.content.ServiceConnection
+import android.R.attr
+import android.app.Fragment
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +19,8 @@ import asiantech.internship.summer.service.utils.SongUtils.DEFAULT_SONG_POSITION
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.`at-vinhnguyen`.activity_soundclound.*
 
-class SoundCloudActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener, OnRecyclerViewItemClick {
+
+class SoundCloudActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener, OnRecyclerViewItemClick, PlaySongListener {
 
     companion object {
         private const val MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 100
@@ -72,8 +75,25 @@ class SoundCloudActivity : AppCompatActivity(), BottomNavigationView.OnNavigatio
         }
     }
 
+
     override fun onRecyclerViewItemClickListener(songId: Int) {
         currentSongId = songId
         bottomNavigationHome.selectedItemId = R.id.itemPlaying
+    }
+
+    override fun onPlay() {
+        Log.i("TestMp3", "Playing OnPlay SoundCloud Activity")
+    }
+
+    override fun onNext() {
+    }
+
+    override fun onPrevious() {
+    }
+
+    override fun changeLoop() {
+    }
+
+    override fun changeShuffle() {
     }
 }

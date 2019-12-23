@@ -42,7 +42,7 @@ class SongNotification(private var context: Context) {
             }
             notificationManager.createNotificationChannel(notificationChannel)
         }
-        action = NotificationCompat.Action(R.drawable.ic_pause_black_60dp, context.getString(R.string.pause),
+        action = NotificationCompat.Action(R.drawable.ic_pause_black_80dp, context.getString(R.string.pause),
                 pendingIntentAction(SongUtils.ACTION_PLAY_AND_PAUSE))
         builder = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL).setSmallIcon(
                 R.drawable.ic_music_note_black_24dp)
@@ -75,7 +75,7 @@ class SongNotification(private var context: Context) {
 
     fun updatePlayPauseNotification(isPlaying: Boolean) {
         if (isPlaying) {
-            action.icon = R.drawable.ic_pause_black_60dp
+            action.icon = R.drawable.ic_pause_black_80dp
         } else {
             action.icon = R.drawable.ic_play_arrow_black_60dp
         }

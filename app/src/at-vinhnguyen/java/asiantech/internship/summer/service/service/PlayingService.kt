@@ -8,12 +8,12 @@ import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Binder
 import android.os.IBinder
+import android.util.Log
 import asiantech.internship.summer.service.model.Song
-import asiantech.internship.summer.service.utils.SongUtils.LoopType
-import asiantech.internship.summer.service.utils.SongUtils
 import asiantech.internship.summer.service.utils.SongUtils.DEFAULT_SONG_POSITION
 import asiantech.internship.summer.service.utils.SongUtils.EXTRA_SONGS
 import asiantech.internship.summer.service.utils.SongUtils.EXTRA_SONG_POSITION
+import asiantech.internship.summer.service.utils.SongUtils.LoopType
 
 
 class PlayingService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
@@ -21,9 +21,8 @@ class PlayingService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.On
     private lateinit var songs: ArrayList<Song>
     private lateinit var mediaPlayer: MediaPlayer
     private var currentSongPosition = 0
-    private var loopType = SongUtils.LoopType.LOOP_ALL
+    private var loopType = LoopType.LOOP_ALL
     private lateinit var songBinder: SongBinder
-    private lateinit var onMediaPlayChange: OnMediaPlayChange
 
     companion object {
         fun getPlayingServiceIntent(context: Context, songs: ArrayList<Song>, currentSongPosition: Int): Intent {
@@ -32,11 +31,19 @@ class PlayingService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.On
             playingServiceIntent.putExtra(EXTRA_SONG_POSITION, currentSongPosition)
             return playingServiceIntent
         }
+
+    }
+
+    private fun initMediaPlayer() {
+        mediaPlayer = MediaPlayer()
+        mediaPlayer.setAudioAttributes(AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_MUSIC).build())
+        mediaPlayer.setOnPreparedListener(this)
     }
 
     override fun onCreate() {
         super.onCreate()
         songBinder = SongBinder()
+        initMediaPlayer()
     }
 
     override fun onBind(p0: Intent?): IBinder? {
@@ -58,8 +65,8 @@ class PlayingService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.On
 
     override fun onCompletion(p0: MediaPlayer?) {
         when (loopType) {
-            SongUtils.LoopType.LOOP_ALL -> nextSong()
-            SongUtils.LoopType.LOOP_ONE -> playSong()
+            LoopType.LOOP_ALL -> nextSong()
+            LoopType.LOOP_ONE -> playSong()
         }
     }
 
@@ -69,23 +76,33 @@ class PlayingService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.On
     }
 
     private fun playSong() {
+        mediaPlayer.stop()
+        mediaPlayer.release()
+        initMediaPlayer()
         val song = songs[currentSongPosition]
-        mediaPlayer = MediaPlayer()
-        mediaPlayer.setAudioAttributes(AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_MUSIC).build())
         mediaPlayer.setDataSource(applicationContext, Uri.parse(song.songUri))
-        mediaPlayer.setOnPreparedListener(this)
         mediaPlayer.prepareAsync()
     }
 
     private fun nextSong() {
-        if (++currentSongPosition >= songs.size) {
+        currentSongPosition++
+        if (currentSongPosition >= songs.size) {
             currentSongPosition = DEFAULT_SONG_POSITION
         }
         playSong()
     }
 
-    fun setOnMediaChangeListener(onMediaPlayChange: OnMediaPlayChange) {
-        this.onMediaPlayChange = onMediaPlayChange
+    fun getDuration(): Int {
+        return mediaPlayer.duration
+    }
+
+    fun getCurrentPosition(): Int {
+        return mediaPlayer.currentPosition
+    }
+
+    fun seekTo(progress: Int) {
+        Log.d("TestMp3", "Call Seekto : $progress")
+        mediaPlayer.seekTo(progress)
     }
 
     inner class SongBinder : Binder() {

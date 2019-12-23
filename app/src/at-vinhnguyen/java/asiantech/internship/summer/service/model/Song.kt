@@ -15,8 +15,7 @@ data class Song(val id: Int,
             parcel.readString().toString(),
             parcel.readString().toString(),
             parcel.readInt(),
-            parcel.readString().toString()) {
-    }
+            parcel.readString().toString())
 
     override fun writeToParcel(p0: Parcel?, p1: Int) {
         p0?.apply {

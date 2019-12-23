@@ -14,7 +14,7 @@ import asiantech.internship.summer.service.model.Song
 import asiantech.internship.summer.service.utils.SongUtils.EXTRA_SONGS
 import kotlinx.android.synthetic.`at-vinhnguyen`.fragment_playlist.*
 
-class PlayListFragment : Fragment() {
+class PlayListFragment : Fragment(){
 
     private lateinit var songs: ArrayList<Song>
 

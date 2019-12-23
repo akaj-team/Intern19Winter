@@ -71,7 +71,7 @@ object SongUtils {
     }
 
     fun convertToStringTime(milisecond: Int): String {
-        return (String.format("%02d", milisecond / 1000 / 60) + " : " + String.format("%02d", milisecond / 100 % 60))
+        return (String.format("%02d", milisecond / 1000 / 60) + " : " + String.format("%02d", milisecond / 1000 % 60))
     }
 
     annotation class LoopType {
@@ -80,6 +80,7 @@ object SongUtils {
             var LOOP_ONE = 1
         }
     }
+
     annotation class ActionType {
         companion object {
             var ACTION_NEXT_INT = 2
