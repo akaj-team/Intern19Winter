@@ -65,7 +65,11 @@ class TodoListAddTodoFragment : Fragment() {
                 if (title.isEmpty()) {
                     Toast.makeText(requireContext(), "Input Todo", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(requireContext(), "Update", Toast.LENGTH_SHORT).show()
+                    val todo = Todo().apply {
+                        id = todoId
+                        this.title = title
+                    }
+                    updateTodo(todo)
                     (activity as? TodoListActivity)?.removeFragmentInBackStack(TodoListHomeFragment.newInstance())
                     (activity as? TodoListActivity)?.replaceFragment(TodoListHomeFragment.newInstance(), false)
                 }
@@ -76,5 +80,9 @@ class TodoListAddTodoFragment : Fragment() {
 
     private fun createNewTodo(todo: Todo) {
         todoViewModel.createNewTodo(todo)
+    }
+
+    private fun updateTodo(todo: Todo) {
+        todoViewModel.updateTodo(todo)
     }
 }

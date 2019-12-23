@@ -13,6 +13,8 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
 
     fun createNewTodo(todo: Todo) = todoRepository.createNewTodo(todo)
 
+    fun updateTodo(todo: Todo) = todoRepository.updateTodo(todo)
+
     fun deleteTodo(id: Int) = todoRepository.deleteTodo(id)
 
 }

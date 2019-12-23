@@ -54,6 +54,23 @@ class TodoRepository {
         return todoResult
     }
 
+    fun updateTodo(todo: Todo): Todo? {
+        var todoUpdated: Todo? = null
+        apiRequest?.updateTodo(todo.id, todo)?.enqueue(object : Callback<Todo> {
+            override fun onFailure(call: Call<Todo>, t: Throwable) {
+                Log.d("xxx", "Fail: ${t.message}")
+            }
+
+            override fun onResponse(call: Call<Todo>, response: Response<Todo>) {
+                response.body()?.let {
+                    todoUpdated = it
+                }
+            }
+
+        })
+        return todoUpdated
+    }
+
     fun deleteTodo(id: Int): Todo? {
         var todoDelete: Todo? = null
         apiRequest?.deleteTodo(id)?.enqueue(object : Callback<Todo> {

@@ -12,6 +12,9 @@ interface APIRequest {
     @POST("todo")
     fun createNewTodo(@Body todo: Todo): Call<Todo>
 
+    @PUT("todo/{id}")
+    fun updateTodo(@Path("id") int: Int, @Body todo: Todo): Call<Todo>
+
     @DELETE("todo/{id}")
     fun deleteTodo(@Path("id") id: Int): Call<Todo>
 
