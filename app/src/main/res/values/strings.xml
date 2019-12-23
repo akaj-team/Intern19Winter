@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Intern18Summer</string>
+    <string name="replay">Replay</string>
+    <string name="shuffle">Shuffle</string>
 </resources>
