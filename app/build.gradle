@@ -4,6 +4,9 @@ apply plugin: 'kotlin-android'
 
 
 android {
+    dataBinding {
+        enabled = true
+    }
     compileSdkVersion 29
     defaultConfig {
         applicationId "asiantech.internship.summer"
@@ -12,6 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "THE_MOVIE_API_KEY", "\"${THE_MOVIE_API_KEY}\""
     }
     buildTypes {
         release {
