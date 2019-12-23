@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import asiantech.internship.summer.R
 import asiantech.internship.summer.retrofit.TodoListActivity
+import asiantech.internship.summer.retrofit.model.Todo
+import asiantech.internship.summer.retrofit.viewmodel.TodoViewModel
 import kotlinx.android.synthetic.`at-myhuynh`.fragment_todo_list_add_note.*
 
 class TodoListAddTodoFragment : Fragment() {
@@ -15,6 +18,7 @@ class TodoListAddTodoFragment : Fragment() {
     private var todoId: Int = -1
     private var title: String? = null
     private var status: Boolean = false
+    private lateinit var todoViewModel: TodoViewModel
 
     companion object {
         private const val ARG_TODO_ID = "id"
@@ -52,6 +56,8 @@ class TodoListAddTodoFragment : Fragment() {
                 if (title.isEmpty()) {
                     Toast.makeText(requireContext(), "Input Todo", Toast.LENGTH_SHORT).show()
                 } else {
+                    val todo = Todo().apply { this.title = title }
+                    createNewTodo(todo)
                     (activity as? TodoListActivity)?.removeFragmentInBackStack(TodoListHomeFragment.newInstance())
                     (activity as? TodoListActivity)?.replaceFragment(TodoListHomeFragment.newInstance(), false)
                 }
@@ -65,5 +71,10 @@ class TodoListAddTodoFragment : Fragment() {
                 }
             }
         }
+        todoViewModel = ViewModelProviders.of(requireActivity()).get(TodoViewModel::class.java)
+    }
+
+    private fun createNewTodo(todo: Todo) {
+        todoViewModel.createNewTodo(todo)
     }
 }
