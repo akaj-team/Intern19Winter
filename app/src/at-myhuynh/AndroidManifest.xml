@@ -26,7 +26,7 @@
             android:name=".kotlinActivity.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".savedata.TodoListActivity"
+            android:name=".retrofit.TodoListActivity"
             android:theme="@style/AppTheme.NoActionBar.">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

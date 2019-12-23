@@ -1,4 +1,4 @@
-package asiantech.internship.summer.savedata.adapter
+package asiantech.internship.summer.retrofit.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
-import asiantech.internship.summer.savedata.entity.Todo
-import asiantech.internship.summer.savedata.interfaces.TodoItemOnclick
+import asiantech.internship.summer.retrofit.interfaces.TodoItemOnclick
+import asiantech.internship.summer.retrofit.model.Todo
 
 class TodoListHomeTodoAdapter(private val todoLists: MutableList<Todo>) :
         RecyclerView.Adapter<TodoListHomeTodoAdapter.HomeTodoViewHolder>() {
@@ -40,9 +40,7 @@ class TodoListHomeTodoAdapter(private val todoLists: MutableList<Todo>) :
             val imgDelete = itemView.findViewById<ImageView>(R.id.imgDelete)
 
             tvTodoContent.text = todoItem.title
-            if (todoItem.status) {
-                checkBoxStatus.isChecked = true
-            }
+            checkBoxStatus.isChecked = todoItem.status
 
             imgEdit.setOnClickListener {
                 todoOnClick?.editTodoOnClick(todoItem)

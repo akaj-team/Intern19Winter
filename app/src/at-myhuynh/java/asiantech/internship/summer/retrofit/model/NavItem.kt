@@ -1,4 +1,4 @@
-package asiantech.internship.summer.savedata.entity
+package asiantech.internship.summer.retrofit.model
 
 import androidx.fragment.app.Fragment
 

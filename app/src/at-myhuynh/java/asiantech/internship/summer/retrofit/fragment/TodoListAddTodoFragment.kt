@@ -1,4 +1,4 @@
-package asiantech.internship.summer.savedata.fragment
+package asiantech.internship.summer.retrofit.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import asiantech.internship.summer.R
-import asiantech.internship.summer.savedata.TodoListActivity
+import asiantech.internship.summer.retrofit.TodoListActivity
 import kotlinx.android.synthetic.`at-myhuynh`.fragment_todo_list_add_note.*
 
 class TodoListAddTodoFragment : Fragment() {

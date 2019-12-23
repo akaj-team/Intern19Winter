@@ -1,4 +1,4 @@
-package asiantech.internship.summer.savedata.fragment
+package asiantech.internship.summer.retrofit.fragment
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -10,17 +10,18 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import asiantech.internship.summer.R
-import asiantech.internship.summer.savedata.Constants.Companion.KEY_USER_ID
-import asiantech.internship.summer.savedata.Constants.Companion.NAV_ADD_TODO
-import asiantech.internship.summer.savedata.Constants.Companion.NAV_LOG_OUT
-import asiantech.internship.summer.savedata.Constants.Companion.TAB_DONE
-import asiantech.internship.summer.savedata.Constants.Companion.TAB_TODO
-import asiantech.internship.summer.savedata.TodoListActivity
-import asiantech.internship.summer.savedata.adapter.NavAdapter
-import asiantech.internship.summer.savedata.adapter.TodoListHomeAdapter
-import asiantech.internship.summer.savedata.entity.NavItem
-import asiantech.internship.summer.savedata.entity.Tab
-import asiantech.internship.summer.savedata.interfaces.NavItemOnClick
+import asiantech.internship.summer.retrofit.Constants.Companion.KEY_USER_ID
+import asiantech.internship.summer.retrofit.Constants.Companion.NAV_ADD_TODO
+import asiantech.internship.summer.retrofit.Constants.Companion.NAV_LOG_OUT
+import asiantech.internship.summer.retrofit.Constants.Companion.TAB_DONE
+import asiantech.internship.summer.retrofit.Constants.Companion.TAB_TODO
+import asiantech.internship.summer.retrofit.TodoListActivity
+import asiantech.internship.summer.retrofit.adapter.NavAdapter
+import asiantech.internship.summer.retrofit.adapter.TodoListHomeAdapter
+import asiantech.internship.summer.retrofit.interfaces.NavItemOnClick
+import asiantech.internship.summer.retrofit.model.NavItem
+import asiantech.internship.summer.retrofit.model.Tab
+
 import kotlinx.android.synthetic.`at-myhuynh`.fragment_todo_list_home.*
 
 class TodoListHomeFragment : Fragment() {
@@ -46,7 +47,6 @@ class TodoListHomeFragment : Fragment() {
         vpHome.adapter = vpAdapter
         tlHome.setupWithViewPager(vpHome)
 
-        navItems = mutableListOf()
         val navAdapter = NavAdapter(navItems)
         rvNavigation.layoutManager = LinearLayoutManager(requireContext())
         rvNavigation.adapter = navAdapter

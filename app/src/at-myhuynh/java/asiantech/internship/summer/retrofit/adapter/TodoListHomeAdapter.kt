@@ -1,9 +1,9 @@
-package asiantech.internship.summer.savedata.adapter
+package asiantech.internship.summer.retrofit.adapter
 
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
-import asiantech.internship.summer.savedata.entity.Tab
+import asiantech.internship.summer.retrofit.model.Tab
 
 class TodoListHomeAdapter(fm: FragmentManager, private val tabTodos: MutableList<Tab>) :
         FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {

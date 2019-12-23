@@ -1,4 +1,4 @@
-package asiantech.internship.summer.savedata.adapter
+package asiantech.internship.summer.retrofit.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
-import asiantech.internship.summer.savedata.entity.NavItem
-import asiantech.internship.summer.savedata.interfaces.NavItemOnClick
+
+import asiantech.internship.summer.retrofit.interfaces.NavItemOnClick
+import asiantech.internship.summer.retrofit.model.NavItem
 
 class NavAdapter(val navItems: MutableList<NavItem>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {

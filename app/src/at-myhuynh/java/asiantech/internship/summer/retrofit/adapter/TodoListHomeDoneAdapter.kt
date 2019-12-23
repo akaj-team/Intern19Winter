@@ -1,4 +1,4 @@
-package asiantech.internship.summer.savedata.adapter
+package asiantech.internship.summer.retrofit.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
-import asiantech.internship.summer.savedata.entity.Todo
+import asiantech.internship.summer.retrofit.model.Todo
 
 class TodoListHomeDoneAdapter(private var todoLists: MutableList<Todo>) :
         RecyclerView.Adapter<TodoListHomeDoneAdapter.HomeTodoListDoneViewHolder>() {
