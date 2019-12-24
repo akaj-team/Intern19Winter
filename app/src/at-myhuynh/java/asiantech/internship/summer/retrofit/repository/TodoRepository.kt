@@ -28,7 +28,7 @@ class TodoRepository {
 
             override fun onResponse(call: Call<MutableList<Todo>>, response: Response<MutableList<Todo>>) {
                 response.body()?.let {
-                    data.value = response.body()
+                    data.value = it
                 }
             }
 

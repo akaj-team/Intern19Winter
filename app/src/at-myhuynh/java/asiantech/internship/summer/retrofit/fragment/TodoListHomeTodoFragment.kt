@@ -57,13 +57,15 @@ class TodoListHomeTodoFragment : Fragment() {
             }
 
             override fun deleteTodoOnClick(todo: Todo) {
+                val position = todoLists.indexOf(todo)
                 todoLists.remove(todo)
                 todoViewModel.deleteTodo(todo.id)
-                adapter.notifyDataSetChanged()
+                adapter.notifyItemRemoved(position)
             }
 
             override fun checkBoxTodoOnClick(todo: Todo) {
                 todo.status = !todo.status
+                updateStatusTodo(todo)
             }
         })
     }
@@ -75,5 +77,9 @@ class TodoListHomeTodoFragment : Fragment() {
             }
             homeTodoAdapter.notifyDataSetChanged()
         })
+    }
+
+    private fun updateStatusTodo(todo: Todo) {
+        todoViewModel.updateTodo(todo)
     }
 }
