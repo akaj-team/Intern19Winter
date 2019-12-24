@@ -26,5 +26,12 @@
     <string name="textview_text_private_information">Private Information</string>
     <string name="textview_text_phone">Phone</string>
     <string name="button_text_save_profile">Save Profile</string>
+    <string name="textview_text_content">Content</string>
+    <string name="textview_text_todoName">todoName</string>
+    <string name="textview_text_todo_name">Todo Name</string>
+    <string name="button_text_update">Update</string>
+    <string name="button_text_add">add</string>
+    <string name="textview_text_content">Content</string>
+    <string name="textview_text_todo_name">Todo Name</string>
 
 </resources>
