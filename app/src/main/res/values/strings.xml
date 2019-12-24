@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Intern18Summer</string>
+    <string name="textview_text_todoname">todoName</string>
 </resources>
