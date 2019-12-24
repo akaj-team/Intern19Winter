@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/tvTodoName"
-        android:text="Todo Name "
+        android:text="@string/textview_text_todo_name"
         android:layout_marginLeft="@dimen/margin_20dp"
         android:layout_marginTop="@dimen/margin_20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,8 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:autofillHints=""
-        android:inputType="TODO" />
+        android:inputType="text"
+        tools:ignore="LabelFor,UnusedAttribute" />
 
     <TextView
         android:id="@+id/tvContent"
