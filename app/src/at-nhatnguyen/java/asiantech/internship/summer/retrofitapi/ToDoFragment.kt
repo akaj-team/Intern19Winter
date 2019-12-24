@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import asiantech.internship.summer.R
 import asiantech.internship.summer.retrofitapi.retrofit.ApiRequest
 import asiantech.internship.summer.retrofitapi.retrofit.RetrofitRequest
-import kotlinx.android.synthetic.main.fragment_list_todo.*
+import kotlinx.android.synthetic.`at-nhatnguyen`.fragment_list_todo.*
 import retrofit2.Callback
 import retrofit2.Response
 
