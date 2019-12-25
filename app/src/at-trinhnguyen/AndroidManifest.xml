@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="asiantech.internship.winter.canvas.PaintActivity" />
         <activity android:name="asiantech.internship.winter.layouteditor.EditProfileActivity" />
         <activity android:name="asiantech.internship.winter.layouteditor.SignUpActivity" />
         <activity android:name="asiantech.internship.winter.canvas.CanvasActivity">

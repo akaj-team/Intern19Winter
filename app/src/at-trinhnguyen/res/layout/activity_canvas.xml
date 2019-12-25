@@ -6,14 +6,16 @@
     android:layout_height="match_parent"
     tools:context="asiantech.internship.winter.canvas.CanvasActivity">
 
-    <ImageView
+    <TextView
+        android:id="@+id/tvDraw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_12dp"
+        android:layout_marginBottom="@dimen/margin_12dp"
+        android:text="@string/textview_text_draw"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <asiantech.internship.winter.canvas.AnalogClock
         android:layout_width="wrap_content"
