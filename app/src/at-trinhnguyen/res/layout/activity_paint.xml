@@ -11,10 +11,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <asiantech.internship.winter.canvas.ColorSeekBar
+        android:id="@+id/colorSeekBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_36dp"
+        android:layout_marginEnd="@dimen/margin_36dp"
+        android:layout_marginBottom="@dimen/margin_54dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/tbPickColor"
+        android:layout_width="@dimen/button_32dp"
+        android:layout_height="@dimen/button_32dp"
+        android:layout_marginEnd="@dimen/margin_20dp"
+        android:background="@drawable/bg_tb_pick_color"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintBottom_toBottomOf="@id/tbEraser"
+        app:layout_constraintEnd_toStartOf="@id/tbEraser"
+        app:layout_constraintTop_toTopOf="@id/tbEraser" />
+
     <ToggleButton
         android:id="@+id/tbEraser"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/button_28dp"
+        android:layout_height="@dimen/button_28dp"
         android:layout_marginEnd="@dimen/margin_16dp"
         android:layout_marginBottom="@dimen/margin_16dp"
         android:background="@drawable/bg_tb_eraser"

@@ -1,5 +1,6 @@
 package asiantech.internship.winter.canvas
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -21,7 +22,7 @@ class PaintView : View {
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
     private val backgroundColor = ResourcesCompat.getColor(resources, R.color.colorBackground, null)
-    private val paintColor = ResourcesCompat.getColor(resources, R.color.colorPaint, null)
+    private var paintColor = ResourcesCompat.getColor(resources, R.color.colorPaint, null)
     private var motionTouchEventX = 0f
     private var motionTouchEventY = 0f
     private var currentX = 0f
@@ -67,6 +68,7 @@ class PaintView : View {
         canvas?.drawBitmap(extraBitmap, 0f, 0f, null)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         motionTouchEventX = event.x
         motionTouchEventY = event.y
@@ -110,6 +112,10 @@ class PaintView : View {
     }
 
     fun setEraser(isEraser: Boolean) {
-        this.isEraser = isEraser
+        this@PaintView.isEraser = isEraser
+    }
+
+    fun setPaintColor(color: Int) {
+        paint.color = color
     }
 }
