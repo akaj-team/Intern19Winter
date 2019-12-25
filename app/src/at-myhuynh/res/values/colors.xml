@@ -7,4 +7,5 @@
     <color name="colorBlack">#030f09</color>
     <color name="colorGreen">#30be76</color>
     <color name="colorBack">#767676</color>
+    <color name="colorViewLine">#A79F9F</color>
 </resources>
