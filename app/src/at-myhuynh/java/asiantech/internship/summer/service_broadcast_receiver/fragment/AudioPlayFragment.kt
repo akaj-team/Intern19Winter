@@ -36,6 +36,8 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
     private var songs: MutableList<Song>? = null
     private var position = 0
     private var isPlaying = true
+    private var isShuffle = false
+    private var repeat = 0
     private var audioServiceBinder: AudioServiceBinder? = null
     private var audioSeekBarUpdateHandler: Handler? = null
     private var imageSongAnimator: ObjectAnimator? = null
@@ -59,7 +61,6 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
                         val currPosition = audioPlayFragment.audioServiceBinder?.currentAudioPosition()?.toLong()
                         if (currProgress != null && audioPlayFragment.seekBar != null) {
                             audioPlayFragment.seekBar.progress = currProgress
-//                            Log.d("xxx", currProgress.toString())
                         }
 
                         if (currPosition != null && audioPlayFragment.tvTimePlaying != null) {
@@ -78,6 +79,9 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
             songs = it.getParcelableArrayList(ARG_LIST_SONG)
             position = it.getInt(ARG_POSITION_SONG)
         }
+        isShuffle = Utils.readIsShuffle(requireContext())
+        repeat = Utils.readAudioRepeat(requireContext())
+        Log.d("xxx", "repeat: $repeat")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -91,6 +95,8 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
         imgPlay.setOnClickListener(this)
         imgNext.setOnClickListener(this)
         imgBack.setOnClickListener(this)
+        imgShuffle.setOnClickListener(this)
+        imgRepeat.setOnClickListener(this)
         setRotateImageSong()
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -103,7 +109,6 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
             }
         })
         bindAudioService()
-        bindUpdateSeekBar()
     }
 
     override fun onResume() {
@@ -113,6 +118,7 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
         filter.addAction(ACTION_PAUSE_NOTIFY)
         filter.addAction(ACTION_CLEAR_NOTIFY)
         requireContext().registerReceiver(notificationReceiver, filter)
+        bindUpdateSeekBar()
     }
 
     override fun onPause() {
@@ -136,24 +142,42 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
             }
 
             imgNext -> {
-                initNextAudio()
                 audioServiceBinder?.nextAudio()
+                initNextAudio()
             }
 
             imgBack -> {
-                initPreviousAudio()
                 audioServiceBinder?.previousAudio()
+                initPreviousAudio()
+            }
+
+            imgShuffle -> {
+                isShuffle = !isShuffle
+                if (isShuffle) {
+                    imgShuffle.setImageResource(R.drawable.ic_shuffle_red_24dp)
+                } else {
+                    imgShuffle.setImageResource(R.drawable.ic_shuffle_black_24dp)
+                }
+                Utils.writeSharedPreferences(requireContext(), isShuffle, repeat)
+            }
+
+            imgRepeat -> {
+                if (repeat < 2) repeat++
+                else if (repeat == 2) repeat = 0
+                when (repeat) {
+                    0 -> imgRepeat.setImageResource(R.drawable.ic_repeat_white_24dp)
+                    1 -> imgRepeat.setImageResource(R.drawable.ic_repeat_one_red_24dp)
+                    2 -> imgRepeat.setImageResource(R.drawable.ic_repeat_red_24dp)
+                }
+                Utils.writeSharedPreferences(requireContext(), isShuffle, repeat)
             }
         }
     }
 
     private fun initNextAudio() {
+        position = Utils.readAudioPosition(requireContext())
+        Log.d("xxx", "initNextAudio: $position")
         songs?.let {
-            if (position < it.size - 1) {
-                position++
-            } else {
-                position = 0
-            }
             initView()
             requireContext().stopService(Intent(requireContext(), AudioService::class.java))
             startService(songs)
@@ -162,13 +186,12 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
     }
 
     private fun initPreviousAudio() {
+        position = Utils.readAudioPosition(requireContext())
         songs?.let {
-            if (position > 0) {
-                position--
-            } else {
-                position = it.size - 1
-            }
             initView()
+            requireContext().stopService(Intent(requireContext(), AudioService::class.java))
+            startService(songs)
+            bindUpdateSeekBar()
         }
     }
 
@@ -192,7 +215,6 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
             }
         }
     }
-
 
     private fun startService(songs: MutableList<Song>?) {
         val song = songs?.get(position)
@@ -247,6 +269,18 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
             imgSong.setImageBitmap(imageBitmap)
         } else {
             imgSong.setImageResource(R.drawable.ic_play_circle_outline_black_200dp)
+        }
+
+        if (isShuffle) {
+            imgShuffle.setImageResource(R.drawable.ic_shuffle_red_24dp)
+        } else {
+            imgShuffle.setImageResource(R.drawable.ic_shuffle_black_24dp)
+        }
+
+        when (repeat) {
+            0 -> imgRepeat.setImageResource(R.drawable.ic_repeat_white_24dp)
+            1 -> imgRepeat.setImageResource(R.drawable.ic_repeat_one_red_24dp)
+            2 -> imgRepeat.setImageResource(R.drawable.ic_repeat_red_24dp)
         }
     }
 

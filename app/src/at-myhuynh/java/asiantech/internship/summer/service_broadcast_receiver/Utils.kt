@@ -23,6 +23,11 @@ class Utils {
         const val ACTION_NEXT_NOTIFY = "ACTION_NEXT_NOTIFY"
         const val ACTION_CLEAR_NOTIFY = "ACTION_CLEAR_NOTIFY"
 
+        private const val KEY_SHUFFLE = "KEY_SHUFFLE"
+        private const val KEY_REPEAT = "KEY_REPEAT"
+        private const val KEY_POSITION = "KEY_POSITION"
+        private const val PREFERENCE = "MyMusic"
+
         fun getCoverPicture(context: Context, uri: Uri): Bitmap? {
             val mmr = MediaMetadataRetriever()
             val rawArt: ByteArray?
@@ -52,6 +57,36 @@ class Utils {
                 ":$seconds"
             }
             return duration
+        }
+
+        fun writeSharedPreferences(context: Context, isShuffle: Boolean, repeat: Int) {
+            val preferences = context.getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE)
+            val preferencesEditor = preferences.edit()
+            preferencesEditor.putBoolean(KEY_SHUFFLE, isShuffle)
+            preferencesEditor.putInt(KEY_REPEAT, repeat)
+            preferencesEditor.apply()
+        }
+
+        fun readIsShuffle(context: Context): Boolean {
+            val preferences = context.getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE)
+            return preferences.getBoolean(KEY_SHUFFLE, false)
+        }
+
+        fun readAudioRepeat(context: Context): Int {
+            val preferences = context.getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE)
+            return preferences.getInt(KEY_REPEAT, 0)
+        }
+
+        fun writePositionPreferences(context: Context, position: Int) {
+            val preferences = context.getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE)
+            val preferencesEditor = preferences.edit()
+            preferencesEditor.putInt(KEY_POSITION, position)
+            preferencesEditor.apply()
+        }
+
+        fun readAudioPosition(context: Context): Int {
+            val preferences = context.getSharedPreferences(PREFERENCE, Context.MODE_PRIVATE)
+            return preferences.getInt(KEY_POSITION, 0)
         }
     }
 }

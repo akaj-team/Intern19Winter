@@ -60,6 +60,7 @@ class ListSongFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListSong()
+        position = Utils.readAudioPosition(requireContext())
         initView()
         initOnClickListener()
         bindAudioService()
@@ -106,27 +107,20 @@ class ListSongFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v) {
             imgNext -> {
-                if (position < listSong.size - 1) {
-                    position++
-                } else {
-                    position = 0
-                }
+                audioServiceBinder?.context = requireContext()
+                audioServiceBinder?.songs = listSong
+                audioServiceBinder?.nextAudio()
                 setMusicPlay()
-                audioServiceBinder?.stopAudio()
-                startService(listSong[position])
                 if (isPlaying) {
-                    playSong(listSong[position])
+                    startService(listSong[position])
                 }
             }
 
             imgBack -> {
-                if (position > 0) {
-                    position--
-                } else {
-                    position = listSong.size - 1
-                }
+                audioServiceBinder?.context = requireContext()
+                audioServiceBinder?.songs = listSong
+                audioServiceBinder?.previousAudio()
                 setMusicPlay()
-                audioServiceBinder?.stopAudio()
                 startService(listSong[position])
                 if (isPlaying) {
                     playSong(listSong[position])
@@ -152,6 +146,7 @@ class ListSongFragment : Fragment(), View.OnClickListener {
             override fun songItemOnClick(song: Song) {
                 if (!isPlaying || (isPlaying && position != listSong.lastIndexOf(song))) {
                     position = listSong.lastIndexOf(song)
+                    Utils.writePositionPreferences(requireContext(), position)
                     setMusicPlay()
                     isPlaying = true
                     changeIconAudioPlay()
@@ -184,9 +179,9 @@ class ListSongFragment : Fragment(), View.OnClickListener {
 
     private fun changeIconAudioPlay() {
         if (isPlaying) {
-            imgPlay.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
-        } else {
             imgPlay.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp)
+        } else {
+            imgPlay.setImageResource(R.drawable.ic_play_circle_outline_black_24dp)
         }
     }
 
@@ -209,6 +204,7 @@ class ListSongFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setMusicPlay() {
+        position = Utils.readAudioPosition(requireContext())
         val song = listSong[position]
         tvSongName.text = song.name
         tvSongArtistPlay.text = song.artist
@@ -297,10 +293,6 @@ class ListSongFragment : Fragment(), View.OnClickListener {
                 ACTION_PAUSE_NOTIFY -> {
                     isPlaying = !isPlaying
                     changeIconAudioPlay()
-                }
-
-                ACTION_CLEAR_NOTIFY -> {
-                    Log.d("xxx", "ListSongFragment - Close")
                 }
             }
         }

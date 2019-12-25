@@ -27,7 +27,7 @@ import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.SO
 class AudioService : Service() {
 
     private val audioServiceBinder = AudioServiceBinder()
-    private lateinit var notificationManager: NotificationManager
+    private var notificationManager: NotificationManager? = null
     private lateinit var remoteViews: RemoteViews
 
     companion object {
@@ -45,7 +45,7 @@ class AudioService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        notificationManager.cancel(NOTIFICATION_ID)
+        notificationManager?.cancel(NOTIFICATION_ID)
         unregisterReceiver(notificationReceiver)
     }
 
@@ -76,6 +76,8 @@ class AudioService : Service() {
 
                 ACTION_CLEAR_NOTIFY -> {
                     Log.d("xxx", " Close service")
+                    audioServiceBinder.stopAudio()
+                    stopSelf()
                 }
             }
         }

@@ -6,19 +6,23 @@ import android.net.Uri
 import android.os.Binder
 import android.os.Handler
 import android.os.Message
-import android.util.Log
 import asiantech.internship.summer.service_broadcast_receiver.Song
+import asiantech.internship.summer.service_broadcast_receiver.Utils
 import java.io.IOException
+import kotlin.random.Random
 
 class AudioServiceBinder : Binder() {
-    private var player: MediaPlayer? = null
-    var audioFileUri: Uri? = null
-    var context: Context? = null
-    var songs: MutableList<Song>? = null
-    var position = 0
-    var audioSeekBarUpdateHandler: Handler? = null
-    private var isRunning = false
     private lateinit var updateAudioProgressThread: Thread
+    var audioSeekBarUpdateHandler: Handler? = null
+    private var player: MediaPlayer? = null
+    var songs: MutableList<Song>? = null
+    var audioFileUri: Uri? = null
+    private var isRunning = false
+    var context: Context? = null
+    var position = 0
+    private var isShuffle = false
+    private var repeat = 0
+    private val songsPlayed = mutableListOf<Int>()
 
     companion object {
         const val UPDATE_AUDIO_PROGRESS_BAR = 1
@@ -43,35 +47,76 @@ class AudioServiceBinder : Binder() {
     }
 
     fun nextAudio() {
+        context?.let { isShuffle = Utils.readIsShuffle(it) }
         songs?.let {
-            if (position < it.size - 1) {
-                position++
+            if (isShuffle) {
+                songs?.let {
+                    while (true) {
+                        val nextPosition = Random.nextInt(0, it.size)
+                        if (!isExist(nextPosition)) {
+                            songsPlayed.add(nextPosition)
+                            position = nextPosition
+                            break
+                        }
+                    }
+                }
             } else {
-                position = 0
+                songs?.let {
+                    if (position < it.size - 1) {
+                        position++
+                    } else {
+                        position = 0
+                    }
+                }
             }
         }
-        stopAudio()
-        Log.d("xxx", "Binder - Position - $position")
-        songs?.let { audioFileUri = Uri.parse(it[position].path) }
-        startAudio()
+        context?.let {
+            Utils.writePositionPreferences(it, position)
+        }
+        player?.let {
+            if (it.isPlaying) {
+                stopAudio()
+                songs?.let { it1 -> audioFileUri = Uri.parse(it1[position].path) }
+                startAudio()
+            }
+        }
     }
 
     fun previousAudio() {
+        context?.let { isShuffle = Utils.readIsShuffle(it) }
         songs?.let {
-            if (position > 0) {
-                position--
+            if (isShuffle) {
+                while (true) {
+                    val nextPosition = Random.nextInt(0, it.size)
+                    if (!isExist(nextPosition)) {
+                        songsPlayed.add(nextPosition)
+                        position = nextPosition
+                        break
+                    }
+                }
             } else {
-                position = it.size - 1
+                if (position > 0) {
+                    position--
+                } else {
+                    position = it.size - 1
+                }
             }
         }
-        stopAudio()
-        songs?.let { audioFileUri = Uri.parse(it[position].path) }
-        Log.d("xxx", "Binder - Position - $position")
-        startAudio()
+        context?.let { Utils.writePositionPreferences(it, position) }
+        player?.let {
+            if (it.isPlaying) {
+                stopAudio()
+                songs?.let { it1 -> audioFileUri = Uri.parse(it1[position].path) }
+                startAudio()
+            }
+        }
     }
 
     private fun initAudioPlayer() {
-        Log.d("xxx", "initAudioPlayer")
+        context?.let {
+            isShuffle = Utils.readIsShuffle(it)
+            repeat = Utils.readAudioRepeat(it)
+        }
         try {
             if (player == null) {
                 player = MediaPlayer()
@@ -138,5 +183,14 @@ class AudioServiceBinder : Binder() {
             progress = currAudioPosition * 100 / totalAudioDuration
         }
         return progress
+    }
+
+    private fun isExist(position: Int): Boolean {
+        songs?.let {
+            if (it.size == songsPlayed.size) {
+                songsPlayed.clear()
+            }
+        }
+        return songsPlayed.contains(position)
     }
 }

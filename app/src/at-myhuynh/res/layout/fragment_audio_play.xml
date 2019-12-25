@@ -77,6 +77,16 @@
         tools:text="00:00" />
 
     <ImageView
+        android:id="@+id/imgShuffle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_shuffle_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/imgBack"
+        app:layout_constraintEnd_toStartOf="@id/imgBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgBack" />
+
+    <ImageView
         android:id="@+id/imgBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -107,6 +117,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toEndOf="@id/imgPlay"
+        app:layout_constraintTop_toTopOf="@id/imgBack" />
+    
+    <ImageView
+        android:id="@+id/imgRepeat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_repeat_white_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/imgBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgNext"
         app:layout_constraintTop_toTopOf="@id/imgBack" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
