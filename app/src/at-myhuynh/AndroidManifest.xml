@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".fragment.MainActivity" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".kotlinActivity.EditProfileActivity"
@@ -22,7 +23,7 @@
             android:name=".kotlinActivity.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".fragment.MainActivity"
+            android:name=".customview_canvas.ClockActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,4 +35,5 @@
 
     <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 </manifest>
