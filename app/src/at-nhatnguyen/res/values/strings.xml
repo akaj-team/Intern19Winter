@@ -26,5 +26,6 @@
     <string name="textview_text_private_information">Private Information</string>
     <string name="textview_text_phone">Phone</string>
     <string name="button_text_save_profile">Save Profile</string>
-
+    <string name="text_love_lele">LOVE LELE</string>
+    <string name="text_rourou">Rourou</string>
 </resources>
