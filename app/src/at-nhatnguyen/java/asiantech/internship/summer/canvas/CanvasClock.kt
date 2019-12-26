@@ -32,7 +32,7 @@ class CanvasClock(context: Context?, attrs: AttributeSet?) : View(context, attrs
         width = getWidth().toFloat()
         padding = numeralSpacing + 50
         fontSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 25f,
-                resources.displayMetrics).toInt().toFloat()
+                resources.displayMetrics)
         val min = height.coerceAtMost(width).toInt()
         radius = min / 2 - padding
         handTruncation = (min / 20).toFloat()
@@ -61,7 +61,7 @@ class CanvasClock(context: Context?, attrs: AttributeSet?) : View(context, attrs
         paint.isAntiAlias = true
         val handRadius = when {
             isHour -> radius - handTruncation - hourHandTruncation
-            isSecond -> radius
+            isSecond -> radius*0.98f
             else -> radius - handTruncation
         }
 
@@ -119,10 +119,10 @@ class CanvasClock(context: Context?, attrs: AttributeSet?) : View(context, attrs
     }
 
     private fun drawPointCenter(canvas: Canvas) {
-        val paintPoint = Paint()
-        paintPoint.style = Paint.Style.FILL
-        paintPoint.color = Color.YELLOW
-        canvas.drawCircle(width / 2, height / 2, 20F, paintPoint)
+        canvas.drawCircle(width / 2, height / 2, 20F, paint.apply {
+            style = Paint.Style.FILL
+            color = Color.YELLOW
+        })
     }
 
     private fun dawText(canvas: Canvas) {
