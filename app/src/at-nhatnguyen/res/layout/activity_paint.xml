@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="asiantech.internship.summer.canvas.PaintActivity">
+
+    <asiantech.internship.summer.canvas.MyAppPaint
+        android:id="@+id/drawing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/btnDraw"
+        android:background="@drawable/ic_mode_edit_black"
+        android:layout_marginBottom="@dimen/margin_8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="70dp"
+        android:layout_height="50dp"/>
+
+    <Button
+        android:id="@+id/btnErase"
+        android:background="@drawable/erase"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDraw"
+        android:layout_marginRight="@dimen/margin_16dp"
+        android:layout_width="70dp"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:id="@+id/tvDraw"
+        android:layout_marginBottom="@dimen/margin_4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="80dp"
+        android:layout_height="60dp"/>
+
+    <TextView
+        android:id="@+id/tvErase"
+        app:layout_constraintEnd_toStartOf="@+id/tvDraw"
+        android:layout_marginBottom="@dimen/margin_4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="80dp"
+        android:layout_height="60dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
