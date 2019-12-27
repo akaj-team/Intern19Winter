@@ -2,10 +2,7 @@ package asiantech.internship.winter.canvas
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Path
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -41,9 +38,10 @@ class PaintView : View {
     }
 
     private val eraser = Paint().apply {
-        color = backgroundColor
+        color = Color.TRANSPARENT
+        maskFilter = null
+        xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
         isAntiAlias = true
-        isDither = true
         style = Paint.Style.STROKE
         strokeJoin = Paint.Join.ROUND
         strokeCap = Paint.Cap.ROUND
