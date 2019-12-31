@@ -8,6 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar." parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
@@ -32,7 +40,7 @@
         <item name="android:fontFamily">@font/helvetica</item>
         <item name="android:textColor">@color/colorBack</item>
     </style>
-    
+
     <style name="EditTextStyleNunito">
         <item name="android:fontFamily">@font/nunito_regular</item>
         <item name="android:textColor">@color/colorBlack</item>

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="asiantech.internship.summer">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -11,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".fragment.MainActivity" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".kotlinActivity.EditProfileActivity"
@@ -22,16 +25,19 @@
             android:name=".kotlinActivity.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".fragment.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".service_broadcast_receiver.MusicActivity"
+            android:theme="@style/AppTheme.NoActionBar.">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".service_broadcast_receiver.service.AudioService" />
     </application>
 
     <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 </manifest>
