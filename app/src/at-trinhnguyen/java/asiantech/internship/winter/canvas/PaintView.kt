@@ -7,8 +7,6 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
-import androidx.core.content.res.ResourcesCompat
-import asiantech.internship.summer.R
 import kotlin.math.abs
 
 class PaintView : View {
@@ -18,8 +16,6 @@ class PaintView : View {
     private var isEraser = false
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
-    private val backgroundColor = ResourcesCompat.getColor(resources, R.color.colorBackground, null)
-    private var paintColor = ResourcesCompat.getColor(resources, R.color.colorPaint, null)
     private var motionTouchEventX = 0f
     private var motionTouchEventY = 0f
     private var currentX = 0f
@@ -28,7 +24,7 @@ class PaintView : View {
     private val path = Path()
 
     private val paint = Paint().apply {
-        color = paintColor
+        color = Color.BLACK
         isAntiAlias = true
         isDither = true
         style = Paint.Style.STROKE
@@ -58,7 +54,6 @@ class PaintView : View {
         if (::extraBitmap.isInitialized) extraBitmap.recycle()
         extraBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         extraCanvas = Canvas(extraBitmap)
-        extraCanvas.drawColor(backgroundColor)
     }
 
     override fun onDraw(canvas: Canvas?) {
