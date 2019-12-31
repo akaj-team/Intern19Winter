@@ -19,6 +19,7 @@ import asiantech.internship.summer.service_broadcast_receiver.Song
 import asiantech.internship.summer.service_broadcast_receiver.Utils
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_BACK_NOTIFY
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_CLEAR_NOTIFY
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_NEXT_AUTO
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_NEXT_NOTIFY
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_PAUSE_NOTIFY
 import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ARG_Is_PLAYING
@@ -117,6 +118,7 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
         filter.addAction(ACTION_BACK_NOTIFY)
         filter.addAction(ACTION_PAUSE_NOTIFY)
         filter.addAction(ACTION_CLEAR_NOTIFY)
+        filter.addAction(ACTION_NEXT_AUTO)
         requireContext().registerReceiver(notificationReceiver, filter)
         bindUpdateSeekBar()
     }
@@ -169,6 +171,7 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
                     1 -> imgRepeat.setImageResource(R.drawable.ic_repeat_one_red_24dp)
                     2 -> imgRepeat.setImageResource(R.drawable.ic_repeat_red_24dp)
                 }
+                Log.d("xxx", "repeat: $repeat")
                 Utils.writeSharedPreferences(requireContext(), isShuffle, repeat)
             }
         }
@@ -212,6 +215,8 @@ class AudioPlayFragment : Fragment(), View.OnClickListener {
                     isPlaying = !isPlaying
                     changeIconAudioPlay()
                 }
+
+                ACTION_NEXT_AUTO -> initNextAudio()
             }
         }
     }

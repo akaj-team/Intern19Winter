@@ -22,6 +22,7 @@ class Utils {
         const val ACTION_BACK_NOTIFY = "ACTION_BACK_NOTIFY"
         const val ACTION_NEXT_NOTIFY = "ACTION_NEXT_NOTIFY"
         const val ACTION_CLEAR_NOTIFY = "ACTION_CLEAR_NOTIFY"
+        const val ACTION_NEXT_AUTO = "ACTION_NEXT_AUTO"
 
         private const val KEY_SHUFFLE = "KEY_SHUFFLE"
         private const val KEY_REPEAT = "KEY_REPEAT"

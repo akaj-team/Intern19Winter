@@ -1,17 +1,20 @@
 package asiantech.internship.summer.service_broadcast_receiver.service
 
 import android.content.Context
+import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Binder
 import android.os.Handler
 import android.os.Message
+import android.util.Log
 import asiantech.internship.summer.service_broadcast_receiver.Song
 import asiantech.internship.summer.service_broadcast_receiver.Utils
+import asiantech.internship.summer.service_broadcast_receiver.Utils.Companion.ACTION_NEXT_AUTO
 import java.io.IOException
 import kotlin.random.Random
 
-class AudioServiceBinder : Binder() {
+class AudioServiceBinder : Binder(), MediaPlayer.OnCompletionListener {
     private lateinit var updateAudioProgressThread: Thread
     var audioSeekBarUpdateHandler: Handler? = null
     private var player: MediaPlayer? = null
@@ -70,15 +73,14 @@ class AudioServiceBinder : Binder() {
                 }
             }
         }
+        Log.d("xxx", "Position: $position")
         context?.let {
             Utils.writePositionPreferences(it, position)
         }
         player?.let {
-            if (it.isPlaying) {
-                stopAudio()
-                songs?.let { it1 -> audioFileUri = Uri.parse(it1[position].path) }
-                startAudio()
-            }
+            stopAudio()
+            songs?.let { it1 -> audioFileUri = Uri.parse(it1[position].path) }
+            startAudio()
         }
     }
 
@@ -120,8 +122,10 @@ class AudioServiceBinder : Binder() {
         try {
             if (player == null) {
                 player = MediaPlayer()
+                player?.setOnCompletionListener(this)
                 context?.let { audioFileUri?.let { it1 -> player?.setDataSource(it, it1) } }
                 player?.prepare()
+                setAudioLooping(repeat)
             }
             isRunning = true
             updateAudioProgressThread = object : Thread() {
@@ -192,5 +196,21 @@ class AudioServiceBinder : Binder() {
             }
         }
         return songsPlayed.contains(position)
+    }
+
+    private fun setAudioLooping(looping: Int) {
+        when (looping) {
+            0 -> player?.isLooping = false
+            1 -> player?.isLooping = true
+        }
+    }
+
+    override fun onCompletion(mp: MediaPlayer?) {
+        if (repeat == 2) {
+            mp?.reset()
+            nextAudio()
+            val intent = Intent(ACTION_NEXT_AUTO)
+            context?.sendBroadcast(intent)
+        }
     }
 }
