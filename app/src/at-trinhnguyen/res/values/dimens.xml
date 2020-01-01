@@ -27,4 +27,6 @@
     <dimen name="text_size_24sp">24sp</dimen>
     <dimen name="text_size_32sp">32sp</dimen>
     <dimen name="text_size_40sp">40sp</dimen>
+    <dimen name="button_32dp">32dp</dimen>
+    <dimen name="button_28dp">28dp</dimen>
 </resources>
