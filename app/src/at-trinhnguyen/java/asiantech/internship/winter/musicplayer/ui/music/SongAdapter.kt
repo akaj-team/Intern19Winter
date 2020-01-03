@@ -1,4 +1,4 @@
-package asiantech.internship.winter.musicplayer
+package asiantech.internship.winter.musicplayer.ui.music
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import asiantech.internship.summer.R
+import asiantech.internship.winter.musicplayer.Utils
 import asiantech.internship.winter.musicplayer.model.Song
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority

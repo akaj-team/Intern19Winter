@@ -1,4 +1,4 @@
-package asiantech.internship.winter.musicplayer
+package asiantech.internship.winter.musicplayer.ui.music
 
 import android.Manifest
 import android.animation.ObjectAnimator
@@ -21,12 +21,14 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import asiantech.internship.summer.R
+import asiantech.internship.winter.musicplayer.Utils
 import asiantech.internship.winter.musicplayer.model.Song
 import asiantech.internship.winter.musicplayer.network.mockapi.SongMockApi
 import asiantech.internship.winter.musicplayer.network.mockapi.SongMockApiResponse
 import asiantech.internship.winter.musicplayer.network.webhostapp.SongApi
 import asiantech.internship.winter.musicplayer.network.webhostapp.SongResponse
 import asiantech.internship.winter.musicplayer.playback.*
+import asiantech.internship.winter.musicplayer.ui.online.MusicOnlineActivity
 import kotlinx.android.synthetic.`at-trinhnguyen`.activity_music.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -356,7 +358,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
                 skipPrev()
             }
             R.id.imgBtnSearch -> {
-                search()
+                startActivity(Intent(this, MusicOnlineActivity::class.java))
             }
         }
     }

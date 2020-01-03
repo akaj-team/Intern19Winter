@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorDark"
-    tools:context="asiantech.internship.winter.musicplayer.MusicActivity">
+    tools:context="asiantech.internship.winter.musicplayer.ui.music.MusicActivity">
 
     <com.google.android.material.appbar.CollapsingToolbarLayout
         android:id="@id/cardView"

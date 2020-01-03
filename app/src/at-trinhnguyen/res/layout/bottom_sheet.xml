@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomSheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_action_player"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="16dp"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="@dimen/img_song_art_52dp"
+        android:layout_height="@dimen/img_song_art_52dp"
+        android:layout_marginStart="@dimen/margin_16dp"
+        app:cardCornerRadius="@dimen/card_corner_radius_4dp"
+        app:layout_constraintBottom_toTopOf="@id/tvDownload"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgSongArtSheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_song_art"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_song" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clContent"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/item_list_song_content_height_48dp"
+        android:paddingTop="@dimen/padding_4dp"
+        android:paddingBottom="@dimen/padding_4dp"
+        app:layout_constraintBottom_toBottomOf="@id/cardView"
+        app:layout_constraintStart_toEndOf="@id/cardView"
+        app:layout_constraintTop_toTopOf="@id/cardView">
+
+        <TextView
+            android:id="@+id/tvSongTitleSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_marginBottom="@dimen/margin_4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Song title" />
+
+
+        <ImageView
+            android:id="@+id/imgDownloadSheet"
+            android:layout_width="@dimen/img_download_12dp"
+            android:layout_height="@dimen/img_download_12dp"
+            android:src="@drawable/ic_download"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvSongTitleSheet"
+            app:layout_constraintTop_toBottomOf="@id/tvSongTitleSheet" />
+
+        <TextView
+            android:id="@+id/tvArtistSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_4dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/text_size_12sp"
+            app:layout_constraintBottom_toBottomOf="@id/imgDownloadSheet"
+            app:layout_constraintStart_toEndOf="@id/imgDownloadSheet"
+            app:layout_constraintTop_toTopOf="@id/imgDownloadSheet"
+            tools:text="Song Album" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvDownload"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:background="@drawable/ripple_btn"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_mm_downloads"
+        android:drawablePadding="@dimen/padding_16dp"
+        android:drawableTint="@android:color/white"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/padding_16dp"
+        android:text="@string/textview_text_download"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        tools:targetApi="m" />
+
+    <TextView
+        android:id="@+id/tvPlayNext"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:background="@drawable/ripple_btn"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_play_next"
+        android:drawablePadding="@dimen/padding_16dp"
+        android:drawableTint="@android:color/white"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/padding_16dp"
+        android:text="@string/textview_text_play_next"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDownload" />
+
+    <TextView
+        android:id="@+id/tvDelete"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:background="@drawable/ripple_btn"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_delete"
+        android:drawablePadding="@dimen/padding_16dp"
+        android:drawableTint="@android:color/white"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/padding_16dp"
+        android:text="@string/textview_text_delete"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPlayNext" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

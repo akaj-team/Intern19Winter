@@ -38,4 +38,7 @@
     <string name="shared_prefs_file_name">shared_prefs_song</string>
     <string name="shared_prefs_song_index">SONG_INDEX</string>
     <string name="edittext_search_for_songs">Search for songs</string>
+    <string name="textview_text_delete">Delete</string>
+    <string name="textview_text_play_next">Play next</string>
+    <string name="textview_text_download">Download</string>
 </resources>
