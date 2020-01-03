@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import asiantech.internship.summer.R
 import asiantech.internship.winter.musicplayer.network.mockapi.SongMockApi
 import asiantech.internship.winter.musicplayer.network.mockapi.SongMockApiResponse
@@ -22,7 +23,9 @@ import retrofit2.Response
 class MusicOnlineActivity : AppCompatActivity() {
     private lateinit var adapterMusicOnline: MusicOnlineAdapter
     private var songResponses = mutableListOf<SongMockApiResponse>()
+    private lateinit var sheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private var lastPosition = -1
+    private var currentPosition = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +51,7 @@ class MusicOnlineActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        sheetBehavior = BottomSheetBehavior.from(bottomSheet)
         recyclerView.let {
             adapterMusicOnline = MusicOnlineAdapter(this)
             it.adapter = adapterMusicOnline
@@ -56,14 +60,32 @@ class MusicOnlineActivity : AppCompatActivity() {
         }
 
         tvDelete.setOnClickListener {
+            val position = currentPosition
+            songResponses[position].id?.let { id ->
+                SongMockApi.songMockApiService.deleteSong(id)
+                        .enqueue(object : Callback<SongMockApiResponse> {
+                            override fun onFailure(call: Call<SongMockApiResponse>, t: Throwable) {
+                                Log.d("bbb", t.toString())
+                            }
 
+                            override fun onResponse(call: Call<SongMockApiResponse>, response: Response<SongMockApiResponse>) {
+                                response.body().let {
+                                    Log.d("bbb", it.toString())
+                                    sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                                    songResponses.removeAt(position)
+                                    adapterMusicOnline.notifyItemRemoved(position)
+                                }
+                            }
+
+                        })
+            }
         }
     }
 
     private fun eventMoreClick(position: Int) {
-        Toast.makeText(this, "$position", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "${songResponses[position].id}", Toast.LENGTH_SHORT).show()
+        currentPosition = position
         val song = songResponses[position]
-        val sheetBehavior = BottomSheetBehavior.from(bottomSheet)
         tvSongTitleSheet.text = song.title
         tvArtistSheet.text = song.artist
         Glide.with(this)
@@ -78,8 +100,8 @@ class MusicOnlineActivity : AppCompatActivity() {
         if (sheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
             lastPosition = -1
         }
-        if (position != lastPosition) {
-            lastPosition = position
+        if (currentPosition != lastPosition) {
+            lastPosition = currentPosition
             sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         } else {
             lastPosition = -1

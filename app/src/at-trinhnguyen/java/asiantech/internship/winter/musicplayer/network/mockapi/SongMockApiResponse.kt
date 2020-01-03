@@ -9,7 +9,6 @@ data class SongMockApiResponse(
         @field:SerializedName("title")
         val title: String? = null,
 
-
         @field:SerializedName("artist")
         val artist: String? = null,
 

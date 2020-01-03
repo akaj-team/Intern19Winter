@@ -358,6 +358,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
                 skipPrev()
             }
             R.id.imgBtnSearch -> {
+                //search()
                 startActivity(Intent(this, MusicOnlineActivity::class.java))
             }
         }
@@ -479,7 +480,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
 
                             response.body()?.let { songResponse ->
                                 //Toast.makeText(applicationContext, songProperty.messages?.get(0)?.attachment?.payload?.url, Toast.LENGTH_SHORT).show()
-                                //Log.d("bbb", songResponse.messages.toString())
+                                Log.d("bbb", songResponse.messages.toString())
                                 val a: List<String> = songResponse.messages?.get(0)?.text.toString().split("Bài ")
                                 val title: List<String> = a[1].split(" của ca sĩ ")
                                 val artist: List<String> = title[1].split(" phải không?")
@@ -494,7 +495,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
                                     SongMockApi.songMockApiService.postSong(songMockApiResponse)
                                             .enqueue(object : Callback<SongMockApiResponse> {
                                                 override fun onFailure(call: Call<SongMockApiResponse>, t: Throwable) {
-                                                    Log.d("bbb", "mock fail")
+                                                    Log.d("bbb", t.toString())
                                                     call.cancel()
                                                 }
 
