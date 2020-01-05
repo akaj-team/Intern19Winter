@@ -12,6 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "THE_MOVIE_API_KEY", "\"${THE_MOVIE_API_KEY}\""
     }
     buildTypes {
         release {
@@ -74,6 +75,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
 }
 repositories {
     mavenCentral()

@@ -6,4 +6,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorGreen400">#00e676</color>
+    <color name="colorBackgroundItem">#051112</color>
+    <color name="colorText">#b9bebe</color>
+    <color name="colorBackgroundList">#020809</color>
 </resources>
