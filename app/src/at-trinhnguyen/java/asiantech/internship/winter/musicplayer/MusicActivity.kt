@@ -23,6 +23,7 @@ import asiantech.internship.summer.R
 import asiantech.internship.winter.musicplayer.model.Song
 import asiantech.internship.winter.musicplayer.playback.*
 import kotlinx.android.synthetic.`at-trinhnguyen`.activity_music.*
+import kotlinx.android.synthetic.`at-trinhnguyen`.player_bar.*
 
 
 class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.SongClicked {
@@ -96,10 +97,10 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
 
     private fun initViews() {
         seekBar = findViewById(R.id.seekBar)
-        imgBtnPlay.setOnClickListener(this)
-        imgBtnNext.setOnClickListener(this)
-        imgBtnPrevious.setOnClickListener(this)
-        view.setOnClickListener(this)
+        btnPlay.setOnClickListener(this)
+        btnNext.setOnClickListener(this)
+        btnPrevious.setOnClickListener(this)
+        space.setOnClickListener(this)
         deviceSongs = SongProvider.getAllDeviceSongs(this)
         songAdapter?.setOnSongClicked(this)
 
@@ -117,21 +118,20 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         if (deviceSongs.isNotEmpty()) {
             try {
                 lastSong = deviceSongs[0]
-                tvSongTitle.text = ""
+                tvSongName.text = ""
                 tvArtist.text = ""
                 tvDurationLeft.text = ""
                 tvDurationRight.text = ""
 //                seekBar?.max = deviceSongs[0].duration
-//                imgSongArtCurrent.setImageBitmap(deviceSongs[0].path?.let { Utils.songArt(it, this@MusicActivity) })
+//                imgSongArt.setImageBitmap(deviceSongs[0].path?.let { Utils.songArt(it, this@MusicActivity) })
             } catch (e: IndexOutOfBoundsException) {
                 e.printStackTrace()
             }
         }
 
 
-
-        rotate = ObjectAnimator.ofFloat(imgSongArtCurrent, "rotation", 0f, 360f).apply {
-            duration = 15000
+        rotate = ObjectAnimator.ofFloat(imgSongArt, "rotation", 0f, 360f).apply {
+            duration = 20000
             repeatCount = ValueAnimator.INFINITE
             repeatMode = ValueAnimator.RESTART
             interpolator = LinearInterpolator()
@@ -192,10 +192,10 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
         playerAdapter?.getCurrentSong()?.let { currentSong ->
             if (lastSong != currentSong) {
                 lastSong = currentSong
-                tvSongTitle.text = currentSong.title
+                tvSongName.text = currentSong.title
                 tvArtist.text = currentSong.artistName
                 seekBar?.max = currentSong.duration
-                imgSongArtCurrent.setImageBitmap(currentSong.path?.let { Utils.songArt(it, this@MusicActivity) })
+                imgSongArt.setImageBitmap(currentSong.path?.let { Utils.songArt(it, this@MusicActivity) })
             }
         }
 
@@ -234,7 +234,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
             drawable = R.drawable.ic_media_play
             rotate?.pause()
         }
-        imgBtnPlay.post { imgBtnPlay.setImageResource(drawable) }
+        btnPlay.post { btnPlay.setImageResource(drawable) }
     }
 
     private fun restorePlayerStatus() {
@@ -334,16 +334,16 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.imgBtnPlay -> {
+            R.id.btnPlay -> {
                 resumeOrPause()
             }
-            R.id.imgBtnNext -> {
+            R.id.btnNext -> {
                 skipNext()
             }
-            R.id.imgBtnPrevious -> {
+            R.id.btnPrevious -> {
                 skipPrev()
             }
-            R.id.view -> {
+            R.id.space -> {
                 restoreLastSongPlay()
             }
         }
@@ -376,7 +376,7 @@ class MusicActivity : AppCompatActivity(), View.OnClickListener, SongAdapter.Son
                         }
                         tvDurationLeft.text = Utils.formatDuration(progress)
                         tvDurationRight.text = playerAdapter?.getCurrentSong()?.duration?.let { duration ->
-                            Utils.formatDuration(duration - progress)
+                            Utils.formatDuration(duration)
                         }
                     }
 

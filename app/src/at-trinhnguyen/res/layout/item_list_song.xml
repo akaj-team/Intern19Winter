@@ -22,9 +22,8 @@
             android:id="@+id/imgSongArt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_song_art"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_song" />
+            android:background="@android:color/white"
+            android:scaleType="centerCrop" />
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,19 +33,19 @@
         android:paddingTop="@dimen/padding_4dp"
         android:paddingBottom="@dimen/padding_4dp"
         app:layout_constraintBottom_toBottomOf="@id/cardView"
-        app:layout_constraintEnd_toStartOf="@id/imgBtnMore"
+        app:layout_constraintEnd_toStartOf="@id/btnMore"
         app:layout_constraintStart_toEndOf="@id/cardView"
         app:layout_constraintTop_toTopOf="@id/cardView">
 
         <TextView
-            android:id="@+id/tvSongTitle"
+            android:id="@+id/tvSongName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8dp"
             android:layout_marginBottom="@dimen/margin_4dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/text_size_16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvArtist"
@@ -59,10 +58,10 @@
             android:layout_width="@dimen/img_download_12dp"
             android:layout_height="@dimen/img_download_12dp"
             android:src="@drawable/ic_download"
-            android:tint="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tvSongTitle"
-            app:layout_constraintTop_toBottomOf="@id/tvSongTitle" />
+            app:layout_constraintStart_toStartOf="@id/tvSongName"
+            app:layout_constraintTop_toBottomOf="@id/tvSongName"
+            app:tint="@color/colorAccent" />
 
         <TextView
             android:id="@+id/tvArtist"
@@ -81,7 +80,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
-        android:id="@+id/imgBtnMore"
+        android:id="@+id/btnMore"
         android:layout_width="@dimen/btn_width_40dp"
         android:layout_height="@dimen/btn_height_56dp"
         android:background="@drawable/ripple_btn"

@@ -47,7 +47,7 @@ class SongAdapter(private val context: Context) : RecyclerView.Adapter<SongAdapt
 
     inner class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val itemContainer: ConstraintLayout = itemView.findViewById(R.id.container)
-        private val title: TextView = itemView.findViewById(R.id.tvSongTitle)
+        private val title: TextView = itemView.findViewById(R.id.tvSongName)
         private val artist: TextView = itemView.findViewById(R.id.tvArtist)
         private val imgSongArt = itemView.findViewById<ImageView>(R.id.imgSongArt)
 
@@ -61,7 +61,6 @@ class SongAdapter(private val context: Context) : RecyclerView.Adapter<SongAdapt
                     .priority(Priority.LOW)
                     .error(R.drawable.ic_song)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.ic_song)
                     .into(imgSongArt)
 
             itemContainer.setOnClickListener {
