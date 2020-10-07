@@ -170,6 +170,7 @@
         <Constraint
             android:id="@+id/btnDown"
             android:layout_marginStart="8dp"
+            android:alpha="0"
             app:layout_constraintStart_toStartOf="@id/container"
             app:layout_constraintTop_toTopOf="@id/container" />
     </ConstraintSet>
