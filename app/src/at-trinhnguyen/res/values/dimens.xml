@@ -7,7 +7,7 @@
     <dimen name="ic_logo_height">32dp</dimen>
     <dimen name="img_profile_picture_width">120dp</dimen>
     <dimen name="img_profile_picture_height">120dp</dimen>
-    <dimen name="btn_height_54dp">54dp</dimen>
+    <dimen name="btn_height_56dp">54dp</dimen>
     <dimen name="padding_4dp">4dp</dimen>
     <dimen name="padding_8dp">8dp</dimen>
     <dimen name="padding_12dp">12dp</dimen>
@@ -27,4 +27,26 @@
     <dimen name="text_size_24sp">24sp</dimen>
     <dimen name="text_size_32sp">32sp</dimen>
     <dimen name="text_size_40sp">40sp</dimen>
+    <dimen name="img_song_art_52dp">52dp</dimen>
+    <dimen name="card_corner_radius_4dp">4dp</dimen>
+    <dimen name="item_list_song_height_64dp">64dp</dimen>
+    <dimen name="item_list_song_content_height_48dp">48dp</dimen>
+    <dimen name="img_download_12dp">12dp</dimen>
+    <dimen name="img_song_art_48dp">48dp</dimen>
+    <dimen name="card_corner_radius_24dp">24dp</dimen>
+    <dimen name="img_btn_20dp">20dp</dimen>
+    <dimen name="img_btn_24dp">24dp</dimen>
+    <dimen name="margin_28dp">28dp</dimen>
+    <dimen name="btn_width_40dp">40dp</dimen>
+    <dimen name="btn_height_54dp">54dp</dimen>
+    <dimen name="margin_56dp">56dp</dimen>
+    <dimen name="player_bar_height_210dp">210dp</dimen>
+    <dimen name="player_bar_56dp">56dp</dimen>
+    <dimen name="corner_radius_20dp">20dp</dimen>
+    <dimen name="view_width_32dp">32dp</dimen>
+    <dimen name="view_height_2dp">2dp</dimen>
+    <dimen name="img_song_art_80dp">80dp</dimen>
+    <dimen name="btn_48dp">48dp</dimen>
+    <dimen name="btn_24dp">24dp</dimen>
+    <dimen name="img_song_art_240dp">240dp</dimen>
 </resources>

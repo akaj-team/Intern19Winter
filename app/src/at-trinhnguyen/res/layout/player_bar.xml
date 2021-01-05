@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motionLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/activity_music_scene"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    tools:showPaths="true">
+
+    <asiantech.internship.winter.musicplayer.CustomMaterialCardView
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:cardBackgroundColor="#fafafa"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="8dp" />
+
+    <View
+        android:id="@+id/space"
+        android:layout_width="1dp"
+        android:layout_height="@dimen/view_height_2dp"
+        android:background="@android:color/darker_gray"
+        android:elevation="8dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgSongArt"
+        android:layout_width="@dimen/img_song_art_48dp"
+        android:layout_height="@dimen/img_song_art_48dp"
+        android:elevation="8dp"
+        android:src="@drawable/img_profile" />
+
+    <ImageButton
+        android:id="@+id/btnDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_btn"
+        android:elevation="8dp"
+        android:tint="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@id/container"
+        app:layout_constraintTop_toTopOf="@id/container"
+        app:srcCompat="@drawable/ic_arrow_down" />
+
+    <TextView
+        android:id="@+id/tvSongName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size_16sp"
+        tools:text="Song name" />
+
+    <TextView
+        android:id="@+id/tvArtist"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/text_size_12sp"
+        tools:text="Artist Name" />
+
+    <ImageButton
+        android:id="@+id/btnMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:background="@drawable/ripple_btn"
+        android:elevation="8dp"
+        android:tint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@id/tvArtist"
+        app:layout_constraintStart_toEndOf="@id/container"
+        app:layout_constraintTop_toTopOf="@id/tvSongName"
+        app:srcCompat="@drawable/ic_more" />
+
+    <TextView
+        android:id="@+id/tvDurationLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:textColor="@android:color/darker_gray"
+        tools:text="1:22" />
+
+    <TextView
+        android:id="@+id/tvDurationRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:textColor="@android:color/darker_gray"
+        tools:text="5:20" />
+
+    <ToggleButton
+        android:id="@+id/tbShuffle"
+        android:layout_width="@dimen/btn_24dp"
+        android:layout_height="@dimen/btn_24dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        android:background="@drawable/bg_btn_shuffle"
+        android:contentDescription="@string/app_name"
+        android:elevation="8dp"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintBottom_toTopOf="@id/tvDurationRight"
+        app:layout_constraintEnd_toEndOf="@id/container" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:progressTint="@android:color/black"
+        android:thumbTint="@android:color/black" />
+
+    <ImageView
+        android:id="@+id/btnPrevious"
+        android:layout_width="@dimen/btn_48dp"
+        android:layout_height="@dimen/btn_48dp"
+        android:background="@drawable/ripple_btn"
+        android:contentDescription="@string/app_name"
+        android:elevation="8dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:src="@drawable/ic_media_prev"
+        app:tint="@android:color/black" />
+
+    <ImageView
+        android:id="@+id/btnPlay"
+        android:layout_width="@dimen/btn_48dp"
+        android:layout_height="@dimen/btn_48dp"
+        android:background="@drawable/ripple_btn"
+        android:contentDescription="@string/app_name"
+        android:elevation="8dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:src="@drawable/ic_media_play"
+        app:tint="@android:color/black" />
+
+    <ImageView
+        android:id="@+id/btnNext"
+        android:layout_width="@dimen/btn_48dp"
+        android:layout_height="@dimen/btn_48dp"
+        android:background="@drawable/ripple_btn"
+        android:contentDescription="@string/app_name"
+        android:elevation="8dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:src="@drawable/ic_media_next"
+        app:tint="@android:color/black" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
